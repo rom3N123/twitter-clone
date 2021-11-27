@@ -1,5 +1,6 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { ModeName, ColorName, ITheme } from '../interfaces/styled';
 import accentColors from '../styles/accentColors';
 import modes from '../styles/modes';
@@ -21,21 +22,36 @@ const themeContextInitialValue: IThemeContextValue = {
 export const Theme = React.createContext<IThemeContextValue>(themeContextInitialValue);
 
 const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactElement => {
-	const [mode, setMode] = React.useState<ModeName>('light');
-	const [accentColor, setAccentColor] = React.useState<ColorName>('blue');
+	const [mode, setMode] = React.useState<ModeName>('dim');
+	const [accentColor, setAccentColor] = React.useState<ColorName>('orange');
 
-	const changeAccentColor = (colorName: ColorName) => {
+	const accentColorValue = accentColors[accentColor];
+	const modeValue = modes[mode];
+
+	const changeAccentColor = (colorName: ColorName): void => {
 		setAccentColor(colorName);
 	};
 
-	const changeMode = (modeName: ModeName) => {
+	const changeMode = (modeName: ModeName): void => {
 		setMode(modeName);
 	};
 
-	const currentTheme: ITheme = {
-		accentColor: accentColors[accentColor],
-		mode: modes[mode],
+	const currentStyledTheme: ITheme = {
+		accentColor: accentColorValue,
+		mode: modeValue,
 	};
+
+	const mTheme = createTheme({
+		palette: {
+			secondary: {
+				main: accentColorValue,
+			},
+			background: {
+				default: modeValue.backgroundColor,
+				paper: modeValue.backgroundColor,
+			},
+		},
+	});
 
 	const themeContextValue: IThemeContextValue = {
 		changeAccentColor,
@@ -44,7 +60,9 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 
 	return (
 		<Theme.Provider value={themeContextValue}>
-			<ThemeProvider theme={currentTheme}>{children}</ThemeProvider>
+			<MuiThemeProvider theme={mTheme}>
+				<StyledThemeProvider theme={currentStyledTheme}>{children}</StyledThemeProvider>
+			</MuiThemeProvider>
 		</Theme.Provider>
 	);
 };
