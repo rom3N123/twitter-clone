@@ -16,6 +16,8 @@ export type ColorName = keyof IColors;
 
 export interface IMode {
 	backgroundColor: string;
+	svgColor: string;
+	typography: string;
 }
 
 export interface IModes {

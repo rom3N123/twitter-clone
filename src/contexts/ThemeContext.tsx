@@ -42,6 +42,29 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 	};
 
 	const mTheme = createTheme({
+		components: {
+			MuiSvgIcon: {
+				styleOverrides: {
+					root: {
+						color: modeValue.svgColor,
+					},
+				},
+			},
+			MuiTouchRipple: {
+				styleOverrides: {
+					child: {
+						backgroundColor: 'red',
+					},
+				},
+			},
+			MuiTypography: {
+				styleOverrides: {
+					root: {
+						color: modeValue.typography,
+					},
+				},
+			},
+		},
 		palette: {
 			secondary: {
 				main: accentColorValue,
