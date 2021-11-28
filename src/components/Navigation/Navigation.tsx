@@ -1,6 +1,5 @@
 import React from 'react';
 import IconButton from '@mui/material/IconButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Box from '@mui/system/Box';
 import { Link } from 'react-router-dom';
@@ -22,6 +21,7 @@ import {
 	SWrapper,
 	STweetButton,
 	SList,
+	SListItemIcon,
 } from './Navigation.styled';
 import { ProfileButton } from './components';
 import MoreMenuPopover from './components/MoreMenuPopover';
@@ -69,7 +69,7 @@ const Navigation = () => {
 					<SListItem>
 						<SNavLink to={navigationItem.to}>
 							<SListItemButton>
-								<ListItemIcon>{navigationItem.icon}</ListItemIcon>
+								<SListItemIcon>{navigationItem.icon}</SListItemIcon>
 								<SListItemText>{navigationItem.label}</SListItemText>
 							</SListItemButton>
 						</SNavLink>
@@ -85,9 +85,9 @@ const Navigation = () => {
 				<SListItem>
 					<div onClick={handleOpenMoreMenu} ref={moreButtonRef}>
 						<SListItemButton>
-							<ListItemIcon>
+							<SListItemIcon>
 								<MoreIcon />
-							</ListItemIcon>
+							</SListItemIcon>
 							<SListItemText>More</SListItemText>
 						</SListItemButton>
 					</div>

@@ -22,6 +22,10 @@ export interface IMode {
 		primary: string;
 		secondary: string;
 	};
+	actions: {
+		hover: string;
+		active: string;
+	};
 	svgColor: string;
 	typography: string;
 	popover: {
@@ -29,7 +33,6 @@ export interface IMode {
 	};
 	backdrop: string;
 	divider: string;
-	buttonHover: string;
 	palette: IColorPalette;
 }
 

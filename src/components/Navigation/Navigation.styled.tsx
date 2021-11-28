@@ -6,6 +6,7 @@ import List from '@mui/material/List';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { NavLink } from 'react-router-dom';
+import ListItemIcon from '@mui/material/ListItemIcon';
 
 export const SWrapper = styled(Grid).attrs(() => ({
 	container: true,
@@ -63,4 +64,8 @@ export const STweetButton = styled(Button).attrs(() => ({
 	margin-top: 16px;
 	box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
 	padding: 12px;
+`;
+
+export const SListItemIcon = styled(ListItemIcon)`
+	min-width: 45px;
 `;

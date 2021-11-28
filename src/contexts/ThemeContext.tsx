@@ -22,10 +22,10 @@ const themeContextInitialValue: IThemeContextValue = {
 export const Theme = React.createContext<IThemeContextValue>(themeContextInitialValue);
 
 const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactElement => {
-	const [mode, setMode] = React.useState<ModeName>('dim');
-	const [accentColor, setAccentColor] = React.useState<ColorName>('purple');
+	const [mode, setMode] = React.useState<ModeName>('light');
+	const [accentColor, setAccentColor] = React.useState<ColorName>('blue');
 
-	const accentColorValue = accentColors[accentColor];
+	const accentColorValue: string = accentColors[accentColor];
 	const modeValue = modes[mode];
 
 	const changeAccentColor = (colorName: ColorName): void => {
@@ -91,17 +91,26 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 				styleOverrides: {
 					root: {
 						'&:hover': {
-							backgroundColor: modeValue.buttonHover,
+							backgroundColor: modeValue.actions.hover,
+						},
+						'&:active': {
+							backgroundColor: modeValue.actions.active,
 						},
 					},
 				},
 			},
 			MuiButtonBase: {
+				defaultProps: {
+					disableRipple: true,
+				},
 				styleOverrides: {
 					root: {
 						transition: 'background-color 0.2s ease',
 						'&:hover': {
-							backgroundColor: modeValue.buttonHover,
+							backgroundColor: modeValue.actions.hover,
+						},
+						'&:active': {
+							backgroundColor: modeValue.actions.active,
 						},
 					},
 				},
@@ -109,12 +118,15 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 			MuiButton: {
 				defaultProps: {
 					color: 'secondary',
+					disableRipple: true,
+					disableElevation: true,
 				},
 				styleOverrides: {
 					root: {
 						borderRadius: '9999px',
 						textTransform: 'none',
 						fontWeight: 700,
+						'&:hover': {},
 					},
 				},
 			},
