@@ -16,6 +16,7 @@ export type ColorName = keyof IColors;
 
 interface IColorPalette {
 	gray: string;
+	danger: string;
 }
 export interface IMode {
 	background: {

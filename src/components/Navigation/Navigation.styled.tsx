@@ -5,8 +5,10 @@ import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import { NavLink } from 'react-router-dom';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import IconButton from '@mui/material/IconButton';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import { NavLink } from 'react-router-dom';
 
 export const SWrapper = styled(Grid).attrs(() => ({
 	container: true,
@@ -68,4 +70,14 @@ export const STweetButton = styled(Button).attrs(() => ({
 
 export const SListItemIcon = styled(ListItemIcon)`
 	min-width: 45px;
+`;
+
+export const SIconButton = styled(IconButton)`
+	svg {
+		color: ${({ theme }) => theme.mode.svgColor} !important;
+	}
+`;
+
+export const STwitterIcon = styled(TwitterIcon)`
+	font-size: 40px;
 `;

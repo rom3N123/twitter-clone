@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { ModeName, ColorName, ITheme } from '../interfaces/styled';
 import accentColors from '../styles/accentColors';
 import modes from '../styles/modes';
+import { alpha } from '@mui/system';
 
 interface IThemeContextProps {
 	children: React.ReactNode;
@@ -53,6 +54,23 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 					paper: {
 						borderRadius: 16,
 					},
+				},
+			},
+			MuiIconButton: {
+				defaultProps: {
+					color: 'secondary',
+				},
+				styleOverrides: {
+					root: {
+						'.MuiSvgIcon-root': {
+							color: accentColorValue,
+						},
+					},
+				},
+			},
+			MuiCircularProgress: {
+				defaultProps: {
+					color: 'secondary',
 				},
 			},
 			MuiDivider: {
@@ -126,8 +144,13 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 						borderRadius: '9999px',
 						textTransform: 'none',
 						fontWeight: 700,
-						'&:hover': {},
+						color: '#fff',
+						'&.Mui-disabled': {
+							backgroundColor: alpha(accentColorValue, 0.5),
+							color: alpha('#fff', 0.55),
+						},
 					},
+					disabled: {},
 				},
 			},
 			MuiSvgIcon: {
@@ -155,6 +178,9 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 		palette: {
 			secondary: {
 				main: accentColorValue,
+			},
+			warning: {
+				main: modeValue.palette.danger,
 			},
 			background: {
 				default: modeValue.background.primary,

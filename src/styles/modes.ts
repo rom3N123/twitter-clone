@@ -20,6 +20,7 @@ const modes: IModes = {
 		backdrop: 'rgba(0, 0, 0, 0.4)',
 		palette: {
 			gray: '#536471',
+			danger: '#f4212e',
 		},
 	},
 	dim: {
@@ -40,6 +41,7 @@ const modes: IModes = {
 		backdrop: 'rgba(91, 112, 131, 0.4)',
 		palette: {
 			gray: '#536471',
+			danger: '#f4212e',
 		},
 	},
 	dark: {
@@ -60,6 +62,7 @@ const modes: IModes = {
 		},
 		palette: {
 			gray: '#536471',
+			danger: '#f4212e',
 		},
 	},
 };

@@ -2,32 +2,26 @@ import React from 'react';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { Navigation } from '../../components';
-import { SContent } from './Layout.styled';
+import { SContent, SMainContent } from './Layout.styled';
+import { Routes, Route } from 'react-router-dom';
+import { Home } from '..';
 
 const Layout = () => {
 	return (
 		<section>
 			<Container maxWidth='lg'>
 				<Grid container>
-					<SContent item xs={3}>
+					<SContent xs={3}>
 						<Navigation />
 					</SContent>
-					<Grid item xs={6}>
-						<div style={{ width: 300, height: 300 }}>CONTENT</div>
-						<div style={{ width: 300, height: 300 }}>CONTENT</div>
-						<div style={{ width: 300, height: 300 }}>CONTENT</div>{' '}
-						<div style={{ width: 300, height: 300 }}>CONTENT</div>
-						<div style={{ width: 300, height: 300 }}>CONTENT</div>
-						<div style={{ width: 300, height: 300 }}>CONTENT</div>
-						<div style={{ width: 300, height: 300 }}>CONTENT</div>
-						<div style={{ width: 300, height: 300 }}>CONTENT</div>
-						<div style={{ width: 300, height: 300 }}>CONTENT</div>
-						<div style={{ width: 300, height: 300 }}>CONTENT</div>
-						<div style={{ width: 300, height: 300 }}>CONTENT</div>
-						<div style={{ width: 300, height: 300 }}>CONTENT</div>
-						<div style={{ width: 300, height: 300 }}>CONTENT</div>
-					</Grid>
-					<SContent item xs={3}></SContent>
+
+					<SMainContent xs={6}>
+						<Routes>
+							<Route path='/' element={<Home />} />
+						</Routes>
+					</SMainContent>
+
+					<SContent xs={3}></SContent>
 				</Grid>
 			</Container>
 		</section>

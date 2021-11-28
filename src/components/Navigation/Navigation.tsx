@@ -1,6 +1,4 @@
 import React from 'react';
-import IconButton from '@mui/material/IconButton';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as HomeIcon } from '../../assets/icons/navigation/home.svg';
@@ -21,6 +19,8 @@ import {
 	STweetButton,
 	SList,
 	SListItemIcon,
+	SIconButton,
+	STwitterIcon,
 } from './Navigation.styled';
 import { ProfileButton } from './components';
 import MoreMenuPopover from './components/MoreMenuPopover';
@@ -59,9 +59,9 @@ const Navigation = () => {
 		<SWrapper>
 			<SList>
 				<Link style={{ marginLeft: '12px', marginBottom: '20px' }} to='/'>
-					<IconButton>
-						<TwitterIcon sx={{ fontSize: '40px' }} />
-					</IconButton>
+					<SIconButton>
+						<STwitterIcon />
+					</SIconButton>
 				</Link>
 
 				{navigationItems.map((navigationItem) => (
