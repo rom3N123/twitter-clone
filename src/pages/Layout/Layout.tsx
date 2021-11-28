@@ -1,15 +1,17 @@
 import React from 'react';
-import { Container, Grid } from '@mui/material';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 import { Navigation } from '../../components';
+import { SContent } from './Layout.styled';
 
 const Layout = () => {
 	return (
 		<section>
 			<Container maxWidth='lg'>
 				<Grid container>
-					<Grid item xs={3}>
+					<SContent item xs={3}>
 						<Navigation />
-					</Grid>
+					</SContent>
 					<Grid item xs={6}>
 						<div style={{ width: 300, height: 300 }}>CONTENT</div>
 						<div style={{ width: 300, height: 300 }}>CONTENT</div>
@@ -25,7 +27,7 @@ const Layout = () => {
 						<div style={{ width: 300, height: 300 }}>CONTENT</div>
 						<div style={{ width: 300, height: 300 }}>CONTENT</div>
 					</Grid>
-					<Grid item xs={3}></Grid>
+					<SContent item xs={3}></SContent>
 				</Grid>
 			</Container>
 		</section>

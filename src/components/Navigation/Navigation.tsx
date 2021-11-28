@@ -1,7 +1,6 @@
 import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import Box from '@mui/system/Box';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as HomeIcon } from '../../assets/icons/navigation/home.svg';
@@ -96,9 +95,7 @@ const Navigation = () => {
 				<STweetButton>Tweet</STweetButton>
 			</SList>
 
-			<Box sx={{ margin: '12px 0' }}>
-				<ProfileButton />
-			</Box>
+			<ProfileButton />
 		</SWrapper>
 	);
 };
