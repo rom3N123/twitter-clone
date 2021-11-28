@@ -23,7 +23,7 @@ export const Theme = React.createContext<IThemeContextValue>(themeContextInitial
 
 const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactElement => {
 	const [mode, setMode] = React.useState<ModeName>('dim');
-	const [accentColor, setAccentColor] = React.useState<ColorName>('orange');
+	const [accentColor, setAccentColor] = React.useState<ColorName>('purple');
 
 	const accentColorValue = accentColors[accentColor];
 	const modeValue = modes[mode];
@@ -43,6 +43,55 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 
 	const mTheme = createTheme({
 		components: {
+			MuiDivider: {
+				styleOverrides: {
+					root: {
+						backgroundColor: modeValue.divider,
+					},
+				},
+			},
+			MuiPopover: {
+				styleOverrides: {
+					paper: {
+						boxShadow: modeValue.popover.shadow,
+						padding: '12px 0',
+						maxWidth: 360,
+						minWidth: 260,
+						borderRadius: 16,
+					},
+				},
+			},
+			MuiListItemButton: {
+				styleOverrides: {
+					root: {
+						'&:hover': {
+							backgroundColor: modeValue.buttonHover,
+						},
+					},
+				},
+			},
+			MuiButtonBase: {
+				styleOverrides: {
+					root: {
+						transition: 'background-color 0.2s ease',
+						'&:hover': {
+							backgroundColor: modeValue.buttonHover,
+						},
+					},
+				},
+			},
+			MuiButton: {
+				defaultProps: {
+					color: 'secondary',
+				},
+				styleOverrides: {
+					root: {
+						borderRadius: '9999px',
+						textTransform: 'none',
+						fontWeight: 700,
+					},
+				},
+			},
 			MuiSvgIcon: {
 				styleOverrides: {
 					root: {

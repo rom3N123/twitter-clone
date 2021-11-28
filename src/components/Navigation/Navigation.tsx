@@ -1,7 +1,5 @@
 import React from 'react';
-import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { Link } from 'react-router-dom';
@@ -14,7 +12,18 @@ import { ReactComponent as BookmarkIcon } from '../../assets/icons/navigation/bo
 import { ReactComponent as ListsIcon } from '../../assets/icons/navigation/lists.svg';
 import { ReactComponent as ProfileIcon } from '../../assets/icons/navigation/profile.svg';
 import { ReactComponent as MoreIcon } from '../../assets/icons/navigation/mode.svg';
-import { SListItem, SListItemButton, SListItemText, SNavLink } from './Navigation.styled';
+
+import {
+	SListItem,
+	SListItemButton,
+	SListItemText,
+	SNavLink,
+	SWrapper,
+	STweetButton,
+	SList,
+} from './Navigation.styled';
+import { ProfileButton } from './components';
+import { Box } from '@mui/system';
 
 interface INavigationItem {
 	to: string;
@@ -35,9 +44,9 @@ const navigationItems: INavigationItem[] = [
 
 const Navigation = () => {
 	return (
-		<Grid container direction='column'>
-			<List>
-				<Link style={{ marginLeft: '12px' }} to='/'>
+		<SWrapper>
+			<SList>
+				<Link style={{ marginLeft: '12px', marginBottom: '20px' }} to='/'>
 					<IconButton>
 						<TwitterIcon sx={{ fontSize: '40px' }} />
 					</IconButton>
@@ -53,8 +62,14 @@ const Navigation = () => {
 						</SNavLink>
 					</SListItem>
 				))}
-			</List>
-		</Grid>
+
+				<STweetButton>Tweet</STweetButton>
+			</SList>
+
+			<Box sx={{ margin: '12px 0' }}>
+				<ProfileButton />
+			</Box>
+		</SWrapper>
 	);
 };
 

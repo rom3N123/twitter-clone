@@ -14,10 +14,19 @@ export interface IColors {
 
 export type ColorName = keyof IColors;
 
+interface IColorPalette {
+	gray: string;
+}
 export interface IMode {
 	backgroundColor: string;
 	svgColor: string;
 	typography: string;
+	popover: {
+		shadow: string;
+	};
+	divider: string;
+	buttonHover: string;
+	palette: IColorPalette;
 }
 
 export interface IModes {

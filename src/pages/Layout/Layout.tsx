@@ -7,7 +7,24 @@ const Layout = () => {
 		<section>
 			<Container maxWidth='lg'>
 				<Grid container>
-					<Navigation />
+					<Grid item xs={3}>
+						<Navigation />
+					</Grid>
+					<Grid item xs={6}>
+						<div style={{ width: 300, height: 300 }}>CONTENT</div>
+						<div style={{ width: 300, height: 300 }}>CONTENT</div>
+						<div style={{ width: 300, height: 300 }}>CONTENT</div>{' '}
+						<div style={{ width: 300, height: 300 }}>CONTENT</div>
+						<div style={{ width: 300, height: 300 }}>CONTENT</div>
+						<div style={{ width: 300, height: 300 }}>CONTENT</div>
+						<div style={{ width: 300, height: 300 }}>CONTENT</div>
+						<div style={{ width: 300, height: 300 }}>CONTENT</div>
+						<div style={{ width: 300, height: 300 }}>CONTENT</div>
+						<div style={{ width: 300, height: 300 }}>CONTENT</div>
+						<div style={{ width: 300, height: 300 }}>CONTENT</div>
+						<div style={{ width: 300, height: 300 }}>CONTENT</div>
+						<div style={{ width: 300, height: 300 }}>CONTENT</div>
+					</Grid>
 				</Grid>
 			</Container>
 		</section>
