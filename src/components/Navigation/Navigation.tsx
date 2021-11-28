@@ -2,6 +2,7 @@ import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import Box from '@mui/system/Box';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as HomeIcon } from '../../assets/icons/navigation/home.svg';
@@ -23,12 +24,14 @@ import {
 	SList,
 } from './Navigation.styled';
 import { ProfileButton } from './components';
-import { Box } from '@mui/system';
+import MoreMenuPopover from './components/MoreMenuPopover';
 
-interface INavigationItem {
-	to: string;
+interface IListItem {
 	label: string;
 	icon: React.ReactNode;
+}
+interface INavigationItem extends IListItem {
+	to: string;
 }
 
 const navigationItems: INavigationItem[] = [
@@ -39,12 +42,23 @@ const navigationItems: INavigationItem[] = [
 	{ to: '/bookmarks', icon: <BookmarkIcon />, label: 'Bookmarks' },
 	{ to: '/lists', icon: <ListsIcon />, label: 'Lists' },
 	{ to: '/profile', icon: <ProfileIcon />, label: 'Profile' },
-	{ to: '/more', icon: <MoreIcon />, label: 'More' },
 ];
 
 const Navigation = () => {
+	const moreButtonRef = React.useRef<HTMLDivElement | null>(null);
+	const [moreMenuAnchor, setMoreMenuAnchor] = React.useState<HTMLDivElement | null>(null);
+
+	const handleOpenMoreMenu = (e: React.MouseEvent<HTMLDivElement>) => {
+		setMoreMenuAnchor(e.currentTarget);
+	};
+
+	const handleCloseMoreMenu = () => {
+		setMoreMenuAnchor(null);
+	};
+
 	return (
 		<SWrapper>
+			<button onClick={() => console.log(moreButtonRef)}>REF</button>
 			<SList>
 				<Link style={{ marginLeft: '12px', marginBottom: '20px' }} to='/'>
 					<IconButton>
@@ -62,6 +76,23 @@ const Navigation = () => {
 						</SNavLink>
 					</SListItem>
 				))}
+
+				<MoreMenuPopover
+					anchor={moreMenuAnchor}
+					onClose={handleCloseMoreMenu}
+					open={Boolean(moreMenuAnchor)}
+				/>
+
+				<SListItem>
+					<div onClick={handleOpenMoreMenu} ref={moreButtonRef}>
+						<SListItemButton>
+							<ListItemIcon>
+								<MoreIcon />
+							</ListItemIcon>
+							<SListItemText>More</SListItemText>
+						</SListItemButton>
+					</div>
+				</SListItem>
 
 				<STweetButton>Tweet</STweetButton>
 			</SList>

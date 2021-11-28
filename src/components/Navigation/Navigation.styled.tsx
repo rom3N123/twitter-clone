@@ -23,20 +23,19 @@ export const SList = styled(List)`
 	width: 100%;
 `;
 
-export const SListItem = styled(ListItem).attrs(() => ({
+export const SListItem = styled(({ children, ...props }) => (
+	<ListItem {...props}>{children}</ListItem>
+)).attrs(() => ({
 	dense: true,
 }))`
-	padding: 0;
 	font-size: 20px;
 	svg {
-		fill: ${({ theme }) => theme.mode.svgColor};
 		width: 28px;
 		height: 28px;
 	}
 `;
 
 export const SListItemButton = styled(ListItemButton)`
-	padding: 8px;
 	padding: 8px 20px;
 	margin: 5px 0;
 	border-radius: 9999px;

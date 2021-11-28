@@ -25,6 +25,7 @@ const Layout = () => {
 						<div style={{ width: 300, height: 300 }}>CONTENT</div>
 						<div style={{ width: 300, height: 300 }}>CONTENT</div>
 					</Grid>
+					<Grid item xs={3}></Grid>
 				</Grid>
 			</Container>
 		</section>

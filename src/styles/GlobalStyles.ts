@@ -5,6 +5,10 @@ const GlobalStyles = createGlobalStyle`
       text-decoration: none;
       color: inherit;
    }
+
+   svg {
+         fill: ${({ theme }) => theme.mode.svgColor};
+      }
 `;
 
 export default GlobalStyles;

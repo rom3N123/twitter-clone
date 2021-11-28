@@ -50,6 +50,20 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 					},
 				},
 			},
+			MuiList: {
+				styleOverrides: {
+					root: {
+						padding: 0,
+					},
+				},
+			},
+			MuiListItem: {
+				styleOverrides: {
+					root: {
+						padding: 0,
+					},
+				},
+			},
 			MuiPopover: {
 				styleOverrides: {
 					paper: {
