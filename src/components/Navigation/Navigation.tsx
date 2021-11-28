@@ -58,7 +58,6 @@ const Navigation = () => {
 
 	return (
 		<SWrapper>
-			<button onClick={() => console.log(moreButtonRef)}>REF</button>
 			<SList>
 				<Link style={{ marginLeft: '12px', marginBottom: '20px' }} to='/'>
 					<IconButton>

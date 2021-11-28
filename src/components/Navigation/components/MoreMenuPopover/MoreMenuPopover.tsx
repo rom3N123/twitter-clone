@@ -13,6 +13,7 @@ import {
 
 import { ReactComponent as SettingsIcon } from '../../../../assets/icons/more/settings.svg';
 import { ReactComponent as DisplayIcon } from '../../../../assets/icons/more/display.svg';
+import { ViewDialog } from '../../..';
 
 interface IMoreMenuPopoverProps {
 	anchor: HTMLDivElement | null;
@@ -20,46 +21,73 @@ interface IMoreMenuPopoverProps {
 	onClose: () => void;
 }
 
+interface IListItem {
+	icon: React.ReactNode;
+	label: string;
+	onClick: () => void;
+}
+
 const MoreMenuPopover: React.FC<IMoreMenuPopoverProps> = ({
 	anchor,
 	open,
 	onClose,
 }): React.ReactElement => {
+	const [dialogVisible, setDialogVisible] = React.useState<boolean>(false);
+
+	const handleOpenDialog = () => {
+		setDialogVisible(true);
+	};
+
+	const handleCloseDialog = () => {
+		setDialogVisible(false);
+	};
+
+	const listItems: IListItem[] = [
+		{ label: 'Settings and privacy', icon: <SettingsIcon />, onClick: () => {} },
+		{
+			label: 'Display',
+			icon: (
+				<SDisplayIcon>
+					<DisplayIcon />
+					<SDisplayDot />
+				</SDisplayIcon>
+			),
+			onClick: handleOpenDialog,
+		},
+	];
+
 	return (
-		<SPopover
-			anchorOrigin={{
-				vertical: 'top',
-				horizontal: 'right',
-			}}
-			transformOrigin={{
-				vertical: 'center',
-				horizontal: 'center',
-			}}
-			anchorEl={anchor}
-			open={Boolean(open)}
-			onClose={onClose}>
-			<List>
-				<ListItemButton>
-					<ListItem>
-						<SListIcon>
-							<SettingsIcon />
-						</SListIcon>
-						<SListItemText>Settings and privacy</SListItemText>
-					</ListItem>
-				</ListItemButton>
-				<ListItemButton>
-					<ListItem>
-						<SListIcon>
-							<SDisplayIcon>
-								<DisplayIcon />
-								<SDisplayDot />
-							</SDisplayIcon>
-						</SListIcon>
-						<SListItemText>Display</SListItemText>
-					</ListItem>
-				</ListItemButton>
-			</List>
-		</SPopover>
+		<>
+			<ViewDialog open={dialogVisible} onClose={handleCloseDialog} />
+			<SPopover
+				anchorOrigin={{
+					vertical: 'top',
+					horizontal: 'right',
+				}}
+				transformOrigin={{
+					vertical: 'center',
+					horizontal: 'center',
+				}}
+				anchorEl={anchor}
+				open={Boolean(open)}
+				onClose={onClose}>
+				<List>
+					{listItems.map(({ onClick, label, icon }) => (
+						<ListItemButton
+							onClick={() => {
+								onClick();
+								onClose();
+							}}
+							key={label}>
+							<ListItem>
+								<SListIcon>{icon}</SListIcon>
+								<SListItemText>{label}</SListItemText>
+							</ListItem>
+						</ListItemButton>
+					))}
+				</List>
+			</SPopover>
+		</>
 	);
 };
 

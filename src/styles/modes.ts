@@ -3,7 +3,10 @@ import accentColors from './accentColors';
 
 const modes: IModes = {
 	light: {
-		backgroundColor: '#fff',
+		background: {
+			primary: '#fff',
+			secondary: 'rgb(247, 249, 249)',
+		},
 		svgColor: accentColors.blue,
 		buttonHover: '',
 		typography: '#0f1419',
@@ -11,12 +14,16 @@ const modes: IModes = {
 			shadow: 'rgb(136 153 166 / 20%) 0px 0px 15px, rgb(136 153 166 / 15%) 0px 0px 3px 1px',
 		},
 		divider: '#eff3f4',
+		backdrop: 'rgba(0, 0, 0, 0.4)',
 		palette: {
 			gray: '#536471',
 		},
 	},
 	dim: {
-		backgroundColor: '#15202b',
+		background: {
+			primary: '#15202b',
+			secondary: 'rgb(25, 39, 52)',
+		},
 		svgColor: '#fff',
 		buttonHover: 'rgba(255,255,255, 0.1)',
 		typography: '#fff',
@@ -24,16 +31,21 @@ const modes: IModes = {
 			shadow: 'rgb(136 153 166 / 20%) 0px 0px 15px, rgb(136 153 166 / 15%) 0px 0px 3px 1px',
 		},
 		divider: '#38444d',
+		backdrop: 'rgba(91, 112, 131, 0.4)',
 		palette: {
 			gray: '#536471',
 		},
 	},
 	dark: {
-		backgroundColor: '#000',
+		background: {
+			primary: '#000',
+			secondary: 'rgb(21, 24, 28)',
+		},
 		svgColor: '#fff',
 		buttonHover: '',
-		typography: '#fff',
+		typography: '#d9d9d9',
 		divider: '#2f3336',
+		backdrop: 'rgba(91, 112, 131, 0.4)',
 		popover: {
 			shadow: 'rgb(136 153 166 / 20%) 0px 0px 15px, rgb(136 153 166 / 15%) 0px 0px 3px 1px',
 		},

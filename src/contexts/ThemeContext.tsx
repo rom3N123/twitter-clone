@@ -43,6 +43,18 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 
 	const mTheme = createTheme({
 		components: {
+			MuiDialog: {
+				styleOverrides: {
+					root: {
+						'.MuiBackdrop-root ': {
+							backgroundColor: modeValue.backdrop,
+						},
+					},
+					paper: {
+						borderRadius: 16,
+					},
+				},
+			},
 			MuiDivider: {
 				styleOverrides: {
 					root: {
@@ -133,8 +145,8 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 				main: accentColorValue,
 			},
 			background: {
-				default: modeValue.backgroundColor,
-				paper: modeValue.backgroundColor,
+				default: modeValue.background.primary,
+				paper: modeValue.background.primary,
 			},
 		},
 	});

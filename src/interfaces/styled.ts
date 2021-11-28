@@ -18,12 +18,16 @@ interface IColorPalette {
 	gray: string;
 }
 export interface IMode {
-	backgroundColor: string;
+	background: {
+		primary: string;
+		secondary: string;
+	};
 	svgColor: string;
 	typography: string;
 	popover: {
 		shadow: string;
 	};
+	backdrop: string;
 	divider: string;
 	buttonHover: string;
 	palette: IColorPalette;
