@@ -1,48 +1,27 @@
 import React from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material';
-import { ModeName, ColorName, ITheme } from '../interfaces/styled';
-import accentColors from '../styles/accentColors';
-import modes from '../styles/modes';
+import { ITheme } from '../../interfaces/styled';
+import accentColors from '../../styles/accentColors';
+import modes from '../../styles/modes';
 import { alpha } from '@mui/system';
+import { useAppSelector } from '../../redux/hooks';
 
-interface IThemeContextProps {
+interface IThemeManagerProps {
 	children: React.ReactNode;
 }
 
-interface IThemeContextValue {
-	changeAccentColor: (colorName: ColorName) => void;
-	changeMode: (modeName: ModeName) => void;
-}
-
-const themeContextInitialValue: IThemeContextValue = {
-	changeAccentColor: () => {},
-	changeMode: () => {},
-};
-
-export const Theme = React.createContext<IThemeContextValue>(themeContextInitialValue);
-
-const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactElement => {
-	const [mode, setMode] = React.useState<ModeName>('light');
-	const [accentColor, setAccentColor] = React.useState<ColorName>('blue');
-
-	const accentColorValue: string = accentColors[accentColor];
+const ThemeManager: React.FC<IThemeManagerProps> = ({ children }): React.ReactElement => {
+	const { mode, color } = useAppSelector(({ theme }) => theme);
+	const colorValue: string = accentColors[color];
 	const modeValue = modes[mode];
 
-	const changeAccentColor = (colorName: ColorName): void => {
-		setAccentColor(colorName);
-	};
-
-	const changeMode = (modeName: ModeName): void => {
-		setMode(modeName);
-	};
-
 	const currentStyledTheme: ITheme = {
-		accentColor: accentColorValue,
+		accentColor: colorValue,
 		mode: modeValue,
 	};
 
-	const mTheme = createTheme({
+	const muiTheme = createTheme({
 		components: {
 			MuiDialog: {
 				styleOverrides: {
@@ -63,7 +42,7 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 				styleOverrides: {
 					root: {
 						'.MuiSvgIcon-root': {
-							color: accentColorValue,
+							color: colorValue,
 						},
 					},
 				},
@@ -146,7 +125,7 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 						fontWeight: 700,
 						color: '#fff',
 						'&.Mui-disabled': {
-							backgroundColor: alpha(accentColorValue, 0.5),
+							backgroundColor: alpha(colorValue, 0.5),
 							color: alpha('#fff', 0.55),
 						},
 					},
@@ -177,7 +156,7 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 		},
 		palette: {
 			secondary: {
-				main: accentColorValue,
+				main: colorValue,
 			},
 			warning: {
 				main: modeValue.palette.danger,
@@ -189,18 +168,11 @@ const ThemeContext: React.FC<IThemeContextProps> = ({ children }): React.ReactEl
 		},
 	});
 
-	const themeContextValue: IThemeContextValue = {
-		changeAccentColor,
-		changeMode,
-	};
-
 	return (
-		<Theme.Provider value={themeContextValue}>
-			<MuiThemeProvider theme={mTheme}>
-				<StyledThemeProvider theme={currentStyledTheme}>{children}</StyledThemeProvider>
-			</MuiThemeProvider>
-		</Theme.Provider>
+		<MuiThemeProvider theme={muiTheme}>
+			<StyledThemeProvider theme={currentStyledTheme}>{children}</StyledThemeProvider>
+		</MuiThemeProvider>
 	);
 };
 
-export default ThemeContext;
+export default ThemeManager;

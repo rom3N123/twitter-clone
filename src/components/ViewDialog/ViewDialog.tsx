@@ -1,7 +1,6 @@
 import React from 'react';
 import Dialog from '@mui/material/Dialog';
 import { ColorName, ModeName } from './../../interfaces/styled';
-import useTheme from '../../hooks/useTheme';
 import accentColors from '../../styles/accentColors';
 import modes from '../../styles/modes';
 
@@ -16,6 +15,8 @@ import {
 	SBackgroundOption,
 } from './ViewDialog.styled';
 import { Typography } from '@mui/material';
+import { useAppDispatch } from '../../redux/hooks';
+import { changeAppColor, changeAppMode } from '../../redux/reducers/themeReducer';
 
 interface IViewDialogProps {
 	open: boolean;
@@ -33,21 +34,28 @@ interface IBackgroundOption {
 }
 
 const ViewDialog: React.FC<IViewDialogProps> = ({ open, onClose }): React.ReactElement => {
-	const { changeAccentColor, changeMode } = useTheme();
+	const dispatch = useAppDispatch();
+
+	const changeColor = (colorName: ColorName): void => {
+		dispatch(changeAppColor(colorName));
+	};
+
+	const changeMode = (modeName: ModeName): void => {
+		dispatch(changeAppMode(modeName));
+	};
 
 	const colorOptions: IColorOption[] = Object.keys(accentColors).map((color) => {
 		const colorName: ColorName = color as ColorName;
 		return {
 			color: colorName,
 			onClick: () => {
-				changeAccentColor(colorName);
+				changeColor(colorName);
 			},
 		};
 	});
 
 	const backgroundOptions: IBackgroundOption[] = Object.keys(modes).map((modeName) => {
 		const mode: ModeName = modeName as ModeName;
-
 		return {
 			mode,
 			onClick: () => changeMode(mode),
@@ -59,8 +67,8 @@ const ViewDialog: React.FC<IViewDialogProps> = ({ open, onClose }): React.ReactE
 			<STitle>Customize your view</STitle>
 			<SDialogContent>
 				<SContentLabel>
-					Manage your font size, color, and background. These settings affect all the Twitter
-					accounts on this browser.
+					Manage your font size, color, and background. These settings affect all the
+					Twitter accounts on this browser.
 				</SContentLabel>
 
 				<SSettings>
@@ -77,7 +85,9 @@ const ViewDialog: React.FC<IViewDialogProps> = ({ open, onClose }): React.ReactE
 						<SOptions>
 							{backgroundOptions.map(({ mode, onClick }) => (
 								<SBackgroundOption mode={mode} onClick={onClick}>
-									<Typography>{mode[0].toUpperCase() + mode.substring(1)}</Typography>
+									<Typography>
+										{mode[0].toUpperCase() + mode.substring(1)}
+									</Typography>
 								</SBackgroundOption>
 							))}
 						</SOptions>

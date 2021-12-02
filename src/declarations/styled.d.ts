@@ -1,4 +1,4 @@
-import { ITheme } from './interfaces/styled';
+import { ITheme } from '../interfaces/styled';
 import 'styled-components';
 
 declare module 'styled-components' {
