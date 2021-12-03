@@ -59,7 +59,7 @@ const Navigation = () => {
 		<SWrapper>
 			<SList>
 				<Link style={{ marginLeft: '12px', marginBottom: '20px' }} to='/'>
-					<SIconButton>
+					<SIconButton color='primary'>
 						<STwitterIcon />
 					</SIconButton>
 				</Link>

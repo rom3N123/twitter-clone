@@ -29,8 +29,8 @@ const modes: IModes = {
 			secondary: 'rgb(25, 39, 52)',
 		},
 		actions: {
-			hover: 'rgba(0, 0, 0, 0.05)',
-			active: 'rgba(0, 0, 0, 0.1)',
+			hover: 'rgba(255, 255, 255, 0.05)',
+			active: 'rgba(255, 255, 255, 0.1)',
 		},
 		svgColor: '#fff',
 		typography: '#fff',
@@ -50,8 +50,8 @@ const modes: IModes = {
 			secondary: 'rgb(21, 24, 28)',
 		},
 		actions: {
-			hover: 'rgba(0, 0, 0, 0.05)',
-			active: 'rgba(0, 0, 0, 0.1)',
+			hover: 'rgba(255, 255, 255, 0.1)',
+			active: 'rgba(255, 255, 255, 0.15)',
 		},
 		svgColor: '#fff',
 		typography: '#d9d9d9',

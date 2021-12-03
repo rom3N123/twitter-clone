@@ -15,6 +15,7 @@ const ThemeManager: React.FC<IThemeManagerProps> = ({ children }): React.ReactEl
 	const { mode, color } = useAppSelector(({ theme }) => theme);
 	const colorValue: string = accentColors[color];
 	const modeValue = modes[mode];
+	const isDarkTheme = mode === 'dim' || mode === 'dark';
 
 	const currentStyledTheme: ITheme = {
 		accentColor: colorValue,
@@ -43,6 +44,14 @@ const ThemeManager: React.FC<IThemeManagerProps> = ({ children }): React.ReactEl
 					root: {
 						'.MuiSvgIcon-root': {
 							color: colorValue,
+						},
+						'&.MuiIconButton-colorSecondary': {
+							'&:hover': {
+								backgroundColor: alpha(colorValue, !isDarkTheme ? 0.1 : 0.2),
+							},
+							'&:active': {
+								backgroundColor: alpha(colorValue, !isDarkTheme ? 0.15 : 0.25),
+							},
 						},
 					},
 				},
