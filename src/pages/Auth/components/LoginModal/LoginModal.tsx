@@ -10,9 +10,9 @@ import {
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { Header } from "_components";
-import { Dialog } from "_components/Material";
-import { Input } from "_components/FormControl";
+import Header from "@components/Material/Dialog/components/Header";
+import Dialog from "@components/Material/Dialog";
+import Input from "@components/FormControl/Input";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 

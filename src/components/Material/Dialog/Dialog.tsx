@@ -1,9 +1,8 @@
 import React from "react";
 import { Dialog as MuiDialog, useMediaQuery } from "@mui/material";
+import { IDialogCommonProps } from "interfaces/components";
 
-interface IDialogProps {
-    open: boolean;
-    onClose: () => void;
+interface IDialogProps extends IDialogCommonProps {
     children: React.ReactNode;
 }
 

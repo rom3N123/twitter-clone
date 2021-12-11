@@ -1,5 +1,5 @@
 import React from "react";
-import CancelButton from "../Buttons/CancelButton";
+import CancelButton from "@components/Buttons/CancelButton";
 import S from "./Header.styled";
 import Grid from "@mui/material/Grid";
 

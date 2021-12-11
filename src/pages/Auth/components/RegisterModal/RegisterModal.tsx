@@ -10,11 +10,12 @@ import {
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { Dialog } from "@components/Material";
-import { Header } from "@components/Modals";
-import { Input } from "@components/FormControl";
+import Dialog from "@components/Material/Dialog";
+import Header from "@components/Material/Dialog/components/Header";
+import Input from "@components/FormControl/Input";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
+import { IDialogCommonProps } from "interfaces/components";
 
 const formInitialValues = {
     name: "",
@@ -24,7 +25,7 @@ const formInitialValues = {
 
 const formValidationSchema = yup.object().shape({
     name: yup
-        .string("Введите корректное имя")
+        .string()
         .max(50, "Максимум 50 символов")
         .required("Поле обязательно"),
     email: yup
@@ -37,12 +38,15 @@ const formValidationSchema = yup.object().shape({
         .required("Поле обязательно"),
 });
 
-const RegisterModal = ({ open, onClose }) => {
+interface IRegisterModalProps extends IDialogCommonProps {}
+
+const RegisterModal: React.FC<IRegisterModalProps> = ({
+    open,
+    onClose,
+}): React.ReactElement => {
     const [showPassword, setShowPassword] = React.useState(false);
 
-    const handleFormSubmit = (values) => {
-        console.log(values);
-    };
+    const handleFormSubmit = () => {};
 
     const handleClickShowPassword = () => {
         setShowPassword((prev) => !prev);

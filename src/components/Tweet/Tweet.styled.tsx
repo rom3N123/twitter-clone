@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import Grid from "@mui/material";
+import Grid from "@mui/material/Grid";
 import Avatar from "@mui/material/Avatar";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
@@ -7,52 +7,36 @@ import Typography from "@mui/material/Typography";
 interface ITweetTypographyProps {
     grayTextColor?: boolean;
     userName?: boolean;
-    children: React.ReactNode;
 }
 
-const TweetT: React.FC<ITweetTypographyProps> = ({
-    grayTextColor,
-    userName,
-    children,
-}): React.ReactElement => {
-    return <Typography userName={useName}>{children}</Typography>;
-};
-
-const TweetTypography = styled(
-    ({
-        grayTextColor,
-        useName,
-        children,
-    }: ITweetTypographyProps): React.ReactElement => (
-        <Typography
-            variant="body2"
-            grayTextColor={grayTextColor}
-            userName={userName}
-        >
-            {children}
-        </Typography>
-    )
-)`
+const TweetTypography: any = styled(Typography).attrs(() => ({
+    variant: "body2",
+}))`
     line-height: 20px;
     overflow-wrap: break-word;
-    ${({ grayTextColor }) =>
-        grayTextColor &&
-        css`
-            color: ${({ theme }) => theme.mode.palette.gray};
-        `};
 
-    ${({ userName }) =>
-        userName &&
-        css`
-            & > ${TweetTypography}:first-child {
-                font-weight: 700;
-            }
-            &:hover {
+    ${({ userName, grayTextColor }: ITweetTypographyProps) => `
+        ${
+            grayTextColor &&
+            css`
+                color: ${({ theme }) => theme.mode.palette.gray};
+            `
+        };
+
+        ${
+            userName &&
+            css`
                 & > ${TweetTypography}:first-child {
-                    text-decoration: underline;
+                    font-weight: 700;
                 }
-            }
-        `};
+                &:hover {
+                    & > ${TweetTypography}:first-child {
+                        text-decoration: underline;
+                    }
+                }
+            `
+        }
+    `}
 `;
 
 const TweetWrapper = styled(Paper).attrs(() => ({
