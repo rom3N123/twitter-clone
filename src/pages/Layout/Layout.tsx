@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import { Navigation, Searchbar } from '../../components';
 import { SContent, SMainContent } from './Layout.styled';
 import { Routes, Route } from 'react-router-dom';
-import { Home } from '..';
+import { Home, Profile } from '..';
 
 const Layout = () => {
 	return (
@@ -18,6 +18,7 @@ const Layout = () => {
 					<SMainContent xs={6}>
 						<Routes>
 							<Route path='/' element={<Home />} />
+							<Route path='/profile' element={<Profile />} />
 						</Routes>
 					</SMainContent>
 

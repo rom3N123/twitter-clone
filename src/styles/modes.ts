@@ -40,7 +40,7 @@ const modes: IModes = {
 		divider: '#38444d',
 		backdrop: 'rgba(91, 112, 131, 0.4)',
 		palette: {
-			gray: '#536471',
+			gray: '#8899a6',
 			danger: '#f4212e',
 		},
 	},

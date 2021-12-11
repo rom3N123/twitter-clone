@@ -137,8 +137,44 @@ const ThemeManager: React.FC<IThemeManagerProps> = ({ children }): React.ReactEl
 							backgroundColor: alpha(colorValue, 0.5),
 							color: alpha('#fff', 0.55),
 						},
+						fontSize: 15,
+						'&.MuiButton-contained': {
+							'&.opposite': {
+								backgroundColor: isDarkTheme
+									? modes.light.background.primary
+									: modes.dim.background.primary,
+								color: isDarkTheme ? modes.light.typography : modes.dim.typography,
+								'&:hover': {
+									backgroundColor: alpha(
+										isDarkTheme
+											? modes.light.background.primary
+											: modes.dim.background.secondary,
+										0.8,
+									),
+								},
+								'&:active': {
+									backgroundColor: alpha(
+										isDarkTheme
+											? modes.light.background.primary
+											: modes.dim.background.secondary,
+										0.7,
+									),
+								},
+							},
+						},
+						'&.MuiButton-outlined': {
+							color: modeValue.typography,
+							borderColor: isDarkTheme
+								? alpha(modes.light.background.primary, 0.2)
+								: alpha(modes.dim.background.primary, 0.2),
+							'&:active': {
+								backgroundColor: alpha('#000', 0.1),
+							},
+							'&:hover': {
+								backgroundColor: alpha('#000', 0.05),
+							},
+						},
 					},
-					disabled: {},
 				},
 			},
 			MuiSvgIcon: {

@@ -7,7 +7,12 @@ interface IPageHeaderProps {
 }
 
 const PageHeader: React.FC<IPageHeaderProps> = ({ title, children }): React.ReactElement => {
-	return <SHeader>{title ? <SHeaderTitle>{title}</SHeaderTitle> : { children }}</SHeader>;
+	return (
+		<SHeader>
+			{title && <SHeaderTitle>{title}</SHeaderTitle>}
+			{children}
+		</SHeader>
+	);
 };
 
 export default PageHeader;
