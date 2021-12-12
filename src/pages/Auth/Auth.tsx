@@ -1,58 +1,32 @@
 import React from "react";
-import { Link as MuiLink } from "@mui/material";
+import MuiLink from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { LoginModal, RegisterModal } from "./components";
-
-import {
-    AuthPage,
-    LeftSide,
-    RightSide,
-    RightSideContent,
-    TwitterIconBg,
-    TwitterIcon,
-    Button,
-} from "./styles";
+import { Link, useParams, useNavigate, Route, Routes } from "react-router-dom";
+import LoginModal from "./components/LoginModal";
+import RegisterModal from "./components/RegisterModal";
+import S from "./Auth.styled";
 
 const Auth = () => {
     const { login, registration } = useParams();
-    const [modalVisible, setModalVisible] = React.useState<string>("");
 
     const navigate = useNavigate();
 
-    const handleOpenRegisterModal = () => {
+    const handleCloseModal = (): void => {
+        navigate("/auth");
+    };
+
+    const handleOpenRegisterModal = (): void => {
         navigate("registration");
     };
 
-    const handleCloseModal = () => navigate("/auth");
-
-    React.useEffect(() => {
-        const modalParam = login || registration;
-
-        if (modalParam) {
-            setModalVisible(modalParam);
-        } else {
-            setModalVisible("");
-        }
-    }, [login, registration]);
-
     return (
-        <AuthPage>
-            <RegisterModal
-                open={modalVisible === "registration"}
-                onClose={handleCloseModal}
-            />
-            <LoginModal
-                open={modalVisible === "login"}
-                onClose={handleCloseModal}
-            />
-
-            <LeftSide>
-                <TwitterIconBg />
-            </LeftSide>
-            <RightSide>
-                <RightSideContent>
-                    <TwitterIcon />
+        <S.Container>
+            <S.LeftSide>
+                <S.TwitterIconBg />
+            </S.LeftSide>
+            <S.RightSide>
+                <S.RightSideContent>
+                    <S.TwitterIcon />
                     <Typography
                         sx={{
                             fontWeight: 600,
@@ -76,12 +50,13 @@ const Auth = () => {
                         Присоединяйтесь к Твиттеру прямо сейчас!
                     </Typography>
 
-                    <Button
+                    <S.SButton
+                        variant="contained"
                         onClick={handleOpenRegisterModal}
                         sx={{ width: "30%" }}
                     >
                         Зарегистрируйтесь
-                    </Button>
+                    </S.SButton>
 
                     <Typography sx={{ marginTop: "20px" }} variant="body1">
                         Уже зарегистрированы?{" "}
@@ -89,9 +64,14 @@ const Auth = () => {
                             Войдите
                         </MuiLink>
                     </Typography>
-                </RightSideContent>
-            </RightSide>
-        </AuthPage>
+                </S.RightSideContent>
+            </S.RightSide>
+
+            <Routes>
+                <Route path="login" element={<LoginModal />} />
+                <Route path="registration" element={<RegisterModal />} />
+            </Routes>
+        </S.Container>
     );
 };
 

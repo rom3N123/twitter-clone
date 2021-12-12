@@ -5,7 +5,8 @@ import Navigation from "@components/Navigation";
 import Searchbar from "@components/PageComponents/Searchbar";
 import { SContent, SMainContent } from "./Layout.styled";
 import { Routes, Route } from "react-router-dom";
-import { Home, Profile } from "..";
+import Home from "../Home";
+import Profile from "../Profile";
 
 const Layout = () => {
     return (

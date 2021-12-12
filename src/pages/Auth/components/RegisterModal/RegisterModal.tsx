@@ -1,21 +1,18 @@
 import React from "react";
-import {
-    Button,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    FormControl,
-    IconButton,
-    InputAdornment,
-} from "@mui/material";
+import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
+import IconButton from "@mui/material/IconButton";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import Dialog from "@components/Material/Dialog";
-import Header from "@components/Material/Dialog/components/Header";
 import Input from "@components/FormControl/Input";
-import { Formik, Form } from "formik";
+import { Form } from "formik";
 import * as yup from "yup";
-import { IDialogCommonProps } from "@interfaces/components";
+import FormDialog from "@components/Dialogs/FormDialog";
+import withShowPassword, { IWithPasswordProps } from "@hocs/withShowPassword";
+import { useNavigate } from "react-router-dom";
 
 const formInitialValues = {
     name: "",
@@ -38,91 +35,87 @@ const formValidationSchema = yup.object().shape({
         .required("Поле обязательно"),
 });
 
-interface IRegisterModalProps extends IDialogCommonProps {}
+interface IRegisterModalProps extends IWithPasswordProps {}
+
+interface IFormikChildrenProps {
+    dirty: boolean;
+    touched: boolean;
+    isValid: boolean;
+}
 
 const RegisterModal: React.FC<IRegisterModalProps> = ({
-    open,
-    onClose,
+    isPasswordVisible,
+    changePasswordVisibility,
 }): React.ReactElement => {
-    const [showPassword, setShowPassword] = React.useState(false);
-
     const handleFormSubmit = () => {};
 
-    const handleClickShowPassword = () => {
-        setShowPassword((prev) => !prev);
+    const navigate = useNavigate();
+
+    const handleCloseModal = () => {
+        navigate("/auth");
     };
 
-    const inputs = React.useMemo(
-        () => [
-            { name: "name", label: "Имя" },
-            { name: "email", label: "Почта" },
-            {
-                name: "password",
-                type: showPassword ? "text" : "password",
-                label: "Пароль",
-                InputProps: {
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                            >
-                                {showPassword ? (
-                                    <VisibilityOff />
-                                ) : (
-                                    <Visibility />
-                                )}
-                            </IconButton>
-                        </InputAdornment>
-                    ),
-                },
+    const inputs = [
+        { name: "name", label: "Имя" },
+        { name: "email", label: "Почта" },
+        {
+            name: "password",
+            type: isPasswordVisible ? "text" : "password",
+            label: "Пароль",
+            InputProps: {
+                endAdornment: (
+                    <InputAdornment position="end">
+                        <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={changePasswordVisibility}
+                        >
+                            {isPasswordVisible ? (
+                                <VisibilityOff />
+                            ) : (
+                                <Visibility />
+                            )}
+                        </IconButton>
+                    </InputAdornment>
+                ),
             },
-        ],
-        [showPassword]
-    );
+        },
+    ];
 
     return (
-        <Dialog open={open} onClose={onClose}>
-            <Header onClose={onClose} />
-            <DialogTitle>Создайте учетную запись</DialogTitle>
-            <Formik
-                onSubmit={handleFormSubmit}
-                initialValues={formInitialValues}
-                validationSchema={formValidationSchema}
-            >
-                {({ dirty, touched, isValid }) => {
-                    return (
-                        <FormControl component={Form} margin="dense" fullWidth>
-                            <DialogContent
-                                sx={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    gap: "24px",
-                                }}
-                            >
-                                {inputs.map((input) => (
-                                    <Input
-                                        key={input.name}
-                                        fullWidth
-                                        {...input}
-                                    />
-                                ))}
-                            </DialogContent>
-                            <DialogActions>
-                                <Button
-                                    disabled={!dirty || !touched || !isValid}
-                                    type="submit"
-                                    fullWidth
-                                >
-                                    Создать
-                                </Button>
-                            </DialogActions>
-                        </FormControl>
-                    );
-                }}
-            </Formik>
-        </Dialog>
+        <FormDialog
+            open={true}
+            onClose={handleCloseModal}
+            headerTitle="Зарегистрируйтесь"
+            initialValues={formInitialValues}
+            validationSchema={formValidationSchema}
+            onSubmit={handleFormSubmit}
+        >
+            {({ dirty, touched, isValid }: IFormikChildrenProps) => (
+                <FormControl component={Form} margin="dense" fullWidth>
+                    <DialogContent
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "24px",
+                        }}
+                    >
+                        {inputs.map((input) => (
+                            <Input key={input.name} fullWidth {...input} />
+                        ))}
+                    </DialogContent>
+                    <DialogActions>
+                        <Button
+                            disabled={!dirty || !touched || !isValid}
+                            type="submit"
+                            fullWidth
+                        >
+                            Создать
+                        </Button>
+                    </DialogActions>
+                </FormControl>
+            )}
+        </FormDialog>
     );
 };
 
-export default RegisterModal;
+export default withShowPassword(RegisterModal);

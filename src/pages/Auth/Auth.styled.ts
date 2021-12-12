@@ -1,8 +1,9 @@
-import { Twitter } from "@mui/icons-material";
-import { Grid, Button as MuiButton } from "@mui/material";
+import Twitter from "@mui/icons-material/Twitter";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 import styled from "styled-components";
 
-export const AuthPage = styled(Grid).attrs(() => ({
+export const Container = styled(Grid).attrs(() => ({
     container: true,
 }))`
     height: 100vh;
@@ -44,7 +45,19 @@ export const TwitterIcon = styled(Twitter)`
     height: 60px;
 `;
 
-export const Button = styled(MuiButton)`
+export const SButton = styled(Button)`
     max-width: 300px;
     width: 100%;
 `;
+
+const styles = {
+    Container,
+    LeftSide,
+    TwitterIconBg,
+    RightSide,
+    RightSideContent,
+    TwitterIcon,
+    SButton,
+};
+
+export default styles;

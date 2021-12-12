@@ -12,7 +12,7 @@ interface ITweetProps {
         name: string;
         nickname: string;
     };
-    style: object;
+    style?: object;
 }
 
 const Tweet: React.FC<ITweetProps> = ({
@@ -41,7 +41,7 @@ const Tweet: React.FC<ITweetProps> = ({
                                 {author.name}
                             </S.TweetTypography>
 
-                            <S.TweetTypography component="span" greyTextColor>
+                            <S.TweetTypography component="span" grayTextColor>
                                 @{author.nickname} · {tweet.publishDate}
                             </S.TweetTypography>
                         </S.TweetTypography>

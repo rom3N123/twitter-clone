@@ -1,6 +1,7 @@
 import React from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
-import { createTheme, ThemeProvider as MuiThemeProvider } from "@mui/material";
+import createTheme from "@mui/material/styles/createTheme";
+import MuiThemeProvider from "@mui/material/styles/ThemeProvider";
 import { ITheme } from "@interfaces/styled";
 import accentColors from "@styles/accentColors";
 import modes from "@styles/modes";

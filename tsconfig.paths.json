@@ -11,6 +11,7 @@
             "@styles/*": ["./styles/*"],
             "@icons/*": ["./assets/icons/*"],
             "@reducers/*": ["./redux/reducers/*"],
+            "@hocs/*": ["./hocs/*"],
         }
     }
 }
