@@ -27,6 +27,67 @@ const ThemeManager: React.FC<IThemeManagerProps> = ({
 
     const muiTheme = createTheme({
         components: {
+            MuiFormLabel: {
+                styleOverrides: {
+                    root: {
+                        color: modeValue.palette.gray,
+
+                        "&.Mui-focused": {
+                            color: colorValue,
+                        },
+
+                        "&.MuiFormLabel-filled, &.Mui-focused": {
+                            backgroundColor: "transparent",
+                            transform: "translate(14px, 1px) scale(0.8)",
+                        },
+                    },
+                },
+            },
+            MuiTextField: {
+                styleOverrides: {
+                    root: {
+                        borderRadius: "4px",
+                    },
+                },
+            },
+            MuiInputBase: {
+                styleOverrides: {
+                    root: {
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            border: `1px solid ${colorValue} !important`,
+                        },
+                        "&.Mui-error .MuiOutlinedInput-notchedOutline": {
+                            borderColor: `${modeValue.palette.danger} !important`,
+                        },
+                        color: modeValue.typography,
+                        legend: {
+                            display: "none",
+                        },
+                    },
+                },
+            },
+            MuiOutlinedInput: {
+                styleOverrides: {
+                    notchedOutline: {
+                        border: `1px solid ${modeValue.palette.gray} !important`,
+                    },
+                },
+            },
+            MuiPaper: {
+                styleOverrides: {
+                    outlined: {
+                        borderColor: modeValue.divider,
+                    },
+                },
+            },
+            MuiDialogTitle: {
+                styleOverrides: {
+                    root: {
+                        fontWeight: 700,
+                        fontSize: "24px",
+                    },
+                },
+            },
             MuiDialog: {
                 styleOverrides: {
                     root: {
@@ -36,6 +97,22 @@ const ThemeManager: React.FC<IThemeManagerProps> = ({
                     },
                     paper: {
                         borderRadius: 16,
+                        boxShadow: "none",
+                        "@media (min-width: 768px)": {
+                            maxWidth: "600px",
+                            width: "100%",
+                            borderRadius: "16px",
+                        },
+                        "@media (max-width: 768px)": {
+                            padding: "0 10px",
+                        },
+                    },
+                },
+            },
+            MuiDialogActions: {
+                styleOverrides: {
+                    root: {
+                        padding: "12px 32px 36px 12px",
                     },
                 },
             },

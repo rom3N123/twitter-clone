@@ -108,6 +108,7 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
                             disabled={!dirty || !touched || !isValid}
                             type="submit"
                             fullWidth
+                            variant="contained"
                         >
                             Создать
                         </Button>

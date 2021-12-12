@@ -89,7 +89,7 @@ const LoginModal: React.FC<ILoginModalProps> = ({
                     ))}
                 </DialogContent>
                 <DialogActions>
-                    <Button type="submit" fullWidth>
+                    <Button variant="contained" type="submit" fullWidth>
                         Войти
                     </Button>
                 </DialogActions>
