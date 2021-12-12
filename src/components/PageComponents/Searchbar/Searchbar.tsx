@@ -1,8 +1,8 @@
 import React from "react";
-import useDebounce from "../../hooks/useDebounce";
+import useDebounce from "@hooks/useDebounce";
 import { STextField } from "./Searchbar.styled";
-import { ReactComponent as LoupeIcon } from "../../assets/icons/loupe.svg";
-import CancelButton from "../Buttons/CancelButton";
+import { ReactComponent as LoupeIcon } from "@icons/loupe.svg";
+import CancelButton from "../../Buttons/CancelButton";
 
 const Searchbar: React.FC = (): React.ReactElement => {
     const [value, setValue] = React.useState<string>("");

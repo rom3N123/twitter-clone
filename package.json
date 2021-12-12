@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@craco/craco": "^6.4.3",
         "@emotion/react": "^11.7.0",
         "@emotion/styled": "^11.6.0",
         "@mui/icons-material": "^5.2.0",
@@ -47,10 +48,10 @@
         "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
     },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "start": "craco start",
+        "build": "craco build",
+        "test": "craco test",
+        "eject": "craco eject"
     },
     "eslintConfig": {
         "extends": [

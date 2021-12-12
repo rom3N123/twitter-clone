@@ -1,8 +1,8 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
-import { ColorName, ModeName } from "./../../interfaces/styled";
-import accentColors from "../../styles/accentColors";
-import modes from "../../styles/modes";
+import { ColorName, ModeName } from "@interfaces/styled";
+import accentColors from "@styles/accentColors";
+import modes from "@styles/modes";
 
 import {
     STitle,
@@ -15,12 +15,9 @@ import {
     SBackgroundOption,
 } from "./ViewDialog.styled";
 import { Typography } from "@mui/material";
-import { useAppDispatch } from "../../redux/hooks";
-import {
-    changeAppColor,
-    changeAppMode,
-} from "../../redux/reducers/themeReducer";
-import { IDialogCommonProps } from "interfaces/components";
+import { useAppDispatch } from "@redux/hooks";
+import { changeAppColor, changeAppMode } from "@redux/reducers/themeReducer";
+import { IDialogCommonProps } from "@interfaces/components";
 
 interface IViewDialogProps extends IDialogCommonProps {}
 
