@@ -74,7 +74,7 @@ const NavigationItemIcon = styled(ListItemIcon)`
 
 const NavigationIconButton = styled(IconButton)`
     svg {
-        color: ${({ theme }) => theme.mode.svgColor} !important;
+        color: ${({ theme }) => theme.mode.svg.primary} !important;
     }
     &:hover {
         background-color: transparent !important;

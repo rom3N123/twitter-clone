@@ -4,13 +4,15 @@ import S from "./CancelButton.styled";
 
 interface ICancelButtonProps {
     onClick: () => void;
+    width?: number;
 }
 
 const CancelButton: React.FC<ICancelButtonProps> = ({
     onClick,
+    width,
 }): React.ReactElement => {
     return (
-        <S.SIconButton onClick={onClick}>
+        <S.SIconButton width={width} onClick={onClick}>
             <CancelIcon />
         </S.SIconButton>
     );

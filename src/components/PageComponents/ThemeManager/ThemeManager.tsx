@@ -59,9 +59,10 @@ const ThemeManager: React.FC<IThemeManagerProps> = ({
                         "&.Mui-error .MuiOutlinedInput-notchedOutline": {
                             borderColor: `${modeValue.palette.danger} !important`,
                         },
-                        color: modeValue.typography,
+                        color: modeValue.typography.primary,
                         legend: {
                             display: "none",
+                            top: "0 !important",
                         },
                     },
                 },
@@ -92,7 +93,8 @@ const ThemeManager: React.FC<IThemeManagerProps> = ({
                 styleOverrides: {
                     root: {
                         ".MuiBackdrop-root ": {
-                            backgroundColor: modeValue.backdrop,
+                            backgroundColor:
+                                modeValue.components.dialog.backdrop,
                         },
                     },
                     paper: {
@@ -171,7 +173,7 @@ const ThemeManager: React.FC<IThemeManagerProps> = ({
             MuiPopover: {
                 styleOverrides: {
                     paper: {
-                        boxShadow: modeValue.popover.shadow,
+                        boxShadow: modeValue.shadows.primary,
                         padding: "12px 0",
                         maxWidth: 360,
                         minWidth: 260,
@@ -183,10 +185,12 @@ const ThemeManager: React.FC<IThemeManagerProps> = ({
                 styleOverrides: {
                     root: {
                         "&:hover": {
-                            backgroundColor: modeValue.actions.hover,
+                            backgroundColor:
+                                modeValue.components.button.actions.hover,
                         },
                         "&:active": {
-                            backgroundColor: modeValue.actions.active,
+                            backgroundColor:
+                                modeValue.components.button.actions.active,
                         },
                     },
                 },
@@ -199,10 +203,12 @@ const ThemeManager: React.FC<IThemeManagerProps> = ({
                     root: {
                         transition: "background-color 0.2s ease",
                         "&:hover": {
-                            backgroundColor: modeValue.actions.hover,
+                            backgroundColor:
+                                modeValue.components.button.actions.hover,
                         },
                         "&:active": {
-                            backgroundColor: modeValue.actions.active,
+                            backgroundColor:
+                                modeValue.components.button.actions.active,
                         },
                     },
                 },
@@ -268,7 +274,7 @@ const ThemeManager: React.FC<IThemeManagerProps> = ({
             MuiSvgIcon: {
                 styleOverrides: {
                     root: {
-                        color: modeValue.svgColor,
+                        color: modeValue.svg.primary,
                     },
                 },
             },
@@ -282,7 +288,7 @@ const ThemeManager: React.FC<IThemeManagerProps> = ({
             MuiTypography: {
                 styleOverrides: {
                     root: {
-                        color: modeValue.typography,
+                        color: modeValue.typography.primary,
                     },
                 },
             },

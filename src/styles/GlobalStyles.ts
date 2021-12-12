@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
    a {
@@ -7,12 +7,12 @@ const GlobalStyles = createGlobalStyle`
    }
 
    svg {
-         fill: ${({ theme }) => theme.mode.svgColor};
+         fill: ${({ theme }) => theme.mode.svg.primary};
    }
 
    input, textarea {
       background-color: inherit;
-      color: ${({ theme }) => theme.mode.typography};
+      color: ${({ theme }) => theme.mode.typography.primary};
       &::placeholder {
          font-family: inherit;
       }

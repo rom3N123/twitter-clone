@@ -2,15 +2,12 @@ import React from "react";
 import useDebounce from "@hooks/useDebounce";
 import S from "./Searchbar.styled";
 import { ReactComponent as LoupeIcon } from "@icons/loupe.svg";
-import CancelButton from "@components/Buttons/CancelButton";
+import Grow from "@mui/material/Grow";
+import useBind from "@hooks/useBind";
 
 const Searchbar: React.FC = (): React.ReactElement => {
-    const [value, setValue] = React.useState<string>("");
+    const { value, onChange, clearValue } = useBind();
     const debouncedValue: string = useDebounce(value);
-
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value);
-    };
 
     React.useEffect(() => {
         console.log(`change: ${debouncedValue}`);
@@ -20,7 +17,13 @@ const Searchbar: React.FC = (): React.ReactElement => {
         <S.Field
             InputProps={{
                 startAdornment: <LoupeIcon />,
-                endAdornment: value && <CancelButton onClick={() => {}} />,
+                endAdornment: (
+                    <Grow in={Boolean(value)}>
+                        <div>
+                            <S.ClearButton width={18} onClick={clearValue} />
+                        </div>
+                    </Grow>
+                ),
             }}
             placeholder="Search Twitter"
             value={value}

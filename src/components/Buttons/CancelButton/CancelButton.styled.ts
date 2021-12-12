@@ -1,8 +1,18 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import IconButton from "@mui/material/IconButton";
 
 const SIconButton = styled(IconButton)`
     padding: 0;
+
+    ${({ width }: { width?: number }) =>
+        width &&
+        css`
+            svg {
+                width: ${width}px;
+                height: ${width}px;
+            }
+        `};
+
     svg {
         fill: ${({ theme }) => theme.accentColor};
     }
