@@ -15,8 +15,6 @@ const Container = styled(Grid).attrs(() => ({
     direction: "column",
     justifyContent: "space-between",
 }))`
-    position: sticky;
-    top: 0;
     max-width: 250px;
     height: 100vh;
 `;

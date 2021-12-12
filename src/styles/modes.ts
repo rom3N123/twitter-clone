@@ -30,6 +30,7 @@ const modes: IModes = {
         palette: {
             gray: "#536471",
             danger: "#f4212e",
+            success: "#00ba7c",
         },
     },
     dim: {
@@ -60,6 +61,7 @@ const modes: IModes = {
         palette: {
             gray: "#8899a6",
             danger: "#f4212e",
+            success: "#00ba7c",
         },
     },
     dark: {
@@ -90,6 +92,7 @@ const modes: IModes = {
         palette: {
             gray: "#536471",
             danger: "#f4212e",
+            success: "#00ba7c",
         },
     },
 };

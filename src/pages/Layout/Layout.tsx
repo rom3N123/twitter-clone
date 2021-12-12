@@ -3,7 +3,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Navigation from "@components/Navigation";
 import Searchbar from "@components/PageComponents/Searchbar";
-import { SContent, SMainContent } from "./Layout.styled";
+import S from "./Layout.styled";
 import { Routes, Route } from "react-router-dom";
 import Home from "../Home";
 import Profile from "../Profile";
@@ -13,22 +13,22 @@ const Layout = () => {
         <section>
             <Container maxWidth="lg">
                 <Grid container>
-                    <SContent xs={3}>
+                    <S.SideContent xs={3}>
                         <Navigation />
-                    </SContent>
+                    </S.SideContent>
 
-                    <SMainContent xs={6}>
+                    <S.MainContent xs={6}>
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/profile" element={<Profile />} />
                         </Routes>
-                    </SMainContent>
+                    </S.MainContent>
 
-                    <SContent sx={{ paddingLeft: "20px" }} xs={3}>
+                    <S.SideContent sx={{ paddingLeft: "20px" }} xs={3}>
                         <Routes>
                             <Route path="/" element={<Searchbar />}></Route>
                         </Routes>
-                    </SContent>
+                    </S.SideContent>
                 </Grid>
             </Container>
         </section>

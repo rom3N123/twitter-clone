@@ -304,6 +304,9 @@ const ThemeManager: React.FC<IThemeManagerProps> = ({
                 default: modeValue.background.primary,
                 paper: modeValue.background.primary,
             },
+            success: {
+                main: modeValue.palette.success,
+            },
         },
     });
 

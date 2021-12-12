@@ -1,25 +1,31 @@
 import React from "react";
 import TweetForm from "@components/TweetForm";
 import PageHeader from "@components/PageComponents/PageHeader";
-import { STweetFormWrapper } from "./Home.styled";
+import S from "./Home.styled";
 import Tweet from "@components/Tweet";
-import { Link } from "react-router-dom";
 
 const arrayOfTweets = Array.from({ length: 20 });
 
 const Home: React.FC = (): React.ReactElement => {
     return (
         <div>
-            <Link to="/auth">TO AUTH</Link>
             <PageHeader title="Home" />
-            <STweetFormWrapper>
+            <S.TweetFormWrapper>
                 <TweetForm />
-            </STweetFormWrapper>
+            </S.TweetFormWrapper>
 
             {arrayOfTweets.map(() => (
                 <Tweet
-                    tweet={{ publishDate: "2hr", text: "Hello world!" }}
-                    author={{ id: 1, name: "romen", nickname: "rom3N123" }}
+                    text={
+                        "Python is better!! Javascript is better!! C# is better!! Java is better!! Honestly, I don't care, I use js to solve my problems but that doesn't mean it's the best solution. You wouldn't tell an unemployed person alcohol is the way to solve their problem."
+                    }
+                    createdAt={1}
+                    activity={{ comments: [1, 2, 3], likes: [1], retweets: [] }}
+                    user={{
+                        avatarUrl: "",
+                        name: "romen",
+                        nickname: "rom3N123",
+                    }}
                 />
             ))}
         </div>
