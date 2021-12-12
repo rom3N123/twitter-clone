@@ -1,8 +1,8 @@
 import React from "react";
 import useDebounce from "@hooks/useDebounce";
-import { STextField } from "./Searchbar.styled";
+import S from "./Searchbar.styled";
 import { ReactComponent as LoupeIcon } from "@icons/loupe.svg";
-import CancelButton from "../../Buttons/CancelButton";
+import CancelButton from "@components/Buttons/CancelButton";
 
 const Searchbar: React.FC = (): React.ReactElement => {
     const [value, setValue] = React.useState<string>("");
@@ -17,7 +17,7 @@ const Searchbar: React.FC = (): React.ReactElement => {
     }, [debouncedValue]);
 
     return (
-        <STextField
+        <S.Field
             InputProps={{
                 startAdornment: <LoupeIcon />,
                 endAdornment: value && <CancelButton onClick={() => {}} />,
@@ -25,7 +25,7 @@ const Searchbar: React.FC = (): React.ReactElement => {
             placeholder="Search Twitter"
             value={value}
             onChange={onChange}
-        ></STextField>
+        />
     );
 };
 
