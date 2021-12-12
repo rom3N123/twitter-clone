@@ -1,52 +1,75 @@
-import React from 'react';
-import styled from 'styled-components';
-import Grid from '@mui/material/Grid';
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import CheckIcon from '@mui/icons-material/Check';
+import React from "react";
+import styled from "styled-components";
+import Grid from "@mui/material/Grid";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import CheckIcon from "@mui/icons-material/Check";
 
-export const SWrapper = styled(
-	({ children, ...props }): React.ReactElement => <Grid {...props}>{children}</Grid>,
+const Container = styled(
+    ({ children, ...props }): React.ReactElement => (
+        <Grid {...props}>{children}</Grid>
+    )
 ).attrs(() => ({
-	container: true,
-	justifyContent: 'space-between',
-	alignItems: 'center',
+    container: true,
+    justifyContent: "space-between",
+    alignItems: "center",
 }))`
-	border-radius: 9999px;
-	gap: 6px;
-	padding: 12px;
+    border-radius: 9999px;
+    gap: 6px;
+    padding: 12px;
 `;
 
-export const SAvatar = styled(Grid).attrs(() => ({
-	item: true,
-	component: Avatar,
+const SAvatar = styled(Grid).attrs(() => ({
+    item: true,
+    component: Avatar,
 }))``;
 
-export const STextWrapper = styled(Grid).attrs(() => ({ item: true }))``;
-
-export const STypography = styled(Typography)`
-	font-size: 15px;
+const TextWrapper = styled(Grid).attrs(() => ({ item: true }))`
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
 `;
 
-export const SProfileName = styled(STypography)`
-	font-weight: 700;
-	text-align: left;
+const Text = styled(Typography)`
+    font-size: 15px;
 `;
 
-export const SProfileId = styled(STypography)`
-	font-weight: 400;
-	color: ${({ theme }) => theme.mode.palette.gray};
+const ProfileName = styled(Text)`
+    font-weight: 700;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
 `;
 
-export const SMoreIcon = styled(Grid).attrs(() => ({
-	item: true,
-	component: MoreHorizIcon,
+const ProfileId = styled(Text)`
+    font-weight: 400;
+    color: ${({ theme }) => theme.mode.palette.gray};
+    overflow: hidden;
+    text-overflow: ellipsis;
+`;
+
+const MoreIcon = styled(Grid).attrs(() => ({
+    item: true,
+    component: MoreHorizIcon,
 }))`
-	font-size: 20px;
+    font-size: 20px;
 `;
 
-export const SCheckIcon = styled(CheckIcon)`
-	color: ${({ theme }) => theme.accentColor};
-	font-size: 20px;
+const SCheckIcon = styled(CheckIcon)`
+    color: ${({ theme }) => theme.accentColor};
+    font-size: 20px;
 `;
+
+const styles = {
+    Container,
+    SAvatar,
+    TextWrapper,
+    Text,
+    ProfileName,
+    ProfileId,
+    MoreIcon,
+    SCheckIcon,
+};
+
+export default styles;

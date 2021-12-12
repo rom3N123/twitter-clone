@@ -2,7 +2,7 @@ import React from "react";
 
 type Element = HTMLDivElement | null;
 
-interface IUsePopoverValue {
+export interface IUsePopoverValue {
     anchor: Element;
     openPopover: (e: React.MouseEvent<HTMLDivElement>) => void;
     closePopover: () => void;
