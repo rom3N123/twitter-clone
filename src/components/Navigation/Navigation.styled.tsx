@@ -10,7 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { NavLink } from "react-router-dom";
 
-export const SWrapper = styled(Grid).attrs(() => ({
+const Container = styled(Grid).attrs(() => ({
     container: true,
     direction: "column",
     justifyContent: "space-between",
@@ -21,12 +21,12 @@ export const SWrapper = styled(Grid).attrs(() => ({
     height: 100vh;
 `;
 
-export const SList = styled(List)`
+const NavigationList = styled(List)`
     max-width: 225px;
     width: 100%;
 `;
 
-export const SListItem = styled(({ children, ...props }) => (
+const NavigationItem = styled(({ children, ...props }) => (
     <ListItem dense {...props}>
         {children}
     </ListItem>
@@ -38,19 +38,19 @@ export const SListItem = styled(({ children, ...props }) => (
     }
 `;
 
-export const SListItemButton = styled(ListItemButton)`
-    padding: 8px 20px;
+const NavigationItemButton = styled(ListItemButton)`
     margin: 5px 0;
     border-radius: 9999px;
+    flex-grow: 0;
 `;
 
-export const SListItemText = styled(ListItemText)`
+const NavigationItemText = styled(ListItemText)`
     span {
         font-size: 20px;
     }
 `;
 
-export const SNavLink = styled(NavLink)`
+const Link = styled(NavLink)`
     &.active {
         span {
             font-weight: 600;
@@ -58,7 +58,7 @@ export const SNavLink = styled(NavLink)`
     }
 `;
 
-export const STweetButton = styled(Button).attrs(() => ({
+const TweetButton = styled(Button).attrs(() => ({
     variant: "contained",
     fullWidth: true,
 }))`
@@ -68,16 +68,47 @@ export const STweetButton = styled(Button).attrs(() => ({
     padding: 12px;
 `;
 
-export const SListItemIcon = styled(ListItemIcon)`
+const NavigationItemIcon = styled(ListItemIcon)`
     min-width: 45px;
 `;
 
-export const SIconButton = styled(IconButton)`
+const NavigationIconButton = styled(IconButton)`
     svg {
         color: ${({ theme }) => theme.mode.svgColor} !important;
     }
+    &:hover {
+        background-color: transparent !important;
+    }
 `;
 
-export const STwitterIcon = styled(TwitterIcon)`
+const STwitterIcon = styled(TwitterIcon)`
     font-size: 40px;
 `;
+
+const STwitterIconLink = styled(Link)`
+    margin-left: 12px;
+    margin-bottom: 20px;
+`;
+
+const STwitterIconButton = styled(NavigationIconButton).attrs(() => ({
+    color: "primary",
+}))`
+    padding-left: 0;
+`;
+
+const styles = {
+    Container,
+    NavigationList,
+    NavigationItem,
+    NavigationItemButton,
+    NavigationItemText,
+    Link,
+    TweetButton,
+    NavigationItemIcon,
+    NavigationIconButton,
+    STwitterIcon,
+    STwitterIconLink,
+    STwitterIconButton,
+};
+
+export default styles;

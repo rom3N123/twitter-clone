@@ -1,6 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
 import { ReactComponent as HomeIcon } from "@icons/navigation/home.svg";
 import { ReactComponent as ExploreIcon } from "@icons/navigation/explore.svg";
 import { ReactComponent as NotificationIcon } from "@icons/navigation/notifications.svg";
@@ -9,21 +7,10 @@ import { ReactComponent as BookmarkIcon } from "@icons/navigation/bookmark.svg";
 import { ReactComponent as ListsIcon } from "@icons/navigation/lists.svg";
 import { ReactComponent as ProfileIcon } from "@icons/navigation/profile.svg";
 import { ReactComponent as MoreIcon } from "@icons/navigation/mode.svg";
-
-import {
-    SListItem,
-    SListItemButton,
-    SListItemText,
-    SNavLink,
-    SWrapper,
-    STweetButton,
-    SList,
-    SListItemIcon,
-    SIconButton,
-    STwitterIcon,
-} from "./Navigation.styled";
-import { ProfileButton } from "./components";
+import ProfileButton from "./components/ProfileButton";
 import MoreMenuPopover from "./components/MoreMenuPopover";
+import usePopover from "@hooks/usePopover";
+import S from "./Navigation.styled";
 
 interface IListItem {
     label: string;
@@ -48,67 +35,52 @@ const navigationItems: INavigationItem[] = [
 ];
 
 const Navigation = () => {
-    const moreButtonRef = React.useRef<HTMLDivElement | null>(null);
-    const [moreMenuAnchor, setMoreMenuAnchor] =
-        React.useState<HTMLDivElement | null>(null);
-
-    const handleOpenMoreMenu = (e: React.MouseEvent<HTMLDivElement>) => {
-        setMoreMenuAnchor(e.currentTarget);
-    };
-
-    const handleCloseMoreMenu = () => {
-        setMoreMenuAnchor(null);
-    };
+    const { anchor, openPopover, closePopover } = usePopover();
 
     return (
-        <SWrapper>
-            <SList>
-                <Link
-                    style={{ marginLeft: "12px", marginBottom: "20px" }}
-                    to="/"
-                >
-                    <SIconButton color="primary">
-                        <STwitterIcon />
-                    </SIconButton>
-                </Link>
+        <S.Container>
+            <S.NavigationList>
+                <S.STwitterIconLink to="/">
+                    <S.STwitterIconButton>
+                        <S.STwitterIcon />
+                    </S.STwitterIconButton>
+                </S.STwitterIconLink>
 
                 {navigationItems.map((navigationItem) => (
-                    <SListItem>
-                        <SNavLink to={navigationItem.to}>
-                            <SListItemButton>
-                                <SListItemIcon>
+                    <S.NavigationItem>
+                        <S.Link to={navigationItem.to}>
+                            <S.NavigationItemButton>
+                                <S.NavigationItemIcon>
                                     {navigationItem.icon}
-                                </SListItemIcon>
-                                <SListItemText>
+                                </S.NavigationItemIcon>
+                                <S.NavigationItemText>
                                     {navigationItem.label}
-                                </SListItemText>
-                            </SListItemButton>
-                        </SNavLink>
-                    </SListItem>
+                                </S.NavigationItemText>
+                            </S.NavigationItemButton>
+                        </S.Link>
+                    </S.NavigationItem>
                 ))}
 
                 <MoreMenuPopover
-                    anchor={moreMenuAnchor}
-                    onClose={handleCloseMoreMenu}
-                    open={Boolean(moreMenuAnchor)}
+                    anchor={anchor}
+                    onClose={closePopover}
+                    open={Boolean(anchor)}
                 />
 
-                <SListItem>
-                    <div onClick={handleOpenMoreMenu} ref={moreButtonRef}>
-                        <SListItemButton>
-                            <SListItemIcon>
-                                <MoreIcon />
-                            </SListItemIcon>
-                            <SListItemText>More</SListItemText>
-                        </SListItemButton>
-                    </div>
-                </SListItem>
+                <S.NavigationItem onClick={openPopover}>
+                    <S.NavigationItemButton>
+                        <S.NavigationItemIcon>
+                            <MoreIcon />
+                        </S.NavigationItemIcon>
+                        <S.NavigationItemText>More</S.NavigationItemText>
+                    </S.NavigationItemButton>
+                </S.NavigationItem>
 
-                <STweetButton>Tweet</STweetButton>
-            </SList>
+                <S.TweetButton>Tweet</S.TweetButton>
+            </S.NavigationList>
 
             <ProfileButton />
-        </SWrapper>
+        </S.Container>
     );
 };
 

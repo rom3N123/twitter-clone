@@ -14,11 +14,10 @@ import {
 import { ReactComponent as SettingsIcon } from "@icons/more/settings.svg";
 import { ReactComponent as DisplayIcon } from "@icons/more/display.svg";
 import ViewDialog from "./components/ViewDialog";
+import { IDialogCommonProps } from "@interfaces/components";
 
-interface IMoreMenuPopoverProps {
+interface IMoreMenuPopoverProps extends IDialogCommonProps {
     anchor: HTMLDivElement | null;
-    open: boolean;
-    onClose: () => void;
 }
 
 interface IListItem {
