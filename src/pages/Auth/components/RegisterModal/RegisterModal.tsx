@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
     Button,
     DialogActions,
@@ -7,35 +7,35 @@ import {
     FormControl,
     IconButton,
     InputAdornment,
-} from "@mui/material";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import Dialog from "@components/Material/Dialog";
-import Header from "@components/Material/Dialog/components/Header";
-import Input from "@components/FormControl/Input";
-import { Formik, Form } from "formik";
-import * as yup from "yup";
-import { IDialogCommonProps } from "interfaces/components";
+} from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Dialog from '@components/Material/Dialog';
+import Header from '@components/Material/Dialog/components/Header';
+import Input from '@components/FormControl/Input';
+import { Formik, Form } from 'formik';
+import * as yup from 'yup';
+import { IDialogCommonProps } from 'interfaces/components';
 
 const formInitialValues = {
-    name: "",
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
 };
 
 const formValidationSchema = yup.object().shape({
     name: yup
         .string()
-        .max(50, "Максимум 50 символов")
-        .required("Поле обязательно"),
+        .max(50, 'Максимум 50 символов')
+        .required('Поле обязательно'),
     email: yup
         .string()
-        .email("Введите корретный адрес")
-        .required("Поле обязательно"),
+        .email('Введите корретный адрес')
+        .required('Поле обязательно'),
     password: yup
         .string()
-        .min(8, "Минимум 8 символов")
-        .required("Поле обязательно"),
+        .min(8, 'Минимум 8 символов')
+        .required('Поле обязательно'),
 });
 
 interface IRegisterModalProps extends IDialogCommonProps {}
@@ -54,17 +54,17 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
 
     const inputs = React.useMemo(
         () => [
-            { name: "name", label: "Имя" },
-            { name: "email", label: "Почта" },
+            { name: 'name', label: 'Имя' },
+            { name: 'email', label: 'Почта' },
             {
-                name: "password",
-                type: showPassword ? "text" : "password",
-                label: "Пароль",
+                name: 'password',
+                type: showPassword ? 'text' : 'password',
+                label: 'Пароль',
                 InputProps: {
                     endAdornment: (
-                        <InputAdornment position="end">
+                        <InputAdornment position='end'>
                             <IconButton
-                                aria-label="toggle password visibility"
+                                aria-label='toggle password visibility'
                                 onClick={handleClickShowPassword}
                             >
                                 {showPassword ? (
@@ -92,12 +92,12 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
             >
                 {({ dirty, touched, isValid }) => {
                     return (
-                        <FormControl component={Form} margin="dense" fullWidth>
+                        <FormControl component={Form} margin='dense' fullWidth>
                             <DialogContent
                                 sx={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    gap: "24px",
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '24px',
                                 }}
                             >
                                 {inputs.map((input) => (
@@ -111,7 +111,7 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
                             <DialogActions>
                                 <Button
                                     disabled={!dirty || !touched || !isValid}
-                                    type="submit"
+                                    type='submit'
                                     fullWidth
                                 >
                                     Создать
