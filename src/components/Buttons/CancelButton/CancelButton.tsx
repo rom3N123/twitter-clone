@@ -1,6 +1,6 @@
 import React from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { SIconButton } from "./CancelButton.styled";
+import S from "./CancelButton.styled";
 
 interface ICancelButtonProps {
     onClick: () => void;
@@ -10,9 +10,9 @@ const CancelButton: React.FC<ICancelButtonProps> = ({
     onClick,
 }): React.ReactElement => {
     return (
-        <SIconButton>
+        <S.SIconButton onClick={onClick}>
             <CancelIcon />
-        </SIconButton>
+        </S.SIconButton>
     );
 };
 
