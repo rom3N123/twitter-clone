@@ -1,6 +1,5 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
-import modes from "@styles/modes";
 import {
     STitle,
     SDialogContent,
@@ -12,14 +11,11 @@ import {
     SBackgroundOption,
 } from "./ViewDialog.styled";
 import { Typography } from "@mui/material";
-import { useAppDispatch } from "@redux/hooks";
-import {
-    changeThemeColorAction,
-    changeThemeModeAction,
-} from "@ducks/theme/actions";
+import modes from "@styles/modes";
 import accentColors from "@styles/accentColors";
 import { IDialogCommonProps } from "@interfaces/components";
 import { ColorName, ModeName } from "@interfaces/styled";
+import useTheme from "@hooks/useTheme";
 
 interface IViewDialogProps extends IDialogCommonProps {}
 
@@ -37,34 +33,32 @@ const ViewDialog: React.FC<IViewDialogProps> = ({
     open,
     onClose,
 }): React.ReactElement => {
-    const dispatch = useAppDispatch();
+    const { changeThemeMode, changeThemeColor } = useTheme();
 
-    const changeColor = (colorName: ColorName): void => {
-        dispatch(changeThemeColorAction(colorName));
+    const onChangeThemeColorHandler = (color: ColorName) => (): void => {
+        changeThemeColor(color);
     };
 
-    const changeMode = (modeName: ModeName): void => {
-        dispatch(changeThemeModeAction(modeName));
+    const onChangeThemeModeHandler = (mode: ModeName) => (): void => {
+        changeThemeMode(mode);
     };
 
     const colorOptions: IColorOption[] = Object.keys(accentColors).map(
-        (color) => {
-            const colorName: ColorName = color as ColorName;
+        (_colorName) => {
+            const colorName: ColorName = _colorName as ColorName;
             return {
                 color: colorName,
-                onClick: () => {
-                    changeColor(colorName);
-                },
+                onClick: onChangeThemeColorHandler(colorName),
             };
         }
     );
 
     const backgroundOptions: IBackgroundOption[] = Object.keys(modes).map(
-        (modeName) => {
-            const mode: ModeName = modeName as ModeName;
+        (_modeName) => {
+            const modeName: ModeName = _modeName as ModeName;
             return {
-                mode,
-                onClick: () => changeMode(mode),
+                mode: modeName,
+                onClick: onChangeThemeModeHandler(modeName),
             };
         }
     );
