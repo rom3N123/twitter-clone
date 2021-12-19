@@ -18,3 +18,4 @@
 2. MongoDB + Mongoose
 3. Typescript
 4. JWT
+5. Socket.IO
