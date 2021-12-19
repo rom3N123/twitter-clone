@@ -17,8 +17,6 @@ import accentColors from "@styles/accentColors";
 import { IDialogCommonProps } from "@interfaces/components";
 import { ColorName, ModeName } from "@interfaces/styled";
 import useTheme from "@hooks/useTheme";
-import CheckIcon from "@mui/icons-material/CheckCircle";
-import Grow from "@mui/material/Grow";
 import Radio from "@mui/material/Radio";
 import Typography from "@mui/material/Typography";
 

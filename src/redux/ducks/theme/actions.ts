@@ -1,27 +1,28 @@
-import { ModeName, ColorName } from "./../../../interfaces/styled";
+import { ModeName, ColorName } from "@interfaces/styled";
 import { Action } from "redux";
 
 export enum ThemeActionsTypes {
-    CHANGE_MODE = "theme/CHANGE_MODE",
-    CHANGE_COLOR = "theme/CHANGE_COLOR",
+    CHANGE_MODE = "theme/changeMode",
+    CHANGE_COLOR = "theme/changeColor",
 }
 
-export interface IChangeThemeModeAction extends Action<ThemeActionsTypes> {
-    type: ThemeActionsTypes.CHANGE_MODE;
-    payload: ModeName;
-}
+type ThemeAction = Action<ThemeActionsTypes>;
 
-export interface IChangeThemeColorAction extends Action<ThemeActionsTypes> {
+export interface IChangeThemeColorAction extends ThemeAction {
     type: ThemeActionsTypes.CHANGE_COLOR;
     payload: ColorName;
 }
-
 export const changeThemeColorAction = (
     payload: ColorName
 ): IChangeThemeColorAction => ({
     type: ThemeActionsTypes.CHANGE_COLOR,
     payload,
 });
+
+export interface IChangeThemeModeAction extends ThemeAction {
+    type: ThemeActionsTypes.CHANGE_MODE;
+    payload: ModeName;
+}
 
 export const changeThemeModeAction = (payload: ModeName) => ({
     type: ThemeActionsTypes.CHANGE_MODE,

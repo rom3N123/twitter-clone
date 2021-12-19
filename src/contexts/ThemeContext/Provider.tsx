@@ -272,16 +272,21 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
                                 },
                             },
                         },
+
                         "&.MuiButton-outlined": {
-                            color: modeValue.typography,
+                            color: modeValue.typography.primary,
                             borderColor: isDarkTheme
                                 ? alpha(modes.light.background.primary, 0.2)
                                 : alpha(modes.dim.background.primary, 0.2),
+
                             "&:active": {
-                                backgroundColor: alpha("#000", 0.1),
+                                backgroundColor: alpha(
+                                    modeValue.background.secondary,
+                                    0.1
+                                ),
                             },
                             "&:hover": {
-                                backgroundColor: alpha("#000", 0.05),
+                                backgroundColor: alpha("#000", 0.1),
                             },
                         },
                     },
@@ -340,6 +345,10 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
         changeThemeColor,
         changeThemeMode,
     };
+
+    React.useEffect(() => {
+        localStorage.setItem("mode", mode);
+    }, [mode]);
 
     return (
         <ThemeContext.Provider value={themeContextValue}>
