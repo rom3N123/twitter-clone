@@ -30,7 +30,7 @@ const useNonOverlapsPopover = (): IUseNonOverlapsPopoverValue => {
                 </PopoverComponent>
             );
         },
-        []
+        [anchor]
     );
 
     return React.useMemo(
@@ -39,7 +39,7 @@ const useNonOverlapsPopover = (): IUseNonOverlapsPopoverValue => {
             openPopover,
             Popover,
         }),
-        [anchor, closePopover, openPopover, Popover]
+        [Popover]
     );
 };
 

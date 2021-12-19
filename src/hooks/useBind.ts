@@ -6,6 +6,11 @@ interface IUseBindValue {
     clearValue: () => void;
 }
 
+/**
+ * Хук для создания контролируемого инпута
+ * @param {string} initialValue
+ * @returns {IUseBindValue}
+ */
 const useBind = (initialValue: string = ""): IUseBindValue => {
     const [value, setValue] = React.useState(initialValue);
 
@@ -20,11 +25,14 @@ const useBind = (initialValue: string = ""): IUseBindValue => {
         setValue("");
     }, []);
 
-    return {
-        value,
-        onChange,
-        clearValue,
-    };
+    return React.useMemo(
+        () => ({
+            value,
+            onChange,
+            clearValue,
+        }),
+        [value]
+    );
 };
 
 export default useBind;

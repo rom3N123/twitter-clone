@@ -8,6 +8,10 @@ export interface IUsePopoverValue {
     closePopover: () => void;
 }
 
+/**
+ * Хук для управления состоянием поповера
+ * @returns {IUsePopoverValue}
+ */
 const usePopover = (): IUsePopoverValue => {
     const [anchor, setAnchor] = React.useState<Element>(null);
 
