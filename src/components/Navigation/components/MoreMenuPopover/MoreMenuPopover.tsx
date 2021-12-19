@@ -33,12 +33,17 @@ const MoreMenuPopover: React.FC<IMoreMenuPopoverProps> = ({
 }): React.ReactElement => {
     const [dialogVisible, setDialogVisible] = React.useState<boolean>(false);
 
-    const handleOpenDialog = () => {
+    const handleOpenDialog = (): void => {
         setDialogVisible(true);
     };
 
-    const handleCloseDialog = () => {
+    const handleCloseDialog = (): void => {
         setDialogVisible(false);
+    };
+
+    const onListItemButtonClickHandler = (onClick: () => void) => () => {
+        onClick();
+        onClose();
     };
 
     const listItems: IListItem[] = [
@@ -62,10 +67,11 @@ const MoreMenuPopover: React.FC<IMoreMenuPopoverProps> = ({
     return (
         <>
             <ViewDialog open={dialogVisible} onClose={handleCloseDialog} />
+
             <SPopover
                 anchorOrigin={{
                     vertical: "top",
-                    horizontal: "right",
+                    horizontal: "center",
                 }}
                 transformOrigin={{
                     vertical: "center",
@@ -78,10 +84,7 @@ const MoreMenuPopover: React.FC<IMoreMenuPopoverProps> = ({
                 <List>
                     {listItems.map(({ onClick, label, icon }) => (
                         <ListItemButton
-                            onClick={() => {
-                                onClick();
-                                onClose();
-                            }}
+                            onClick={onListItemButtonClickHandler(onClick)}
                             key={label}
                         >
                             <ListItem>
