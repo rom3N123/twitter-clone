@@ -10,7 +10,7 @@
             "@redux/*": ["./redux/*"],
             "@styles/*": ["./styles/*"],
             "@icons/*": ["./assets/icons/*"],
-            "@reducers/*": ["./redux/reducers/*"],
+            "@ducks/*": ["./redux/ducks/*"],
             "@hocs/*": ["./hocs/*"],
         }
     }

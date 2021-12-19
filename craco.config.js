@@ -13,7 +13,7 @@ module.exports = {
             "@redux": resolvePath("redux"),
             "@styles": resolvePath("styles"),
             "@icons": resolvePath("assets/icons"),
-            "@reducers": resolvePath("redux/reducers"),
+            "@ducks": resolvePath("redux/ducks"),
             "@hocs": resolvePath("hocs"),
         },
     },

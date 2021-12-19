@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
-import { userReducer, themeReducer } from './reducers';
+import { combineReducers } from "redux";
+import { user, theme } from "./ducks";
 
 const rootReducer = combineReducers({
-	user: userReducer,
-	theme: themeReducer,
+    user,
+    theme,
 });
 
 export default rootReducer;

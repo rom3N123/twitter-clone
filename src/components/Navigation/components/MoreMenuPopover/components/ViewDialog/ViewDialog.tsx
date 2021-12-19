@@ -1,9 +1,6 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
-import { ColorName, ModeName } from "@interfaces/styled";
-import accentColors from "@styles/accentColors";
 import modes from "@styles/modes";
-
 import {
     STitle,
     SDialogContent,
@@ -16,8 +13,10 @@ import {
 } from "./ViewDialog.styled";
 import { Typography } from "@mui/material";
 import { useAppDispatch } from "@redux/hooks";
-import { changeAppColor, changeAppMode } from "@redux/reducers/themeReducer";
+import { changeThemeColor, changeThemeMode } from "@ducks/theme/actions";
+import accentColors from "@styles/accentColors";
 import { IDialogCommonProps } from "@interfaces/components";
+import { ColorName, ModeName } from "@interfaces/styled";
 
 interface IViewDialogProps extends IDialogCommonProps {}
 
@@ -38,11 +37,11 @@ const ViewDialog: React.FC<IViewDialogProps> = ({
     const dispatch = useAppDispatch();
 
     const changeColor = (colorName: ColorName): void => {
-        dispatch(changeAppColor(colorName));
+        dispatch(changeThemeColor(colorName));
     };
 
     const changeMode = (modeName: ModeName): void => {
-        dispatch(changeAppMode(modeName));
+        dispatch(changeThemeMode(modeName));
     };
 
     const colorOptions: IColorOption[] = Object.keys(accentColors).map(
