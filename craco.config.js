@@ -16,6 +16,7 @@ module.exports = {
             "@ducks": resolvePath("redux/ducks"),
             "@hocs": resolvePath("hocs"),
             "@contexts": resolvePath("contexts"),
+            "@styled": resolvePath("styled"),
         },
     },
 };

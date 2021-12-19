@@ -9,15 +9,20 @@ import {
     SOptions,
     SColorOption,
     SBackgroundOption,
-} from "./ViewDialog.styled";
-import { Typography } from "@mui/material";
+    SColorOptionWrapper,
+    SColorOptionCheckIcon,
+} from "./CustomizationDialog.styled";
 import modes from "@styles/modes";
 import accentColors from "@styles/accentColors";
 import { IDialogCommonProps } from "@interfaces/components";
 import { ColorName, ModeName } from "@interfaces/styled";
 import useTheme from "@hooks/useTheme";
+import CheckIcon from "@mui/icons-material/CheckCircle";
+import Grow from "@mui/material/Grow";
+import Radio from "@mui/material/Radio";
+import Typography from "@mui/material/Typography";
 
-interface IViewDialogProps extends IDialogCommonProps {}
+interface ICustomizationDialogProps extends IDialogCommonProps {}
 
 interface IColorOption {
     color: ColorName;
@@ -29,11 +34,16 @@ interface IBackgroundOption {
     onClick: () => void;
 }
 
-const ViewDialog: React.FC<IViewDialogProps> = ({
+const CustomizationDialog: React.FC<ICustomizationDialogProps> = ({
     open,
     onClose,
 }): React.ReactElement => {
-    const { changeThemeMode, changeThemeColor } = useTheme();
+    const {
+        mode: activeMode,
+        color: activeColor,
+        changeThemeMode,
+        changeThemeColor,
+    } = useTheme();
 
     const onChangeThemeColorHandler = (color: ColorName) => (): void => {
         changeThemeColor(color);
@@ -77,24 +87,43 @@ const ViewDialog: React.FC<IViewDialogProps> = ({
                         <SOptionsLabel>Color</SOptionsLabel>
                         <SOptions>
                             {colorOptions.map(({ color, onClick }) => (
-                                <SColorOption color={color} onClick={onClick} />
+                                <SColorOptionWrapper>
+                                    <SColorOption
+                                        color={color}
+                                        onClick={onClick}
+                                    />
+
+                                    <SColorOptionCheckIcon
+                                        visible={color === activeColor}
+                                    />
+                                </SColorOptionWrapper>
                             ))}
                         </SOptions>
                     </div>
                     <div>
                         <SOptionsLabel>Background</SOptionsLabel>
                         <SOptions>
-                            {backgroundOptions.map(({ mode, onClick }) => (
-                                <SBackgroundOption
-                                    mode={mode}
-                                    onClick={onClick}
-                                >
-                                    <Typography>
-                                        {mode[0].toUpperCase() +
-                                            mode.substring(1)}
-                                    </Typography>
-                                </SBackgroundOption>
-                            ))}
+                            {backgroundOptions.map(
+                                ({ mode, onClick }): React.ReactElement => {
+                                    const isModeActive: boolean =
+                                        activeMode === mode;
+
+                                    const modeTitle: string =
+                                        mode[0].toUpperCase() +
+                                        mode.substring(1);
+
+                                    return (
+                                        <SBackgroundOption
+                                            mode={mode}
+                                            onClick={onClick}
+                                            active={isModeActive}
+                                        >
+                                            <Radio checked={isModeActive} />
+                                            <Typography>{modeTitle}</Typography>
+                                        </SBackgroundOption>
+                                    );
+                                }
+                            )}
                         </SOptions>
                     </div>
                 </SSettings>
@@ -103,4 +132,4 @@ const ViewDialog: React.FC<IViewDialogProps> = ({
     );
 };
 
-export default ViewDialog;
+export default CustomizationDialog;

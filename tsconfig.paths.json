@@ -13,6 +13,7 @@
             "@ducks/*": ["./redux/ducks/*"],
             "@hocs/*": ["./hocs/*"],
             "@contexts/*": ["./contexts/*"],
+            "@styled/*": ["./styled/*"],
         }
     }
 }

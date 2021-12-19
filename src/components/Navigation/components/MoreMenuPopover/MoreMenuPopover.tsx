@@ -13,7 +13,7 @@ import {
 
 import { ReactComponent as SettingsIcon } from "@icons/more/settings.svg";
 import { ReactComponent as DisplayIcon } from "@icons/more/display.svg";
-import ViewDialog from "./components/ViewDialog";
+import CustomizationDialog from "./components/CustomizationDialog";
 import { IDialogCommonProps } from "@interfaces/components";
 
 interface IMoreMenuPopoverProps extends IDialogCommonProps {
@@ -66,7 +66,10 @@ const MoreMenuPopover: React.FC<IMoreMenuPopoverProps> = ({
 
     return (
         <>
-            <ViewDialog open={dialogVisible} onClose={handleCloseDialog} />
+            <CustomizationDialog
+                open={dialogVisible}
+                onClose={handleCloseDialog}
+            />
 
             <SPopover
                 anchorOrigin={{

@@ -1,6 +1,6 @@
 import React from "react";
 import createTheme from "@mui/material/styles/createTheme";
-import { ColorName, ITheme, ModeName } from "@interfaces/styled";
+import { ColorName, IMode, ITheme, ModeName } from "@interfaces/styled";
 import accentColors from "@styles/accentColors";
 import modes from "@styles/modes";
 import { alpha } from "@mui/system";
@@ -19,9 +19,9 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
     const dispatch = useDispatch();
 
     const colorValue: string = accentColors[color];
-    const modeValue = modes[mode];
+    const modeValue: IMode = modes[mode];
 
-    const isDarkTheme = mode !== "light";
+    const isDarkTheme: boolean = mode !== "light";
 
     const currentStyledTheme: ITheme = {
         accentColor: colorValue,
@@ -30,6 +30,19 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
 
     const muiTheme = createTheme({
         components: {
+            MuiRadio: {
+                defaultProps: {
+                    size: "small",
+                    color: "warning",
+                },
+                styleOverrides: {
+                    root: {
+                        ".MuiSvgIcon-root": {
+                            color: colorValue,
+                        },
+                    },
+                },
+            },
             MuiFormLabel: {
                 styleOverrides: {
                     root: {

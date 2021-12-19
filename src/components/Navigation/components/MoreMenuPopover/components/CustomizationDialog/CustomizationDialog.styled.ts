@@ -1,10 +1,12 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import DialogContent from "@mui/material/DialogContent";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { ColorName, ModeName } from "@interfaces/styled";
 import accentColors from "@styles/accentColors";
 import modes from "@styles/modes";
+import Flex from "@styled/components/Flex.styled";
+import CheckIcon from "@mui/icons-material/Check";
 
 export const STypography = styled(Typography)`
     text-align: center;
@@ -40,20 +42,48 @@ export const SOptionsLabel = styled(Typography)`
     color: ${({ theme }) => theme.mode.palette.gray};
 `;
 
-export const SOptions = styled.div`
+export const SOptions = styled(Flex).attrs(() => ({
+    justify: "space-between",
+    align: "center",
+}))`
     background-color: ${({ theme }) => theme.mode.background.secondary};
     padding: 16px;
     border-radius: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     gap: 10px;
+`;
+
+export const SColorOptionWrapper = styled(Flex).attrs(() => ({
+    justify: "center",
+    alignItems: "center",
+}))`
+    position: relative;
+`;
+
+interface IColorOptionWrapperProps {
+    visible: boolean;
+}
+export const SColorOptionCheckIcon = styled(
+    CheckIcon
+)<IColorOptionWrapperProps>`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    color: #fff;
+    opacity: 0;
+    transition: all 0.2s ease;
+
+    ${({ visible }) =>
+        visible &&
+        css`
+            opacity: 1;
+        `}
 `;
 
 interface IColorOptionProps {
     color: ColorName;
 }
-
 export const SColorOption = styled.div<IColorOptionProps>`
     width: 45px;
     height: 45px;
@@ -65,25 +95,27 @@ export const SColorOption = styled.div<IColorOptionProps>`
 interface IBackgroundOptionProps {
     mode: ModeName;
     onClick: () => void;
+    active: boolean;
 }
-
-export const SBackgroundOption = styled.div<IBackgroundOptionProps>`
+export const SBackgroundOption = styled(Flex).attrs(() => ({
+    align: "center",
+    gap: 8,
+}))<IBackgroundOptionProps>`
     height: 62px;
     border: 2px solid ${({ mode }) => modes[mode].divider};
     cursor: pointer;
     padding: 0 20px;
     border-radius: 4px;
     background-color: ${({ mode }) => modes[mode].background.primary};
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex: 1;
 
     .MuiTypography-root {
-        color: ${({ mode }) => modes[mode].typography};
+        color: ${({ mode }) => modes[mode].typography.primary};
     }
 
-    &.active {
-        border-color: ${({ theme }) => theme.accentColor};
-    }
+    ${({ active }) =>
+        active &&
+        css`
+            border-color: ${({ theme }) => theme.accentColor};
+        `}
 `;
