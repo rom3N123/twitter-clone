@@ -12,7 +12,6 @@
 7. date-fns
 8. Formik
 9. Yup
-10. Craco
 
 ### Backend
 1. Node.js + Express
