@@ -3,13 +3,37 @@ import Button from "@mui/material/Button";
 import PlaceIcon from "@mui/icons-material/PlaceOutlined";
 import CalendarIcon from "@mui/icons-material/CalendarToday";
 import * as S from "./ProfileHeader.styled";
+import Content from "@styled/components/Content.styled";
+import Tabs from "@components/Tabs";
+import { ITab } from "@components/Tabs/components/Tab/Tab";
+import { useNavigate } from "react-router-dom";
 
 const ProfileHeader: React.FC = (): React.ReactElement => {
+    const navigate = useNavigate();
+
+    const tabs: ITab[] = [
+        {
+            label: "Tweets",
+            onClick: () => {},
+            value: "tweets",
+        },
+        {
+            label: "Media",
+            onClick: () => {},
+            value: "media",
+        },
+        {
+            label: "Likes",
+            onClick: () => {},
+            value: "likes",
+        },
+    ];
+
     return (
-        <div>
+        <S.Container>
             <S.ProfileBackground />
 
-            <S.Content>
+            <Content>
                 <S.ProfileInfo>
                     <S.ProfileInfoLeftSide>
                         <S.ProfileAvatarWrapper>
@@ -54,8 +78,10 @@ const ProfileHeader: React.FC = (): React.ReactElement => {
 
                     <Button variant="outlined">Edit profile</Button>
                 </S.ProfileInfo>
-            </S.Content>
-        </div>
+            </Content>
+
+            <Tabs tabs={tabs} />
+        </S.Container>
     );
 };
 

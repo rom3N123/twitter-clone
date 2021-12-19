@@ -4,6 +4,10 @@ import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { alpha } from "@mui/system";
 
+export const Container = styled.div`
+    border-bottom: 1px solid ${({ theme }) => theme.mode.divider};
+`;
+
 export const ProfileBackground = styled.div`
     height: 200px;
     width: 100%;
@@ -52,10 +56,6 @@ export const ProfileAvatar = styled(Avatar)`
         background-color: ${alpha("#000", 0.2)};
         opacity: 0;
     }
-`;
-
-export const Content = styled.div`
-    padding: 0 16px;
 `;
 
 export const ProfileName = styled(Typography)`
