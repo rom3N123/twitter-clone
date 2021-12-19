@@ -85,7 +85,7 @@ const CustomizationDialog: React.FC<ICustomizationDialogProps> = ({
                         <SOptionsLabel>Color</SOptionsLabel>
                         <SOptions>
                             {colorOptions.map(({ color, onClick }) => (
-                                <SColorOptionWrapper>
+                                <SColorOptionWrapper key={color}>
                                     <SColorOption
                                         color={color}
                                         onClick={onClick}
@@ -115,6 +115,7 @@ const CustomizationDialog: React.FC<ICustomizationDialogProps> = ({
                                             mode={mode}
                                             onClick={onClick}
                                             active={isModeActive}
+                                            key={mode}
                                         >
                                             <Radio checked={isModeActive} />
                                             <Typography>{modeTitle}</Typography>

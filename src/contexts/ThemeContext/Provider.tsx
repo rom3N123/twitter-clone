@@ -346,9 +346,31 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
         changeThemeMode,
     };
 
+    const storageMode = localStorage.getItem("mode");
+
+    const storageColor = localStorage.getItem("color");
+
     React.useEffect(() => {
-        localStorage.setItem("mode", mode);
+        if (!storageMode || storageMode !== mode) {
+            localStorage.setItem("mode", mode);
+        }
     }, [mode]);
+
+    React.useEffect(() => {
+        if (!storageColor || storageColor !== color) {
+            localStorage.setItem("color", color);
+        }
+    }, [color]);
+
+    React.useEffect(() => {
+        if (color) {
+            changeThemeColor(color);
+        }
+
+        if (mode) {
+            changeThemeMode(mode);
+        }
+    }, []);
 
     return (
         <ThemeContext.Provider value={themeContextValue}>

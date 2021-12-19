@@ -7,9 +7,14 @@ export interface IThemeState {
     color: ColorName;
 }
 
+// @ts-ignore
+const modeInitialState: ModeName = localStorage.getItem("mode") || "light";
+// @ts-ignore
+const colorInitialState: ColorName = localStorage.getItem("color") || "blue";
+
 const initialState: IThemeState = {
-    mode: "light",
-    color: "blue",
+    mode: modeInitialState,
+    color: colorInitialState,
 };
 
 const themeReducer = provide(

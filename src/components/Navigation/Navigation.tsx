@@ -46,15 +46,15 @@ const Navigation = () => {
                     </S.STwitterIconButton>
                 </S.STwitterIconLink>
 
-                {navigationItems.map((navigationItem) => (
-                    <S.NavigationItem>
-                        <S.Link to={navigationItem.to}>
+                {navigationItems.map(({ icon, to, label }) => (
+                    <S.NavigationItem key={to}>
+                        <S.Link to={to}>
                             <S.NavigationItemButton>
                                 <S.NavigationItemIcon>
-                                    {navigationItem.icon}
+                                    {icon}
                                 </S.NavigationItemIcon>
                                 <S.NavigationItemText>
-                                    {navigationItem.label}
+                                    {label}
                                 </S.NavigationItemText>
                             </S.NavigationItemButton>
                         </S.Link>
