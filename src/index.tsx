@@ -6,17 +6,17 @@ import GlobalStyles from "./styles/GlobalStyles";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import ThemeManager from "./components/PageComponents/ThemeManager/ThemeManager";
+import ThemeProvider from "@contexts/ThemeContext";
 
 ReactDOM.render(
     <Provider store={store}>
-        <ThemeManager>
+        <ThemeProvider>
             <Router>
                 <CssBaseline />
                 <GlobalStyles />
                 <App />
             </Router>
-        </ThemeManager>
+        </ThemeProvider>
     </Provider>,
     document.getElementById("root")
 );

@@ -16,14 +16,14 @@ export interface IChangeThemeColorAction extends Action<ThemeActionsTypes> {
     payload: ColorName;
 }
 
-export const changeThemeColor = (
+export const changeThemeColorAction = (
     payload: ColorName
 ): IChangeThemeColorAction => ({
     type: ThemeActionsTypes.CHANGE_COLOR,
     payload,
 });
 
-export const changeThemeMode = (payload: ModeName) => ({
+export const changeThemeModeAction = (payload: ModeName) => ({
     type: ThemeActionsTypes.CHANGE_MODE,
     payload,
 });

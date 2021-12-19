@@ -15,6 +15,7 @@ module.exports = {
             "@icons": resolvePath("assets/icons"),
             "@ducks": resolvePath("redux/ducks"),
             "@hocs": resolvePath("hocs"),
+            "@contexts": resolvePath("contexts"),
         },
     },
 };

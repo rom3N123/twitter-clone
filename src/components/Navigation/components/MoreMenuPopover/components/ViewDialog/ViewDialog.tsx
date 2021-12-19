@@ -13,7 +13,10 @@ import {
 } from "./ViewDialog.styled";
 import { Typography } from "@mui/material";
 import { useAppDispatch } from "@redux/hooks";
-import { changeThemeColor, changeThemeMode } from "@ducks/theme/actions";
+import {
+    changeThemeColorAction,
+    changeThemeModeAction,
+} from "@ducks/theme/actions";
 import accentColors from "@styles/accentColors";
 import { IDialogCommonProps } from "@interfaces/components";
 import { ColorName, ModeName } from "@interfaces/styled";
@@ -37,11 +40,11 @@ const ViewDialog: React.FC<IViewDialogProps> = ({
     const dispatch = useAppDispatch();
 
     const changeColor = (colorName: ColorName): void => {
-        dispatch(changeThemeColor(colorName));
+        dispatch(changeThemeColorAction(colorName));
     };
 
     const changeMode = (modeName: ModeName): void => {
-        dispatch(changeThemeMode(modeName));
+        dispatch(changeThemeModeAction(modeName));
     };
 
     const colorOptions: IColorOption[] = Object.keys(accentColors).map(

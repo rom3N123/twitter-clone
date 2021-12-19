@@ -1,24 +1,27 @@
 import React from "react";
-import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import createTheme from "@mui/material/styles/createTheme";
-import MuiThemeProvider from "@mui/material/styles/ThemeProvider";
-import { ITheme } from "@interfaces/styled";
+import { ColorName, ITheme, ModeName } from "@interfaces/styled";
 import accentColors from "@styles/accentColors";
 import modes from "@styles/modes";
 import { alpha } from "@mui/system";
 import { useAppSelector } from "@redux/hooks";
+import ThemeContext, { IThemeContextValue } from "./Context";
+import { ThemeProvider as MuiThemeProvider } from "@mui/system";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import { useDispatch } from "react-redux";
+import {
+    changeThemeColorAction,
+    changeThemeModeAction,
+} from "@redux/ducks/theme/actions";
 
-interface IThemeManagerProps {
-    children: React.ReactNode;
-}
-
-const ThemeManager: React.FC<IThemeManagerProps> = ({
-    children,
-}): React.ReactElement => {
+const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
     const { mode, color } = useAppSelector(({ theme }) => theme);
+    const dispatch = useDispatch();
+
     const colorValue: string = accentColors[color];
     const modeValue = modes[mode];
-    const isDarkTheme = mode === "dim" || mode === "dark";
+
+    const isDarkTheme = mode !== "light";
 
     const currentStyledTheme: ITheme = {
         accentColor: colorValue,
@@ -310,13 +313,30 @@ const ThemeManager: React.FC<IThemeManagerProps> = ({
         },
     });
 
+    const changeThemeColor = (color: ColorName): void => {
+        dispatch(changeThemeColorAction(color));
+    };
+
+    const changeThemeMode = (mode: ModeName): void => {
+        dispatch(changeThemeModeAction(mode));
+    };
+
+    const themeContextValue: IThemeContextValue = {
+        mode,
+        color,
+        changeThemeColor,
+        changeThemeMode,
+    };
+
     return (
-        <MuiThemeProvider theme={muiTheme}>
-            <StyledThemeProvider theme={currentStyledTheme}>
-                {children}
-            </StyledThemeProvider>
-        </MuiThemeProvider>
+        <ThemeContext.Provider value={themeContextValue}>
+            <MuiThemeProvider theme={muiTheme}>
+                <StyledThemeProvider theme={currentStyledTheme}>
+                    {children}
+                </StyledThemeProvider>
+            </MuiThemeProvider>
+        </ThemeContext.Provider>
     );
 };
 
-export default ThemeManager;
+export default ThemeProvider;

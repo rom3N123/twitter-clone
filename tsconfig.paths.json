@@ -12,6 +12,7 @@
             "@icons/*": ["./assets/icons/*"],
             "@ducks/*": ["./redux/ducks/*"],
             "@hocs/*": ["./hocs/*"],
+            "@contexts/*": ["./contexts/*"],
         }
     }
 }
