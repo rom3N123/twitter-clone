@@ -16,5 +16,6 @@
 ### Backend
 1. Node.js + Express
 2. MongoDB + Mongoose
-3. Typescript
-4. JWT
+3. Passport + JWT
+4. Cloudinary
+5. Socket.IO
