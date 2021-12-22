@@ -1,15 +1,7 @@
-import Grid from "@mui/material/Grid";
 import styled from "styled-components";
 import Twitter from "@mui/icons-material/Twitter";
-
-const Header = styled(Grid).attrs(() => ({
-    container: true,
-    justifyContent: "space-between",
-    alignItems: "center",
-}))`
-    positon: relative;
-    padding: 5px 10px 0;
-`;
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
 
 const TwitterIcon = styled(Grid).attrs(() => ({
     item: true,
@@ -21,9 +13,11 @@ const TwitterIcon = styled(Grid).attrs(() => ({
     component: Twitter;
 `;
 
+const Title = styled(Typography)``;
+
 const styles = {
-    Header,
     TwitterIcon,
+    Title,
 };
 
 export default styles;

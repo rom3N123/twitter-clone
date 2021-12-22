@@ -13,6 +13,7 @@ import {
     changeThemeColorAction,
     changeThemeModeAction,
 } from "@redux/ducks/theme/actions";
+import { blackColors, whiteColors } from "@styles/blackAndWhiteColors";
 
 const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
     const { mode, color } = useAppSelector(({ theme }) => theme);
@@ -246,38 +247,12 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
                             color: alpha("#fff", 0.55),
                         },
                         fontSize: 15,
-                        "&.MuiButton-contained": {
-                            "&.opposite": {
-                                backgroundColor: isDarkTheme
-                                    ? modes.light.background.primary
-                                    : modes.dim.background.primary,
-                                color: isDarkTheme
-                                    ? modes.light.typography
-                                    : modes.dim.typography,
-                                "&:hover": {
-                                    backgroundColor: alpha(
-                                        isDarkTheme
-                                            ? modes.light.background.primary
-                                            : modes.dim.background.secondary,
-                                        0.8
-                                    ),
-                                },
-                                "&:active": {
-                                    backgroundColor: alpha(
-                                        isDarkTheme
-                                            ? modes.light.background.primary
-                                            : modes.dim.background.secondary,
-                                        0.7
-                                    ),
-                                },
-                            },
-                        },
 
                         "&.MuiButton-outlined": {
                             color: modeValue.typography.primary,
                             borderColor: isDarkTheme
-                                ? alpha(modes.light.background.primary, 0.2)
-                                : alpha(modes.dim.background.primary, 0.2),
+                                ? alpha(whiteColors.background, 0.2)
+                                : alpha(blackColors.background, 0.2),
 
                             "&:active": {
                                 backgroundColor: alpha(
@@ -342,6 +317,7 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
     const themeContextValue: IThemeContextValue = {
         mode,
         color,
+        isDarkTheme,
         changeThemeColor,
         changeThemeMode,
     };
@@ -361,16 +337,6 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
             localStorage.setItem("color", color);
         }
     }, [color]);
-
-    React.useEffect(() => {
-        if (color) {
-            changeThemeColor(color);
-        }
-
-        if (mode) {
-            changeThemeMode(mode);
-        }
-    }, []);
 
     return (
         <ThemeContext.Provider value={themeContextValue}>

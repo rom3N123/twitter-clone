@@ -7,9 +7,14 @@ import Content from "@styled/components/Content.styled";
 import Tabs from "@components/Tabs";
 import { ITab } from "@components/Tabs/components/Tab/Tab";
 import { useNavigate } from "react-router-dom";
+import Dialog from "@components/Material/Dialog";
+import usePopover from "@hooks/usePopover";
+import useToggle from "@hooks/useToggle";
+import EditProfileDialog from "../EditProfileDialog";
 
 const ProfileHeader: React.FC = (): React.ReactElement => {
     const navigate = useNavigate();
+    const { isOpen, toggle } = useToggle();
 
     const tabs: ITab[] = [
         {
@@ -76,9 +81,13 @@ const ProfileHeader: React.FC = (): React.ReactElement => {
                         </S.ProfileInfoItems>
                     </S.ProfileInfoLeftSide>
 
-                    <Button variant="outlined">Edit profile</Button>
+                    <Button variant="outlined" onClick={toggle}>
+                        Edit profile
+                    </Button>
                 </S.ProfileInfo>
             </Content>
+
+            <EditProfileDialog open={isOpen} onClose={toggle} />
 
             <Tabs tabs={tabs} />
         </S.Container>

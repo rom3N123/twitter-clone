@@ -4,6 +4,7 @@ import React from "react";
 export interface IThemeContextValue {
     mode: ModeName;
     color: ColorName;
+    isDarkTheme: boolean;
     changeThemeColor: (color: ColorName) => void;
     changeThemeMode: (mode: ModeName) => void;
 }
@@ -11,6 +12,7 @@ export interface IThemeContextValue {
 const themeContextInitialValue: IThemeContextValue = {
     mode: "light",
     color: "blue",
+    isDarkTheme: false,
     changeThemeColor: () => {},
     changeThemeMode: () => {},
 };

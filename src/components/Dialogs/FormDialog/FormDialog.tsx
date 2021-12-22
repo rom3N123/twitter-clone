@@ -1,7 +1,7 @@
 import React from "react";
 import { IDialogCommonProps } from "@interfaces/components";
 import DialogTitle from "@mui/material/DialogTitle";
-import Header from "@components/Material/Dialog/components/Header";
+import Header from "@components/Material/Dialog/components/DialogHeader";
 import Dialog from "@components/Material/Dialog";
 import { Formik } from "formik";
 
