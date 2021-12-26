@@ -6,6 +6,7 @@ import { whiteColors } from "@styles/blackAndWhiteColors";
 
 interface IButtonProps {
     isDarkTheme: boolean;
+    height?: number;
 }
 
 export const SButton = styled(Button).attrs(() => ({
@@ -13,6 +14,12 @@ export const SButton = styled(Button).attrs(() => ({
 }))<IButtonProps>`
     height: 32px;
     min-width: 32px;
+
+    ${({ height }) =>
+        height &&
+        css`
+            height: ${height}px;
+        `}
 
     ${({ isDarkTheme }) => {
         const backgroundColor: string = isDarkTheme
