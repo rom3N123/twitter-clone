@@ -18,34 +18,19 @@ interface IFlexProps {
     justify?: FlexAxisPositions;
     gap?: number;
     direction?: FlexDirections;
+    basis?: string;
 }
 
 const Flex = styled.div<IFlexProps>`
     display: flex;
 
-    ${({ justify }) =>
-        justify &&
-        css`
-            justify-content: ${justify};
-        `}
-
-    ${({ align }) =>
-        align &&
-        css`
-            align-items: ${align};
-        `}
-
-    ${({ gap }) =>
-        gap &&
-        css`
-            gap: ${gap}px;
-        `}
-
-    ${({ direction }) =>
-        direction &&
-        css`
-            flex-direction: ${direction};
-        `}
+    ${({ justify, align, gap, direction, basis }) => css`
+        justify-content: ${justify || "start"};
+        align-items: ${align || "start"};
+        gap: ${gap || 0}px;
+        direction: ${direction || "row"};
+        flex-basis: ${basis || "auto"};
+    `}
 `;
 
 export default Flex;
