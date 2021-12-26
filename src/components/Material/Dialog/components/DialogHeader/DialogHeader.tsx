@@ -1,27 +1,50 @@
 import React from "react";
-import S from "./DialogHeader.styled";
-import Grid from "@mui/material/Grid";
-import { SDialogCloseButton, SDialogHeader } from "../../Dialog.styled";
+import * as S from "./DialogHeader.styled";
+import CancelButton from "@components/Buttons/CancelButton";
+import { ICommonButton, IDialogCommonProps } from "@interfaces/components";
+import TwitterLogo from "@components/TwitterLogo";
+import ArrowBackButton from "@components/Buttons/ArrowBackButton";
+import BlackAndWhiteButton from "@components/Buttons/BlackAndWhiteButton";
 
-interface IHeaderProps {
-    onClose: () => void;
+interface IHeaderProps extends Pick<IDialogCommonProps, "onClose"> {
+    title?: string;
+    withBackButton?: boolean;
+    buttons?: ICommonButton[];
 }
 
 const DialogHeader: React.FC<IHeaderProps> = ({
     onClose,
+    title,
+    withBackButton,
+    buttons,
 }): React.ReactElement => {
+    const DialogButton = withBackButton ? ArrowBackButton : CancelButton;
+
     return (
-        <SDialogHeader>
-            <Grid item flexBasis="33%">
-                <Grid container>
-                    <SDialogCloseButton onClick={onClose} />
-                </Grid>
-            </Grid>
+        <S.SHeader>
+            <S.SHeaderInner>
+                <S.SDialogButtonContainer basis={title ? "" : "33%"}>
+                    <DialogButton onClick={onClose} />
+                    {title && <S.STitle>{title}</S.STitle>}
+                </S.SDialogButtonContainer>
 
-            <S.TwitterIcon />
+                {!title && (
+                    <S.STwitterLogoContainer>
+                        <TwitterLogo />
+                    </S.STwitterLogoContainer>
+                )}
 
-            <Grid item flexBasis="33%" />
-        </SDialogHeader>
+                <S.SButtonsContainer>
+                    {buttons &&
+                        buttons.map(({ title, onClick }) => (
+                            <BlackAndWhiteButton
+                                title={title}
+                                onClick={onClick}
+                            />
+                        ))}
+                </S.SButtonsContainer>
+            </S.SHeaderInner>
+        </S.SHeader>
     );
 };
 

@@ -1,23 +1,37 @@
 import styled from "styled-components";
-import Twitter from "@mui/icons-material/Twitter";
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
+import Flex from "@styled/components/Flex.styled";
 
-const TwitterIcon = styled(Grid).attrs(() => ({
-    item: true,
-    flexBasis: "33%",
-    component: Twitter,
+export const SHeader = styled(Flex).attrs(() => ({
+    align: "center",
 }))`
-    width: 40px;
-    height: 40px;
-    component: Twitter;
+    height: 53px;
 `;
 
-const Title = styled(Typography)``;
+export const SHeaderInner = styled(Flex).attrs(() => ({
+    align: "center",
+    justify: "space-between",
+}))`
+    width: 100%;
+    padding: 0 20px;
+`;
 
-const styles = {
-    TwitterIcon,
-    Title,
-};
+export const SDialogButtonContainer = styled(Flex).attrs(() => ({
+    align: "center",
+    gap: 30,
+}))``;
 
-export default styles;
+export const STwitterLogoContainer = styled(Flex).attrs(() => ({
+    justify: "center",
+}))``;
+
+export const SButtonsContainer = styled(Flex).attrs(() => ({
+    justify: "end",
+}))`
+    flex-basis: 33%;
+`;
+
+export const STitle = styled(Typography)`
+    font-size: 20px;
+    font-weight: 700;
+`;
