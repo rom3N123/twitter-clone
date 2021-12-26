@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Flex from "@styled/components/Flex.styled";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import Paper from "@mui/material/Paper";
 
 export const SContainer = styled(Paper)`
@@ -17,8 +16,4 @@ export const SInner = styled(Flex).attrs(() => ({
 }))`
     height: 100%;
     width: 100%;
-`;
-
-export const STwitterIcon = styled(TwitterIcon)`
-    font-size: 100px;
 `;

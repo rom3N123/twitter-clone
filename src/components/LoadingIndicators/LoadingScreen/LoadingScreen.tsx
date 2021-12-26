@@ -1,8 +1,9 @@
 import React from "react";
 import { useAppSelector } from "@redux/hooks";
 import { createPortal } from "react-dom";
-import { SContainer, SInner, STwitterIcon } from "./LoadingScreen.styled";
+import { SContainer, SInner } from "./LoadingScreen.styled";
 import Fade from "@mui/material/Fade";
+import TwitterLogo from "@components/TwitterLogo";
 
 const LoadingScreen: React.FC = (): React.ReactElement => {
     const { isLoadingWithScreen } = useAppSelector(({ general }) => general);
@@ -11,7 +12,7 @@ const LoadingScreen: React.FC = (): React.ReactElement => {
         <Fade in={isLoadingWithScreen}>
             <SContainer>
                 <SInner>
-                    <STwitterIcon />
+                    <TwitterLogo size={100} />
                 </SInner>
             </SContainer>
         </Fade>,
