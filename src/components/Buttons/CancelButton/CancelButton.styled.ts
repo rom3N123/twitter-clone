@@ -2,8 +2,6 @@ import styled, { css } from "styled-components";
 import IconButton from "@mui/material/IconButton";
 
 const SIconButton = styled(IconButton)`
-    padding: 0;
-
     ${({ width }: { width?: number }) =>
         width &&
         css`
