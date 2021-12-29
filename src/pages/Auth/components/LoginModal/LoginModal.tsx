@@ -8,12 +8,12 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Input from "@components/FormControl/Input";
-import { Form } from "formik";
+import { Form, IFormikDefaultProps } from "formik";
 import * as yup from "yup";
 import FormDialog from "@components/Dialogs/FormDialog";
-import { IDialogCommonProps } from "@interfaces/components";
 import withShowPassword, { IWithPasswordProps } from "@hocs/withShowPassword";
 import { useNavigate } from "react-router-dom";
+import BlackAndWhiteButton from "@components/Buttons/BlackAndWhiteButton";
 
 const formInitialValues = {
     email: "",
@@ -21,11 +21,11 @@ const formInitialValues = {
 };
 
 const formValidationSchema = yup.object().shape({
-    email: yup
+    email: yup.string().email("Enter correct E-Mail").required("Required"),
+    password: yup
         .string()
-        .email("Введите корретный адрес")
-        .required("Поле обязательно"),
-    password: yup.string().required("Поле обязательно"),
+        .min(8, "Password must be at least of 8 characters long")
+        .required("Required"),
 });
 
 interface ILoginModalProps extends IWithPasswordProps {}
@@ -76,24 +76,30 @@ const LoginModal: React.FC<ILoginModalProps> = ({
             initialValues={formInitialValues}
             validationSchema={formValidationSchema}
         >
-            <FormControl component={Form} margin="dense" fullWidth>
-                <DialogContent
-                    sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "24px",
-                    }}
-                >
-                    {inputs.map((input) => (
-                        <Input key={input.name} fullWidth {...input} />
-                    ))}
-                </DialogContent>
-                <DialogActions>
-                    <Button variant="contained" type="submit" fullWidth>
-                        Войти
-                    </Button>
-                </DialogActions>
-            </FormControl>
+            {({ dirty, touched, isValid }: IFormikDefaultProps) => (
+                <FormControl component={Form} margin="dense" fullWidth>
+                    <DialogContent
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "24px",
+                        }}
+                    >
+                        {inputs.map((input) => (
+                            <Input key={input.name} fullWidth {...input} />
+                        ))}
+                    </DialogContent>
+                    <DialogActions>
+                        <BlackAndWhiteButton
+                            height={42}
+                            type="submit"
+                            fullWidth
+                            title="Войти"
+                            disabled={!dirty || !touched || !isValid}
+                        />
+                    </DialogActions>
+                </FormControl>
+            )}
         </FormDialog>
     );
 };

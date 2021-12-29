@@ -1,7 +1,9 @@
 import React from "react";
-import Dialog from "@components/Material/Dialog";
 import { IDialogCommonProps } from "@interfaces/components";
-import DialogHeaderWithTitle from "@components/Material/Dialog/components/DialogHeaderWithTitle";
+import MultiLevelDialog, {
+    IDialogLevel,
+    IMultiDialogRefValue,
+} from "@components/Dialogs/MultiLevelDialog";
 
 interface IEditProfileDialogProps extends IDialogCommonProps {}
 
@@ -9,14 +11,32 @@ const EditProfileDialog: React.FC<IEditProfileDialogProps> = ({
     open,
     onClose,
 }): React.ReactElement => {
+    const dialogRef = React.useRef<IMultiDialogRefValue>(null);
+
+    const levels: IDialogLevel[] = [
+        {
+            title: "Level 1",
+            content: "Hello world!",
+            headerButtons: [
+                {
+                    title: "Next",
+                    onClick: () => {
+                        dialogRef.current!.goToNextLevel();
+                    },
+                },
+            ],
+        },
+        { title: "Level 2", content: "LEVEL 2" },
+        { title: "Level 3", content: "LEVEEL 3" },
+    ];
+
     return (
-        <Dialog open={open} onClose={onClose}>
-            <DialogHeaderWithTitle
-                onClose={onClose}
-                title="Edit profile"
-                button={{ title: "Save", onClick: () => {} }}
-            ></DialogHeaderWithTitle>
-        </Dialog>
+        <MultiLevelDialog
+            open={open}
+            onClose={onClose}
+            levels={levels}
+            ref={dialogRef}
+        ></MultiLevelDialog>
     );
 };
 

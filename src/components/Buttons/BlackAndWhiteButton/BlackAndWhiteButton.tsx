@@ -13,6 +13,8 @@ const BlackAndWhiteButton: React.FC<IBlackAndWhiteButtonProps> = ({
     onClick,
     fullWidth,
     height,
+    disabled,
+    type,
 }): React.ReactElement => {
     const { isDarkTheme } = useTheme();
 
@@ -22,6 +24,8 @@ const BlackAndWhiteButton: React.FC<IBlackAndWhiteButtonProps> = ({
             onClick={onClick}
             isDarkTheme={isDarkTheme}
             height={height}
+            disabled={disabled}
+            type={type}
         >
             {title}
         </SButton>

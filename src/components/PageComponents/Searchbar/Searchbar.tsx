@@ -20,7 +20,7 @@ const Searchbar: React.FC = (): React.ReactElement => {
                 endAdornment: (
                     <Grow in={Boolean(value)}>
                         <div>
-                            <S.ClearButton width={18} onClick={clearValue} />
+                            <S.ClearButton onClick={clearValue} />
                         </div>
                     </Grow>
                 ),

@@ -128,16 +128,24 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
                     },
                 },
             },
+            MuiMenuItem: {
+                styleOverrides: {
+                    root: {
+                        color: modeValue.typography.primary,
+                    },
+                },
+            },
             MuiDialogActions: {
                 styleOverrides: {
                     root: {
-                        padding: "12px 32px 36px 12px",
+                        padding: "16px 24px 20px",
                     },
                 },
             },
             MuiIconButton: {
                 defaultProps: {
                     color: "secondary",
+                    size: "small",
                 },
                 styleOverrides: {
                     root: {
@@ -158,6 +166,16 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
                                 ),
                             },
                         },
+                    },
+                },
+            },
+            MuiSelect: {
+                defaultProps: {
+                    fullWidth: true,
+                },
+                styleOverrides: {
+                    icon: {
+                        color: modeValue.typography.primary,
                     },
                 },
             },
@@ -306,13 +324,13 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
         },
     });
 
-    const changeThemeColor = (color: ColorName): void => {
+    const changeThemeColor = React.useCallback((color: ColorName): void => {
         dispatch(changeThemeColorAction(color));
-    };
+    }, []);
 
-    const changeThemeMode = (mode: ModeName): void => {
+    const changeThemeMode = React.useCallback((mode: ModeName): void => {
         dispatch(changeThemeModeAction(mode));
-    };
+    }, []);
 
     const themeContextValue: IThemeContextValue = {
         mode,

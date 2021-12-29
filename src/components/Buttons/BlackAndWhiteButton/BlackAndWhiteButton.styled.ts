@@ -39,6 +39,9 @@ export const SButton = styled(Button).attrs(() => ({
             &:active {
                 background-color: ${alpha(backgroundColor, 0.6)};
             }
+            &:disabled {
+                background-color: ${alpha(backgroundColor, 0.25)};
+            }
         `;
     }}
 `;
