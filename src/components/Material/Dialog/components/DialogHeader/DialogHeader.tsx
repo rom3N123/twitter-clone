@@ -6,13 +6,14 @@ import TwitterLogo from "@components/TwitterLogo";
 import ArrowBackButton from "@components/Buttons/ArrowBackButton";
 import BlackAndWhiteButton from "@components/Buttons/BlackAndWhiteButton";
 
-interface IHeaderProps extends Pick<IDialogCommonProps, "onClose"> {
+export interface IDialogHeaderProps
+    extends Pick<IDialogCommonProps, "onClose"> {
     title?: string;
     withBackButton?: boolean;
     buttons?: ICommonButton[];
 }
 
-const DialogHeader: React.FC<IHeaderProps> = ({
+const DialogHeader: React.FC<IDialogHeaderProps> = ({
     onClose,
     title,
     withBackButton,
@@ -38,6 +39,7 @@ const DialogHeader: React.FC<IHeaderProps> = ({
                     {buttons &&
                         buttons.map(({ title, onClick }) => (
                             <BlackAndWhiteButton
+                                key={title}
                                 title={title}
                                 onClick={onClick}
                             />

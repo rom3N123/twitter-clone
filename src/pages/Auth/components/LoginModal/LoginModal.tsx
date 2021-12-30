@@ -65,13 +65,15 @@ const LoginModal: React.FC<ILoginModalProps> = ({
         },
     ];
 
-    const handleFormSubmit = () => {};
+    const handleFormSubmit = () => {
+        // ...
+    };
 
     return (
         <FormDialog
             open={true}
             onClose={handleCloseModal}
-            headerTitle="Авторизация"
+            title="Авторизация"
             onSubmit={handleFormSubmit}
             initialValues={formInitialValues}
             validationSchema={formValidationSchema}

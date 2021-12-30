@@ -1,33 +1,29 @@
 import React from "react";
-import { IDialogCommonProps } from "@interfaces/components";
-import DialogTitle from "@mui/material/DialogTitle";
-import Header from "@components/Material/Dialog/components/DialogHeader";
 import Dialog from "@components/Material/Dialog";
-import { Formik } from "formik";
+import { Formik, FormikValues } from "formik";
+import DialogHeader from "@components/Material/Dialog/components/DialogHeader";
+import { IDialogHeaderProps } from "@components/Material/Dialog/components/DialogHeader/DialogHeader";
 
-interface IFormDialogProps extends IDialogCommonProps {
-    headerTitle: string;
-    onSubmit: () => void;
-    initialValues: {
-        [k: string]: string;
-    };
+interface IFormDialogProps extends IDialogHeaderProps {
+    open: boolean;
+    onSubmit: (values: FormikValues) => void;
+    initialValues: FormikValues;
     validationSchema: object;
-    children: React.ReactNode;
 }
 
 const FormDialog: React.FC<IFormDialogProps> = ({
     open,
     onClose,
-    headerTitle,
     onSubmit,
     initialValues,
     validationSchema,
+    title,
+    buttons,
     children,
 }): React.ReactElement => {
     return (
         <Dialog open={open} onClose={onClose}>
-            <Header onClose={onClose} />
-            <DialogTitle>{headerTitle}</DialogTitle>
+            <DialogHeader buttons={buttons} title={title} onClose={onClose} />
             <Formik
                 onSubmit={onSubmit}
                 initialValues={initialValues}

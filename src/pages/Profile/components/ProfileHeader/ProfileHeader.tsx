@@ -11,6 +11,7 @@ import Dialog from "@components/Material/Dialog";
 import usePopover from "@hooks/usePopover";
 import useToggle from "@hooks/useToggle";
 import EditProfileDialog from "../EditProfileDialog";
+import ProfileUserAvatar from "../ProfileUserAvatar";
 
 const ProfileHeader: React.FC = (): React.ReactElement => {
     const navigate = useNavigate();
@@ -41,9 +42,7 @@ const ProfileHeader: React.FC = (): React.ReactElement => {
             <Content>
                 <S.ProfileInfo>
                     <S.ProfileInfoLeftSide>
-                        <S.ProfileAvatarWrapper>
-                            <S.ProfileAvatar />
-                        </S.ProfileAvatarWrapper>
+                        <ProfileUserAvatar withWrapper />
 
                         <S.ProfileName>romen</S.ProfileName>
                         <S.ProfileId>@uAa0KZ3MeJDFBaf</S.ProfileId>

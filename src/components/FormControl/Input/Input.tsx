@@ -6,12 +6,18 @@ interface IInputProps {
     name: string;
     fullWidth?: boolean;
     label?: string;
+    rows?: number;
+    multiline?: boolean;
+    maxLength?: number;
 }
 
 const Input: React.FC<IInputProps> = ({
     name,
     fullWidth,
     label,
+    rows,
+    maxLength,
+    multiline,
     ...props
 }): React.ReactElement => {
     const [field, meta] = useField(name);
@@ -24,6 +30,11 @@ const Input: React.FC<IInputProps> = ({
             error={!!errorText}
             fullWidth={fullWidth}
             label={label}
+            rows={rows}
+            multiline={multiline}
+            inputProps={{
+                maxLength,
+            }}
             {...props}
             {...field}
         />

@@ -1,8 +1,6 @@
 import styled, { css } from "styled-components";
-import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import { alpha } from "@mui/system";
 
 export const Container = styled.div`
     border-bottom: 1px solid ${({ theme }) => theme.mode.divider};
@@ -24,39 +22,6 @@ export const ProfileInfo = styled.div`
 `;
 
 export const ProfileInfoLeftSide = styled.div``;
-
-export const ProfileAvatarWrapper = styled.div`
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background-color: ${({ theme }) => theme.mode.background.primary};
-`;
-
-export const ProfileAvatar = styled(Avatar)`
-    width: 133px;
-    height: 133px;
-    position: relative;
-    z-index: 1;
-    cursor: pointer;
-    &:hover {
-        &::before {
-            opacity: 1;
-        }
-    }
-    &::before {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        transition: all 0.2s ease;
-        background-color: ${alpha("#000", 0.2)};
-        opacity: 0;
-    }
-`;
 
 export const ProfileName = styled(Typography)`
     font-weight: 700;
