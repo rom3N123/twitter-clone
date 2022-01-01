@@ -2,7 +2,6 @@ import { FormikValues } from "formik";
 
 export interface IProfile extends FormikValues {
     name: string;
-    nickname: string;
     avatar: string;
     bio: string;
     location: string;
