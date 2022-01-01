@@ -1,5 +1,5 @@
+import { createContext } from "react";
 import { ColorName, ModeName } from "@interfaces/styled";
-import React from "react";
 
 export interface IThemeContextValue {
     mode: ModeName;
@@ -18,6 +18,6 @@ const themeContextInitialValue: IThemeContextValue = {
 };
 
 const ThemeContext: React.Context<IThemeContextValue> =
-    React.createContext<IThemeContextValue>(themeContextInitialValue);
+    createContext<IThemeContextValue>(themeContextInitialValue);
 
 export default ThemeContext;
