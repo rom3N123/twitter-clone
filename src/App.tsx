@@ -5,6 +5,7 @@ import Auth from "./pages/Auth";
 import LoadingScreen from "@components/LoadingIndicators/LoadingScreen";
 import { useDispatch } from "react-redux";
 import { setIsLoadingWithScreenAction } from "@redux/ducks/general/actions";
+import PrivateRoute from "@pages/routes/PrivateRoute";
 
 function App() {
     const dispatch = useDispatch();
@@ -16,7 +17,14 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Layout />}>
+                <Route
+                    path="/"
+                    element={
+                        <PrivateRoute>
+                            <Layout />
+                        </PrivateRoute>
+                    }
+                >
                     <Route path="profile" />
                     <Route path="bookmarks" />
                     <Route path="messages" />
