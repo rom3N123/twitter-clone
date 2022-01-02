@@ -5,9 +5,11 @@ import { Link, useParams, useNavigate, Route, Routes } from "react-router-dom";
 import LoginModal from "./components/LoginModal";
 import RegisterModal from "./components/RegisterModal";
 import S from "./Auth.styled";
+import { useAppDispatch } from "@redux/hooks";
 
 const Auth = () => {
     const { login, registration } = useParams();
+    const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
 
