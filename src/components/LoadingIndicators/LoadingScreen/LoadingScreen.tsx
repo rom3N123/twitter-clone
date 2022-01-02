@@ -2,20 +2,21 @@ import React from "react";
 import { useAppSelector } from "@redux/hooks";
 import { createPortal } from "react-dom";
 import { SContainer, SInner } from "./LoadingScreen.styled";
-import Fade from "@mui/material/Fade";
 import TwitterLogo from "@components/TwitterLogo";
 
-const LoadingScreen: React.FC = (): React.ReactElement => {
+const LoadingScreen: React.FC = (): React.ReactElement | null => {
     const { isLoadingWithScreen } = useAppSelector(({ general }) => general);
 
+    if (!isLoadingWithScreen) {
+        return null;
+    }
+
     return createPortal(
-        <Fade in={isLoadingWithScreen}>
-            <SContainer>
-                <SInner>
-                    <TwitterLogo size={100} />
-                </SInner>
-            </SContainer>
-        </Fade>,
+        <SContainer>
+            <SInner>
+                <TwitterLogo size={100} />
+            </SInner>
+        </SContainer>,
         document.getElementById("portals") as HTMLElement
     );
 };

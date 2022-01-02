@@ -3,7 +3,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Navigation from "@components/Navigation";
 import Searchbar from "@components/PageComponents/Searchbar";
-import S from "./Layout.styled";
+import * as S from "./Layout.styled";
 import { Routes, Route } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 
@@ -13,25 +13,42 @@ const Profile = React.lazy(() => import("../Profile"));
 const Layout: React.FC = (): React.ReactElement => {
     return (
         <section>
-            <Suspense fallback={<CircularProgress />}>
+            <Suspense
+                fallback={
+                    <S.SLoadingContainer>
+                        <CircularProgress />
+                    </S.SLoadingContainer>
+                }
+            >
                 <Container maxWidth="lg">
                     <Grid container>
-                        <S.SideContent xs={3}>
+                        <S.SSideContent xs={3}>
                             <Navigation />
-                        </S.SideContent>
+                        </S.SSideContent>
 
-                        <S.MainContent xs={6}>
-                            <Routes>
-                                <Route path="/" element={<Home />} />
-                                <Route path="/profile" element={<Profile />} />
-                            </Routes>
-                        </S.MainContent>
+                        <S.SMainContent xs={6}>
+                            <Suspense
+                                fallback={
+                                    <S.SLoadingContainer>
+                                        <CircularProgress />
+                                    </S.SLoadingContainer>
+                                }
+                            >
+                                <Routes>
+                                    <Route path="/" element={<Home />} />
+                                    <Route
+                                        path="/profile"
+                                        element={<Profile />}
+                                    />
+                                </Routes>
+                            </Suspense>
+                        </S.SMainContent>
 
-                        <S.SideContent sx={{ paddingLeft: "20px" }} xs={3}>
+                        <S.SSideContent sx={{ paddingLeft: "20px" }} xs={3}>
                             <Routes>
                                 <Route path="/" element={<Searchbar />}></Route>
                             </Routes>
-                        </S.SideContent>
+                        </S.SSideContent>
                     </Grid>
                 </Container>
             </Suspense>

@@ -7,16 +7,25 @@ import { useDispatch } from "react-redux";
 import { setIsLoadingWithScreenAction } from "@redux/ducks/general/actions";
 import PrivateRoute from "@components/routes/PrivateRoute";
 import ProtectedRoute from "@components/routes/ProtectedRoute";
+import { loginAction } from "@redux/ducks/auth/actions";
 
 function App() {
     const dispatch = useDispatch();
 
     React.useEffect(() => {
-        dispatch(setIsLoadingWithScreenAction(false));
+        const token = localStorage.getItem("token");
+
+        if (token) {
+            dispatch(loginAction());
+        } else {
+            dispatch(setIsLoadingWithScreenAction(false));
+        }
     }, []);
 
     return (
         <>
+            <LoadingScreen />
+
             <Routes>
                 <Route
                     path="/"
@@ -44,8 +53,6 @@ function App() {
                     <Route path="registration" />
                 </Route>
             </Routes>
-
-            <LoadingScreen />
         </>
     );
 }

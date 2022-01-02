@@ -20,9 +20,9 @@ export const setIsAuthAction = (payload: boolean): ISetIsAuthAction => ({
 
 export interface ILoginAction extends AuthActionType {
     type: AuthActionsTypes.LOGIN;
-    payload: IUserLoginValues;
+    payload?: IUserLoginValues;
 }
-export const loginAction = (payload: IUserLoginValues): ILoginAction => ({
+export const loginAction = (payload?: IUserLoginValues): ILoginAction => ({
     type: AuthActionsTypes.LOGIN,
     payload,
 });

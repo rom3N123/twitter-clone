@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Grid from "@mui/material/Grid";
+import Flex from "@styled/components/Flex.styled";
 
-const SideContent = styled(Grid).attrs(() => ({
+export const SSideContent = styled(Grid).attrs(() => ({
     item: true,
 }))`
     position: sticky;
@@ -12,7 +13,7 @@ const SideContent = styled(Grid).attrs(() => ({
     }
 `;
 
-const MainContent = styled(Grid).attrs(() => ({
+export const SMainContent = styled(Grid).attrs(() => ({
     item: true,
 }))`
     border: 1px solid ${({ theme }) => theme.mode.divider};
@@ -20,6 +21,7 @@ const MainContent = styled(Grid).attrs(() => ({
     border-bottom: 0;
 `;
 
-const styles = { SideContent, MainContent };
-
-export default styles;
+export const SLoadingContainer = styled(Flex).attrs(() => ({
+    align: "center",
+    justify: "center",
+}))``;
