@@ -1,13 +1,14 @@
 import React from "react";
-import FormDialog from "@components/Dialogs/FormDialog";
-import { ProfileEditFields } from "@interfaces/api/profile";
+import { ProfileEditFields } from "@interfaces/api/user";
 import { IDialogCommonProps } from "@interfaces/components";
 import ProfileUserAvatar from "../ProfileUserAvatar";
 import FormControl from "@mui/material/FormControl";
 import Input from "@components/FormControl/Input";
 import * as S from "./EditProfileDialog.styled";
 import * as yup from "yup";
-import { Form } from "formik";
+import { Form, Formik } from "formik";
+import Dialog from "@components/Material/Dialog";
+import DialogHeader from "@components/Material/Dialog/components/DialogHeader";
 
 interface IEditProfileDialogProps extends IDialogCommonProps {}
 
@@ -70,61 +71,65 @@ const EditProfileDialog: React.FC<IEditProfileDialogProps> = ({
     };
 
     return (
-        <FormDialog
-            initialValues={formInitialValues}
-            open={open}
-            onClose={onClose}
-            validationSchema={validationSchema}
-            onSubmit={onSaveClickHandler}
-            title="Edit profile"
-            buttons={[
-                {
-                    title: "Save",
-                    onClick: (): void => {
-                        submitButtonRef.current?.click();
+        <Dialog open={open} onClose={onClose}>
+            <DialogHeader
+                title="Edit profile"
+                onClose={onClose}
+                buttons={[
+                    {
+                        title: "Save",
+                        onClick: (): void => {
+                            submitButtonRef.current?.click();
+                        },
                     },
-                },
-            ]}
-        >
-            {(props: any) => {
-                return (
-                    <FormControl component={Form} fullWidth>
-                        <S.SProfileBackgroundContainer>
-                            <S.SUploadImageButton onClick={() => {}} />
-                            <S.SProfileBackgroundBackdrop />
-                        </S.SProfileBackgroundContainer>
+                ]}
+            />
 
-                        <S.SDialogContent>
-                            <S.SProfileUserAvatarContainer>
-                                <ProfileUserAvatar size={110} withWrapper />
-                                <S.SProfileUserAvatarButtonContainer>
-                                    <S.SUploadImageButton
-                                        title="Change photo"
-                                        onClick={() => {}}
+            <Formik
+                initialValues={formInitialValues}
+                validationSchema={validationSchema}
+                onSubmit={onSaveClickHandler}
+            >
+                {(props: any) => {
+                    return (
+                        <FormControl component={Form} fullWidth>
+                            <S.SProfileBackgroundContainer>
+                                <S.SUploadImageButton onClick={() => {}} />
+                                <S.SProfileBackgroundBackdrop />
+                            </S.SProfileBackgroundContainer>
+
+                            <S.SDialogContent>
+                                <S.SProfileUserAvatarContainer>
+                                    <ProfileUserAvatar size={110} withWrapper />
+                                    <S.SProfileUserAvatarButtonContainer>
+                                        <S.SUploadImageButton
+                                            title="Change photo"
+                                            onClick={() => {}}
+                                        />
+                                    </S.SProfileUserAvatarButtonContainer>
+                                </S.SProfileUserAvatarContainer>
+
+                                <FormControl
+                                    sx={{ gap: "24px", margin: "20px 0" }}
+                                    fullWidth
+                                    margin="dense"
+                                >
+                                    {inputs.map((input) => (
+                                        <Input key={input.name} {...input} />
+                                    ))}
+
+                                    <button
+                                        ref={submitButtonRef}
+                                        type="submit"
+                                        style={{ display: "none" }}
                                     />
-                                </S.SProfileUserAvatarButtonContainer>
-                            </S.SProfileUserAvatarContainer>
-
-                            <FormControl
-                                sx={{ gap: "24px", margin: "20px 0" }}
-                                fullWidth
-                                margin="dense"
-                            >
-                                {inputs.map((input) => (
-                                    <Input key={input.name} {...input} />
-                                ))}
-
-                                <button
-                                    ref={submitButtonRef}
-                                    type="submit"
-                                    style={{ display: "none" }}
-                                />
-                            </FormControl>
-                        </S.SDialogContent>
-                    </FormControl>
-                );
-            }}
-        </FormDialog>
+                                </FormControl>
+                            </S.SDialogContent>
+                        </FormControl>
+                    );
+                }}
+            </Formik>
+        </Dialog>
     );
 };
 

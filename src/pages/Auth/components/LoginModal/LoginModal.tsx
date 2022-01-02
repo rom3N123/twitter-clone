@@ -8,12 +8,16 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Input from "@components/FormControl/Input";
-import { Form, IFormikDefaultProps } from "formik";
+import { Form, Formik, IFormikDefaultProps } from "formik";
 import * as yup from "yup";
-import FormDialog from "@components/Dialogs/FormDialog";
 import withShowPassword, { IWithPasswordProps } from "@hocs/withShowPassword";
 import { useNavigate } from "react-router-dom";
 import BlackAndWhiteButton from "@components/Buttons/BlackAndWhiteButton";
+import { useDispatch } from "react-redux";
+import { IUserLoginValues } from "@interfaces/api/user";
+import { loginAction } from "@redux/ducks/auth/actions";
+import Dialog from "@components/Material/Dialog";
+import DialogHeader from "@components/Material/Dialog/components/DialogHeader";
 
 const formInitialValues = {
     email: "",
@@ -35,6 +39,7 @@ const LoginModal: React.FC<ILoginModalProps> = ({
     changePasswordVisibility,
 }): React.ReactElement => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleCloseModal = () => {
         navigate("/auth");
@@ -65,44 +70,45 @@ const LoginModal: React.FC<ILoginModalProps> = ({
         },
     ];
 
-    const handleFormSubmit = () => {
-        // ...
+    const handleFormSubmit = (credentials: IUserLoginValues) => {
+        dispatch(loginAction(credentials));
     };
 
     return (
-        <FormDialog
-            open={true}
-            onClose={handleCloseModal}
-            title="Авторизация"
-            onSubmit={handleFormSubmit}
-            initialValues={formInitialValues}
-            validationSchema={formValidationSchema}
-        >
-            {({ dirty, touched, isValid }: IFormikDefaultProps) => (
-                <FormControl component={Form} margin="dense" fullWidth>
-                    <DialogContent
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "24px",
-                        }}
-                    >
-                        {inputs.map((input) => (
-                            <Input key={input.name} fullWidth {...input} />
-                        ))}
-                    </DialogContent>
-                    <DialogActions>
-                        <BlackAndWhiteButton
-                            height={42}
-                            type="submit"
-                            fullWidth
-                            title="Войти"
-                            disabled={!dirty || !touched || !isValid}
-                        />
-                    </DialogActions>
-                </FormControl>
-            )}
-        </FormDialog>
+        <Dialog open={true} onClose={handleCloseModal}>
+            <DialogHeader title="Авторизация" onClose={handleCloseModal} />
+
+            <Formik
+                initialValues={formInitialValues}
+                onSubmit={handleFormSubmit}
+                validationSchema={formValidationSchema}
+            >
+                {({ dirty, touched, isValid }: IFormikDefaultProps) => (
+                    <FormControl component={Form} margin="dense" fullWidth>
+                        <DialogContent
+                            sx={{
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "24px",
+                            }}
+                        >
+                            {inputs.map((input) => (
+                                <Input key={input.name} fullWidth {...input} />
+                            ))}
+                        </DialogContent>
+                        <DialogActions>
+                            <BlackAndWhiteButton
+                                height={42}
+                                type="submit"
+                                fullWidth
+                                title="Войти"
+                                disabled={!dirty || !touched || !isValid}
+                            />
+                        </DialogActions>
+                    </FormControl>
+                )}
+            </Formik>
+        </Dialog>
     );
 };
 

@@ -1,7 +1,6 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
-import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import Input from "@components/FormControl/Input";
 import DialogContent from "@mui/material/DialogContent";
@@ -13,16 +12,17 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import BlackAndWhiteButton from "@components/Buttons/BlackAndWhiteButton";
 import DialogTitle from "@mui/material/DialogTitle";
 import Text from "@components/Text";
-import { IMultiDialogRefValue } from "@components/Dialogs/MultiLevelDialog";
 import YearSelect from "@components/FormControl/Selects/YearSelect";
 import { Box } from "@mui/system";
 import Flex from "@styled/components/Flex.styled";
 import MonthSelect from "@components/FormControl/Selects/MonthSelect";
 import DaySelect from "@components/FormControl/Selects/DaySelect";
+import withShowPassword, { IWithPasswordProps } from "@hocs/withShowPassword";
 
 const formInitialValues = {
     name: "",
     email: "",
+    password: "",
     year: "",
     month: "",
     day: "",
@@ -36,21 +36,23 @@ const formValidationSchema = yup.object().shape({
         .string()
         .email("Введите корретный адрес")
         .required("Обязательно"),
-    // password: yup
-    //     .string()
-    //     .min(8, "Минимум 8 символов")
-    //     .required("Поле обязательно"),
+    password: yup
+        .string()
+        .min(8, "Минимум 8 символов")
+        .required("Поле обязательно"),
     year: yup.number().required("Обязательно"),
     month: yup.number().required("Обязательно"),
     day: yup.number().required("Обязательно"),
 });
 
-interface IProfileInfoFormProps {
+interface IProfileInfoFormProps extends IWithPasswordProps {
     onFormSubmit: (values: ProfileInfoFormValuesType) => void;
 }
 
 const ProfileInfoForm: React.FC<IProfileInfoFormProps> = ({
     onFormSubmit,
+    isPasswordVisible,
+    changePasswordVisibility,
 }): React.ReactElement => {
     const inputs = [
         {
@@ -58,27 +60,27 @@ const ProfileInfoForm: React.FC<IProfileInfoFormProps> = ({
             label: "Имя",
         },
         { name: "email", label: "Почта" },
-        // {
-        //     name: "password",
-        //     type: isPasswordVisible ? "text" : "password",
-        //     label: "Пароль",
-        //     InputProps: {
-        //         endAdornment: (
-        //             <InputAdornment position="end">
-        //                 <IconButton
-        //                     aria-label="toggle password visibility"
-        //                     onClick={changePasswordVisibility}
-        //                 >
-        //                     {isPasswordVisible ? (
-        //                         <VisibilityOff />
-        //                     ) : (
-        //                         <Visibility />
-        //                     )}
-        //                 </IconButton>
-        //             </InputAdornment>
-        //         ),
-        //     },
-        // },
+        {
+            name: "password",
+            type: isPasswordVisible ? "text" : "password",
+            label: "Пароль",
+            InputProps: {
+                endAdornment: (
+                    <InputAdornment position="end">
+                        <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={changePasswordVisibility}
+                        >
+                            {isPasswordVisible ? (
+                                <VisibilityOff />
+                            ) : (
+                                <Visibility />
+                            )}
+                        </IconButton>
+                    </InputAdornment>
+                ),
+            },
+        },
     ];
 
     return (
@@ -150,4 +152,4 @@ const ProfileInfoForm: React.FC<IProfileInfoFormProps> = ({
     );
 };
 
-export default ProfileInfoForm;
+export default withShowPassword(ProfileInfoForm);

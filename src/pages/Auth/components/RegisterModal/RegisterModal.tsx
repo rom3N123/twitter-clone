@@ -8,18 +8,23 @@ import ProfileInfoForm, {
     ProfileInfoFormValuesType,
 } from "./components/ProfileInfoForm";
 import EnterEmailCodeForm from "./components/EnterEmailCodeForm";
+import { useDispatch } from "react-redux";
+import { registerAction } from "@redux/ducks/auth/actions";
+import { FormikHelpers } from "formik";
 
 const RegisterModal: React.FC = (): React.ReactElement => {
     const navigate = useNavigate();
     const dialogRef = React.useRef<IMultiDialogRefValue>(null);
     const [profileInfo, setProfileInfo] =
         React.useState<ProfileInfoFormValuesType>({
-            day: "",
             email: "",
-            month: "",
             name: "",
+            password: "",
+            day: "",
+            month: "",
             year: "",
         });
+    const dispatch = useDispatch();
 
     const handleCloseModal = () => {
         navigate("/auth");
@@ -29,9 +34,21 @@ const RegisterModal: React.FC = (): React.ReactElement => {
         dialogRef.current?.goToNextLevel();
     };
 
-    const onProfileFormSubmit = (profileInfo: ProfileInfoFormValuesType) => {
-        setProfileInfo(profileInfo);
-        onGoNextLevelHandler();
+    const onProfileFormSubmit = (
+        profileInfo: ProfileInfoFormValuesType,
+        { setErrors }: FormikHelpers<ProfileInfoFormValuesType>
+    ) => {
+        const { year, month, day, ...otherFields } = profileInfo;
+        const birthTimestamp = new Date(
+            Number(year),
+            Number(month) - 1,
+            Number(day)
+        ).getTime();
+        console.log(birthTimestamp);
+
+        dispatch(registerAction({ ...otherFields, birthTimestamp }));
+        // setProfileInfo(profileInfo);
+        // onGoNextLevelHandler();
     };
 
     const levels: IDialogLevel[] = [

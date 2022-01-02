@@ -1,4 +1,4 @@
-import { ShortProfile } from "./shortProfile";
+import { ShortProfile } from "./shortUser";
 
 export interface IComment {
     text: string;

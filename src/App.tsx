@@ -5,7 +5,8 @@ import Auth from "./pages/Auth";
 import LoadingScreen from "@components/LoadingIndicators/LoadingScreen";
 import { useDispatch } from "react-redux";
 import { setIsLoadingWithScreenAction } from "@redux/ducks/general/actions";
-import PrivateRoute from "@pages/routes/PrivateRoute";
+import PrivateRoute from "@components/routes/PrivateRoute";
+import ProtectedRoute from "@components/routes/ProtectedRoute";
 
 function App() {
     const dispatch = useDispatch();
@@ -31,7 +32,14 @@ function App() {
                     <Route path="explore" />
                 </Route>
 
-                <Route path="/auth" element={<Auth />}>
+                <Route
+                    path="/auth"
+                    element={
+                        <ProtectedRoute>
+                            <Auth />
+                        </ProtectedRoute>
+                    }
+                >
                     <Route path="login" />
                     <Route path="registration" />
                 </Route>

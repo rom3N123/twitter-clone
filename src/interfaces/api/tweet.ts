@@ -1,4 +1,4 @@
-import { ShortProfile } from "./shortProfile";
+import { ShortProfile } from "./shortUser";
 import { IApiComment } from "./comment";
 
 export interface ITweet {

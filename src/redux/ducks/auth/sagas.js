@@ -1,16 +1,42 @@
-import axios from "axios";
-import { call, put, fork, takeEvery, takeLatest } from "redux-saga/effects";
+import $api from "../../../http/axios";
+import { call, put, fork, takeEvery } from "redux-saga/effects";
+import { setUserAction } from "../user";
+import { setIsAuthAction } from "./actions";
 
-export function* loginWorkerSaga() {
-    console.log("login");
+const register = async (data) => {
+    const {
+        data: { user, token },
+    } = await $api.post("/auth/register", data);
+
+    localStorage.setItem("token", token);
+
+    return user;
+};
+
+const login = async (credentials) => {
+    const {
+        data: { user, token },
+    } = await $api.post("/auth/login", credentials);
+
+    localStorage.setItem("token", token);
+
+    return user;
+};
+
+export function* loginWorkerSaga(action) {
+    const user = yield call(login, action.payload);
+    yield put(setUserAction(user));
+    yield put(setIsAuthAction(true));
 }
 
 export function* loginWatcherSaga() {
     yield takeEvery("auth/login", loginWorkerSaga);
 }
 
-export function* registerWorkerSaga() {
-    console.log("register");
+export function* registerWorkerSaga(action) {
+    const user = yield call(register, action.payload);
+    yield put(setUserAction(user));
+    yield put(setIsAuthAction(true));
 }
 
 export function* registerWatcherSaga() {

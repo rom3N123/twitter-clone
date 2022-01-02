@@ -17,6 +17,7 @@ module.exports = {
             "@hocs": resolvePath("hocs"),
             "@contexts": resolvePath("contexts"),
             "@styled": resolvePath("styled"),
+            "@http": resolvePath("http"),
         },
     },
 };

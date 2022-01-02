@@ -1,4 +1,5 @@
 import { Action } from "redux";
+import { IUserRegisterValues, IUserLoginValues } from "@interfaces/api/user";
 
 export enum AuthActionsTypes {
     SET_IS_AUTH = "auth/setIsAuth",
@@ -19,16 +20,22 @@ export const setIsAuthAction = (payload: boolean): ISetIsAuthAction => ({
 
 export interface ILoginAction extends AuthActionType {
     type: AuthActionsTypes.LOGIN;
+    payload: IUserLoginValues;
 }
-export const loginAction = (): ILoginAction => ({
+export const loginAction = (payload: IUserLoginValues): ILoginAction => ({
     type: AuthActionsTypes.LOGIN,
+    payload,
 });
 
 export interface IRegisterAction extends AuthActionType {
     type: AuthActionsTypes.REGISTER;
+    payload: IUserRegisterValues;
 }
-export const registerAction = (): IRegisterAction => ({
+export const registerAction = (
+    payload: IUserRegisterValues
+): IRegisterAction => ({
     type: AuthActionsTypes.REGISTER,
+    payload,
 });
 
 export type AuthAction = ISetIsAuthAction;
