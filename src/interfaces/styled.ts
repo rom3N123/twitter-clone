@@ -27,6 +27,7 @@ export interface IMode {
     background: {
         primary: string;
         secondary: string;
+        profile: string;
     };
     components: {
         button: {

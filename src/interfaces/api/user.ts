@@ -4,6 +4,7 @@ export interface IUser extends FormikValues {
     _id: string;
     name: string;
     avatar: string;
+    background: string;
     bio: string;
     location: string;
     birthTimestamp: number;

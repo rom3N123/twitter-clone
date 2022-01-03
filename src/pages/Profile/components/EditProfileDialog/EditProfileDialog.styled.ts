@@ -3,10 +3,10 @@ import UploadImageButton from "@components/Buttons/UploadImageButton";
 import DialogContent from "@mui/material/DialogContent";
 import Flex from "@styled/components/Flex.styled";
 import { centerAbsoluteStyles } from "@styled/styles";
+import { ProfileBackground } from "../ProfileHeader/ProfileHeader.styled";
 
-export const SProfileBackgroundContainer = styled.div`
+export const SProfileBackgroundContainer = styled(ProfileBackground)`
     position: relative;
-    height: 200px;
 `;
 
 export const SProfileBackgroundBackdrop = styled.div`

@@ -6,6 +6,7 @@ const modes: IModes = {
         background: {
             primary: "#fff",
             secondary: "rgb(247, 249, 249)",
+            profile: "rgb(207, 217, 222)",
         },
         components: {
             button: {
@@ -37,6 +38,7 @@ const modes: IModes = {
         background: {
             primary: "#15202b",
             secondary: "rgb(25, 39, 52)",
+            profile: "rgb(61, 84, 102)",
         },
         svg: {
             primary: "#fff",
@@ -68,6 +70,7 @@ const modes: IModes = {
         background: {
             primary: "#000",
             secondary: "rgb(21, 24, 28)",
+            profile: "rgb(47, 51, 54)",
         },
         components: {
             button: {

@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { updateUserAction } from "@redux/ducks/user/actions";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
+import FilesService from "@services/FilesService";
 
 interface IEditProfileDialogProps extends IDialogCommonProps {}
 
@@ -64,7 +65,8 @@ const EditProfileDialog: React.FC<IEditProfileDialogProps> = ({
 }): React.ReactElement => {
     const submitButtonRef = React.useRef<HTMLButtonElement>(null);
     const dispatch = useDispatch();
-    const { name, bio, location } = useAppSelector(selectUserState);
+    const { name, bio, location, avatar, background } =
+        useAppSelector(selectUserState);
 
     const formInitialValues: IUserEditableFields = {
         name,
@@ -72,8 +74,29 @@ const EditProfileDialog: React.FC<IEditProfileDialogProps> = ({
         location,
     };
 
-    const onSaveClickHandler = (values: IUserEditableFields) => {
+    const onSaveClickHandler = (values: IUserEditableFields): void => {
         dispatch(updateUserAction(values));
+    };
+
+    const onLoadFileHandler =
+        (handler: (file: string) => void) =>
+        async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
+            const files: FileList = e.currentTarget.files as FileList;
+            const file: File = files[0];
+            const fileUrl: string = await FilesService.getFileUrl(file);
+            handler(fileUrl);
+        };
+
+    const onAvatarChangeHandler = (fileUrl: string): void => {
+        dispatch(updateUserAction({ avatar: fileUrl }));
+    };
+
+    const onBackgroundChangeHandler = (fileUrl: string): void => {
+        dispatch(
+            updateUserAction({
+                background: fileUrl,
+            })
+        );
     };
 
     return (
@@ -99,18 +122,29 @@ const EditProfileDialog: React.FC<IEditProfileDialogProps> = ({
                 {({ touched, dirty }) => {
                     return (
                         <FormControl component={Form} fullWidth>
-                            <S.SProfileBackgroundContainer>
-                                <S.SUploadImageButton onClick={() => {}} />
+                            <S.SProfileBackgroundContainer src={background}>
+                                <S.SUploadImageButton
+                                    onChange={onLoadFileHandler(
+                                        onBackgroundChangeHandler
+                                    )}
+                                    title="Change background"
+                                />
                                 <S.SProfileBackgroundBackdrop />
                             </S.SProfileBackgroundContainer>
 
                             <S.SDialogContent>
                                 <S.SProfileUserAvatarContainer>
-                                    <ProfileUserAvatar size={110} withWrapper />
+                                    <ProfileUserAvatar
+                                        src={avatar}
+                                        size={110}
+                                        withWrapper
+                                    />
                                     <S.SProfileUserAvatarButtonContainer>
                                         <S.SUploadImageButton
-                                            title="Change photo"
-                                            onClick={() => {}}
+                                            title="Change avatar"
+                                            onChange={onLoadFileHandler(
+                                                onAvatarChangeHandler
+                                            )}
                                         />
                                     </S.SProfileUserAvatarButtonContainer>
                                 </S.SProfileUserAvatarContainer>

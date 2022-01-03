@@ -4,21 +4,37 @@ import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 
 interface IUploadImageButton {
-    onClick: () => void;
     title?: string;
+    onClick?: () => void;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const UploadImageButton: React.FC<IUploadImageButton> = ({
     title = "Add photo",
     onClick,
+    onChange,
     ...otherProps
 }): React.ReactElement => {
+    const inputRef = React.useRef<HTMLInputElement>(null);
+
+    const onClickHandler = (): void => {
+        if (onClick) {
+            onClick();
+        }
+        inputRef.current?.click();
+        inputRef.current!.value = "";
+    };
+
     return (
-        <Tooltip title={title}>
-            <IconButton onClick={onClick} {...otherProps}>
-                <CameraIcon fontSize="small" />
-            </IconButton>
-        </Tooltip>
+        <>
+            <input hidden ref={inputRef} type="file" onChange={onChange} />
+
+            <Tooltip title={title}>
+                <IconButton onClick={onClickHandler} {...otherProps}>
+                    <CameraIcon fontSize="small" />
+                </IconButton>
+            </Tooltip>
+        </>
     );
 };
 

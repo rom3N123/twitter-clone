@@ -12,7 +12,7 @@ import EditProfileDialog from "../EditProfileDialog";
 import ProfileUserAvatar from "../ProfileUserAvatar";
 import { IUser } from "@interfaces/api/user";
 import Skeleton from "@mui/material/Skeleton";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 interface IProfileHeaderProps {
     user?: IUser;
@@ -42,12 +42,21 @@ const ProfileHeader: React.FC<IProfileHeaderProps> = ({
         },
     ];
 
-    const { _id, name, followers, following, location, bio } = user || {};
+    const {
+        _id,
+        name,
+        followers,
+        following,
+        location,
+        bio,
+        avatar,
+        background,
+    } = user || {};
 
     return (
         <S.Container>
             {user ? (
-                <S.ProfileBackground />
+                <S.ProfileBackground src={background} />
             ) : (
                 <Skeleton variant="rectangular" width={"100%"} height={200} />
             )}
@@ -56,10 +65,10 @@ const ProfileHeader: React.FC<IProfileHeaderProps> = ({
                 <S.ProfileInfo>
                     {!user ? (
                         <Skeleton variant="circular">
-                            <ProfileUserAvatar withWrapper />
+                            <ProfileUserAvatar src={avatar} withWrapper />
                         </Skeleton>
                     ) : (
-                        <ProfileUserAvatar withWrapper />
+                        <ProfileUserAvatar src={avatar} withWrapper />
                     )}
 
                     <S.SProfileNameContainer>

@@ -7,10 +7,20 @@ export const Container = styled.div`
     border-bottom: 1px solid ${({ theme }) => theme.mode.divider};
 `;
 
-export const ProfileBackground = styled.div`
+interface IProfileBackgroundProps {
+    src?: string;
+}
+export const ProfileBackground = styled.div<IProfileBackgroundProps>`
     height: 200px;
     width: 100%;
-    background-color: blue;
+    ${({ theme, src }) =>
+        src
+            ? css`
+                  background: url(${src}) center / cover no-repeat;
+              `
+            : css`
+                  background-color: ${theme.mode.background.profile};
+              `}
 `;
 
 export const ProfileInfo = styled.div`
