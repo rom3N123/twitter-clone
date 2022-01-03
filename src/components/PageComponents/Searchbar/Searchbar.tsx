@@ -9,9 +9,7 @@ const Searchbar: React.FC = (): React.ReactElement => {
     const { value, onChange, clearValue } = useBind();
     const debouncedValue: string = useDebounce(value);
 
-    React.useEffect(() => {
-        console.log(`change: ${debouncedValue}`);
-    }, [debouncedValue]);
+    React.useEffect(() => {}, [debouncedValue]);
 
     return (
         <S.Field

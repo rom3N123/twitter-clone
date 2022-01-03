@@ -5,16 +5,18 @@ import { setIsLoadingWithScreenAction } from "../general/actions";
 import AuthService from "../../../services/AuthService";
 
 export function* loginWorkerSaga(action) {
-    const user = yield call(
-        action.payload
+    try {
+        const functionToExecute = action.payload
             ? AuthService.loginByCredentials
-            : AuthService.loginByToken,
-        action.payload
-    );
-    console.log(user);
-    yield put(setUserAction(user));
-    yield put(setIsAuthAction(true));
-    yield put(setIsLoadingWithScreenAction(false));
+            : AuthService.loginByToken;
+
+        const user = yield call(functionToExecute, action.payload);
+        yield put(setUserAction(user));
+        yield put(setIsAuthAction(true));
+        yield put(setIsLoadingWithScreenAction(false));
+    } catch (e) {
+        console.log(e);
+    }
 }
 
 export function* loginWatcherSaga() {

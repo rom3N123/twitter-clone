@@ -11,6 +11,8 @@ import { IDialogCommonProps } from "@interfaces/components";
 import { IUsePopoverValue } from "@hooks/usePopover";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "@redux/ducks/auth/actions";
+import { useAppSelector } from "@redux/hooks";
+import { selectUserState } from "@redux/ducks/user";
 
 interface IProfilePopoverProps
     extends IDialogCommonProps,
@@ -22,6 +24,7 @@ const ProfilePopover: React.FC<IProfilePopoverProps> = ({
     onClose,
 }): React.ReactElement => {
     const dispatch = useDispatch();
+    const { _id, name } = useAppSelector(selectUserState);
 
     const onLogoutClickHandler = (): void => {
         dispatch(logoutAction());
@@ -56,10 +59,8 @@ const ProfilePopover: React.FC<IProfilePopoverProps> = ({
                     <S.SAvatar />
                 </Grid>
                 <Grid item component={S.TextWrapper} flexBasis="65%">
-                    <S.ProfileName>
-                        uAa0KZ3MeJDFBafsdsdsdsdssuAa0KZ3MeJDFBafsdsdsdsdssuAa0KZ3MeJDFBafsdsdsdsdss
-                    </S.ProfileName>
-                    <S.ProfileId>@uAa0KZ3MeJDFBafsdsdsdsdss</S.ProfileId>
+                    <S.ProfileName>{name}</S.ProfileName>
+                    <S.ProfileId>@{_id}</S.ProfileId>
                 </Grid>
 
                 <Grid item flexBasis="10%">
@@ -77,7 +78,7 @@ const ProfilePopover: React.FC<IProfilePopoverProps> = ({
                 <ListItemButton>
                     <ListItem>
                         <ListItemText onClick={onLogoutClickHandler}>
-                            Log out @uAa0KZ3MeJDFBaf
+                            Log out @{_id}
                         </ListItemText>
                     </ListItem>
                 </ListItemButton>

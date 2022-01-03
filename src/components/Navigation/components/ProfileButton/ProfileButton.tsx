@@ -4,9 +4,13 @@ import Grid from "@mui/material/Grid";
 import S from "./ProfileButton.styled";
 import usePopover from "@hooks/usePopover";
 import ProfilePopover from "./components/ProfilePopover";
+import { useAppSelector } from "@redux/hooks";
+import { selectUserState } from "@redux/ducks/user";
 
 const ProfileButton = () => {
     const { anchor, openPopover, closePopover } = usePopover();
+
+    const { _id, name } = useAppSelector(selectUserState);
 
     return (
         <>
@@ -15,8 +19,8 @@ const ProfileButton = () => {
                     <S.SAvatar />
                 </Grid>
                 <Grid item component={S.TextWrapper} flexBasis="62%">
-                    <S.ProfileName>romen</S.ProfileName>
-                    <S.ProfileId>@uAa0KZ3MeJDFBafsdsdsdsdss</S.ProfileId>
+                    <S.ProfileName>{name}</S.ProfileName>
+                    <S.ProfileId>@{_id}</S.ProfileId>
                 </Grid>
                 <Grid item component={S.MoreIcon} flexBasis="10%" />
             </S.Container>

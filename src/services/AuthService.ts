@@ -18,7 +18,7 @@ class AuthService {
             registerValues
         );
 
-        this.setToken(token);
+        localStorage.setItem("token", token);
 
         return user;
     }
@@ -27,8 +27,10 @@ class AuthService {
         credentials: IUserLoginValues
     ): Promise<IUser> {
         const {
-            data: { user },
-        } = await $api.post<IUserResponse>("/auth/login", credentials);
+            data: { user, token },
+        } = await $api.post<IUserWithTokenResponse>("/auth/login", credentials);
+
+        localStorage.setItem("token", token);
 
         return user;
     }
@@ -45,11 +47,7 @@ class AuthService {
         this.deleteToken();
     }
 
-    private setToken(token: string): void {
-        localStorage.setItem("token", token);
-    }
-
-    private deleteToken(): void {
+    public deleteToken(): void {
         localStorage.removeItem("token");
     }
 }
