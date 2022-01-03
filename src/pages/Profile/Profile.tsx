@@ -8,7 +8,7 @@ import UsersService from "@services/UsersService";
 const Profile = () => {
     const { userId } = useParams();
 
-    const { data, isLoading } = useQuery("user", () =>
+    const { data } = useQuery("user", () =>
         UsersService.findById(userId as string)
     );
 

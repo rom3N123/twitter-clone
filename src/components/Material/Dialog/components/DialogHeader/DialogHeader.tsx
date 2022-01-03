@@ -37,11 +37,12 @@ const DialogHeader: React.FC<IDialogHeaderProps> = ({
 
                 <S.SButtonsContainer>
                     {buttons &&
-                        buttons.map(({ title, onClick }) => (
+                        buttons.map(({ title, onClick, disabled }) => (
                             <BlackAndWhiteButton
                                 key={title}
                                 title={title}
                                 onClick={onClick}
+                                disabled={disabled}
                             />
                         ))}
                 </S.SButtonsContainer>

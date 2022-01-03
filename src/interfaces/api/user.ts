@@ -12,12 +12,9 @@ export interface IUser extends FormikValues {
     following: number[];
 }
 
-export type ProfileEditFields = Omit<
-    IUser,
-    "tweets" | "followers" | "following" | "nickname"
->;
-
 export interface IUserRegisterValues
     extends Pick<IUser, "name" | "email" | "password" | "birthTimestamp"> {}
 
 export interface IUserLoginValues extends Pick<IUser, "email" | "password"> {}
+
+export interface IUserEditableFields extends Omit<IUser, "_id"> {}

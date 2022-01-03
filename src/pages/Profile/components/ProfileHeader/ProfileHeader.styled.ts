@@ -13,16 +13,11 @@ export const ProfileBackground = styled.div`
     background-color: blue;
 `;
 
-export const ProfileInfo = styled(Flex).attrs(() => ({
-    justify: "space-between",
-    align: "center",
-}))`
+export const ProfileInfo = styled.div`
     padding: 12px 0;
     margin-top: -90px;
     font-size: 15px;
 `;
-
-export const ProfileInfoLeftSide = styled.div``;
 
 export const ProfileName = styled(Typography)`
     font-weight: 700;
@@ -75,3 +70,13 @@ export const ProfileActivityLink = styled(Link)`
         border-color: ${({ theme }) => theme.mode.typography};
     }
 `;
+
+export const SProfileBio = styled.div`
+    overflow: hidden;
+    word-break: break-all;
+`;
+
+export const SProfileNameContainer = styled(Flex).attrs(() => ({
+    align: "center",
+    justify: "space-between",
+}))``;

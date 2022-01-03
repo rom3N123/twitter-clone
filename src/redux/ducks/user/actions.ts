@@ -1,8 +1,9 @@
 import { Action } from "redux";
-import { IUser } from "@interfaces/api/user";
+import { IUser, IUserEditableFields } from "@interfaces/api/user";
 
 export enum UserActionsTypes {
     SET_USER = "user/setUser",
+    UPDATE_USER = "user/update",
 }
 
 type UserActionType = Action<UserActionsTypes>;
@@ -16,4 +17,15 @@ export const setUserAction = (payload: IUser): ISetUserAction => ({
     payload,
 });
 
-export type UserAction = ISetUserAction;
+export interface IUpdateUserAction extends UserActionType {
+    type: UserActionsTypes.UPDATE_USER;
+    payload: IUserEditableFields;
+}
+export const updateUserAction = (
+    payload: IUserEditableFields
+): IUpdateUserAction => ({
+    type: UserActionsTypes.UPDATE_USER,
+    payload,
+});
+
+export type UserAction = ISetUserAction | IUpdateUserAction;

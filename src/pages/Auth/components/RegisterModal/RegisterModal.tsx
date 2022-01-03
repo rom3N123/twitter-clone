@@ -44,7 +44,6 @@ const RegisterModal: React.FC = (): React.ReactElement => {
             Number(month) - 1,
             Number(day)
         ).getTime();
-        console.log(birthTimestamp);
 
         dispatch(registerAction({ ...otherFields, birthTimestamp }));
         // setProfileInfo(profileInfo);

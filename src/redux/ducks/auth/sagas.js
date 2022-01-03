@@ -1,4 +1,4 @@
-import { call, put, fork, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery, all } from "redux-saga/effects";
 import { setUserAction } from "../user";
 import { setIsAuthAction } from "./actions";
 import { setIsLoadingWithScreenAction } from "../general/actions";
@@ -15,7 +15,7 @@ export function* loginWorkerSaga(action) {
         yield put(setIsAuthAction(true));
         yield put(setIsLoadingWithScreenAction(false));
     } catch (e) {
-        console.log(e);
+        console.error(e);
     }
 }
 
@@ -44,7 +44,5 @@ export function* logoutWatcherSaga() {
 }
 
 export default function* authRootSaga() {
-    yield fork(registerWatcherSaga);
-    yield fork(loginWatcherSaga);
-    yield fork(logoutWatcherSaga);
+    yield all([registerWatcherSaga(), loginWatcherSaga(), logoutWatcherSaga()]);
 }

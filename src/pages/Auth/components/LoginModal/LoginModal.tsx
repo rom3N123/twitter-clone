@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@mui/material/Button";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import FormControl from "@mui/material/FormControl";
@@ -8,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Input from "@components/FormControl/Input";
-import { Form, Formik, IFormikDefaultProps } from "formik";
+import { Form, Formik } from "formik";
 import * as yup from "yup";
 import withShowPassword, { IWithPasswordProps } from "@hocs/withShowPassword";
 import { useNavigate } from "react-router-dom";
@@ -83,7 +82,7 @@ const LoginModal: React.FC<ILoginModalProps> = ({
                 onSubmit={handleFormSubmit}
                 validationSchema={formValidationSchema}
             >
-                {({ dirty, touched, isValid }: IFormikDefaultProps) => (
+                {({ dirty, touched, isValid, isSubmitting }) => (
                     <FormControl component={Form} margin="dense" fullWidth>
                         <DialogContent
                             sx={{
@@ -102,7 +101,12 @@ const LoginModal: React.FC<ILoginModalProps> = ({
                                 type="submit"
                                 fullWidth
                                 title="Войти"
-                                disabled={!dirty || !touched || !isValid}
+                                disabled={
+                                    !dirty ||
+                                    !touched ||
+                                    !isValid ||
+                                    isSubmitting
+                                }
                             />
                         </DialogActions>
                     </FormControl>

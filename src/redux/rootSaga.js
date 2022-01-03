@@ -1,6 +1,7 @@
-import { fork } from "redux-saga/effects";
+import { all } from "redux-saga/effects";
 import { authRootSaga } from "./ducks/auth";
+import { usersRootSaga } from "./ducks/user";
 
 export default function* rootSaga() {
-    yield fork(authRootSaga);
+    yield all([authRootSaga(), usersRootSaga()]);
 }

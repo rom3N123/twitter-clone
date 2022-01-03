@@ -89,7 +89,7 @@ const ProfileInfoForm: React.FC<IProfileInfoFormProps> = ({
             validationSchema={formValidationSchema}
             onSubmit={onFormSubmit}
         >
-            {({ dirty, touched, isValid }) => (
+            {({ dirty, touched, isValid, isSubmitting }) => (
                 <>
                     <DialogTitle sx={{ paddingBottom: 0 }}>
                         Создайте учётную запись
@@ -137,7 +137,10 @@ const ProfileInfoForm: React.FC<IProfileInfoFormProps> = ({
                         <DialogActions>
                             <BlackAndWhiteButton
                                 disabled={Boolean(
-                                    !dirty || !touched || !isValid
+                                    !dirty ||
+                                        !touched ||
+                                        !isValid ||
+                                        isSubmitting
                                 )}
                                 type="submit"
                                 fullWidth

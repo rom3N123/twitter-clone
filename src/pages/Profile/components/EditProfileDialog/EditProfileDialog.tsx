@@ -1,5 +1,5 @@
 import React from "react";
-import { ProfileEditFields } from "@interfaces/api/user";
+import { IUserEditableFields } from "@interfaces/api/user";
 import { IDialogCommonProps } from "@interfaces/components";
 import ProfileUserAvatar from "../ProfileUserAvatar";
 import FormControl from "@mui/material/FormControl";
@@ -9,14 +9,12 @@ import * as yup from "yup";
 import { Form, Formik } from "formik";
 import Dialog from "@components/Material/Dialog";
 import DialogHeader from "@components/Material/Dialog/components/DialogHeader";
+import { useDispatch } from "react-redux";
+import { updateUserAction } from "@redux/ducks/user/actions";
+import { useAppSelector } from "@redux/hooks";
+import { selectUserState } from "@redux/ducks/user";
 
 interface IEditProfileDialogProps extends IDialogCommonProps {}
-
-const formInitialValues: ProfileEditFields = {
-    name: "",
-    bio: "",
-    location: "",
-};
 
 const NAME_MAX_LENGTH = 50;
 const BIO_MAX_LENGTH = 160;
@@ -65,9 +63,17 @@ const EditProfileDialog: React.FC<IEditProfileDialogProps> = ({
     onClose,
 }): React.ReactElement => {
     const submitButtonRef = React.useRef<HTMLButtonElement>(null);
+    const dispatch = useDispatch();
+    const { name, bio, location } = useAppSelector(selectUserState);
 
-    const onSaveClickHandler = (values: ProfileEditFields) => {
-        // ...
+    const formInitialValues: IUserEditableFields = {
+        name,
+        bio,
+        location,
+    };
+
+    const onSaveClickHandler = (values: IUserEditableFields) => {
+        dispatch(updateUserAction(values));
     };
 
     return (
@@ -90,7 +96,7 @@ const EditProfileDialog: React.FC<IEditProfileDialogProps> = ({
                 validationSchema={validationSchema}
                 onSubmit={onSaveClickHandler}
             >
-                {(props: any) => {
+                {({ touched, dirty }) => {
                     return (
                         <FormControl component={Form} fullWidth>
                             <S.SProfileBackgroundContainer>
@@ -122,6 +128,7 @@ const EditProfileDialog: React.FC<IEditProfileDialogProps> = ({
                                         ref={submitButtonRef}
                                         type="submit"
                                         style={{ display: "none" }}
+                                        disabled={!touched || !dirty}
                                     />
                                 </FormControl>
                             </S.SDialogContent>
