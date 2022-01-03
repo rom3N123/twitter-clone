@@ -7,8 +7,6 @@ import Content from "@styled/components/Content.styled";
 import Tabs from "@components/Tabs";
 import { ITab } from "@components/Tabs/components/Tab/Tab";
 import { useNavigate } from "react-router-dom";
-import Dialog from "@components/Material/Dialog";
-import usePopover from "@hooks/usePopover";
 import useToggle from "@hooks/useToggle";
 import EditProfileDialog from "../EditProfileDialog";
 import ProfileUserAvatar from "../ProfileUserAvatar";
@@ -56,50 +54,103 @@ const ProfileHeader: React.FC<IProfileHeaderProps> = ({
             <Content>
                 <S.ProfileInfo>
                     <S.ProfileInfoLeftSide>
-                        <Skeleton variant="circular">
+                        {!user ? (
+                            <Skeleton variant="circular">
+                                <ProfileUserAvatar withWrapper />
+                            </Skeleton>
+                        ) : (
                             <ProfileUserAvatar withWrapper />
-                        </Skeleton>
+                        )}
 
-                        <Skeleton>
-                            <S.ProfileName>{name}</S.ProfileName>
-                        </Skeleton>
-                        <Skeleton>
-                            <S.ProfileId>@{_id}</S.ProfileId>
-                        </Skeleton>
+                        {!user ? (
+                            <>
+                                <Skeleton>
+                                    <S.ProfileName>{name}</S.ProfileName>
+                                </Skeleton>
+                                <Skeleton>
+                                    <S.ProfileId>@{_id}</S.ProfileId>
+                                </Skeleton>
+                            </>
+                        ) : (
+                            <>
+                                <S.ProfileName>{name}</S.ProfileName>
+                                <S.ProfileId>@{_id}</S.ProfileId>
+                            </>
+                        )}
 
-                        <Skeleton height={50}>
-                            <S.ProfileInfoItems margin="10px 0">
-                                <S.ProfileInfoItem>
-                                    <PlaceIcon />
-                                    Russian Federation
-                                </S.ProfileInfoItem>
+                        {!user ? (
+                            <Skeleton height={70}>
+                                <S.ProfileInfoItems margin="10px 0">
+                                    <S.ProfileInfoItem>
+                                        <PlaceIcon />
+                                        Russian Federation
+                                    </S.ProfileInfoItem>
 
-                                <S.ProfileInfoItem>
-                                    <CalendarIcon />
-                                    Joined October 2021
-                                </S.ProfileInfoItem>
+                                    <S.ProfileInfoItem>
+                                        <CalendarIcon />
+                                        Joined October 2021
+                                    </S.ProfileInfoItem>
+                                </S.ProfileInfoItems>
+                            </Skeleton>
+                        ) : (
+                            <>
+                                <S.ProfileInfoItems margin="10px 0">
+                                    <S.ProfileInfoItem>
+                                        <PlaceIcon />
+                                        Russian Federation
+                                    </S.ProfileInfoItem>
+
+                                    <S.ProfileInfoItem>
+                                        <CalendarIcon />
+                                        Joined October 2021
+                                    </S.ProfileInfoItem>
+                                </S.ProfileInfoItems>
+                            </>
+                        )}
+
+                        {!user ? (
+                            <Skeleton height={35}>
+                                <S.ProfileInfoItems>
+                                    <S.ProfileActivityLink to="/">
+                                        <S.ProfileInfoItem>
+                                            <S.ProifleActivityNumber>
+                                                {followers?.length}
+                                            </S.ProifleActivityNumber>
+                                            Followers
+                                        </S.ProfileInfoItem>
+                                    </S.ProfileActivityLink>
+
+                                    <S.ProfileActivityLink to="/">
+                                        <S.ProfileInfoItem>
+                                            <S.ProifleActivityNumber>
+                                                {following?.length}
+                                            </S.ProifleActivityNumber>
+                                            Following
+                                        </S.ProfileInfoItem>
+                                    </S.ProfileActivityLink>
+                                </S.ProfileInfoItems>
+                            </Skeleton>
+                        ) : (
+                            <S.ProfileInfoItems>
+                                <S.ProfileActivityLink to="/">
+                                    <S.ProfileInfoItem>
+                                        <S.ProifleActivityNumber>
+                                            {followers?.length}
+                                        </S.ProifleActivityNumber>
+                                        Followers
+                                    </S.ProfileInfoItem>
+                                </S.ProfileActivityLink>
+
+                                <S.ProfileActivityLink to="/">
+                                    <S.ProfileInfoItem>
+                                        <S.ProifleActivityNumber>
+                                            {following?.length}
+                                        </S.ProifleActivityNumber>
+                                        Following
+                                    </S.ProfileInfoItem>
+                                </S.ProfileActivityLink>
                             </S.ProfileInfoItems>
-                        </Skeleton>
-
-                        <S.ProfileInfoItems>
-                            <S.ProfileActivityLink to="/">
-                                <S.ProfileInfoItem>
-                                    <S.ProifleActivityNumber>
-                                        {followers?.length}
-                                    </S.ProifleActivityNumber>
-                                    Followers
-                                </S.ProfileInfoItem>
-                            </S.ProfileActivityLink>
-
-                            <S.ProfileActivityLink to="/">
-                                <S.ProfileInfoItem>
-                                    <S.ProifleActivityNumber>
-                                        {following?.length}
-                                    </S.ProifleActivityNumber>
-                                    Following
-                                </S.ProfileInfoItem>
-                            </S.ProfileActivityLink>
-                        </S.ProfileInfoItems>
+                        )}
                     </S.ProfileInfoLeftSide>
 
                     <Button variant="outlined" onClick={toggle}>

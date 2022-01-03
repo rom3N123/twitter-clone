@@ -11,6 +11,8 @@ import ProfileButton from "./components/ProfileButton";
 import MoreMenuPopover from "./components/MoreMenuPopover";
 import usePopover from "@hooks/usePopover";
 import S from "./Navigation.styled";
+import { useAppSelector } from "@redux/hooks";
+import { selectUserState } from "@redux/ducks/user";
 
 interface IListItem {
     label: string;
@@ -20,22 +22,24 @@ interface INavigationItem extends IListItem {
     to: string;
 }
 
-const navigationItems: INavigationItem[] = [
-    { to: "/", icon: <HomeIcon />, label: "Home" },
-    { to: "/explore", icon: <ExploreIcon />, label: "Explore" },
-    {
-        to: "/notifications",
-        icon: <NotificationIcon />,
-        label: "Notifications",
-    },
-    { to: "/messages", icon: <MessageIcon />, label: "Messages" },
-    { to: "/bookmarks", icon: <BookmarkIcon />, label: "Bookmarks" },
-    { to: "/lists", icon: <ListsIcon />, label: "Lists" },
-    { to: "/profile", icon: <ProfileIcon />, label: "Profile" },
-];
-
 const Navigation = () => {
     const { anchor, openPopover, closePopover } = usePopover();
+
+    const { _id } = useAppSelector(selectUserState);
+
+    const navigationItems: INavigationItem[] = [
+        { to: "/", icon: <HomeIcon />, label: "Home" },
+        { to: "/explore", icon: <ExploreIcon />, label: "Explore" },
+        {
+            to: "/notifications",
+            icon: <NotificationIcon />,
+            label: "Notifications",
+        },
+        { to: "/messages", icon: <MessageIcon />, label: "Messages" },
+        { to: "/bookmarks", icon: <BookmarkIcon />, label: "Bookmarks" },
+        { to: "/lists", icon: <ListsIcon />, label: "Lists" },
+        { to: `/${_id}`, icon: <ProfileIcon />, label: "Profile" },
+    ];
 
     return (
         <S.Container>

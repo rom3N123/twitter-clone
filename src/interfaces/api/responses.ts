@@ -1,3 +1,4 @@
+import { IUser } from "@interfaces/api/user";
 export interface IResponseFieldError {
     value: string;
     msg: string;
@@ -7,4 +8,12 @@ export interface IResponseFieldError {
 
 export interface IResponseWithFieldsErrors {
     errors: IResponseFieldError[];
+}
+
+export interface IUserResponse {
+    user: IUser;
+}
+
+export interface IUserWithTokenResponse extends IUserResponse {
+    token: string;
 }

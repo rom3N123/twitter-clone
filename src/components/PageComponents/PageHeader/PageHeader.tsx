@@ -1,5 +1,6 @@
 import React from "react";
 import S from "./PageHeader.styled";
+import Skeleton from "@mui/material/Skeleton";
 
 interface IPageHeaderProps {
     title?: string;
@@ -12,7 +13,8 @@ const PageHeader: React.FC<IPageHeaderProps> = ({
 }): React.ReactElement => {
     return (
         <S.Header>
-            {title && <S.Title>{title}</S.Title>}
+            {title ? <S.Title>{title}</S.Title> : <Skeleton width={100} />}
+
             {children}
         </S.Header>
     );

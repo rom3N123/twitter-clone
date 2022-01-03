@@ -4,20 +4,16 @@ import {
     IUserLoginValues,
     IUserRegisterValues,
 } from "@interfaces/api/user";
-
-interface IUserResponse {
-    user: IUser;
-}
-
-interface IRegisterResponse extends IUserResponse {
-    token: string;
-}
+import {
+    IUserWithTokenResponse,
+    IUserResponse,
+} from "@interfaces/api/responses";
 
 class AuthService {
     public async register(registerValues: IUserRegisterValues): Promise<IUser> {
         const {
             data: { user, token },
-        } = await $api.post<IRegisterResponse>(
+        } = await $api.post<IUserWithTokenResponse>(
             "/auth/register",
             registerValues
         );

@@ -5,7 +5,7 @@ import Navigation from "@components/Navigation";
 import Searchbar from "@components/PageComponents/Searchbar";
 import * as S from "./Layout.styled";
 import { Routes, Route } from "react-router-dom";
-import { CircularProgress } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Home = React.lazy(() => import("../Home"));
 const Profile = React.lazy(() => import("../Profile"));
@@ -35,9 +35,9 @@ const Layout: React.FC = (): React.ReactElement => {
                                 }
                             >
                                 <Routes>
-                                    <Route path="/" element={<Home />} />
+                                    <Route index element={<Home />} />
                                     <Route
-                                        path="/profile"
+                                        path="/:userId"
                                         element={<Profile />}
                                     />
                                 </Routes>
@@ -46,7 +46,7 @@ const Layout: React.FC = (): React.ReactElement => {
 
                         <S.SSideContent sx={{ paddingLeft: "20px" }} xs={3}>
                             <Routes>
-                                <Route path="/" element={<Searchbar />}></Route>
+                                <Route index element={<Searchbar />} />
                             </Routes>
                         </S.SSideContent>
                     </Grid>

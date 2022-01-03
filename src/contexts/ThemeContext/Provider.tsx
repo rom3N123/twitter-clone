@@ -48,6 +48,13 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
                 defaultProps: {
                     animation: "wave",
                 },
+                styleOverrides: {
+                    root: {
+                        backgroundColor: isDarkTheme
+                            ? alpha("#fff", 0.2)
+                            : alpha("#000", 0.15),
+                    },
+                },
             },
             MuiFormLabel: {
                 styleOverrides: {

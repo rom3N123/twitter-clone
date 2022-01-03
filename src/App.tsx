@@ -39,7 +39,7 @@ function App() {
                             </PrivateRoute>
                         }
                     >
-                        <Route path=":id" />
+                        <Route path=":userId" />
                         <Route path="bookmarks" />
                         <Route path="messages" />
                         <Route path="explore" />
