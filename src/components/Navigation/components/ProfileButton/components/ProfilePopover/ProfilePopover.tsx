@@ -69,7 +69,9 @@ const ProfilePopover: React.FC<IProfilePopoverProps> = ({
                 </ListItemButton>
                 <ListItemButton>
                     <ListItem>
-                        <ListItemText>Log out @uAa0KZ3MeJDFBaf</ListItemText>
+                        <ListItemText onClick={() => {}}>
+                            Log out @uAa0KZ3MeJDFBaf
+                        </ListItemText>
                     </ListItem>
                 </ListItemButton>
             </List>

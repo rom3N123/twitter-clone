@@ -14,7 +14,8 @@
             "@hocs/*": ["./hocs/*"],
             "@contexts/*": ["./contexts/*"],
             "@styled/*": ["./styled/*"],
-            "@http/*": ["./http/*"]
+            "@http/*": ["./http/*"],
+            "@services/*": ["./services/*"]
         }
     }
 }
