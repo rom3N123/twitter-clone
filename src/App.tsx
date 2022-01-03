@@ -8,8 +8,11 @@ import { setIsLoadingWithScreenAction } from "@redux/ducks/general/actions";
 import PrivateRoute from "@components/routes/PrivateRoute";
 import ProtectedRoute from "@components/routes/ProtectedRoute";
 import { loginAction } from "@redux/ducks/auth/actions";
+import { useAppSelector } from "@redux/hooks";
+import { selectGeneralState } from "@redux/ducks/general";
 
 function App() {
+    const { isLoadingWithScreen } = useAppSelector(selectGeneralState);
     const dispatch = useDispatch();
 
     React.useEffect(() => {
@@ -26,33 +29,35 @@ function App() {
         <>
             <LoadingScreen />
 
-            <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <PrivateRoute>
-                            <Layout />
-                        </PrivateRoute>
-                    }
-                >
-                    <Route path="profile" />
-                    <Route path="bookmarks" />
-                    <Route path="messages" />
-                    <Route path="explore" />
-                </Route>
+            {!isLoadingWithScreen && (
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <PrivateRoute>
+                                <Layout />
+                            </PrivateRoute>
+                        }
+                    >
+                        <Route path=":id" />
+                        <Route path="bookmarks" />
+                        <Route path="messages" />
+                        <Route path="explore" />
+                    </Route>
 
-                <Route
-                    path="/auth"
-                    element={
-                        <ProtectedRoute>
-                            <Auth />
-                        </ProtectedRoute>
-                    }
-                >
-                    <Route path="login" />
-                    <Route path="registration" />
-                </Route>
-            </Routes>
+                    <Route
+                        path="/auth"
+                        element={
+                            <ProtectedRoute>
+                                <Auth />
+                            </ProtectedRoute>
+                        }
+                    >
+                        <Route path="login" />
+                        <Route path="registration" />
+                    </Route>
+                </Routes>
+            )}
         </>
     );
 }

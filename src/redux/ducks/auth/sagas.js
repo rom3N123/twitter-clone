@@ -7,9 +7,11 @@ import AuthService from "../../../services/AuthService";
 export function* loginWorkerSaga(action) {
     const user = yield call(
         action.payload
-            ? AuthService.loginByCredentials(action.payload)
-            : AuthService.loginByToken()
+            ? AuthService.loginByCredentials
+            : AuthService.loginByToken,
+        action.payload
     );
+    console.log(user);
     yield put(setUserAction(user));
     yield put(setIsAuthAction(true));
     yield put(setIsLoadingWithScreenAction(false));
@@ -29,7 +31,18 @@ export function* registerWatcherSaga() {
     yield takeEvery("auth/register", registerWorkerSaga);
 }
 
+export function* logoutWorkerSaga() {
+    yield put(setIsAuthAction(false));
+    yield put(setUserAction({}));
+    AuthService.logout();
+}
+
+export function* logoutWatcherSaga() {
+    yield takeEvery("auth/logout", logoutWorkerSaga);
+}
+
 export default function* authRootSaga() {
     yield fork(registerWatcherSaga);
     yield fork(loginWatcherSaga);
+    yield fork(logoutWatcherSaga);
 }

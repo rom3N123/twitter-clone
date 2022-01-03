@@ -44,6 +44,11 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
                     },
                 },
             },
+            MuiSkeleton: {
+                defaultProps: {
+                    animation: "wave",
+                },
+            },
             MuiFormLabel: {
                 styleOverrides: {
                     root: {

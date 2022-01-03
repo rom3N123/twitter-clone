@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import Flex from "@styled/components/Flex.styled";
 
 export const Container = styled.div`
     border-bottom: 1px solid ${({ theme }) => theme.mode.divider};
@@ -12,10 +13,10 @@ export const ProfileBackground = styled.div`
     background-color: blue;
 `;
 
-export const ProfileInfo = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+export const ProfileInfo = styled(Flex).attrs(() => ({
+    justify: "space-between",
+    align: "center",
+}))`
     padding: 12px 0;
     margin-top: -90px;
     font-size: 15px;
@@ -38,25 +39,20 @@ interface ProfileInfoItemsProps {
     margin?: string;
     justify?: string;
 }
-export const ProfileInfoItems = styled.div<ProfileInfoItemsProps>`
-    display: flex;
-    align-items: center;
-    ${({ justify }) =>
-        justify &&
-        css`
-            justify-content: ${justify};
-        `}
+export const ProfileInfoItems = styled(Flex).attrs(() => ({
+    align: "center",
+}))<ProfileInfoItemsProps>`
     ${({ margin }) =>
         margin &&
         css`
             margin: ${margin};
         `}
-gap: ${({ gap }) => gap || 10}px;
+    gap: ${({ gap }) => gap || 10}px;
 `;
 
-export const ProfileInfoItem = styled.div`
-    display: flex;
-    gap: 5px;
+export const ProfileInfoItem = styled(Flex).attrs(() => ({
+    gap: 5,
+}))`
     color: ${({ theme }) => theme.mode.palette.gray};
     .MuiSvgIcon-root {
         width: 20px;

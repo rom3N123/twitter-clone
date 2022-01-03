@@ -12,8 +12,16 @@ import usePopover from "@hooks/usePopover";
 import useToggle from "@hooks/useToggle";
 import EditProfileDialog from "../EditProfileDialog";
 import ProfileUserAvatar from "../ProfileUserAvatar";
+import { IUser } from "@interfaces/api/user";
+import Skeleton from "@mui/material/Skeleton";
 
-const ProfileHeader: React.FC = (): React.ReactElement => {
+interface IProfileHeaderProps {
+    user?: IUser;
+}
+
+const ProfileHeader: React.FC<IProfileHeaderProps> = ({
+    user,
+}): React.ReactElement => {
     const navigate = useNavigate();
     const { isOpen, toggle } = useToggle();
 
@@ -35,35 +43,49 @@ const ProfileHeader: React.FC = (): React.ReactElement => {
         },
     ];
 
+    const { _id, name, followers, following } = user || {};
+
     return (
         <S.Container>
-            <S.ProfileBackground />
+            {user ? (
+                <S.ProfileBackground />
+            ) : (
+                <Skeleton variant="rectangular" width={"100%"} height={200} />
+            )}
 
             <Content>
                 <S.ProfileInfo>
                     <S.ProfileInfoLeftSide>
-                        <ProfileUserAvatar withWrapper />
+                        <Skeleton variant="circular">
+                            <ProfileUserAvatar withWrapper />
+                        </Skeleton>
 
-                        <S.ProfileName>romen</S.ProfileName>
-                        <S.ProfileId>@uAa0KZ3MeJDFBaf</S.ProfileId>
+                        <Skeleton>
+                            <S.ProfileName>{name}</S.ProfileName>
+                        </Skeleton>
+                        <Skeleton>
+                            <S.ProfileId>@{_id}</S.ProfileId>
+                        </Skeleton>
 
-                        <S.ProfileInfoItems margin="10px 0">
-                            <S.ProfileInfoItem>
-                                <PlaceIcon />
-                                Russian Federation
-                            </S.ProfileInfoItem>
+                        <Skeleton height={50}>
+                            <S.ProfileInfoItems margin="10px 0">
+                                <S.ProfileInfoItem>
+                                    <PlaceIcon />
+                                    Russian Federation
+                                </S.ProfileInfoItem>
 
-                            <S.ProfileInfoItem>
-                                <CalendarIcon />
-                                Joined October 2021
-                            </S.ProfileInfoItem>
-                        </S.ProfileInfoItems>
+                                <S.ProfileInfoItem>
+                                    <CalendarIcon />
+                                    Joined October 2021
+                                </S.ProfileInfoItem>
+                            </S.ProfileInfoItems>
+                        </Skeleton>
 
                         <S.ProfileInfoItems>
                             <S.ProfileActivityLink to="/">
                                 <S.ProfileInfoItem>
                                     <S.ProifleActivityNumber>
-                                        5
+                                        {followers?.length}
                                     </S.ProifleActivityNumber>
                                     Followers
                                 </S.ProfileInfoItem>
@@ -72,7 +94,7 @@ const ProfileHeader: React.FC = (): React.ReactElement => {
                             <S.ProfileActivityLink to="/">
                                 <S.ProfileInfoItem>
                                     <S.ProifleActivityNumber>
-                                        5
+                                        {following?.length}
                                     </S.ProifleActivityNumber>
                                     Following
                                 </S.ProfileInfoItem>

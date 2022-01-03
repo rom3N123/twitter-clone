@@ -5,6 +5,7 @@ export enum AuthActionsTypes {
     SET_IS_AUTH = "auth/setIsAuth",
     LOGIN = "auth/login",
     REGISTER = "auth/register",
+    LOGOUT = "auth/logout",
 }
 
 type AuthActionType = Action<AuthActionsTypes>;
@@ -36,6 +37,13 @@ export const registerAction = (
 ): IRegisterAction => ({
     type: AuthActionsTypes.REGISTER,
     payload,
+});
+
+export interface ILogoutAction extends AuthActionType {
+    type: AuthActionsTypes.LOGOUT;
+}
+export const logoutAction = (): ILogoutAction => ({
+    type: AuthActionsTypes.LOGOUT,
 });
 
 export type AuthAction = ISetIsAuthAction;

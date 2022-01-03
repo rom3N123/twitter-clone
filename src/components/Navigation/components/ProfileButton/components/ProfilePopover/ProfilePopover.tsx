@@ -1,5 +1,4 @@
 import React from "react";
-import useNonOverlapsPopover from "@hooks/useNonOverlapsPopover";
 import Popover from "@mui/material/Popover";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
@@ -10,6 +9,8 @@ import ListItemText from "@mui/material/ListItemText";
 import S from "../../ProfileButton.styled";
 import { IDialogCommonProps } from "@interfaces/components";
 import { IUsePopoverValue } from "@hooks/usePopover";
+import { useDispatch } from "react-redux";
+import { logoutAction } from "@redux/ducks/auth/actions";
 
 interface IProfilePopoverProps
     extends IDialogCommonProps,
@@ -20,6 +21,12 @@ const ProfilePopover: React.FC<IProfilePopoverProps> = ({
     open,
     onClose,
 }): React.ReactElement => {
+    const dispatch = useDispatch();
+
+    const onLogoutClickHandler = (): void => {
+        dispatch(logoutAction());
+    };
+
     return (
         <Popover
             anchorEl={anchor}
@@ -69,7 +76,7 @@ const ProfilePopover: React.FC<IProfilePopoverProps> = ({
                 </ListItemButton>
                 <ListItemButton>
                     <ListItem>
-                        <ListItemText onClick={() => {}}>
+                        <ListItemText onClick={onLogoutClickHandler}>
                             Log out @uAa0KZ3MeJDFBaf
                         </ListItemText>
                     </ListItem>
