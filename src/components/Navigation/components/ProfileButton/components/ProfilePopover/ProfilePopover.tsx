@@ -6,25 +6,23 @@ import Divider from "@mui/material/Divider";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import S from "../../ProfileButton.styled";
-import { IDialogCommonProps } from "@interfaces/components";
-import { IUsePopoverValue } from "@hooks/usePopover";
+import * as S from "../../ProfileButton.styled";
+import { ICommonPopoverProps } from "@interfaces/components";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "@redux/ducks/auth/actions";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
+import ProfileUserAvatar from "@pages/Profile/components/ProfileUserAvatar";
 
-interface IProfilePopoverProps
-    extends IDialogCommonProps,
-        Pick<IUsePopoverValue, "anchor"> {}
+interface IProfilePopoverProps extends ICommonPopoverProps<HTMLDivElement> {}
 
 const ProfilePopover: React.FC<IProfilePopoverProps> = ({
     anchor,
-    open,
     onClose,
+    open,
 }): React.ReactElement => {
     const dispatch = useDispatch();
-    const { _id, name } = useAppSelector(selectUserState);
+    const { _id, name, avatar } = useAppSelector(selectUserState);
 
     const onLogoutClickHandler = (): void => {
         dispatch(logoutAction());
@@ -50,15 +48,15 @@ const ProfilePopover: React.FC<IProfilePopoverProps> = ({
             }}
         >
             <Grid
-                component={S.Container}
+                component={S.SContainer}
                 alignItems="center"
                 gap={"12px"}
                 container
             >
                 <Grid item flexBasis="15%">
-                    <S.SAvatar />
+                    <ProfileUserAvatar size={48} src={avatar} />
                 </Grid>
-                <Grid item component={S.TextWrapper} flexBasis="65%">
+                <Grid item component={S.STextWrapper} flexBasis="65%">
                     <S.ProfileName>{name}</S.ProfileName>
                     <S.ProfileId>@{_id}</S.ProfileId>
                 </Grid>

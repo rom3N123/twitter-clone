@@ -1,11 +1,10 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
+import { ICommonPopoverProps } from "@interfaces/components";
 
-type Element = HTMLDivElement | null;
-
-export interface IUsePopoverValue {
-    anchor: Element;
+export interface IUsePopoverValue
+    extends Pick<ICommonPopoverProps<HTMLDivElement>, "anchor"> {
     openPopover: (e: React.MouseEvent<HTMLDivElement>) => void;
-    closePopover: () => void;
+    closePopover: (event: any) => void;
 }
 
 /**
@@ -13,7 +12,7 @@ export interface IUsePopoverValue {
  * @returns {IUsePopoverValue}
  */
 const usePopover = (): IUsePopoverValue => {
-    const [anchor, setAnchor] = React.useState<Element>(null);
+    const [anchor, setAnchor] = React.useState<HTMLDivElement | null>(null);
 
     const openPopover = React.useCallback(
         (e: React.MouseEvent<HTMLDivElement>) => {
@@ -22,18 +21,12 @@ const usePopover = (): IUsePopoverValue => {
         []
     );
 
-    const closePopover = React.useCallback(() => {
+    const closePopover = React.useCallback((event: SyntheticEvent) => {
+        event!.stopPropagation();
         setAnchor(null);
     }, []);
 
-    return React.useMemo(
-        () => ({
-            anchor,
-            openPopover,
-            closePopover,
-        }),
-        [openPopover, closePopover, anchor]
-    );
+    return { anchor, openPopover, closePopover };
 };
 
 export default usePopover;

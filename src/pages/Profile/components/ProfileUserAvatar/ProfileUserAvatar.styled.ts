@@ -4,7 +4,9 @@ import { alpha } from "@mui/material";
 import { IProfileUserAvatarProps } from "./ProfileUserAvatar";
 
 interface ISProfileAvatarProps
-    extends Omit<IProfileUserAvatarProps, "withWrapper"> {}
+    extends Omit<IProfileUserAvatarProps, "withWrapper"> {
+    clickable?: boolean;
+}
 
 const DEFAULT_SIZE = 133;
 
@@ -16,23 +18,27 @@ export const SProfileAvatar = styled(Avatar)`
 
     position: relative;
     z-index: 1;
-    cursor: pointer;
 
-    &:hover {
-        &::before {
-            opacity: 1;
-        }
-    }
+    ${({ clickable }) =>
+        clickable &&
+        css`
+            cursor: pointer;
+            &:hover {
+                &::before {
+                    opacity: 1;
+                }
+            }
 
-    &::before {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        transition: all 0.2s ease;
-        background-color: ${alpha("#000", 0.2)};
-        opacity: 0;
-    }
+            &::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                transition: all 0.2s ease;
+                background-color: ${alpha("#000", 0.2)};
+                opacity: 0;
+            }
+        `}
 `;
 
 export const SProfileAvatarWrapper = styled.div`

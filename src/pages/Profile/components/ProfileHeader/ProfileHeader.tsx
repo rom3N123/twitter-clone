@@ -55,11 +55,7 @@ const ProfileHeader: React.FC<IProfileHeaderProps> = ({
 
     return (
         <S.Container>
-            {user ? (
-                <S.ProfileBackground src={background} />
-            ) : (
-                <Skeleton variant="rectangular" width={"100%"} height={200} />
-            )}
+            <S.ProfileBackground src={background} />
 
             <Content>
                 <S.ProfileInfo>

@@ -14,11 +14,12 @@ import {
 import { ReactComponent as SettingsIcon } from "@icons/more/settings.svg";
 import { ReactComponent as DisplayIcon } from "@icons/more/display.svg";
 import CustomizationDialog from "./components/CustomizationDialog";
-import { IDialogCommonProps } from "@interfaces/components";
+import {
+    ICommonPopoverProps,
+    IDialogCommonProps,
+} from "@interfaces/components";
 
-interface IMoreMenuPopoverProps extends IDialogCommonProps {
-    anchor: HTMLDivElement | null;
-}
+interface IMoreMenuPopoverProps extends ICommonPopoverProps<HTMLDivElement> {}
 
 interface IListItem {
     icon: React.ReactNode;
