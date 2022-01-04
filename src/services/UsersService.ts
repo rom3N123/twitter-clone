@@ -1,18 +1,19 @@
 import $api from "@http/axios";
 import { IUser, IUserEditableFields } from "@interfaces/api/user";
+import ModelService from "./core/ModelService";
 
-class UsersService {
-    public async findById(id: string): Promise<IUser> {
+class UsersService extends ModelService<IUser> {
+    public async get(id: string): Promise<IUser> {
         const { data } = await $api.get<IUser>(`/users/${id}`);
 
         return data;
     }
 
     public async update(
-        id: string,
-        fields: IUserEditableFields
+        fields: IUserEditableFields,
+        userId: string
     ): Promise<IUser> {
-        const { data } = await $api.patch<IUser>(`/users/${id}`, fields);
+        const { data } = await $api.patch<IUser>(`/users/${userId}`, fields);
 
         return data;
     }

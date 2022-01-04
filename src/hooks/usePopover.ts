@@ -21,8 +21,10 @@ const usePopover = (): IUsePopoverValue => {
         []
     );
 
-    const closePopover = React.useCallback((event: SyntheticEvent) => {
-        event!.stopPropagation();
+    const closePopover = React.useCallback((event?: SyntheticEvent) => {
+        if (event) {
+            event!.stopPropagation();
+        }
         setAnchor(null);
     }, []);
 

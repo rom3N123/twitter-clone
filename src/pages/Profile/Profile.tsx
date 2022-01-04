@@ -4,19 +4,30 @@ import ProfileHeader from "./components/ProfileHeader";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import UsersService from "@services/UsersService";
+import TweetsService from "@services/TweetsService";
+import Tweet from "@components/Tweet";
 
 const Profile = () => {
     const { userId } = useParams();
 
-    const { data } = useQuery("user", () =>
-        UsersService.findById(userId as string)
+    const { data: user } = useQuery(`user/${userId}`, () =>
+        UsersService.get(userId as string)
     );
+
+    const { data: tweets } = useQuery(`tweets/${userId}`, () =>
+        TweetsService.index(userId as string)
+    );
+
+    console.log(tweets);
 
     return (
         <section>
-            <PageHeader title={data?.name} />
+            <PageHeader title={user?.name} />
+            <ProfileHeader user={user} />
 
-            <ProfileHeader user={data} />
+            {tweets?.map((tweet) => (
+                <Tweet key={tweet._id} {...tweet} />
+            ))}
         </section>
     );
 };

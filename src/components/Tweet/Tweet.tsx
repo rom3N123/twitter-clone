@@ -1,112 +1,91 @@
 import React from "react";
-import Box from "@mui/system/Box";
 import Grid from "@mui/material/Grid";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MoreIcon from "@mui/icons-material/MoreHoriz";
 import ChatIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import ShareIcon from "@mui/icons-material/RepeatOutlined";
 import FavoriteIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FileUploadIcon from "@mui/icons-material/FileUploadOutlined";
-import S from "./Tweet.styled";
+import * as S from "./Tweet.styled";
+import { ITweet } from "@interfaces/api/tweet";
+import ProfileUserAvatar from "@components/ProfileUserAvatar";
 
-interface TweetProps {
-    user: {
-        nickname: string;
-        name: string;
-        avatarUrl: string;
-    };
-    text: string;
-    createdAt: number;
-    activity: {
-        comments: any[];
-        likes: any[];
-        retweets: any[];
-    };
-}
+interface ITweetProps extends ITweet {}
 
-const Tweet: React.FC<TweetProps> = ({
-    user,
+const Tweet: React.FC<ITweetProps> = ({
+    _id,
     text,
-    createdAt,
-    activity,
+    publishTimestamp,
+    likes,
+    comments,
+    retweets,
+    userId,
+    user,
 }): React.ReactElement => {
     return (
-        <S.Container>
-            {/* Аватар пользователя */}
-            <Grid container gap="12px">
-                <Grid item>
-                    <S.AuthorAvatar
-                        src={user.avatarUrl}
-                        alt={`Аватарка пользователя ${user.name}`}
-                    />
-                </Grid>
-                {/* Тело твита */}
-                <Grid item flex="1">
-                    {/* Имя пользователя */}
-                    <div>
-                        <Typography variant="body1" sx={{ fontWeight: 600 }}>
-                            {user.name}{" "}
-                            <S.UserLabel>@{user.nickname}</S.UserLabel>
-                            {" · "}
-                            <S.UserLabel>{createdAt}</S.UserLabel>
-                        </Typography>
-                    </div>
+        <S.SContainer>
+            <S.SInner>
+                <ProfileUserAvatar size={48} src={user.avatarUrl} />
 
-                    {/* Текст твита */}
-                    <Typography variant="body2">{text}</Typography>
+                <S.STweetBody>
+                    <S.STweetText sx={{ fontWeight: 600 }}>
+                        {user.name}
+                        {/* <S.UserLabel>{publishTimestamp}</S.UserLabel> */}
+                    </S.STweetText>
 
-                    <S.Buttons>
-                        <S.ButtonWrapper>
-                            <S.TweetButton color="secondary">
-                                <ChatIcon />
+                    <S.STweetBodyInner>
+                        {/* Текст твита */}
+                        <S.STweetText>{text}</S.STweetText>
+
+                        <S.SButtons>
+                            <S.SButtonWrapper>
+                                <S.TweetButton color="secondary">
+                                    <ChatIcon />
+                                </S.TweetButton>
+
+                                {!!comments.length && (
+                                    <S.ButtonLabel>
+                                        {comments.length}
+                                    </S.ButtonLabel>
+                                )}
+                            </S.SButtonWrapper>
+
+                            <S.TweetButton color="success">
+                                <ShareIcon />
                             </S.TweetButton>
 
-                            {!!activity.comments.length && (
-                                <S.ButtonLabel>
-                                    {activity.comments.length}
-                                </S.ButtonLabel>
-                            )}
-                        </S.ButtonWrapper>
+                            <S.SButtonWrapper>
+                                <S.TweetButton color="warning">
+                                    <FavoriteIcon />
+                                </S.TweetButton>
 
-                        <S.TweetButton color="success">
-                            <ShareIcon />
-                        </S.TweetButton>
+                                {Boolean(retweets.length) && (
+                                    <S.ButtonLabel>
+                                        {retweets.length}
+                                    </S.ButtonLabel>
+                                )}
+                            </S.SButtonWrapper>
 
-                        <S.ButtonWrapper>
-                            <S.TweetButton color="warning">
-                                <FavoriteIcon />
-                            </S.TweetButton>
+                            <S.SButtonWrapper>
+                                <S.TweetButton color="secondary">
+                                    <FileUploadIcon />
+                                </S.TweetButton>
 
-                            {!!activity.retweets.length && (
-                                <S.ButtonLabel>
-                                    {activity.retweets.length}
-                                </S.ButtonLabel>
-                            )}
-                        </S.ButtonWrapper>
+                                {Boolean(likes.length) && (
+                                    <S.ButtonLabel>
+                                        {likes.length}
+                                    </S.ButtonLabel>
+                                )}
+                            </S.SButtonWrapper>
+                        </S.SButtons>
+                    </S.STweetBodyInner>
+                </S.STweetBody>
 
-                        <S.ButtonWrapper>
-                            <S.TweetButton color="secondary">
-                                <FileUploadIcon />
-                            </S.TweetButton>
-
-                            {!!activity.likes.length && (
-                                <S.ButtonLabel>
-                                    {activity.likes.length}
-                                </S.ButtonLabel>
-                            )}
-                        </S.ButtonWrapper>
-                    </S.Buttons>
-                </Grid>
-
-                {/* Кнопка "..." */}
-                <Grid item>
-                    <S.TweetButton>
-                        <MoreIcon />
-                    </S.TweetButton>
-                </Grid>
-            </Grid>
-        </S.Container>
+                <S.TweetButton>
+                    <MoreIcon />
+                </S.TweetButton>
+            </S.SInner>
+        </S.SContainer>
     );
 };
 

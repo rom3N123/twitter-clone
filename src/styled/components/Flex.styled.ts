@@ -28,7 +28,7 @@ const Flex = styled.div<IFlexProps>`
         justify-content: ${justify || "start"};
         align-items: ${align || "start"};
         gap: ${gap || 0}px;
-        direction: ${direction || "row"};
+        flex-direction: ${direction || "row"};
         flex-basis: ${basis || "auto"};
     `}
 `;

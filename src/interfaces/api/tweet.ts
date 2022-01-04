@@ -1,14 +1,14 @@
-import { ShortProfile } from "./shortUser";
-import { IApiComment } from "./comment";
+import { IUser } from "@interfaces/api/user";
 
 export interface ITweet {
+    _id: string;
     text: string;
-    date: number;
-    comments: IApiComment[];
-    likes: number[];
-    author: ShortProfile;
+    publishTimestamp: number;
+    likes: string[];
+    comments: string[];
+    retweets: string[];
+    userId: string;
+    user: IUser;
 }
 
-export interface IApiTweet extends ITweet {
-    id: number;
-}
+export interface ITweetEditableFields extends Pick<ITweet, "text"> {}

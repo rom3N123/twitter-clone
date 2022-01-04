@@ -1,5 +1,4 @@
 import React from "react";
-import Grid from "@mui/material/Grid";
 import * as S from "./ProfileButton.styled";
 import usePopover from "@hooks/usePopover";
 import ProfilePopover from "./components/ProfilePopover";

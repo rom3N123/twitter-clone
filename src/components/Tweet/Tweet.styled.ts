@@ -4,22 +4,39 @@ import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import { alpha } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
+import Flex from "@styled/components/Flex.styled";
 
-const Container = styled(Paper).attrs(() => ({
+export const SContainer = styled(Paper).attrs(() => ({
     variant: "outlined",
 }))`
     border-left: 0;
     border-right: 0;
-    padding: 15px 20px;
-    transition: all .2s ease;
+    transition: all 0.2s ease;
     cursor: pointer;
-    
-    &:hover: {
-        background-color: "rgb(245, 248, 250)";
-    },
+    &:hover {
+        background-color: ${({ theme }) => theme.mode.background.secondary};
+    }
 `;
 
-const Buttons = styled.footer`
+export const SInner = styled(Flex).attrs(() => ({
+    gap: 12,
+}))`
+    padding: 16px 12px;
+`;
+
+export const STweetBody = styled(Flex).attrs(() => ({
+    direction: "column",
+}))`
+    flex-grow: 1;
+`;
+
+export const STweetBodyInner = styled(Flex).attrs(() => ({
+    direction: "column",
+}))`
+    width: 100%;
+`;
+
+export const SButtons = styled.footer`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,35 +51,35 @@ const Buttons = styled.footer`
     margin-top: 5px;
 `;
 
-const ButtonWrapper = styled.div`
+export const SButtonWrapper = styled(Flex).attrs(() => ({
+    gap: 3,
+    align: "center",
+}))`
     transition: all 0.1s ease;
-
-    &:hover {
-        color: ${({ theme }) => alpha(theme.mode.background.secondary, 0.2)};
-    }
 `;
 
-const ButtonLabel = styled(Typography).attrs(() => ({
+export const ButtonLabel = styled(Typography).attrs(() => ({
     component: "span",
 }))`
     margin-left: 5px;
     font-weight: 500;
     font-size: 14px;
+    color: ${({ theme }) => theme.mode.typography.primary};
 `;
 
-const AuthorAvatar = styled(Avatar)`
+export const AuthorAvatar = styled(Avatar)`
     width: 48px;
     height: 48px;
 `;
 
-const UserLabel = styled(Typography).attrs(() => ({
+export const UserLabel = styled(Typography).attrs(() => ({
     variant: "body2",
     component: "span",
 }))`
     color: ${({ theme }) => theme.mode.palette.gray};
 `;
 
-const TweetButton = styled(IconButton).attrs(() => ({
+export const TweetButton = styled(IconButton).attrs(() => ({
     size: "small",
 }))`
     svg {
@@ -70,14 +87,6 @@ const TweetButton = styled(IconButton).attrs(() => ({
     }
 `;
 
-const styles = {
-    Container,
-    Buttons,
-    ButtonWrapper,
-    ButtonLabel,
-    AuthorAvatar,
-    UserLabel,
-    TweetButton,
-};
-
-export default styles;
+export const STweetText = styled(Typography)`
+    font-size: 15px;
+`;

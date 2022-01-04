@@ -5,7 +5,7 @@ import { setUserAction } from "./actions";
 
 export function* userUpdateWorkerSaga(action) {
     const { _id } = yield select(selectUserState);
-    const updatedUser = yield call(UsersService.update, _id, action.payload);
+    const updatedUser = yield call(UsersService.update, action.payload, _id);
     yield put(setUserAction(updatedUser));
 }
 

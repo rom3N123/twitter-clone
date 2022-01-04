@@ -9,7 +9,7 @@ import { ITab } from "@components/Tabs/components/Tab/Tab";
 import { useNavigate } from "react-router-dom";
 import useToggle from "@hooks/useToggle";
 import EditProfileDialog from "../EditProfileDialog";
-import ProfileUserAvatar from "../ProfileUserAvatar";
+import ProfileUserAvatar from "../../../../components/ProfileUserAvatar";
 import { IUser } from "@interfaces/api/user";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";

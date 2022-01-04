@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { logoutAction } from "@redux/ducks/auth/actions";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
-import ProfileUserAvatar from "@pages/Profile/components/ProfileUserAvatar";
+import ProfileUserAvatar from "@components/ProfileUserAvatar";
 
 interface IProfilePopoverProps extends ICommonPopoverProps<HTMLDivElement> {}
 

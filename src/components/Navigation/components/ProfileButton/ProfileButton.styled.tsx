@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import CheckIcon from "@mui/icons-material/Check";
 import ButtonBase from "@mui/material/ButtonBase";
 import Flex from "@styled/components/Flex.styled";
-import ProfileUserAvatar from "@pages/Profile/components/ProfileUserAvatar";
+import ProfileUserAvatar from "@components/ProfileUserAvatar";
 
 export const SWrapper = styled.div`
     width: 100%;
