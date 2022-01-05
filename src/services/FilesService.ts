@@ -1,11 +1,11 @@
 class FilesService {
-    private fileReader: FileReader;
+    private static fileReader: FileReader;
 
     constructor() {
-        this.fileReader = new FileReader();
+        FilesService.fileReader = new FileReader();
     }
 
-    public async getFileUrl(file: File): Promise<string> {
+    public static async getFileUrl(file: File): Promise<string> {
         const result: string = await new Promise((resolve) => {
             this.fileReader.onloadend = () =>
                 resolve(this.fileReader.result as string);
@@ -16,4 +16,4 @@ class FilesService {
     }
 }
 
-export default new FilesService();
+export default FilesService;

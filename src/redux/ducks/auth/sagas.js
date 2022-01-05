@@ -14,8 +14,10 @@ export function* loginWorkerSaga(action) {
         yield put(setUserAction(user));
         yield put(setIsAuthAction(true));
         yield put(setIsLoadingWithScreenAction(false));
-    } catch (e) {
-        console.error(e);
+    } catch (error) {
+        if (error.response.status != 401) {
+            yield put(setIsLoadingWithScreenAction(false));
+        }
     }
 }
 
@@ -34,9 +36,11 @@ export function* registerWatcherSaga() {
 }
 
 export function* logoutWorkerSaga() {
+    yield put(setIsLoadingWithScreenAction(true));
     yield put(setIsAuthAction(false));
     yield put(setUserAction({}));
-    AuthService.logout();
+    yield call(AuthService.logout);
+    yield put(setIsLoadingWithScreenAction(false));
 }
 
 export function* logoutWatcherSaga() {

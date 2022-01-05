@@ -14,6 +14,7 @@ export interface IUserResponse {
     user: IUser;
 }
 
-export interface IUserWithTokenResponse extends IUserResponse {
+export interface ITokenResponse {
     token: string;
 }
+export interface IUserWithTokenResponse extends IUserResponse, ITokenResponse {}

@@ -1,9 +1,11 @@
 import axios from "axios";
+import AuthService from "@services/AuthService";
 
-const url = "http://localhost:5000/api";
+export const API_URL = "http://localhost:5000/api";
 
 const $api = axios.create({
-    baseURL: url,
+    baseURL: API_URL,
+    withCredentials: true,
 });
 
 $api.interceptors.request.use((config) => {
@@ -18,5 +20,19 @@ $api.interceptors.request.use((config) => {
 
     return config;
 });
+
+$api.interceptors.response.use(
+    (config) => config,
+    async (error) => {
+        console.log(error);
+        const originalRequest = error.config;
+
+        if (error.response.status == 401) {
+            const accessToken: string = await AuthService.refreshToken();
+            localStorage.setItem("token", accessToken);
+            return $api.request(originalRequest);
+        }
+    }
+);
 
 export default $api;

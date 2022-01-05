@@ -18,8 +18,6 @@ const Profile = () => {
         TweetsService.index(userId as string)
     );
 
-    console.log(tweets);
-
     return (
         <section>
             <PageHeader title={user?.name} />

@@ -25,7 +25,7 @@ const Tweet: React.FC<ITweetProps> = ({
     return (
         <S.SContainer>
             <S.SInner>
-                <ProfileUserAvatar size={48} src={user.avatarUrl} />
+                <ProfileUserAvatar size={48} src={user.avatar} />
 
                 <S.STweetBody>
                     <S.STweetText sx={{ fontWeight: 600 }}>

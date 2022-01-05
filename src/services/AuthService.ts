@@ -7,10 +7,14 @@ import {
 import {
     IUserWithTokenResponse,
     IUserResponse,
+    ITokenResponse,
 } from "@interfaces/api/responses";
+import { AxiosResponse } from "axios";
 
 class AuthService {
-    public async register(registerValues: IUserRegisterValues): Promise<IUser> {
+    public static async register(
+        registerValues: IUserRegisterValues
+    ): Promise<IUser> {
         const {
             data: { user, token },
         } = await $api.post<IUserWithTokenResponse>(
@@ -23,7 +27,7 @@ class AuthService {
         return user;
     }
 
-    public async loginByCredentials(
+    public static async loginByCredentials(
         credentials: IUserLoginValues
     ): Promise<IUser> {
         const {
@@ -35,7 +39,7 @@ class AuthService {
         return user;
     }
 
-    public async loginByToken(): Promise<IUser> {
+    public static async loginByToken(): Promise<IUser> {
         const {
             data: { user },
         } = await $api.get<IUserResponse>("/auth/login");
@@ -43,13 +47,23 @@ class AuthService {
         return user;
     }
 
-    public logout(): void {
-        this.deleteToken();
+    public static async logout(): Promise<AxiosResponse> {
+        const response = await $api.get("/auth/logout");
+        AuthService.deleteToken();
+        return response;
     }
 
-    public deleteToken(): void {
+    public static async deleteToken(): Promise<void> {
         localStorage.removeItem("token");
+    }
+
+    public static async refreshToken(): Promise<string> {
+        const {
+            data: { token },
+        } = await $api.get<ITokenResponse>("/auth/refresh");
+
+        return token;
     }
 }
 
-export default new AuthService();
+export default AuthService;
