@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import Popover from "@mui/material/Popover";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import { ReactComponent as DisplayDot } from "@icons/more/displayDot.svg";
 
 export const SPopover = styled(Popover)`
@@ -12,18 +10,6 @@ export const SPopover = styled(Popover)`
         min-width: 0;
         width: 100%;
     }
-`;
-
-export const SListIcon = styled(ListItemIcon)`
-    min-width: 32px;
-    svg {
-        width: 20px;
-        height: 20px;
-    }
-`;
-
-export const SListItemText = styled(ListItemText)`
-    font-size: 15px;
 `;
 
 export const SDisplayIcon = styled.div`

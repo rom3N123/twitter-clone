@@ -23,7 +23,7 @@ interface INavigationItem extends IListItem {
 }
 
 const Navigation = () => {
-    const { anchor, openPopover, closePopover } = usePopover();
+    const { anchor, openPopover, closePopover } = usePopover<HTMLDivElement>();
 
     const { _id } = useAppSelector(selectUserState);
 

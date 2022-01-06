@@ -18,7 +18,7 @@ class TweetsService extends ModelService<ITweet> {
     }
 
     public async delete(userId: string, tweetId: string): Promise<void> {
-        $api.delete(`/users/${userId}/tweets/${tweetId}`);
+        return $api.delete(`/users/${userId}/tweets/${tweetId}`);
     }
 
     public async update(

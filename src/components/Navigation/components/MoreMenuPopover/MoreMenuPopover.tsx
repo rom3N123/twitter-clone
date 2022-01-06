@@ -1,23 +1,10 @@
 import React from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-
-import {
-    SPopover,
-    SListIcon,
-    SListItemText,
-    SDisplayIcon,
-    SDisplayDot,
-} from "./MoreMenuPopover.styled";
-
+import * as S from "./MoreMenuPopover.styled";
 import { ReactComponent as SettingsIcon } from "@icons/more/settings.svg";
 import { ReactComponent as DisplayIcon } from "@icons/more/display.svg";
 import CustomizationDialog from "./components/CustomizationDialog";
-import {
-    ICommonPopoverProps,
-    IDialogCommonProps,
-} from "@interfaces/components";
+import { ICommonPopoverProps } from "@interfaces/components";
+import PopoverList from "@components/PopoverList";
 
 interface IMoreMenuPopoverProps extends ICommonPopoverProps<HTMLDivElement> {}
 
@@ -42,11 +29,6 @@ const MoreMenuPopover: React.FC<IMoreMenuPopoverProps> = ({
         setDialogVisible(false);
     };
 
-    const onListItemButtonClickHandler = (onClick: () => void) => () => {
-        onClick();
-        onClose();
-    };
-
     const listItems: IListItem[] = [
         {
             label: "Settings and privacy",
@@ -56,10 +38,10 @@ const MoreMenuPopover: React.FC<IMoreMenuPopoverProps> = ({
         {
             label: "Display",
             icon: (
-                <SDisplayIcon>
+                <S.SDisplayIcon>
                     <DisplayIcon />
-                    <SDisplayDot />
-                </SDisplayIcon>
+                    <S.SDisplayDot />
+                </S.SDisplayIcon>
             ),
             onClick: handleOpenDialog,
         },
@@ -72,7 +54,7 @@ const MoreMenuPopover: React.FC<IMoreMenuPopoverProps> = ({
                 onClose={handleCloseDialog}
             />
 
-            <SPopover
+            <S.SPopover
                 anchorOrigin={{
                     vertical: "top",
                     horizontal: "center",
@@ -85,20 +67,8 @@ const MoreMenuPopover: React.FC<IMoreMenuPopoverProps> = ({
                 open={Boolean(open)}
                 onClose={onClose}
             >
-                <List>
-                    {listItems.map(({ onClick, label, icon }) => (
-                        <ListItemButton
-                            onClick={onListItemButtonClickHandler(onClick)}
-                            key={label}
-                        >
-                            <ListItem>
-                                <SListIcon>{icon}</SListIcon>
-                                <SListItemText>{label}</SListItemText>
-                            </ListItem>
-                        </ListItemButton>
-                    ))}
-                </List>
-            </SPopover>
+                <PopoverList onPopoverClose={onClose} items={listItems} />
+            </S.SPopover>
         </>
     );
 };

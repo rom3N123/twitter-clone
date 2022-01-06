@@ -6,7 +6,7 @@ import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
 
 const ProfileButton = () => {
-    const { anchor, openPopover, closePopover } = usePopover();
+    const { anchor, openPopover, closePopover } = usePopover<HTMLDivElement>();
 
     const user = useAppSelector(selectUserState);
 
