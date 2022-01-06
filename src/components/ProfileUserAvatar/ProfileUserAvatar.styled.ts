@@ -4,7 +4,7 @@ import { alpha } from "@mui/material";
 import { IProfileUserAvatarProps } from "./ProfileUserAvatar";
 
 interface ISProfileAvatarProps
-    extends Omit<IProfileUserAvatarProps, "withWrapper"> {
+    extends Omit<IProfileUserAvatarProps, "withWrapper" | "user"> {
     clickable?: boolean;
 }
 

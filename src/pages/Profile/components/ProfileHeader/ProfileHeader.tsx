@@ -6,10 +6,9 @@ import * as S from "./ProfileHeader.styled";
 import Content from "@styled/components/Content.styled";
 import Tabs from "@components/Tabs";
 import { ITab } from "@components/Tabs/components/Tab/Tab";
-import { useNavigate } from "react-router-dom";
 import useToggle from "@hooks/useToggle";
 import EditProfileDialog from "../EditProfileDialog";
-import ProfileUserAvatar from "../../../../components/ProfileUserAvatar";
+import ProfileUserAvatar from "@components/ProfileUserAvatar";
 import { IUser } from "@interfaces/api/user";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
@@ -22,7 +21,6 @@ interface IProfileHeaderProps {
 const ProfileHeader: React.FC<IProfileHeaderProps> = ({
     user,
 }): React.ReactElement => {
-    const navigate = useNavigate();
     const { isOpen, toggle } = useToggle();
 
     const tabs: ITab[] = [
@@ -43,16 +41,8 @@ const ProfileHeader: React.FC<IProfileHeaderProps> = ({
         },
     ];
 
-    const {
-        _id,
-        name,
-        followers,
-        following,
-        location,
-        bio,
-        avatar,
-        background,
-    } = user || {};
+    const { _id, name, followers, following, location, bio, background } =
+        user || {};
 
     return (
         <S.Container>
@@ -61,11 +51,9 @@ const ProfileHeader: React.FC<IProfileHeaderProps> = ({
             <Content>
                 <S.ProfileInfo>
                     {!user ? (
-                        <Skeleton variant="circular">
-                            <ProfileUserAvatar src={avatar} withWrapper />
-                        </Skeleton>
+                        <Skeleton variant="circular" width={133} height={133} />
                     ) : (
-                        <ProfileUserAvatar src={avatar} withWrapper />
+                        <ProfileUserAvatar user={user} withWrapper />
                     )}
 
                     <S.SProfileNameContainer>

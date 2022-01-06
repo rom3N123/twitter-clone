@@ -10,7 +10,7 @@ import Tweet from "@components/Tweet";
 const Profile = () => {
     const { userId } = useParams();
 
-    const { data: user } = useQuery(`user/${userId}`, () =>
+    const { data: user, isLoading } = useQuery(`user/${userId}`, () =>
         UsersService.get(userId as string)
     );
 

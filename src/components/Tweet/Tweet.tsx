@@ -25,12 +25,7 @@ const Tweet: React.FC<ITweetProps> = ({
     return (
         <S.SContainer>
             <S.SInner>
-                <ProfileUserAvatar
-                    user={user}
-                    isWithPopover
-                    size={48}
-                    src={user.avatar}
-                />
+                <ProfileUserAvatar user={user} isWithPopover size={48} />
 
                 <S.STweetBody>
                     <S.STweetText sx={{ fontWeight: 600 }}>

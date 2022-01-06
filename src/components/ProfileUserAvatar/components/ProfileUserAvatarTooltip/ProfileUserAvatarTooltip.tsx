@@ -8,19 +8,16 @@ import ProfileUserAvatar from "@components/ProfileUserAvatar";
 import BlackAndWhiteButton from "@components/Buttons/BlackAndWhiteButton";
 import ProfileActivity from "@pages/Profile/components/ProfileActivity";
 
-interface IProfileUserAvatarTooltipProps extends IHoverPopoverProps, IUser {}
+interface IProfileUserAvatarTooltipProps extends IHoverPopoverProps {
+    user: IUser;
+}
 
 const ProfileUserAvatarTooltip: React.FC<IProfileUserAvatarTooltipProps> = ({
     anchorEl,
     id,
     onMouseLeave,
     open,
-    avatar,
-    name,
-    _id,
-    bio,
-    followers,
-    following,
+    user,
 }): React.ReactElement => {
     return (
         <HoverPopper
@@ -32,11 +29,7 @@ const ProfileUserAvatarTooltip: React.FC<IProfileUserAvatarTooltipProps> = ({
             <SPaper>
                 <S.SInner>
                     <S.SHeader>
-                        <ProfileUserAvatar
-                            onClick={() => {}}
-                            src={avatar}
-                            size={48}
-                        />
+                        <ProfileUserAvatar user={user} size={48} />
 
                         <BlackAndWhiteButton
                             title="Follow"
@@ -45,25 +38,25 @@ const ProfileUserAvatarTooltip: React.FC<IProfileUserAvatarTooltipProps> = ({
                     </S.SHeader>
 
                     <S.SUserInfo>
-                        <S.SText fontWeight={700}>{name}</S.SText>
+                        <S.SText fontWeight={700}>{user.name}</S.SText>
 
-                        <S.SText color="gray">@{_id}</S.SText>
+                        <S.SText color="gray">@{user._id}</S.SText>
 
                         <S.SUserBio>
-                            <S.SText>{bio}</S.SText>
+                            <S.SText>{user.bio}</S.SText>
                         </S.SUserBio>
                     </S.SUserInfo>
 
                     <S.SUserActivity>
                         <ProfileActivity
                             to="/"
-                            amount={following.length}
+                            amount={user.following.length}
                             label="Following"
                         />
 
                         <ProfileActivity
                             to="/"
-                            amount={followers.length}
+                            amount={user.followers.length}
                             label="Followers"
                         />
                     </S.SUserActivity>

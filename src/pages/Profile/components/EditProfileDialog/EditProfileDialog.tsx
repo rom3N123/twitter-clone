@@ -40,7 +40,6 @@ const validationSchema = yup.object().shape({
             LOCATION_MAX_LENGTH,
             `Location must not be more than ${LOCATION_MAX_LENGTH} charatercs long`
         ),
-    // avatar: yup.string(),
 });
 
 const inputs = [
@@ -65,13 +64,12 @@ const EditProfileDialog: React.FC<IEditProfileDialogProps> = ({
 }): React.ReactElement => {
     const submitButtonRef = React.useRef<HTMLButtonElement>(null);
     const dispatch = useDispatch();
-    const { name, bio, location, avatar, background } =
-        useAppSelector(selectUserState);
+    const user = useAppSelector(selectUserState);
 
     const formInitialValues: IUserEditableFields = {
-        name,
-        bio,
-        location,
+        name: user.name,
+        bio: user.bio,
+        location: user.location,
     };
 
     const onSaveClickHandler = (values: IUserEditableFields): void => {
@@ -122,7 +120,9 @@ const EditProfileDialog: React.FC<IEditProfileDialogProps> = ({
                 {({ touched, dirty }) => {
                     return (
                         <FormControl component={Form} fullWidth>
-                            <S.SProfileBackgroundContainer src={background}>
+                            <S.SProfileBackgroundContainer
+                                src={user.background}
+                            >
                                 <S.SUploadImageButton
                                     onChange={onLoadFileHandler(
                                         onBackgroundChangeHandler
@@ -135,7 +135,7 @@ const EditProfileDialog: React.FC<IEditProfileDialogProps> = ({
                             <S.SDialogContent>
                                 <S.SProfileUserAvatarContainer>
                                     <ProfileUserAvatar
-                                        src={avatar}
+                                        user={user}
                                         size={110}
                                         withWrapper
                                     />

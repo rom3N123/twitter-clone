@@ -8,15 +8,15 @@ import { selectUserState } from "@redux/ducks/user";
 const ProfileButton = () => {
     const { anchor, openPopover, closePopover } = usePopover();
 
-    const { _id, name, avatar } = useAppSelector(selectUserState);
+    const user = useAppSelector(selectUserState);
 
     return (
         <S.SWrapper onClick={openPopover}>
             <S.SContainer isButton>
-                <S.SProfileUserAvatar size={40} src={avatar} />
+                <S.SProfileUserAvatar size={40} user={user} />
                 <S.STextWrapper>
-                    <S.ProfileName>{name}</S.ProfileName>
-                    <S.ProfileId>@{_id}</S.ProfileId>
+                    <S.ProfileName>{user.name}</S.ProfileName>
+                    <S.ProfileId>@{user._id}</S.ProfileId>
                 </S.STextWrapper>
                 <S.SMoreIcon />
             </S.SContainer>

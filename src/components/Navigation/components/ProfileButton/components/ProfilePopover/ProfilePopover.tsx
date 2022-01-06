@@ -22,7 +22,7 @@ const ProfilePopover: React.FC<IProfilePopoverProps> = ({
     open,
 }): React.ReactElement => {
     const dispatch = useDispatch();
-    const { _id, name, avatar } = useAppSelector(selectUserState);
+    const user = useAppSelector(selectUserState);
 
     const onLogoutClickHandler = (): void => {
         dispatch(logoutAction());
@@ -54,11 +54,11 @@ const ProfilePopover: React.FC<IProfilePopoverProps> = ({
                 container
             >
                 <Grid item flexBasis="15%">
-                    <ProfileUserAvatar size={48} src={avatar} />
+                    <ProfileUserAvatar size={48} user={user} />
                 </Grid>
                 <Grid item component={S.STextWrapper} flexBasis="65%">
-                    <S.ProfileName>{name}</S.ProfileName>
-                    <S.ProfileId>@{_id}</S.ProfileId>
+                    <S.ProfileName>{user.name}</S.ProfileName>
+                    <S.ProfileId>@{user._id}</S.ProfileId>
                 </Grid>
 
                 <Grid item flexBasis="10%">
@@ -76,7 +76,7 @@ const ProfilePopover: React.FC<IProfilePopoverProps> = ({
                 <ListItemButton>
                     <ListItem>
                         <ListItemText onClick={onLogoutClickHandler}>
-                            Log out @{_id}
+                            Log out @{user._id}
                         </ListItemText>
                     </ListItem>
                 </ListItemButton>

@@ -3,32 +3,38 @@ import ProfileUserAvatarTooltip from "./components/ProfileUserAvatarTooltip";
 import PopupState, { bindHover, bindPopper } from "material-ui-popup-state";
 import * as S from "./ProfileUserAvatar.styled";
 import { IUser } from "@interfaces/api/user";
+import { useNavigate } from "react-router-dom";
 
 export interface IProfileUserAvatarProps {
-    src?: string;
+    user: IUser;
     size?: number;
     withWrapper?: boolean;
-    onClick?: () => void;
     isWithPopover?: boolean;
-    user?: IUser;
+    clickable?: boolean;
 }
 
 const ProfileUserAvatar: React.FC<IProfileUserAvatarProps> = ({
     size,
     withWrapper,
-    onClick,
     isWithPopover,
-    src,
+    clickable = true,
     user,
 }): React.ReactElement => {
     const avatarRef = React.useRef<HTMLDivElement>(null);
+    const navigate = useNavigate();
+
+    const onAvatarClickHandler = (): void => {
+        if (clickable) {
+            navigate(`/${user._id}`);
+        }
+    };
 
     const Avatar = (
         <S.SProfileAvatar
-            onClick={onClick}
-            clickable={Boolean(onClick)}
-            src={src}
+            onClick={onAvatarClickHandler}
+            src={user.avatar}
             size={size}
+            clickable={clickable}
         />
     );
 
@@ -44,9 +50,9 @@ const ProfileUserAvatar: React.FC<IProfileUserAvatarProps> = ({
                         Avatar
                     )}
 
-                    {isWithPopover && user && (
+                    {isWithPopover && (
                         <ProfileUserAvatarTooltip
-                            {...user}
+                            user={user}
                             {...bindPopper(state)}
                         />
                     )}

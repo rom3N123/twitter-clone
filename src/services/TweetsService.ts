@@ -1,6 +1,6 @@
 import $api from "@http/axios";
 import ModelService from "./core/ModelService";
-import { ITweet, ITweetEditableFields } from "./../interfaces/api/tweet";
+import { ITweet, ITweetEditableFields } from "@interfaces/api/tweet";
 
 class TweetsService extends ModelService<ITweet> {
     public async index(userId: string): Promise<ITweet[]> {
@@ -29,6 +29,18 @@ class TweetsService extends ModelService<ITweet> {
         const { data } = await $api.patch<ITweet>(
             `/users/${userId}/tweets/${tweetId}`,
             fields
+        );
+
+        return data;
+    }
+
+    public async create(
+        userId: string,
+        tweet: ITweetEditableFields
+    ): Promise<ITweet> {
+        const { data } = await $api.post<ITweet>(
+            `/users/${userId}/tweets`,
+            tweet
         );
 
         return data;
