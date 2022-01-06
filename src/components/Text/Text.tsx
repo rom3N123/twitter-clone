@@ -5,16 +5,23 @@ export interface ITextProps {
     fontSize?: number;
     fontWeight?: number;
     color?: "gray" | string;
+    component?: React.ElementType<any>;
 }
 
 const Text: React.FC<ITextProps> = ({
     fontSize,
     color,
     fontWeight,
+    component,
     children,
 }): React.ReactElement => {
     return (
-        <SText fontSize={fontSize} color={color} fontWeight={fontWeight}>
+        <SText
+            component={component}
+            fontSize={fontSize}
+            color={color}
+            fontWeight={fontWeight}
+        >
             {children}
         </SText>
     );

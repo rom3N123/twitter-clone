@@ -13,6 +13,7 @@ import ProfileUserAvatar from "../../../../components/ProfileUserAvatar";
 import { IUser } from "@interfaces/api/user";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
+import ProfileActivity from "../ProfileActivity";
 
 interface IProfileHeaderProps {
     user?: IUser;
@@ -132,44 +133,32 @@ const ProfileHeader: React.FC<IProfileHeaderProps> = ({
                     {!user ? (
                         <Skeleton height={35}>
                             <S.ProfileInfoItems>
-                                <S.ProfileActivityLink to="/">
-                                    <S.ProfileInfoItem>
-                                        <S.ProifleActivityNumber>
-                                            {followers?.length}
-                                        </S.ProifleActivityNumber>
-                                        Followers
-                                    </S.ProfileInfoItem>
-                                </S.ProfileActivityLink>
+                                <ProfileActivity
+                                    to="/"
+                                    amount={0}
+                                    label="Following"
+                                />
 
-                                <S.ProfileActivityLink to="/">
-                                    <S.ProfileInfoItem>
-                                        <S.ProifleActivityNumber>
-                                            {following?.length}
-                                        </S.ProifleActivityNumber>
-                                        Following
-                                    </S.ProfileInfoItem>
-                                </S.ProfileActivityLink>
+                                <ProfileActivity
+                                    to="/"
+                                    amount={0}
+                                    label="Followers"
+                                />
                             </S.ProfileInfoItems>
                         </Skeleton>
                     ) : (
                         <S.ProfileInfoItems>
-                            <S.ProfileActivityLink to="/">
-                                <S.ProfileInfoItem>
-                                    <S.ProifleActivityNumber>
-                                        {followers?.length}
-                                    </S.ProifleActivityNumber>
-                                    Followers
-                                </S.ProfileInfoItem>
-                            </S.ProfileActivityLink>
+                            <ProfileActivity
+                                to="/"
+                                amount={following!.length}
+                                label="Following"
+                            />
 
-                            <S.ProfileActivityLink to="/">
-                                <S.ProfileInfoItem>
-                                    <S.ProifleActivityNumber>
-                                        {following?.length}
-                                    </S.ProifleActivityNumber>
-                                    Following
-                                </S.ProfileInfoItem>
-                            </S.ProfileActivityLink>
+                            <ProfileActivity
+                                to="/"
+                                amount={followers!.length}
+                                label="Followers"
+                            />
                         </S.ProfileInfoItems>
                     )}
                 </S.ProfileInfo>

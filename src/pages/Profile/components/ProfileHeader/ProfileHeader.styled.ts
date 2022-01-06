@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
 import Flex from "@styled/components/Flex.styled";
 
 export const Container = styled.div`
@@ -66,24 +65,10 @@ export const ProfileInfoItem = styled(Flex).attrs(() => ({
     }
 `;
 
-export const ProifleActivityNumber = styled(Typography).attrs(() => ({
-    component: "",
-}))`
-    font-weight: 700;
-    font-size: 16px;
-`;
-
-export const ProfileActivityLink = styled(Link)`
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s ease;
-    &:hover {
-        border-color: ${({ theme }) => theme.mode.typography};
-    }
-`;
-
 export const SProfileBio = styled.div`
     overflow: hidden;
     word-break: break-all;
+    margin: 10px 0;
 `;
 
 export const SProfileNameContainer = styled(Flex).attrs(() => ({

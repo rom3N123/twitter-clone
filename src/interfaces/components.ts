@@ -16,3 +16,10 @@ export interface ICommonPopoverProps<E> {
     anchor: E | null;
     onClose: (event?: {}) => void;
 }
+
+export interface IHoverPopoverProps
+    extends Omit<ICommonPopoverProps<HTMLElement>, "onClose" | "anchor"> {
+    id: string | undefined;
+    onMouseLeave: (event: SyntheticEvent<any>) => void;
+    anchorEl: HTMLElement | undefined;
+}
