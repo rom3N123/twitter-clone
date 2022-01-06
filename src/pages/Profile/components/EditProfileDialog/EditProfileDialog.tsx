@@ -14,6 +14,7 @@ import { updateUserAction } from "@redux/ducks/user/actions";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
 import FilesService from "@services/FilesService";
+import { useQueryClient } from "react-query";
 
 interface IEditProfileDialogProps extends IDialogCommonProps {}
 
@@ -66,14 +67,19 @@ const EditProfileDialog: React.FC<IEditProfileDialogProps> = ({
     const dispatch = useDispatch();
     const user = useAppSelector(selectUserState);
 
+    const queryClient = useQueryClient();
+
     const formInitialValues: IUserEditableFields = {
         name: user.name,
         bio: user.bio,
         location: user.location,
     };
 
-    const onSaveClickHandler = (values: IUserEditableFields): void => {
-        dispatch(updateUserAction(values));
+    const onSaveClickHandler = async (
+        values: IUserEditableFields
+    ): Promise<void> => {
+        await dispatch(updateUserAction(values));
+        queryClient.invalidateQueries("user");
     };
 
     const onLoadFileHandler =
