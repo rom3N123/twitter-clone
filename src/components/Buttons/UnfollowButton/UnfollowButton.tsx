@@ -21,7 +21,7 @@ const UnfollowButton: React.FC<IUserFollowButton> = ({
         setIsLoading(true);
         const updatedUser = await UsersService.unfollow(user._id, _id);
         dispatch(setUserAction(updatedUser));
-        queryClient.invalidateQueries("user");
+        queryClient.invalidateQueries(["user", user._id]);
         setIsLoading(false);
     };
 

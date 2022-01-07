@@ -5,8 +5,8 @@ import { IUser } from "@interfaces/api/user";
 import SPaper from "@styled/components/Paper.styled";
 import * as S from "./ProfileUserAvatarTooltip.styled";
 import ProfileUserAvatar from "@components/ProfileUserAvatar";
-import BlackAndWhiteButton from "@components/Buttons/BlackAndWhiteButton";
 import ProfileActivity from "@pages/Profile/components/ProfileActivity";
+import UserFollowButton from "@components/Buttons/UserFollowButton";
 
 interface IProfileUserAvatarTooltipProps extends IHoverPopoverProps {
     user: IUser;
@@ -31,10 +31,7 @@ const ProfileUserAvatarTooltip: React.FC<IProfileUserAvatarTooltipProps> = ({
                     <S.SHeader>
                         <ProfileUserAvatar user={user} size={48} />
 
-                        <BlackAndWhiteButton
-                            title="Follow"
-                            onClick={() => {}}
-                        />
+                        <UserFollowButton user={user} />
                     </S.SHeader>
 
                     <S.SUserInfo>

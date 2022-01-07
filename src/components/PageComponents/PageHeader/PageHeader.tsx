@@ -1,6 +1,7 @@
 import React from "react";
 import S from "./PageHeader.styled";
 import Skeleton from "@mui/material/Skeleton";
+import useCurrentProfileContext from "@pages/Profile/contexts/CurrentProfileContext/useCurrentProfileContext";
 
 interface IPageHeaderProps {
     title?: string;

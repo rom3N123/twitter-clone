@@ -8,6 +8,8 @@ import { IPopoverListItem } from "@components/PopoverList/PopoverList";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { useMutation, useQueryClient } from "react-query";
 import TweetsService from "@services/TweetsService";
+import { useAppSelector } from "@redux/hooks";
+import { selectUserState } from "@redux/ducks/user";
 
 interface IThreeDotsButtonProps {
     userId: string;
@@ -21,6 +23,7 @@ const ThreeDotsButton: React.FC<IThreeDotsButtonProps> = ({
     const buttonRef = React.useRef<HTMLDivElement>(null);
     const { anchor, openPopover, closePopover } =
         usePopover<HTMLButtonElement>();
+    const authUser = useAppSelector(selectUserState);
 
     const queryClient = useQueryClient();
 
@@ -30,18 +33,20 @@ const ThreeDotsButton: React.FC<IThreeDotsButtonProps> = ({
         },
         {
             onSuccess: () => {
-                queryClient.invalidateQueries("tweets");
+                queryClient.invalidateQueries(["tweets", userId]);
             },
         }
     );
 
-    const items: IPopoverListItem[] = [
-        {
+    const items: IPopoverListItem[] = [];
+
+    if (authUser._id === userId) {
+        items.unshift({
             label: "Delete",
             icon: <DeleteOutlineOutlinedIcon />,
             onClick: deleteMutation.mutate,
-        },
-    ];
+        });
+    }
 
     return (
         <div ref={buttonRef}>

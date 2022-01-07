@@ -38,7 +38,11 @@ const Navigation = () => {
         { to: "/messages", icon: <MessageIcon />, label: "Messages" },
         { to: "/bookmarks", icon: <BookmarkIcon />, label: "Bookmarks" },
         { to: "/lists", icon: <ListsIcon />, label: "Lists" },
-        { to: `/${_id}`, icon: <ProfileIcon />, label: "Profile" },
+        {
+            to: `/${_id}`,
+            icon: <ProfileIcon />,
+            label: "Profile",
+        },
     ];
 
     return (

@@ -17,7 +17,7 @@ const FollowButton: React.FC<IUserFollowButton> = ({
         setIsLoading(true);
         const updatedUser = await UsersService.follow(user._id);
         dispatch(setUserAction(updatedUser));
-        queryClient.invalidateQueries("user");
+        queryClient.invalidateQueries(["user", user._id]);
         setIsLoading(false);
     };
 

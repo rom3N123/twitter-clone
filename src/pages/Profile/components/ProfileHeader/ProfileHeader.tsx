@@ -9,22 +9,17 @@ import { ITab } from "@components/Tabs/components/Tab/Tab";
 import useToggle from "@hooks/useToggle";
 import EditProfileDialog from "../EditProfileDialog";
 import ProfileUserAvatar from "@components/ProfileUserAvatar";
-import { IUser } from "@interfaces/api/user";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import ProfileActivity from "../ProfileActivity";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
 import UserFollowButton from "@components/Buttons/UserFollowButton/UserFollowButton";
+import useCurrentProfileContext from "@pages/Profile/contexts/CurrentProfileContext/useCurrentProfileContext";
 
-interface IProfileHeaderProps {
-    user?: IUser;
-}
-
-const ProfileHeader: React.FC<IProfileHeaderProps> = ({
-    user,
-}): React.ReactElement => {
+const ProfileHeader: React.FC = (): React.ReactElement => {
     const { isOpen, toggle } = useToggle();
+    const { user } = useCurrentProfileContext();
 
     const authUser = useAppSelector(selectUserState);
 
@@ -58,7 +53,11 @@ const ProfileHeader: React.FC<IProfileHeaderProps> = ({
                     {!user ? (
                         <Skeleton variant="circular" width={133} height={133} />
                     ) : (
-                        <ProfileUserAvatar user={user} withWrapper />
+                        <ProfileUserAvatar
+                            clickable={false}
+                            user={user}
+                            withWrapper
+                        />
                     )}
 
                     <S.SProfileNameContainer>

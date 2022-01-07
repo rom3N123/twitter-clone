@@ -7,7 +7,7 @@ import { useQuery } from "react-query";
 const ProfileTweets: React.FC = (): React.ReactElement => {
     const { userId } = useParams();
 
-    const { data: tweets } = useQuery("tweets", () =>
+    const { data: tweets } = useQuery(["tweets", userId], () =>
         TweetsService.index(userId as string)
     );
 
