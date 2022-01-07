@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 
 export const SButton = styled(Button)`
     width: 100px;
-    height: 32px;
+    height: 36px;
 
     &:hover {
         ${({ theme }) => {

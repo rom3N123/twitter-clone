@@ -80,7 +80,11 @@ const ProfileHeader: React.FC = (): React.ReactElement => {
                         {!user ? (
                             <Skeleton width={80} height={50} />
                         ) : authUser._id === _id ? (
-                            <Button variant="outlined" onClick={toggle}>
+                            <Button
+                                sx={{ height: 36 }}
+                                variant="outlined"
+                                onClick={toggle}
+                            >
                                 Edit profile
                             </Button>
                         ) : (

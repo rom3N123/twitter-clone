@@ -26,6 +26,7 @@ const FollowButton: React.FC<IUserFollowButton> = ({
             disabled={isLoading}
             onClick={onButtonClickHandler}
             title="Follow"
+            height={36}
         />
     );
 };
