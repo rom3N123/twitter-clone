@@ -2,7 +2,7 @@ import { call, put, takeEvery, all } from "redux-saga/effects";
 import { setUserAction } from "../user";
 import { setIsAuthAction } from "./actions";
 import { setIsLoadingWithScreenAction } from "../general/actions";
-import AuthService from "../../../services/AuthService";
+import AuthService from "@services/AuthService";
 
 export function* loginWorkerSaga(action) {
     try {
@@ -14,11 +14,7 @@ export function* loginWorkerSaga(action) {
         yield put(setUserAction(user));
         yield put(setIsAuthAction(true));
         yield put(setIsLoadingWithScreenAction(false));
-    } catch (error) {
-        if (error.response.status != 401) {
-            yield put(setIsLoadingWithScreenAction(false));
-        }
-    }
+    } catch (error) {}
 }
 
 export function* loginWatcherSaga() {

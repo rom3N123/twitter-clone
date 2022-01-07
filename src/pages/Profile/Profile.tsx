@@ -7,7 +7,7 @@ import UsersService from "@services/UsersService";
 
 import ProfileTweets from "./components/ProfileTweets";
 
-const Profile = () => {
+const Profile: React.FC = (): React.ReactElement => {
     const { userId } = useParams();
 
     const { data: user } = useQuery("user", () =>

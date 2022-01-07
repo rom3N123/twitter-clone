@@ -17,6 +17,20 @@ class UsersService extends ModelService<IUser> {
 
         return data;
     }
+
+    public async follow(userId: string): Promise<IUser> {
+        const { data } = await $api.post<IUser>(`/users/${userId}/followers`);
+
+        return data;
+    }
+
+    public async unfollow(userId: string, followerId: string): Promise<IUser> {
+        const { data } = await $api.delete<IUser>(
+            `/users/${userId}/followers/${followerId}`
+        );
+
+        return data;
+    }
 }
 
 export default new UsersService();

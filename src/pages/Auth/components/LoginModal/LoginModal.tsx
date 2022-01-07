@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Input from "@components/FormControl/Input";
-import { Form, Formik } from "formik";
+import { Form, Formik, FormikHelpers } from "formik";
 import * as yup from "yup";
 import withShowPassword, { IWithPasswordProps } from "@hocs/withShowPassword";
 import { useNavigate } from "react-router-dom";
@@ -40,16 +40,16 @@ const LoginModal: React.FC<ILoginModalProps> = ({
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handleCloseModal = () => {
+    const handleCloseModal = (): void => {
         navigate("/auth");
     };
 
     const inputs = [
-        { name: "email", label: "Почта" },
+        { name: "email", label: "E-Mail" },
         {
             name: "password",
             type: isPasswordVisible ? "text" : "password",
-            label: "Пароль",
+            label: "Password",
             InputProps: {
                 endAdornment: (
                     <InputAdornment position="end">
@@ -69,48 +69,64 @@ const LoginModal: React.FC<ILoginModalProps> = ({
         },
     ];
 
-    const handleFormSubmit = (credentials: IUserLoginValues) => {
-        dispatch(loginAction(credentials));
+    const handleFormSubmit = async (
+        credentials: IUserLoginValues,
+        { setSubmitting, setFieldError }: FormikHelpers<IUserLoginValues>
+    ): Promise<void> => {
+        try {
+            await dispatch(loginAction(credentials));
+        } catch (error) {
+            console.log("error");
+            setFieldError("email", "Incorrect email or password");
+        }
+
+        setSubmitting(false);
     };
 
     return (
         <Dialog open={true} onClose={handleCloseModal}>
-            <DialogHeader title="Авторизация" onClose={handleCloseModal} />
+            <DialogHeader title="Sign in" onClose={handleCloseModal} />
 
             <Formik
                 initialValues={formInitialValues}
                 onSubmit={handleFormSubmit}
                 validationSchema={formValidationSchema}
             >
-                {({ dirty, touched, isValid, isSubmitting }) => (
-                    <FormControl component={Form} margin="dense" fullWidth>
-                        <DialogContent
-                            sx={{
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: "24px",
-                            }}
-                        >
-                            {inputs.map((input) => (
-                                <Input key={input.name} fullWidth {...input} />
-                            ))}
-                        </DialogContent>
-                        <DialogActions>
-                            <BlackAndWhiteButton
-                                height={42}
-                                type="submit"
-                                fullWidth
-                                title="Войти"
-                                disabled={
-                                    !dirty ||
-                                    !touched ||
-                                    !isValid ||
-                                    isSubmitting
-                                }
-                            />
-                        </DialogActions>
-                    </FormControl>
-                )}
+                {({ dirty, touched, isValid, isSubmitting, errors }) => {
+                    return (
+                        <FormControl component={Form} margin="dense" fullWidth>
+                            <DialogContent
+                                sx={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    gap: "24px",
+                                }}
+                            >
+                                {inputs.map((input) => (
+                                    <Input
+                                        key={input.name}
+                                        fullWidth
+                                        {...input}
+                                    />
+                                ))}
+                            </DialogContent>
+                            <DialogActions>
+                                <BlackAndWhiteButton
+                                    height={42}
+                                    type="submit"
+                                    fullWidth
+                                    title="Sign in"
+                                    disabled={
+                                        !dirty ||
+                                        !touched ||
+                                        !isValid ||
+                                        isSubmitting
+                                    }
+                                />
+                            </DialogActions>
+                        </FormControl>
+                    );
+                }}
             </Formik>
         </Dialog>
     );

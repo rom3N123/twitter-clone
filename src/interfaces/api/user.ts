@@ -8,9 +8,9 @@ export interface IUser extends FormikValues {
     bio: string;
     location: string;
     birthTimestamp: number;
-    tweets: number[];
-    followers: number[];
-    following: number[];
+    tweets: string[];
+    followers: string[];
+    following: string[];
 }
 
 export interface IUserRegisterValues

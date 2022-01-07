@@ -13,6 +13,9 @@ import { IUser } from "@interfaces/api/user";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import ProfileActivity from "../ProfileActivity";
+import { useAppSelector } from "@redux/hooks";
+import { selectUserState } from "@redux/ducks/user";
+import UserFollowButton from "@components/Buttons/UserFollowButton/UserFollowButton";
 
 interface IProfileHeaderProps {
     user?: IUser;
@@ -22,6 +25,8 @@ const ProfileHeader: React.FC<IProfileHeaderProps> = ({
     user,
 }): React.ReactElement => {
     const { isOpen, toggle } = useToggle();
+
+    const authUser = useAppSelector(selectUserState);
 
     const tabs: ITab[] = [
         {
@@ -73,9 +78,15 @@ const ProfileHeader: React.FC<IProfileHeaderProps> = ({
                             </div>
                         )}
 
-                        <Button variant="outlined" onClick={toggle}>
-                            Edit profile
-                        </Button>
+                        {!user ? (
+                            <Skeleton width={80} height={50} />
+                        ) : authUser._id === _id ? (
+                            <Button variant="outlined" onClick={toggle}>
+                                Edit profile
+                            </Button>
+                        ) : (
+                            user && <UserFollowButton user={user} />
+                        )}
                     </S.SProfileNameContainer>
 
                     {!user ? (
