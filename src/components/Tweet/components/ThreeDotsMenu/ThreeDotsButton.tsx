@@ -10,20 +10,21 @@ import { useMutation, useQueryClient } from "react-query";
 import TweetsService from "@services/TweetsService";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
-import useCurrentProfileContext from "@pages/Profile/contexts/CurrentProfileContext/useCurrentProfileContext";
+import { IUser } from "@interfaces/api/user";
 
 interface IThreeDotsButtonProps {
+    user: IUser;
     tweetId: string;
 }
 
 const ThreeDotsButton: React.FC<IThreeDotsButtonProps> = ({
+    user,
     tweetId,
 }): React.ReactElement => {
     const buttonRef = React.useRef<HTMLDivElement>(null);
     const { anchor, openPopover, closePopover } =
         usePopover<HTMLButtonElement>();
     const authUser = useAppSelector(selectUserState);
-    const { user } = useCurrentProfileContext();
 
     const queryClient = useQueryClient();
 

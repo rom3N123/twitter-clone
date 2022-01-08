@@ -78,7 +78,7 @@ const Tweet: React.FC<ITweetProps> = ({
                     </S.STweetBodyInner>
                 </S.STweetBody>
 
-                <ThreeDotsButton tweetId={_id} />
+                <ThreeDotsButton user={user} tweetId={_id} />
             </S.SInner>
         </S.SContainer>
     );
