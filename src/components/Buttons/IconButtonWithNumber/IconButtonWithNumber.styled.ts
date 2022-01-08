@@ -1,7 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Flex from "@styled/components/Flex.styled";
 import Text from "@components/Text";
 import IconButton from "@mui/material/IconButton";
+import { IconButtonColorType } from "./IconButtonWithNumber";
+import { ThemeColorName } from "@interfaces/styled";
 
 export const SContainer = styled(Flex).attrs(() => ({
     align: "center",
@@ -16,10 +18,23 @@ export const SText = styled(Text).attrs(() => ({
     color: inherit;
 `;
 
-export const SIconButton = styled(IconButton)`
-    & + * {
-        color: ${({ theme }) => theme.colors.warning};
-    }
+interface ISIconButtonProps {
+    color: IconButtonColorType;
+}
+
+export const SIconButton = styled(IconButton)<ISIconButtonProps>`
+    ${({ theme, color }) => {
+        const colorValue =
+            color in theme.colors
+                ? theme.colors[color as ThemeColorName]
+                : theme.accentColor;
+
+        return css`
+            & + * {
+                color: ${colorValue};
+            }
+        `;
+    }}
 `;
 
 export const SIconContainer = styled(Flex).attrs(() => ({

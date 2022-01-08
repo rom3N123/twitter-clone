@@ -1,7 +1,6 @@
 import React from "react";
 import MoreIcon from "@mui/icons-material/MoreHoriz";
 import Popover from "@mui/material/Popover";
-import { TweetButton } from "@components/Tweet/Tweet.styled";
 import usePopover from "@hooks/usePopover";
 import PopoverList from "@components/PopoverList";
 import { IPopoverListItem } from "@components/PopoverList/PopoverList";
@@ -11,6 +10,7 @@ import TweetsService from "@services/TweetsService";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
 import { IUser } from "@interfaces/api/user";
+import IconButton from "@mui/material/IconButton";
 
 interface IThreeDotsButtonProps {
     user: IUser;
@@ -51,9 +51,9 @@ const ThreeDotsButton: React.FC<IThreeDotsButtonProps> = ({
 
     return (
         <div ref={buttonRef}>
-            <TweetButton onClick={openPopover}>
+            <IconButton onClick={openPopover}>
                 <MoreIcon />
-            </TweetButton>
+            </IconButton>
 
             <Popover
                 anchorEl={anchor}

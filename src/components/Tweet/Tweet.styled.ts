@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
-import { alpha } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import Flex from "@styled/components/Flex.styled";
 
@@ -51,42 +50,14 @@ export const SButtons = styled.footer`
     margin-top: 5px;
 `;
 
-export const SButtonWrapper = styled(Flex).attrs(() => ({
-    gap: 3,
-    align: "center",
-}))`
-    transition: all 0.1s ease;
-`;
-
-export const ButtonLabel = styled(Typography).attrs(() => ({
-    component: "span",
-}))`
-    margin-left: 5px;
-    font-weight: 500;
-    font-size: 14px;
-    color: ${({ theme }) => theme.mode.typography.primary};
-`;
-
-export const AuthorAvatar = styled(Avatar)`
+export const SAuthorAvatar = styled(Avatar)`
     width: 48px;
     height: 48px;
 `;
 
-export const UserLabel = styled(Typography).attrs(() => ({
+export const SUserLabel = styled(Typography).attrs(() => ({
     variant: "body2",
     component: "span",
 }))`
     color: ${({ theme }) => theme.mode.typography.secondary};
-`;
-
-export const TweetButton = styled(IconButton).attrs(() => ({
-    size: "small",
-}))`
-    svg {
-        color: inherit !important;
-    }
-`;
-
-export const STweetText = styled(Typography)`
-    font-size: 15px;
 `;

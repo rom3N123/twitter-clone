@@ -1,24 +1,21 @@
 import React from "react";
 import * as S from "./IconButtonWithNumber.styled";
 
+export type IconButtonColorType =
+    | "secondary"
+    | "primary"
+    | "success"
+    | "warning";
+
 export interface IIconButtonWithNumberProps {
-    color?:
-        | "default"
-        | "inherit"
-        | "secondary"
-        | "primary"
-        | "error"
-        | "info"
-        | "success"
-        | "warning"
-        | undefined;
+    color?: IconButtonColorType;
     number?: number;
     icon: React.ReactNode;
     onClick: () => void;
 }
 
 const IconButtonWithNumber: React.FC<IIconButtonWithNumberProps> = ({
-    color = "primary",
+    color = "secondary",
     icon,
     number,
     onClick,

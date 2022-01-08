@@ -7,6 +7,10 @@ import * as S from "./Tweet.styled";
 import { ITweet } from "@interfaces/api/tweet";
 import ProfileUserAvatar from "@components/ProfileUserAvatar";
 import ThreeDotsButton from "./components/ThreeDotsMenu";
+import IconButtonWithNumber, {
+    IIconButtonWithNumberProps,
+} from "@components/Buttons/IconButtonWithNumber/IconButtonWithNumber";
+import Text from "@components/Text";
 
 interface ITweetProps extends ITweet {}
 
@@ -19,61 +23,49 @@ const Tweet: React.FC<ITweetProps> = ({
     retweets,
     user,
 }): React.ReactElement => {
+    const buttons: IIconButtonWithNumberProps[] = [
+        {
+            icon: <ChatIcon />,
+            onClick: (): void => {},
+            number: 1,
+        },
+        {
+            icon: <ShareIcon />,
+            color: "success",
+            number: retweets.length,
+            onClick: (): void => {},
+        },
+        {
+            icon: <FavoriteIcon />,
+            color: "warning",
+            number: likes.length,
+            onClick: (): void => {},
+        },
+        {
+            icon: <FileUploadIcon />,
+            onClick: (): void => {},
+        },
+    ];
+
     return (
         <S.SContainer>
             <S.SInner>
                 <ProfileUserAvatar user={user} isWithPopover size={48} />
 
                 <S.STweetBody>
-                    <S.STweetText sx={{ fontWeight: 600 }}>
+                    <Text fontWeight={600}>
                         {user.name}{" "}
-                        <S.UserLabel>@{publishTimestamp}</S.UserLabel>
-                    </S.STweetText>
+                        <S.SUserLabel>@{publishTimestamp}</S.SUserLabel>
+                    </Text>
 
                     <S.STweetBodyInner>
                         {/* Текст твита */}
-                        <S.STweetText>{text}</S.STweetText>
+                        <Text>{text}</Text>
 
                         <S.SButtons>
-                            <S.SButtonWrapper>
-                                <S.TweetButton color="secondary">
-                                    <ChatIcon />
-                                </S.TweetButton>
-
-                                {!!comments.length && (
-                                    <S.ButtonLabel>
-                                        {comments.length}
-                                    </S.ButtonLabel>
-                                )}
-                            </S.SButtonWrapper>
-
-                            <S.TweetButton color="success">
-                                <ShareIcon />
-                            </S.TweetButton>
-
-                            <S.SButtonWrapper>
-                                <S.TweetButton color="warning">
-                                    <FavoriteIcon />
-                                </S.TweetButton>
-
-                                {Boolean(retweets.length) && (
-                                    <S.ButtonLabel>
-                                        {retweets.length}
-                                    </S.ButtonLabel>
-                                )}
-                            </S.SButtonWrapper>
-
-                            <S.SButtonWrapper>
-                                <S.TweetButton color="secondary">
-                                    <FileUploadIcon />
-                                </S.TweetButton>
-
-                                {Boolean(likes.length) && (
-                                    <S.ButtonLabel>
-                                        {likes.length}
-                                    </S.ButtonLabel>
-                                )}
-                            </S.SButtonWrapper>
+                            {buttons.map((button, index) => (
+                                <IconButtonWithNumber key={index} {...button} />
+                            ))}
                         </S.SButtons>
                     </S.STweetBodyInner>
                 </S.STweetBody>

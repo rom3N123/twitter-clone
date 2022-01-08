@@ -3,6 +3,8 @@ export interface IColorPalette {
     success: string;
 }
 
+export type ThemeColorName = keyof IColorPalette;
+
 export interface ITheme {
     accentColor: string;
     mode: IMode;
