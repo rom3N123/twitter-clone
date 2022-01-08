@@ -15,7 +15,7 @@ const Field = styled(TextField).attrs(() => ({
         }
     }
     & svg {
-        fill: ${({ theme }) => theme.mode.palette.gray};
+        fill: ${({ theme }) => theme.mode.typography.secondary};
         width: 24px;
     }
     fieldset {
@@ -31,7 +31,7 @@ const Field = styled(TextField).attrs(() => ({
         &,
         &::placeholder {
             font-size: 14px;
-            color: ${({ theme }) => theme.mode.typography};
+            color: ${({ theme }) => theme.mode.typography.primary};
         }
     }
 `;

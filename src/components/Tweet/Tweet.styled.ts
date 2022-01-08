@@ -76,7 +76,7 @@ export const UserLabel = styled(Typography).attrs(() => ({
     variant: "body2",
     component: "span",
 }))`
-    color: ${({ theme }) => theme.mode.palette.gray};
+    color: ${({ theme }) => theme.mode.typography.secondary};
 `;
 
 export const TweetButton = styled(IconButton).attrs(() => ({

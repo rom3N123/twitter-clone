@@ -7,7 +7,7 @@ export const SText = styled(Typography)<ITextProps>`
         font-weight: ${fontWeight || 400};
         color: ${
             color === "gray"
-                ? theme.mode.palette.gray
+                ? theme.mode.typography.secondary
                 : color || theme.mode.typography.primary
         };
         font-size: ${fontSize ? `${fontSize}px` : "initial"}

@@ -34,7 +34,7 @@ export const ProfileName = styled(Typography)`
 `;
 
 export const ProfileId = styled(Typography)`
-    color: ${({ theme }) => theme.mode.palette.gray};
+    color: ${({ theme }) => theme.mode.typography.secondary};
     font-size: inherit;
 `;
 
@@ -57,7 +57,7 @@ export const ProfileInfoItems = styled(Flex).attrs(() => ({
 export const ProfileInfoItem = styled(Flex).attrs(() => ({
     gap: 5,
 }))`
-    color: ${({ theme }) => theme.mode.palette.gray};
+    color: ${({ theme }) => theme.mode.typography.secondary};
     .MuiSvgIcon-root {
         width: 20px;
         height: 20px;

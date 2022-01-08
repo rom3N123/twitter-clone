@@ -22,17 +22,12 @@ const modes: IModes = {
         svg: {
             primary: accentColors.blue,
         },
-        typography: { primary: "#0f1419" },
+        typography: { primary: "#0f1419", secondary: "#536471" },
         shadows: {
             primary:
                 "rgb(136 153 166 / 20%) 0px 0px 15px, rgb(136 153 166 / 15%) 0px 0px 3px 1px",
         },
         divider: "#eff3f4",
-        palette: {
-            gray: "#536471",
-            danger: "#f4212e",
-            success: "#00ba7c",
-        },
     },
     dim: {
         background: {
@@ -43,7 +38,7 @@ const modes: IModes = {
         svg: {
             primary: "#fff",
         },
-        typography: { primary: "#fff" },
+        typography: { primary: "#fff", secondary: "#8899a6" },
         components: {
             button: {
                 actions: {
@@ -60,11 +55,6 @@ const modes: IModes = {
                 "rgb(136 153 166 / 20%) 0px 0px 15px, rgb(136 153 166 / 15%) 0px 0px 3px 1px",
         },
         divider: "#38444d",
-        palette: {
-            gray: "#8899a6",
-            danger: "#f4212e",
-            success: "#00ba7c",
-        },
     },
     dark: {
         background: {
@@ -86,16 +76,11 @@ const modes: IModes = {
         svg: {
             primary: "#fff",
         },
-        typography: { primary: "#d9d9d9" },
+        typography: { primary: "#d9d9d9", secondary: "#536471" },
         divider: "#2f3336",
         shadows: {
             primary:
                 "rgb(136 153 166 / 20%) 0px 0px 15px, rgb(136 153 166 / 15%) 0px 0px 3px 1px",
-        },
-        palette: {
-            gray: "#536471",
-            danger: "#f4212e",
-            success: "#00ba7c",
         },
     },
 };

@@ -26,7 +26,7 @@ export const STextArea = styled(TextareaAutosize)`
     }
 
     &::placeholder {
-        color: ${({ theme }) => theme.mode.palette.gray};
+        color: ${({ theme }) => theme.mode.typography.secondary};
     }
 `;
 

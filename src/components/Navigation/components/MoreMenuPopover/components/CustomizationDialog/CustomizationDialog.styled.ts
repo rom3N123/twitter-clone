@@ -23,7 +23,7 @@ export const SDialogContent = styled(DialogContent)`
 `;
 
 export const SContentLabel = styled(STypography)`
-    color: ${({ theme }) => theme.mode.palette.gray};
+    color: ${({ theme }) => theme.mode.typography.secondary};
     font-size: 15px;
     font-weight: 400;
 `;
@@ -39,7 +39,7 @@ export const SOptionsLabel = styled(Typography)`
     font-size: 13px;
     margin-bottom: 4px;
     font-weight: 700;
-    color: ${({ theme }) => theme.mode.palette.gray};
+    color: ${({ theme }) => theme.mode.typography.secondary};
 `;
 
 export const SOptions = styled(Flex).attrs(() => ({

@@ -14,6 +14,7 @@ import {
     changeThemeModeAction,
 } from "@redux/ducks/theme/actions";
 import { blackColors, whiteColors } from "@styles/blackAndWhiteColors";
+import palette from "@styles/palette";
 
 const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
     const { mode, color } = useAppSelector(({ theme }) => theme);
@@ -27,6 +28,7 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
     const currentStyledTheme: ITheme = {
         accentColor: colorValue,
         mode: modeValue,
+        colors: palette,
     };
 
     const muiTheme = createTheme({
@@ -59,7 +61,7 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
             MuiFormLabel: {
                 styleOverrides: {
                     root: {
-                        color: modeValue.palette.gray,
+                        color: modeValue.typography.secondary,
 
                         "&.Mui-focused": {
                             color: colorValue,
@@ -86,7 +88,7 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
                             border: `1px solid ${colorValue} !important`,
                         },
                         "&.Mui-error .MuiOutlinedInput-notchedOutline": {
-                            borderColor: `${modeValue.palette.danger} !important`,
+                            borderColor: `${palette.warning} !important`,
                         },
                         color: modeValue.typography.primary,
                         legend: {
@@ -99,7 +101,7 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
             MuiOutlinedInput: {
                 styleOverrides: {
                     notchedOutline: {
-                        border: `1px solid ${modeValue.palette.gray} !important`,
+                        border: `1px solid ${modeValue.typography.secondary} !important`,
                     },
                 },
             },
@@ -324,25 +326,25 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
                 main: colorValue,
             },
             warning: {
-                main: modeValue.palette.danger,
+                main: palette.warning,
             },
             background: {
                 default: modeValue.background.primary,
                 paper: modeValue.background.primary,
             },
             success: {
-                main: modeValue.palette.success,
+                main: palette.success,
             },
         },
     });
 
-    const changeThemeColor = React.useCallback((color: ColorName): void => {
+    const changeThemeColor = (color: ColorName): void => {
         dispatch(changeThemeColorAction(color));
-    }, []);
+    };
 
-    const changeThemeMode = React.useCallback((mode: ModeName): void => {
+    const changeThemeMode = (mode: ModeName): void => {
         dispatch(changeThemeModeAction(mode));
-    }, []);
+    };
 
     const themeContextValue: IThemeContextValue = {
         mode,

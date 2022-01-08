@@ -56,7 +56,7 @@ export const ProfileName = styled(Text)`
 
 export const ProfileId = styled(Text)`
     font-weight: 400;
-    color: ${({ theme }) => theme.mode.palette.gray};
+    color: ${({ theme }) => theme.mode.typography.secondary};
     overflow: hidden;
     text-overflow: ellipsis;
 `;

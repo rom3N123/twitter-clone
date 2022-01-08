@@ -18,7 +18,7 @@ export const SText = styled(Text).attrs(() => ({
 
 export const SIconButton = styled(IconButton)`
     & + * {
-        color: ${({ theme }) => theme.palette.warning};
+        color: ${({ theme }) => theme.colors.warning};
     }
 `;
 

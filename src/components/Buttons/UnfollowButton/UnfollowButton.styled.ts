@@ -8,7 +8,7 @@ export const SButton = styled(Button)`
 
     &:hover {
         ${({ theme }) => {
-            const dangerColor = theme.mode.palette.danger;
+            const dangerColor = theme.colors.warning;
 
             return css`
                 border-color: ${dangerColor};

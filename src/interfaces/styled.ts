@@ -1,6 +1,12 @@
+export interface IColorPalette {
+    warning: string;
+    success: string;
+}
+
 export interface ITheme {
     accentColor: string;
     mode: IMode;
+    colors: IColorPalette;
 }
 
 export interface IColors {
@@ -14,15 +20,10 @@ export interface IColors {
 
 export type ColorName = keyof IColors;
 
-interface IColorPalette {
-    gray: string;
-    danger: string;
-    success: string;
-}
-
 export interface IMode {
     typography: {
         primary: string;
+        secondary: string;
     };
     background: {
         primary: string;
@@ -45,7 +46,6 @@ export interface IMode {
     };
     svg: { primary: string };
     divider: string;
-    palette: IColorPalette;
 }
 
 export interface IModes {
