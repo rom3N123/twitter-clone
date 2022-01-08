@@ -17,7 +17,6 @@ const Tweet: React.FC<ITweetProps> = ({
     likes,
     comments,
     retweets,
-    userId,
     user,
 }): React.ReactElement => {
     return (
@@ -27,8 +26,8 @@ const Tweet: React.FC<ITweetProps> = ({
 
                 <S.STweetBody>
                     <S.STweetText sx={{ fontWeight: 600 }}>
-                        {user.name}
-                        {/* <S.UserLabel>{publishTimestamp}</S.UserLabel> */}
+                        {user.name}{" "}
+                        <S.UserLabel>@{publishTimestamp}</S.UserLabel>
                     </S.STweetText>
 
                     <S.STweetBodyInner>
@@ -79,7 +78,7 @@ const Tweet: React.FC<ITweetProps> = ({
                     </S.STweetBodyInner>
                 </S.STweetBody>
 
-                <ThreeDotsButton userId={userId} tweetId={_id} />
+                <ThreeDotsButton tweetId={_id} />
             </S.SInner>
         </S.SContainer>
     );

@@ -4,6 +4,7 @@ import Searchbar from "@components/PageComponents/Searchbar";
 import * as S from "./Layout.styled";
 import { Routes, Route } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
+import Loader from "./components/Loader";
 
 const Home = React.lazy(() => import("../Home"));
 const Profile = React.lazy(() => import("../Profile"));
@@ -11,13 +12,7 @@ const Profile = React.lazy(() => import("../Profile"));
 const Layout: React.FC = (): React.ReactElement => {
     return (
         <section>
-            <Suspense
-                fallback={
-                    <S.SLoadingContainer>
-                        <CircularProgress size={30} />
-                    </S.SLoadingContainer>
-                }
-            >
+            <Suspense fallback={<Loader />}>
                 <S.SContentContainer>
                     <S.SContainer>
                         <S.SNavigationContainer>
@@ -25,13 +20,7 @@ const Layout: React.FC = (): React.ReactElement => {
                         </S.SNavigationContainer>
 
                         <S.SMainContent>
-                            <Suspense
-                                fallback={
-                                    <S.SLoadingContainer>
-                                        <CircularProgress size={30} />
-                                    </S.SLoadingContainer>
-                                }
-                            >
+                            <Suspense fallback={<Loader />}>
                                 <Routes>
                                     <Route index element={<Home />} />
                                     <Route

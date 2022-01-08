@@ -16,10 +16,13 @@ export const SSideContent = styled.div`
     }
 `;
 
-export const SNavigationContainer = styled(SSideContent)``;
+export const SNavigationContainer = styled(SSideContent)`
+    border-right: 1px solid ${({ theme }) => theme.mode.divider};
+`;
 
 export const SRightSideContainer = styled(SSideContent)`
     width: 24%;
+    border-left: 1px solid ${({ theme }) => theme.mode.divider};
 
     @media (max-width: 1100px) {
         display: none;
@@ -27,17 +30,7 @@ export const SRightSideContainer = styled(SSideContent)`
 `;
 
 export const SMainContent = styled.div`
-    border: 1px solid ${({ theme }) => theme.mode.divider};
-    border-top: 0;
-    border-bottom: 0;
     flex: 1;
-`;
-
-export const SLoadingContainer = styled(Flex).attrs(() => ({
-    align: "center",
-    justify: "center",
-}))`
-    margin: 10px;
 `;
 
 export const SContainer = styled(Flex).attrs(() => ({

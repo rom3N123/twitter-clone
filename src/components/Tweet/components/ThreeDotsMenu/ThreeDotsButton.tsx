@@ -10,37 +10,37 @@ import { useMutation, useQueryClient } from "react-query";
 import TweetsService from "@services/TweetsService";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
+import useCurrentProfileContext from "@pages/Profile/contexts/CurrentProfileContext/useCurrentProfileContext";
 
 interface IThreeDotsButtonProps {
-    userId: string;
     tweetId: string;
 }
 
 const ThreeDotsButton: React.FC<IThreeDotsButtonProps> = ({
-    userId,
     tweetId,
 }): React.ReactElement => {
     const buttonRef = React.useRef<HTMLDivElement>(null);
     const { anchor, openPopover, closePopover } =
         usePopover<HTMLButtonElement>();
     const authUser = useAppSelector(selectUserState);
+    const { user } = useCurrentProfileContext();
 
     const queryClient = useQueryClient();
 
     const deleteMutation = useMutation(
         () => {
-            return TweetsService.delete(userId, tweetId);
+            return TweetsService.delete(authUser._id, tweetId);
         },
         {
             onSuccess: () => {
-                queryClient.invalidateQueries(["tweets", userId]);
+                queryClient.invalidateQueries(["tweets", authUser._id]);
             },
         }
     );
 
     const items: IPopoverListItem[] = [];
 
-    if (authUser._id === userId) {
+    if (authUser._id === user!._id) {
         items.unshift({
             label: "Delete",
             icon: <DeleteOutlineOutlinedIcon />,

@@ -7,7 +7,6 @@ export interface ITweet {
     likes: string[];
     comments: string[];
     retweets: string[];
-    userId: string;
     user: IUser;
 }
 

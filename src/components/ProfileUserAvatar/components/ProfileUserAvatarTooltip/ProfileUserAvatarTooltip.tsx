@@ -7,6 +7,8 @@ import * as S from "./ProfileUserAvatarTooltip.styled";
 import ProfileUserAvatar from "@components/ProfileUserAvatar";
 import ProfileActivity from "@pages/Profile/components/ProfileActivity";
 import UserFollowButton from "@components/Buttons/UserFollowButton";
+import { useAppSelector } from "@redux/hooks";
+import { selectUserState } from "@redux/ducks/user";
 
 interface IProfileUserAvatarTooltipProps extends IHoverPopoverProps {
     user: IUser;
@@ -19,6 +21,8 @@ const ProfileUserAvatarTooltip: React.FC<IProfileUserAvatarTooltipProps> = ({
     open,
     user,
 }): React.ReactElement => {
+    const authUser = useAppSelector(selectUserState);
+
     return (
         <HoverPopper
             open={open}
@@ -31,7 +35,9 @@ const ProfileUserAvatarTooltip: React.FC<IProfileUserAvatarTooltipProps> = ({
                     <S.SHeader>
                         <ProfileUserAvatar user={user} size={48} />
 
-                        <UserFollowButton user={user} />
+                        {authUser._id !== user._id && (
+                            <UserFollowButton user={user} />
+                        )}
                     </S.SHeader>
 
                     <S.SUserInfo>
