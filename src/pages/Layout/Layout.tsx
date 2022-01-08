@@ -1,6 +1,4 @@
 import React, { Suspense } from "react";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
 import Navigation from "@components/Navigation";
 import Searchbar from "@components/PageComponents/Searchbar";
 import * as S from "./Layout.styled";
@@ -16,21 +14,21 @@ const Layout: React.FC = (): React.ReactElement => {
             <Suspense
                 fallback={
                     <S.SLoadingContainer>
-                        <CircularProgress />
+                        <CircularProgress size={30} />
                     </S.SLoadingContainer>
                 }
             >
-                <Container maxWidth="lg">
-                    <Grid container>
-                        <S.SSideContent xs={3}>
+                <S.SContentContainer>
+                    <S.SContainer>
+                        <S.SNavigationContainer>
                             <Navigation />
-                        </S.SSideContent>
+                        </S.SNavigationContainer>
 
-                        <S.SMainContent xs={6}>
+                        <S.SMainContent>
                             <Suspense
                                 fallback={
                                     <S.SLoadingContainer>
-                                        <CircularProgress />
+                                        <CircularProgress size={30} />
                                     </S.SLoadingContainer>
                                 }
                             >
@@ -44,13 +42,13 @@ const Layout: React.FC = (): React.ReactElement => {
                             </Suspense>
                         </S.SMainContent>
 
-                        <S.SSideContent sx={{ paddingLeft: "20px" }} xs={3}>
+                        <S.SRightSideContainer>
                             <Routes>
                                 <Route index element={<Searchbar />} />
                             </Routes>
-                        </S.SSideContent>
-                    </Grid>
-                </Container>
+                        </S.SRightSideContainer>
+                    </S.SContainer>
+                </S.SContentContainer>
             </Suspense>
         </section>
     );

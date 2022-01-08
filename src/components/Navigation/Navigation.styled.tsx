@@ -3,28 +3,35 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import List from "@mui/material/List";
-import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import IconButton from "@mui/material/IconButton";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { NavLink } from "react-router-dom";
+import Flex from "@styled/components/Flex.styled";
 
-const Container = styled(Grid).attrs(() => ({
-    container: true,
+export const SContainer = styled(Flex).attrs(() => ({
     direction: "column",
-    justifyContent: "space-between",
+    justify: "space-between",
+    align: "center",
 }))`
+    width: 100%;
     max-width: 250px;
     height: 100vh;
 `;
 
-const NavigationList = styled(List)`
-    max-width: 225px;
-    width: 100%;
+export const SNavigationList = styled(List)`
+    @media (min-width: 1100px) {
+        width: 100%;
+        max-width: 225px;
+    }
+    @media (max-width: 1100px) {
+        display: flex;
+        flex-direction: column;
+    }
 `;
 
-const NavigationItem = styled(({ children, ...props }) => (
+export const SNavigationItem = styled(({ children, ...props }) => (
     <ListItem dense {...props}>
         {children}
     </ListItem>
@@ -34,21 +41,31 @@ const NavigationItem = styled(({ children, ...props }) => (
         width: 28px;
         height: 28px;
     }
+    @media (max-width: 1100px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 `;
 
-const NavigationItemButton = styled(ListItemButton)`
+export const SNavigationItemButton = styled(ListItemButton)`
     margin: 5px 0;
     border-radius: 9999px;
     flex-grow: 0;
+    @media (max-width: 1100px) {
+        border-radius: 50%;
+        margin: 0;
+        padding: 0;
+    }
 `;
 
-const NavigationItemText = styled(ListItemText)`
+export const SNavigationItemText = styled(ListItemText)`
     span {
         font-size: 20px;
     }
 `;
 
-const Link = styled(NavLink)`
+export const SLink = styled(NavLink)`
     &.active {
         span {
             font-weight: 600;
@@ -56,7 +73,7 @@ const Link = styled(NavLink)`
     }
 `;
 
-const TweetButton = styled(Button).attrs(() => ({
+export const STweetButton = styled(Button).attrs(() => ({
     variant: "contained",
     fullWidth: true,
 }))`
@@ -64,49 +81,54 @@ const TweetButton = styled(Button).attrs(() => ({
     margin-top: 16px;
     box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
     padding: 12px;
+
+    @media (max-width: 1100px) {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        min-width: 0;
+    }
 `;
 
-const NavigationItemIcon = styled(ListItemIcon)`
+export const SNavigationItemIcon = styled(ListItemIcon)`
     min-width: 45px;
+    @media (max-width: 1100px) {
+        min-width: 0;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 `;
 
-const NavigationIconButton = styled(IconButton)`
+export const SNavigationIconButton = styled(IconButton)`
     svg {
         color: ${({ theme }) => theme.mode.svg.primary} !important;
     }
-    &:hover {
-        background-color: transparent !important;
+`;
+
+export const STwitterIcon = styled(TwitterIcon)`
+    font-size: 40px;
+    @media (max-width: 1100px) {
+        font-size: 28px;
     }
 `;
 
-const STwitterIcon = styled(TwitterIcon)`
-    font-size: 40px;
+export const STwitterIconLink = styled(SLink)`
+    @media (min-width: 1100px) {
+        margin-left: 12px;
+    }
 `;
 
-const STwitterIconLink = styled(Link)`
-    margin-left: 12px;
-    margin-bottom: 20px;
-`;
-
-const STwitterIconButton = styled(NavigationIconButton).attrs(() => ({
+export const STwitterIconButton = styled(SNavigationIconButton).attrs(() => ({
     color: "primary",
 }))`
     padding-left: 0;
+    @media (max-width: 1100px) {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        padding: 0;
+    }
 `;
-
-const styles = {
-    Container,
-    NavigationList,
-    NavigationItem,
-    NavigationItemButton,
-    NavigationItemText,
-    Link,
-    TweetButton,
-    NavigationItemIcon,
-    NavigationIconButton,
-    STwitterIcon,
-    STwitterIconLink,
-    STwitterIconButton,
-};
-
-export default styles;

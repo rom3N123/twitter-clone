@@ -1,7 +1,7 @@
 import React from "react";
 import { IUserEditableFields } from "@interfaces/api/user";
 import { IDialogCommonProps } from "@interfaces/components";
-import ProfileUserAvatar from "../../../../components/ProfileUserAvatar";
+import ProfileUserAvatar from "@components/ProfileUserAvatar";
 import FormControl from "@mui/material/FormControl";
 import Input from "@components/FormControl/Input";
 import * as S from "./EditProfileDialog.styled";
@@ -79,7 +79,7 @@ const EditProfileDialog: React.FC<IEditProfileDialogProps> = ({
         values: IUserEditableFields
     ): Promise<void> => {
         await dispatch(updateUserAction(values));
-        queryClient.invalidateQueries("user");
+        queryClient.invalidateQueries(["user", user._id]);
     };
 
     const onLoadFileHandler =

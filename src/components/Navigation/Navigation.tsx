@@ -7,12 +7,14 @@ import { ReactComponent as BookmarkIcon } from "@icons/navigation/bookmark.svg";
 import { ReactComponent as ListsIcon } from "@icons/navigation/lists.svg";
 import { ReactComponent as ProfileIcon } from "@icons/navigation/profile.svg";
 import { ReactComponent as MoreIcon } from "@icons/navigation/mode.svg";
+import { ReactComponent as AddSvgIcon } from "@icons/navigation/add.svg";
 import ProfileButton from "./components/ProfileButton";
 import MoreMenuPopover from "./components/MoreMenuPopover";
 import usePopover from "@hooks/usePopover";
-import S from "./Navigation.styled";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
+import { useMediaQuery } from "@mui/material";
+import * as S from "./Navigation.styled";
 
 interface IListItem {
     label: string;
@@ -45,28 +47,36 @@ const Navigation = () => {
         },
     ];
 
+    const tabletMediaQuery = useMediaQuery("(max-width: 1100px)");
+
     return (
-        <S.Container>
-            <S.NavigationList>
-                <S.STwitterIconLink to="/">
-                    <S.STwitterIconButton>
-                        <S.STwitterIcon />
-                    </S.STwitterIconButton>
-                </S.STwitterIconLink>
+        <S.SContainer>
+            <S.SNavigationList>
+                <S.SNavigationItem>
+                    <S.SLink to="/">
+                        <S.SNavigationItemButton>
+                            <S.SNavigationItemIcon>
+                                <S.STwitterIcon />
+                            </S.SNavigationItemIcon>
+                        </S.SNavigationItemButton>
+                    </S.SLink>
+                </S.SNavigationItem>
 
                 {navigationItems.map(({ icon, to, label }) => (
-                    <S.NavigationItem key={to}>
-                        <S.Link to={to}>
-                            <S.NavigationItemButton>
-                                <S.NavigationItemIcon>
+                    <S.SNavigationItem key={to}>
+                        <S.SLink to={to}>
+                            <S.SNavigationItemButton>
+                                <S.SNavigationItemIcon>
                                     {icon}
-                                </S.NavigationItemIcon>
-                                <S.NavigationItemText>
-                                    {label}
-                                </S.NavigationItemText>
-                            </S.NavigationItemButton>
-                        </S.Link>
-                    </S.NavigationItem>
+                                </S.SNavigationItemIcon>
+                                {!tabletMediaQuery && (
+                                    <S.SNavigationItemText>
+                                        {label}
+                                    </S.SNavigationItemText>
+                                )}
+                            </S.SNavigationItemButton>
+                        </S.SLink>
+                    </S.SNavigationItem>
                 ))}
 
                 <MoreMenuPopover
@@ -75,20 +85,28 @@ const Navigation = () => {
                     open={Boolean(anchor)}
                 />
 
-                <S.NavigationItem onClick={openPopover}>
-                    <S.NavigationItemButton>
-                        <S.NavigationItemIcon>
+                <S.SNavigationItem onClick={openPopover}>
+                    <S.SNavigationItemButton>
+                        <S.SNavigationItemIcon>
                             <MoreIcon />
-                        </S.NavigationItemIcon>
-                        <S.NavigationItemText>More</S.NavigationItemText>
-                    </S.NavigationItemButton>
-                </S.NavigationItem>
+                        </S.SNavigationItemIcon>
+                        {!tabletMediaQuery && (
+                            <S.SNavigationItemText>More</S.SNavigationItemText>
+                        )}
+                    </S.SNavigationItemButton>
+                </S.SNavigationItem>
 
-                <S.TweetButton>Tweet</S.TweetButton>
-            </S.NavigationList>
+                <S.STweetButton>
+                    {tabletMediaQuery ? (
+                        <AddSvgIcon style={{ width: "24px" }} />
+                    ) : (
+                        "Tweet"
+                    )}
+                </S.STweetButton>
+            </S.SNavigationList>
 
             <ProfileButton />
-        </S.Container>
+        </S.SContainer>
     );
 };
 
