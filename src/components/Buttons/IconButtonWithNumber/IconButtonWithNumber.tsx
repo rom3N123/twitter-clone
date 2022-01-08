@@ -8,10 +8,12 @@ export type IconButtonColorType =
     | "warning";
 
 export interface IIconButtonWithNumberProps {
-    color?: IconButtonColorType;
-    number?: number;
     icon: React.ReactNode;
     onClick: () => void;
+    filledIcon?: React.ReactNode;
+    isFilledIcon?: boolean;
+    color?: IconButtonColorType;
+    number?: number;
 }
 
 const IconButtonWithNumber: React.FC<IIconButtonWithNumberProps> = ({
@@ -19,14 +21,20 @@ const IconButtonWithNumber: React.FC<IIconButtonWithNumberProps> = ({
     icon,
     number,
     onClick,
+    isFilledIcon,
+    filledIcon,
 }): React.ReactElement => {
     return (
         <S.SContainer>
             <S.SIconButton onClick={onClick} color={color}>
-                <S.SIconContainer>{icon}</S.SIconContainer>
+                <S.SIconContainer isFilledIcon={isFilledIcon}>
+                    {isFilledIcon ? filledIcon : icon}
+                </S.SIconContainer>
             </S.SIconButton>
 
-            {typeof number !== "undefined" && <S.SText>{number}</S.SText>}
+            {typeof number !== "undefined" && number > 0 && (
+                <S.SText>{number}</S.SText>
+            )}
         </S.SContainer>
     );
 };
