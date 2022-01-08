@@ -11,6 +11,11 @@ import IconButtonWithNumber, {
     IIconButtonWithNumberProps,
 } from "@components/Buttons/IconButtonWithNumber/IconButtonWithNumber";
 import Text from "@components/Text";
+import FavoriteFilledIcon from "@mui/icons-material/Favorite";
+import { useAppSelector } from "@redux/hooks";
+import { selectUserState } from "@redux/ducks/user";
+import TweetsService from "@services/TweetsService";
+import { useQueryClient } from "react-query";
 
 interface ITweetProps extends ITweet {}
 
@@ -23,6 +28,10 @@ const Tweet: React.FC<ITweetProps> = ({
     retweets,
     user,
 }): React.ReactElement => {
+    const authUser = useAppSelector(selectUserState);
+
+    const queryClient = useQueryClient();
+
     const buttons: IIconButtonWithNumberProps[] = [
         {
             icon: <ChatIcon />,
@@ -39,7 +48,12 @@ const Tweet: React.FC<ITweetProps> = ({
             icon: <FavoriteIcon />,
             color: "warning",
             number: likes.length,
-            onClick: (): void => {},
+            onClick: async (): Promise<void> => {
+                await TweetsService.like(authUser._id, _id);
+                queryClient.invalidateQueries(["tweets", user._id]);
+            },
+            filledIcon: <FavoriteFilledIcon />,
+            isFilledIcon: likes.includes(authUser._id),
         },
         {
             icon: <FileUploadIcon />,

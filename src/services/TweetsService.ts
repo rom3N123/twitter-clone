@@ -45,6 +45,14 @@ class TweetsService extends ModelService<ITweet> {
 
         return data;
     }
+
+    public async like(userId: string, tweetId: string): Promise<ITweet> {
+        const { data } = await $api.post<ITweet>(
+            `/users/${userId}/tweets/${tweetId}/likes`
+        );
+
+        return data;
+    }
 }
 
 export default new TweetsService();

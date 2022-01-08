@@ -40,7 +40,7 @@ export const SIconButton = styled(IconButton)<ISIconButtonProps>`
 export const SIconContainer = styled(Flex).attrs(() => ({
     justify: "center",
     align: "center",
-}))`
+}))<{ isFilledIcon?: boolean }>`
     svg {
         color: inherit !important;
     }
