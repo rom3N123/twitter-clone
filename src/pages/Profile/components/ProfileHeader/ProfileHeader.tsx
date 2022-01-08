@@ -16,6 +16,7 @@ import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
 import UserFollowButton from "@components/Buttons/UserFollowButton/UserFollowButton";
 import useCurrentProfileContext from "@pages/Profile/contexts/CurrentProfileContext/useCurrentProfileContext";
+import { format } from "date-fns";
 
 const ProfileHeader: React.FC = (): React.ReactElement => {
     const { isOpen, toggle } = useToggle();
@@ -41,8 +42,16 @@ const ProfileHeader: React.FC = (): React.ReactElement => {
         },
     ];
 
-    const { _id, name, followers, following, location, bio, background } =
-        user || {};
+    const {
+        _id,
+        name,
+        followers,
+        following,
+        location,
+        bio,
+        background,
+        registerTimestamp,
+    } = user || {};
 
     return (
         <S.Container>
@@ -126,7 +135,11 @@ const ProfileHeader: React.FC = (): React.ReactElement => {
 
                                 <S.ProfileInfoItem>
                                     <CalendarIcon />
-                                    Joined October 2021
+                                    {registerTimestamp &&
+                                        `Joined ${format(
+                                            new Date(registerTimestamp),
+                                            "PP"
+                                        )}`}
                                 </S.ProfileInfoItem>
                             </S.ProfileInfoItems>
                         </>

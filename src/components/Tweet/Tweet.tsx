@@ -24,7 +24,7 @@ const Tweet: React.FC<ITweetProps> = ({
     text,
     publishTimestamp,
     likes,
-    comments,
+    replies,
     retweets,
     user,
 }): React.ReactElement => {
@@ -36,7 +36,7 @@ const Tweet: React.FC<ITweetProps> = ({
         {
             icon: <ChatIcon />,
             onClick: (): void => {},
-            number: comments.length,
+            number: replies.length,
         },
         {
             icon: <ShareIcon />,
@@ -51,6 +51,7 @@ const Tweet: React.FC<ITweetProps> = ({
             onClick: async (): Promise<void> => {
                 await TweetsService.like(authUser._id, _id);
                 queryClient.invalidateQueries(["tweets", user._id]);
+                queryClient.invalidateQueries("home");
             },
             filledIcon: <FavoriteFilledIcon />,
             isFilledIcon: likes.includes(authUser._id),

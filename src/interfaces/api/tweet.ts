@@ -5,8 +5,9 @@ export interface ITweet {
     text: string;
     publishTimestamp: number;
     likes: string[];
-    comments: string[];
+    replies: string[];
     retweets: string[];
+    replyTo?: string;
     user: IUser;
 }
 

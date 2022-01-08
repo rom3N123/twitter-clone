@@ -7,6 +7,7 @@ export interface IUser extends FormikValues {
     background: string;
     bio: string;
     location: string;
+    registerTimestamp: number;
     birthTimestamp: number;
     tweets: string[];
     followers: string[];
