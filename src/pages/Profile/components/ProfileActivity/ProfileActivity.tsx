@@ -18,7 +18,7 @@ const ProfileActivity: React.FC<IProfileActivityProps> = ({
             <Text component="span" fontWeight={700}>
                 {amount}
             </Text>{" "}
-            <Text component="span" color="gray">
+            <Text component="span" color="secondary">
                 {label}
             </Text>
         </S.SProfileActivityLink>

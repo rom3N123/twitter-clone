@@ -4,14 +4,14 @@ import { SText } from "./Text.styled";
 export interface ITextProps {
     fontSize?: number;
     fontWeight?: number;
-    color?: "gray" | string;
+    color?: "primary" | "secondary" | string;
     component?: React.ElementType<any>;
     lh?: number;
 }
 
 const Text: React.FC<ITextProps> = ({
     fontSize,
-    color,
+    color = "primary",
     fontWeight,
     component,
     lh,

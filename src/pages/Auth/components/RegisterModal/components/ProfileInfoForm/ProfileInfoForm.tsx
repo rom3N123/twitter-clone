@@ -108,7 +108,7 @@ const ProfileInfoForm: React.FC<IProfileInfoFormProps> = ({
 
                             <div>
                                 <Text fontWeight={700}>Дата рождения</Text>
-                                <Text color="gray">
+                                <Text color="secondary">
                                     Эта информация не будет общедоступной.
                                     Подтвердите свой возраст, даже если эта
                                     учетная запись предназначена для компании,

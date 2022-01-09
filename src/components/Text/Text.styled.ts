@@ -6,9 +6,11 @@ export const SText = styled(Typography)<ITextProps>`
     ${({ theme, fontWeight, color, fontSize, lh }) => `
         font-weight: ${fontWeight || 400};
         color: ${
-            color === "gray"
+            color === "primary"
+                ? theme.mode.typography.primary
+                : color === "secondary"
                 ? theme.mode.typography.secondary
-                : color || theme.mode.typography.primary
+                : color
         };
         font-size: ${fontSize || 15}px;
         line-height: ${lh || 20}px;

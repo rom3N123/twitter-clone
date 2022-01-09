@@ -14,7 +14,7 @@ import { ITweet } from "@interfaces/api/tweet";
 export interface ITweetButtonsProps {
     onReplyClick: (tweet: ITweet) => void;
     onShareClick: (tweet: ITweet) => void;
-    onFavoriteClick?: (tweet: ITweet) => void;
+    onFavoriteClick: (tweet: ITweet) => void;
     tweet: ITweet;
 }
 
@@ -45,12 +45,14 @@ const TweetButtons: React.FC<ITweetButtonsProps> = ({
             icon: <ChatIcon />,
             onClick: onButtonClickHandler(onReplyClick),
             number: tweet.replies.length,
+            tooltipTitle: "Reply",
         },
         {
             icon: <ShareIcon />,
             color: "success",
             number: tweet.retweets.length,
             onClick: onButtonClickHandler(onShareClick),
+            tooltipTitle: "Retweet",
         },
         {
             icon: <FavoriteIcon />,
@@ -59,10 +61,12 @@ const TweetButtons: React.FC<ITweetButtonsProps> = ({
             onClick: onButtonClickHandler(onFavoriteIconClickHandler),
             filledIcon: <FavoriteFilledIcon />,
             isFilledIcon: tweet.likes.includes(authUser._id),
+            tooltipTitle: "Like",
         },
         {
             icon: <FileUploadIcon />,
             onClick: (): void => {},
+            tooltipTitle: "Share",
         },
     ];
 

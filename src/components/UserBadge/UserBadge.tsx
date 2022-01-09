@@ -21,7 +21,7 @@ const UserBadge: React.FC<IUserBadgeProps> = ({
 
             <S.SInfoContainer>
                 <Text fontWeight={600}>{user.name}</Text>
-                <Text lh={withBio ? 15 : 20} color="gray">
+                <Text lh={withBio ? 15 : 20} color="secondary">
                     @{user._id}
                 </Text>
                 {withBio && <Text lh={24}>{user.bio}</Text>}

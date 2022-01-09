@@ -1,11 +1,9 @@
 import React from "react";
 import * as S from "./IconButtonWithNumber.styled";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 
-export type IconButtonColorType =
-    | "secondary"
-    | "primary"
-    | "success"
-    | "warning";
+export type IconButtonColorType = "success" | "warning";
 
 export interface IIconButtonWithNumberProps {
     icon: React.ReactNode;
@@ -14,26 +12,29 @@ export interface IIconButtonWithNumberProps {
     isFilledIcon?: boolean;
     color?: IconButtonColorType;
     number?: number;
+    tooltipTitle?: string;
 }
 
 const IconButtonWithNumber: React.FC<IIconButtonWithNumberProps> = ({
-    color = "secondary",
+    color,
     icon,
     number,
     onClick,
     isFilledIcon,
     filledIcon,
+    tooltipTitle = "",
 }): React.ReactElement => {
     return (
-        <S.SContainer>
-            <S.SIconButton onClick={onClick} color={color}>
-                <S.SIconContainer isFilledIcon={isFilledIcon}>
-                    {isFilledIcon ? filledIcon : icon}
-                </S.SIconContainer>
-            </S.SIconButton>
-
+        <S.SContainer className={isFilledIcon ? "filled" : ""} color={color}>
+            <Tooltip title={tooltipTitle}>
+                <IconButton onClick={onClick} color="inherit">
+                    <S.SIconContainer>
+                        {isFilledIcon ? filledIcon : icon}
+                    </S.SIconContainer>
+                </IconButton>
+            </Tooltip>
             {typeof number !== "undefined" && number > 0 && (
-                <S.SText>{number}</S.SText>
+                <S.SText color="inherit">{number}</S.SText>
             )}
         </S.SContainer>
     );

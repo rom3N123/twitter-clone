@@ -47,7 +47,7 @@ const ProfileUserAvatarTooltip: React.FC<IProfileUserAvatarTooltipProps> = ({
                     <S.SUserInfo>
                         <S.SText fontWeight={700}>{user.name}</S.SText>
 
-                        <S.SText color="gray">@{user._id}</S.SText>
+                        <S.SText color="secondary">@{user._id}</S.SText>
 
                         <S.SUserBio>
                             <S.SText>{user.bio}</S.SText>

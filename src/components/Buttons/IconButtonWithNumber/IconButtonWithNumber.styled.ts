@@ -1,14 +1,44 @@
 import styled, { css } from "styled-components";
 import Flex from "@styled/components/Flex.styled";
 import Text from "@components/Text";
-import IconButton from "@mui/material/IconButton";
 import { IconButtonColorType } from "./IconButtonWithNumber";
 import { ThemeColorName } from "@interfaces/styled";
+
+interface SContainerProps {
+    color?: ThemeColorName;
+}
 
 export const SContainer = styled(Flex).attrs(() => ({
     align: "center",
     gap: 3,
-}))``;
+}))<SContainerProps>`
+    ${({ theme, color }) => {
+        const colorValue =
+            typeof color !== "undefined"
+                ? theme.colors[color]
+                : theme.accentColor;
+
+        return css`
+            transition: all 0.1s ease;
+            &:hover {
+                color: ${colorValue};
+            }
+
+            /* &,
+            & > * {
+                color: ${theme.mode.typography.secondary};
+
+                &:hover {
+                    color: ${colorValue};
+                }
+            } */
+
+            &.filled {
+                color: ${colorValue};
+            }
+        `;
+    }}
+`;
 
 export const SText = styled(Text).attrs(() => ({
     component: "span",
@@ -18,29 +48,10 @@ export const SText = styled(Text).attrs(() => ({
     color: inherit;
 `;
 
-interface ISIconButtonProps {
-    color: IconButtonColorType;
-}
-
-export const SIconButton = styled(IconButton)<ISIconButtonProps>`
-    ${({ theme, color }) => {
-        const colorValue =
-            color in theme.colors
-                ? theme.colors[color as ThemeColorName]
-                : theme.accentColor;
-
-        return css`
-            & + * {
-                color: ${colorValue};
-            }
-        `;
-    }}
-`;
-
 export const SIconContainer = styled(Flex).attrs(() => ({
     justify: "center",
     align: "center",
-}))<{ isFilledIcon?: boolean }>`
+}))`
     svg {
         color: inherit !important;
     }

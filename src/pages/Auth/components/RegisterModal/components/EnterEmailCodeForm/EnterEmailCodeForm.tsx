@@ -40,7 +40,7 @@ const EnterEmailCodeForm: React.FC<IEnterEmailCodeFormProps> = ({
                 <>
                     <DialogTitle>Мы отправили вам код</DialogTitle>
                     <DialogContent>
-                        <Text color="gray">
+                        <Text color="secondary">
                             Введите код в расположенном ниже поле для
                             подтверждения {email}.
                         </Text>
