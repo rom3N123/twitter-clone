@@ -1,36 +1,29 @@
 import React from "react";
 import * as S from "./Tweet.styled";
-import { ITweet } from "@interfaces/api/tweet";
 import ProfileUserAvatar from "@components/ProfileUserAvatar";
 import Text from "@components/Text";
-import { useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import TweetButtons from "./components/TweetButtons";
 import TweetThreeDotsButton from "./components/TweetThreeDotsButton";
+import { ITweetThreeDotsButtonProps } from "./components/TweetThreeDotsButton/TweetThreeDotsButton";
+import { ITweetButtonsProps } from "./components/TweetButtons/TweetButtons";
 
-interface ITweetProps {
-    tweet: ITweet;
-}
+export interface ITweetProps
+    extends ITweetThreeDotsButtonProps,
+        ITweetButtonsProps {}
 
-const Tweet: React.FC<ITweetProps> = ({ tweet }): React.ReactElement => {
+const Tweet: React.FC<ITweetProps> = ({
+    tweet,
+    onDeleteClick,
+    onFavoriteClick,
+}): React.ReactElement => {
     const { _id, publishTimestamp, text, user } = tweet;
 
     const navigate = useNavigate();
 
-    const queryClient = useQueryClient();
-
     const onTweetClickHandler = (): void => {
         navigate(`/${user._id}/tweet/${_id}`);
     };
-
-    const onFavoriteClickHandler = (): void => {
-        queryClient.invalidateQueries(["tweets", user._id]);
-        queryClient.invalidateQueries("home");
-    };
-
-    const onReplyClickHandler = (): void => {};
-
-    const onShareClickHandler = (): void => {};
 
     return (
         <S.SContainer onClick={onTweetClickHandler}>
@@ -48,16 +41,17 @@ const Tweet: React.FC<ITweetProps> = ({ tweet }): React.ReactElement => {
 
                         <S.SButtons>
                             <TweetButtons
-                                onReplyClick={onReplyClickHandler}
-                                onFavoriteClick={onFavoriteClickHandler}
-                                onShareClick={onShareClickHandler}
+                                onFavoriteClick={onFavoriteClick}
                                 tweet={tweet}
                             />
                         </S.SButtons>
                     </S.STweetBodyInner>
                 </S.STweetBody>
 
-                <TweetThreeDotsButton user={user} tweetId={_id} />
+                <TweetThreeDotsButton
+                    onDeleteClick={onDeleteClick}
+                    tweet={tweet}
+                />
             </S.SInner>
         </S.SContainer>
     );

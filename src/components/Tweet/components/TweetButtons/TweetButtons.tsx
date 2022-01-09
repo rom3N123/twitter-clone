@@ -12,16 +12,12 @@ import { selectUserState } from "@redux/ducks/user";
 import { ITweet } from "@interfaces/api/tweet";
 
 export interface ITweetButtonsProps {
-    onReplyClick: (tweet: ITweet) => void;
-    onShareClick: (tweet: ITweet) => void;
     onFavoriteClick: (tweet: ITweet) => void;
     tweet: ITweet;
 }
 
 const TweetButtons: React.FC<ITweetButtonsProps> = ({
     tweet,
-    onReplyClick,
-    onShareClick,
     onFavoriteClick,
 }): React.ReactElement => {
     const authUser = useAppSelector(selectUserState);
@@ -43,7 +39,7 @@ const TweetButtons: React.FC<ITweetButtonsProps> = ({
     const buttons: IIconButtonWithNumberProps[] = [
         {
             icon: <ChatIcon />,
-            onClick: onButtonClickHandler(onReplyClick),
+            onClick: onButtonClickHandler(() => {}),
             number: tweet.replies.length,
             tooltipTitle: "Reply",
         },
@@ -51,7 +47,7 @@ const TweetButtons: React.FC<ITweetButtonsProps> = ({
             icon: <ShareIcon />,
             color: "success",
             number: tweet.retweets.length,
-            onClick: onButtonClickHandler(onShareClick),
+            onClick: onButtonClickHandler(() => {}),
             tooltipTitle: "Retweet",
         },
         {

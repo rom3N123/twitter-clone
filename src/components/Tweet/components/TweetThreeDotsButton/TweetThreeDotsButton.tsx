@@ -1,44 +1,29 @@
 import React from "react";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { IPopoverListItem } from "@components/PopoverList/PopoverList";
-import { useMutation, useQueryClient } from "react-query";
-import TweetsService from "@services/TweetsService";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
-import { IUser } from "@interfaces/api/user";
 import ThreeDotsButton from "@components/ThreeDotsButton";
+import { ITweet } from "@interfaces/api/tweet";
 
-interface IThreeDotsButtonProps {
-    user: IUser;
-    tweetId: string;
+export interface ITweetThreeDotsButtonProps {
+    tweet: ITweet;
+    onDeleteClick: () => void;
 }
 
-const TweetThreeDotsButton: React.FC<IThreeDotsButtonProps> = ({
-    user,
-    tweetId,
+const TweetThreeDotsButton: React.FC<ITweetThreeDotsButtonProps> = ({
+    tweet,
+    onDeleteClick,
 }): React.ReactElement => {
     const authUser = useAppSelector(selectUserState);
 
-    const queryClient = useQueryClient();
-
-    const deleteMutation = useMutation(
-        () => {
-            return TweetsService.delete(authUser._id, tweetId);
-        },
-        {
-            onSuccess: () => {
-                queryClient.invalidateQueries(["tweets", authUser._id]);
-            },
-        }
-    );
-
     const items: IPopoverListItem[] = [];
 
-    if (authUser._id === user!._id) {
+    if (authUser._id === tweet.user!._id) {
         items.unshift({
             label: "Delete",
             icon: <DeleteOutlineOutlinedIcon />,
-            onClick: () => deleteMutation.mutate(),
+            onClick: onDeleteClick,
         });
     }
 

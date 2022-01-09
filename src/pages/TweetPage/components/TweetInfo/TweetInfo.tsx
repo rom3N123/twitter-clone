@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import useCurrentTweetContext from "@pages/TweetPage/contexts/CurrentTweetContext/useCurrentTweetContext";
 import * as S from "./TweetInfo.styled";
 import TweetInfoButtons from "./components/TweetInfoButtons";
+import TweetsService from "@services/TweetsService";
 
 const TweetInfo: React.FC = (): React.ReactElement | null => {
     const { tweet } = useCurrentTweetContext();
@@ -14,6 +15,10 @@ const TweetInfo: React.FC = (): React.ReactElement | null => {
         return null;
     }
 
+    const onDeleteTweetClickHandler = (): void => {
+        TweetsService.delete(tweet.user._id, tweet._id);
+    };
+
     return (
         <>
             <UserItem
@@ -21,8 +26,8 @@ const TweetInfo: React.FC = (): React.ReactElement | null => {
                 user={tweet.user}
                 endButton={
                     <TweetThreeDotsButton
-                        user={tweet.user}
-                        tweetId={tweet._id}
+                        onDeleteClick={onDeleteTweetClickHandler}
+                        tweet={tweet}
                     />
                 }
             />

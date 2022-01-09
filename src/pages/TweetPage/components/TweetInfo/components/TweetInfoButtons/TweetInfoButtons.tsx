@@ -9,12 +9,7 @@ const TweetInfoButtons: React.FC = (): React.ReactElement => {
     return (
         <S.SButtonsContainer>
             {tweet && (
-                <TweetButtons
-                    onFavoriteClick={invalidateTweet}
-                    onReplyClick={() => {}}
-                    onShareClick={() => {}}
-                    tweet={tweet}
-                />
+                <TweetButtons onFavoriteClick={invalidateTweet} tweet={tweet} />
             )}
         </S.SButtonsContainer>
     );

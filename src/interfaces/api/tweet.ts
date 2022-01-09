@@ -7,8 +7,12 @@ export interface ITweet {
     likes: string[];
     replies: string[];
     retweets: string[];
-    replyTo?: string;
+    replyTo?: ITweet;
     user: IUser;
+}
+
+export interface IReply extends Omit<ITweet, "replyTo"> {
+    replyTo: string;
 }
 
 export interface ITweetEditableFields extends Pick<ITweet, "text"> {}

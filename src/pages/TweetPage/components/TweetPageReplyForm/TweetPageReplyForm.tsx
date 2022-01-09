@@ -9,7 +9,7 @@ const TweetPageReplyForm: React.FC = (): React.ReactElement | null => {
         return null;
     }
 
-    return <ReplyForm tweetId={tweet._id} />;
+    return <ReplyForm userId={tweet.user._id} tweetId={tweet._id} />;
 };
 
 export default TweetPageReplyForm;
