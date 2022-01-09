@@ -9,7 +9,7 @@ import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
 import ProfileUserAvatar from "@components/ProfileUserAvatar";
 import { Formik, FormikHelpers } from "formik";
-import TweetsService from "@services/TweetsService";
+import { IUser } from "@interfaces/api/user";
 
 const MAX_LENGTH = 300;
 
@@ -19,7 +19,17 @@ const initialValues = {
 
 type InitialValuesType = typeof initialValues;
 
-const TweetForm: React.FC = (): React.ReactElement => {
+export interface ITweetFormProps {
+    onSubmit: (text: string, user: IUser) => Promise<any>;
+    buttonTitle?: string;
+    placeholder?: string;
+}
+
+const TweetForm: React.FC<ITweetFormProps> = ({
+    onSubmit,
+    buttonTitle = "Tweet",
+    placeholder = "What's happening?",
+}): React.ReactElement => {
     const [value, setValue] = React.useState("");
     const user = useAppSelector(selectUserState);
 
@@ -31,11 +41,9 @@ const TweetForm: React.FC = (): React.ReactElement => {
         values: InitialValuesType,
         { setSubmitting }: FormikHelpers<InitialValuesType>
     ): Promise<void> => {
-        try {
-            await TweetsService.create(user._id, { text: value });
-        } catch (e) {}
-
+        await onSubmit(value, user);
         setSubmitting(false);
+        setValue("");
     };
 
     const progress = (value.length / 300) * 100;
@@ -44,16 +52,15 @@ const TweetForm: React.FC = (): React.ReactElement => {
         <S.SContainer>
             <ProfileUserAvatar size={48} user={user} />
             <Formik onSubmit={onFormSubmit} initialValues={initialValues}>
-                {({ dirty, touched, isSubmitting }) => (
+                {({ touched, isSubmitting }) => (
                     <S.SFormWrapper>
                         <S.STextArea
                             name="text"
                             maxLength={MAX_LENGTH}
                             value={value}
                             onChange={handleChange}
-                            placeholder="What's happening?"
+                            placeholder={placeholder}
                         />
-                        <S.SDivider />
 
                         <S.SFormActions>
                             <div>
@@ -90,7 +97,7 @@ const TweetForm: React.FC = (): React.ReactElement => {
                                     }
                                     type="submit"
                                 >
-                                    Tweet
+                                    {buttonTitle}
                                 </Button>
                             </S.SButtonsWrapper>
                         </S.SFormActions>

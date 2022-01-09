@@ -7,7 +7,6 @@ import { Form } from "formik";
 export const SContainer = styled(Grid).attrs(() => ({
     container: true,
 }))`
-    padding: 10px 16px;
     gap: 16px;
 `;
 
@@ -28,10 +27,6 @@ export const STextArea = styled(TextareaAutosize)`
     &::placeholder {
         color: ${({ theme }) => theme.mode.typography.secondary};
     }
-`;
-
-export const SDivider = styled(Divider)`
-    margin-bottom: 10px;
 `;
 
 export const SFormActions = styled(Grid).attrs(() => ({
