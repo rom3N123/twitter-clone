@@ -17,7 +17,7 @@ const ProfileTweets: React.FC = (): React.ReactElement => {
             {isLoading ? (
                 <Loader />
             ) : (
-                tweets?.map((tweet) => <Tweet key={tweet._id} {...tweet} />)
+                tweets?.map((tweet) => <Tweet key={tweet._id} tweet={tweet} />)
             )}
         </div>
     );

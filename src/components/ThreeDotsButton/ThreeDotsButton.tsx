@@ -1,53 +1,29 @@
 import React from "react";
+import usePopover from "@hooks/usePopover";
+import IconButton from "@mui/material/IconButton";
 import MoreIcon from "@mui/icons-material/MoreHoriz";
 import Popover from "@mui/material/Popover";
-import usePopover from "@hooks/usePopover";
 import PopoverList from "@components/PopoverList";
 import { IPopoverListItem } from "@components/PopoverList/PopoverList";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import { useMutation, useQueryClient } from "react-query";
-import TweetsService from "@services/TweetsService";
-import { useAppSelector } from "@redux/hooks";
-import { selectUserState } from "@redux/ducks/user";
-import { IUser } from "@interfaces/api/user";
-import IconButton from "@mui/material/IconButton";
+import useItemsWithHocFunc from "@hooks/useItemsWithHocFunc";
 
-interface IThreeDotsButtonProps {
-    user: IUser;
-    tweetId: string;
+export interface IThreeDotsButtonProps {
+    items: IPopoverListItem[];
 }
 
 const ThreeDotsButton: React.FC<IThreeDotsButtonProps> = ({
-    user,
-    tweetId,
+    items,
 }): React.ReactElement => {
     const buttonRef = React.useRef<HTMLDivElement>(null);
     const { anchor, openPopover, closePopover } =
         usePopover<HTMLButtonElement>();
-    const authUser = useAppSelector(selectUserState);
 
-    const queryClient = useQueryClient();
+    const onItemClickHandler = (func: () => void) => (e: React.MouseEvent) => {
+        e.stopPropagation();
+        func();
+    };
 
-    const deleteMutation = useMutation(
-        () => {
-            return TweetsService.delete(authUser._id, tweetId);
-        },
-        {
-            onSuccess: () => {
-                queryClient.invalidateQueries(["tweets", authUser._id]);
-            },
-        }
-    );
-
-    const items: IPopoverListItem[] = [];
-
-    if (authUser._id === user!._id) {
-        items.unshift({
-            label: "Delete",
-            icon: <DeleteOutlineOutlinedIcon />,
-            onClick: deleteMutation.mutate,
-        });
-    }
+    const itemWithHocFunc = useItemsWithHocFunc(items, onItemClickHandler);
 
     return (
         <div ref={buttonRef}>
@@ -74,7 +50,10 @@ const ThreeDotsButton: React.FC<IThreeDotsButtonProps> = ({
                     },
                 }}
             >
-                <PopoverList onPopoverClose={closePopover} items={items} />
+                <PopoverList
+                    onPopoverClose={closePopover}
+                    items={itemWithHocFunc}
+                />
             </Popover>
         </div>
     );

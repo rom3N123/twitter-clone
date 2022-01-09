@@ -1,23 +1,32 @@
 import React from "react";
-import S from "./PageHeader.styled";
+import * as S from "./PageHeader.styled";
 import Skeleton from "@mui/material/Skeleton";
-import useCurrentProfileContext from "@pages/Profile/contexts/CurrentProfileContext/useCurrentProfileContext";
+import Text from "@components/Text";
 
-interface IPageHeaderProps {
+export interface IPageHeaderProps {
     title?: string;
     children?: React.ReactNode;
+    button?: React.ReactNode;
+    borderless?: boolean;
 }
 
 const PageHeader: React.FC<IPageHeaderProps> = ({
     title,
+    button,
     children,
 }): React.ReactElement => {
     return (
-        <S.Header>
-            {title ? <S.Title>{title}</S.Title> : <Skeleton width={100} />}
+        <S.SHeader>
+            {button}
 
-            {children}
-        </S.Header>
+            {title ? (
+                <Text fontWeight={600} fontSize={20}>
+                    {title}
+                </Text>
+            ) : (
+                <Skeleton width={100} />
+            )}
+        </S.SHeader>
     );
 };
 

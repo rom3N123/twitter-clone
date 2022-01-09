@@ -30,7 +30,11 @@ const ProfileUserAvatarTooltip: React.FC<IProfileUserAvatarTooltipProps> = ({
             onMouseLeave={onMouseLeave}
             anchorEl={anchorEl}
         >
-            <SPaper>
+            <SPaper
+                onClick={(e: React.MouseEvent) => {
+                    e.stopPropagation();
+                }}
+            >
                 <S.SInner>
                     <S.SHeader>
                         <ProfileUserAvatar user={user} size={48} />

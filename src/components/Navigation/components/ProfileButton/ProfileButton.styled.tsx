@@ -50,8 +50,6 @@ export const Text = styled(Typography)`
 export const ProfileName = styled(Text)`
     font-weight: 700;
     text-align: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
 `;
 
 export const ProfileId = styled(Text)`

@@ -3,9 +3,9 @@ import Navigation from "@components/Navigation";
 import Searchbar from "@components/PageComponents/Searchbar";
 import * as S from "./Layout.styled";
 import { Routes, Route } from "react-router-dom";
-import CircularProgress from "@mui/material/CircularProgress";
 import Loader from "./components/Loader";
 
+const TweetPage = React.lazy(() => import("../TweetPage"));
 const Home = React.lazy(() => import("../Home"));
 const Profile = React.lazy(() => import("../Profile"));
 
@@ -26,6 +26,10 @@ const Layout: React.FC = (): React.ReactElement => {
                                     <Route
                                         path="/:userId"
                                         element={<Profile />}
+                                    />
+                                    <Route
+                                        path="/:userId/tweet/:tweetId"
+                                        element={<TweetPage />}
                                     />
                                 </Routes>
                             </Suspense>

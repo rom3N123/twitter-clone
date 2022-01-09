@@ -1,19 +1,17 @@
-import styled from "styled-components";
-import Typography from "@mui/material/Typography";
+import styled, { css } from "styled-components";
+import Flex from "@styled/components/Flex.styled";
+import { IPageHeaderProps } from "./PageHeader";
 
-const Header = styled.header`
+export const SHeader = styled(Flex).attrs(() => ({
+    align: "center",
+    gap: 10,
+}))<Pick<IPageHeaderProps, "borderless">>`
     height: 53px;
     padding: 0 16px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid ${({ theme }) => theme.mode.divider};
+
+    ${({ borderless }) =>
+        !borderless &&
+        css`
+            border-bottom: 1px solid ${({ theme }) => theme.mode.divider};
+        `}
 `;
-
-const Title = styled(Typography)`
-    font-weight: 700;
-    font-size: 20px;
-`;
-
-const styles = { Header, Title };
-
-export default styles;

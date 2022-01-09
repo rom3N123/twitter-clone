@@ -43,6 +43,7 @@ function App() {
                         <Route path="bookmarks" />
                         <Route path="messages" />
                         <Route path="explore" />
+                        <Route path=":userId/tweet/:tweetId" />
                     </Route>
 
                     <Route

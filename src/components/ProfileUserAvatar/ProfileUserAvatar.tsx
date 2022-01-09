@@ -23,7 +23,8 @@ const ProfileUserAvatar: React.FC<IProfileUserAvatarProps> = ({
     const avatarRef = React.useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
 
-    const onAvatarClickHandler = (): void => {
+    const onAvatarClickHandler = (e: React.MouseEvent): void => {
+        e.stopPropagation();
         if (clickable) {
             navigate(`/${user._id}`);
         }

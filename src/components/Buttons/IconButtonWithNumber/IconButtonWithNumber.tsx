@@ -9,7 +9,7 @@ export type IconButtonColorType =
 
 export interface IIconButtonWithNumberProps {
     icon: React.ReactNode;
-    onClick: () => void;
+    onClick: (e: React.MouseEvent) => void;
     filledIcon?: React.ReactNode;
     isFilledIcon?: boolean;
     color?: IconButtonColorType;

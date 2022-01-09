@@ -21,7 +21,7 @@ const Home: React.FC = (): React.ReactElement => {
             {isLoading ? (
                 <Loader />
             ) : (
-                data?.map((tweet) => <Tweet key={tweet._id} {...tweet} />)
+                data?.map((tweet) => <Tweet key={tweet._id} tweet={tweet} />)
             )}
         </div>
     );

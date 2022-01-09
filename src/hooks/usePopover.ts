@@ -15,6 +15,7 @@ const usePopover = <E>(): IUsePopoverValue<E> => {
     const [anchor, setAnchor] = React.useState<E | null>(null);
 
     const openPopover = React.useCallback((e: React.MouseEvent<E>) => {
+        e.stopPropagation();
         setAnchor(e.currentTarget);
     }, []);
 
