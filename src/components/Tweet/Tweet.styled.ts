@@ -2,8 +2,8 @@ import styled from "styled-components";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
 import Flex from "@styled/components/Flex.styled";
+import Text from "@components/Text";
 
 export const SContainer = styled(Paper).attrs(() => ({
     variant: "outlined",
@@ -60,4 +60,8 @@ export const SUserLabel = styled(Typography).attrs(() => ({
     component: "span",
 }))`
     color: ${({ theme }) => theme.mode.typography.secondary};
+`;
+
+export const STweetText = styled(Text)`
+    word-break: break-all;
 `;

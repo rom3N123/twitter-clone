@@ -7,6 +7,7 @@ export interface ITextProps {
     color?: "primary" | "secondary" | string;
     component?: React.ElementType<any>;
     lh?: number;
+    className?: string;
 }
 
 const Text: React.FC<ITextProps> = ({
@@ -15,6 +16,7 @@ const Text: React.FC<ITextProps> = ({
     fontWeight,
     component,
     lh,
+    className,
     children,
 }): React.ReactElement => {
     return (
@@ -24,6 +26,7 @@ const Text: React.FC<ITextProps> = ({
             color={color}
             fontWeight={fontWeight}
             lh={lh}
+            className={className}
         >
             {children}
         </SText>

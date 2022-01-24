@@ -31,6 +31,7 @@ export const SRightSideContainer = styled(SSideContent)`
 
 export const SMainContent = styled.div`
     flex: 1;
+    height: 100vh;
 `;
 
 export const SContainer = styled(Flex).attrs(() => ({

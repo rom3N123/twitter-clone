@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import Flex from "@styled/components/Flex.styled";
 import Text from "@components/Text";
-import { IconButtonColorType } from "./IconButtonWithNumber";
 import { ThemeColorName } from "@interfaces/styled";
 
 interface SContainerProps {
@@ -20,18 +19,11 @@ export const SContainer = styled(Flex).attrs(() => ({
 
         return css`
             transition: all 0.1s ease;
+            color: ${theme.mode.svg.primary};
+
             &:hover {
                 color: ${colorValue};
             }
-
-            /* &,
-            & > * {
-                color: ${theme.mode.typography.secondary};
-
-                &:hover {
-                    color: ${colorValue};
-                }
-            } */
 
             &.filled {
                 color: ${colorValue};

@@ -1,25 +1,43 @@
-import SimpleTweet from "@components/SimpleTweet";
-import { ITweetProps } from "@components/Tweet/Tweet";
-import { ITweet } from "@interfaces/api/tweet";
 import React from "react";
+import SimpleTweet from "@components/SimpleTweet";
 import { useQueryClient } from "react-query";
+import { ListChildComponentProps } from "react-window";
+import { ITweet } from "@interfaces/api/tweet";
 
-export interface IHomeTweetProps extends Pick<ITweetProps, "tweet"> {}
+export interface IHomeTweetProps
+    extends ListChildComponentProps<{
+        tweets: ITweet[];
+        setRowHeight: (index: number, size: number) => void;
+    }> {}
 
-const HomeTweet: React.FC<IHomeTweetProps> = ({
-    tweet,
+const HomeTweet: React.ComponentType<IHomeTweetProps> = ({
+    index,
+    style,
+    data: { tweets, setRowHeight },
 }): React.ReactElement => {
+    const tweetRef = React.useRef<HTMLDivElement>(null);
+
     const queryClient = useQueryClient();
 
-    const invalidateTweets = (tweet: ITweet): void => {
+    const invalidateTweets = (): void => {
         queryClient.invalidateQueries("home");
     };
+
+    React.useEffect(() => {
+        if (tweetRef.current) {
+            setRowHeight(index, tweetRef.current.clientHeight);
+        }
+    }, [tweetRef.current]);
 
     return (
         <SimpleTweet
             onDelete={invalidateTweets}
-            onFavoriteClick={invalidateTweets}
-            tweet={tweet}
+            onFavoriteClick={() => {
+                console.log(tweetRef.current);
+            }}
+            tweet={tweets[index]}
+            style={style}
+            ref={tweetRef}
         />
     );
 };
