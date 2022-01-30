@@ -5,9 +5,10 @@ import * as S from "./Layout.styled";
 import { Routes, Route } from "react-router-dom";
 import Loader from "./components/Loader";
 
-const TweetPage = React.lazy(() => import("../TweetPage"));
-const Home = React.lazy(() => import("../Home"));
-const Profile = React.lazy(() => import("../Profile"));
+const Messages = React.lazy(() => import("@pages/Messages"));
+const TweetPage = React.lazy(() => import("@pages/TweetPage"));
+const Home = React.lazy(() => import("@pages/Home"));
+const Profile = React.lazy(() => import("@pages/Profile"));
 
 const Layout: React.FC = (): React.ReactElement => {
     return (
@@ -24,6 +25,10 @@ const Layout: React.FC = (): React.ReactElement => {
                                 <Routes>
                                     <Route index element={<Home />} />
                                     <Route
+                                        path="messages"
+                                        element={<Messages />}
+                                    />
+                                    <Route
                                         path="/:userId"
                                         element={<Profile />}
                                     />
@@ -35,11 +40,11 @@ const Layout: React.FC = (): React.ReactElement => {
                             </Suspense>
                         </S.SMainContent>
 
-                        <S.SRightSideContainer>
+                        {/* <S.SRightSideContainer>
                             <Routes>
                                 <Route index element={<Searchbar />} />
                             </Routes>
-                        </S.SRightSideContainer>
+                        </S.SRightSideContainer> */}
                     </S.SContainer>
                 </S.SContentContainer>
             </Suspense>

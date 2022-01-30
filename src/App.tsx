@@ -39,9 +39,9 @@ function App() {
                             </PrivateRoute>
                         }
                     >
+                        <Route path="messages" />
                         <Route path=":userId" />
                         <Route path="bookmarks" />
-                        <Route path="messages" />
                         <Route path="explore" />
                         <Route path=":userId/tweet/:tweetId" />
                     </Route>
