@@ -27,6 +27,7 @@ export const SSeleectDialogContainer = styled(Flex).attrs(() => ({
     align: "center",
     justify: "center",
 }))`
+    border-right: 1px solid ${({ theme }) => theme.mode.divider};
     flex-grow: 1;
     & > ${SConversationsInner} {
         height: 80%;
