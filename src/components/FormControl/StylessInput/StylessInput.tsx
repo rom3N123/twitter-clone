@@ -8,14 +8,24 @@ export interface StylessInputStyledProps {
 
 export interface StylessInputProps
     extends React.FormHTMLAttributes<HTMLInputElement>,
-        StylessInputStyledProps {}
+        StylessInputStyledProps {
+    value?: string;
+}
 
 const StylessInput: React.FC<StylessInputProps> = ({
     height = 30,
     fullWidth,
+    value,
     ...otherProps
 }): React.ReactElement => {
-    return <S.SInput fullWidth={fullWidth} height={height} {...otherProps} />;
+    return (
+        <S.SInput
+            value={value}
+            fullWidth={fullWidth}
+            height={height}
+            {...otherProps}
+        />
+    );
 };
 
 export default StylessInput;
