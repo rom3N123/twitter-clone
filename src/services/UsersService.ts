@@ -31,6 +31,16 @@ class UsersService extends ModelService<IUser> {
 
         return data;
     }
+
+    public async search(needle: string): Promise<IUser[]> {
+        const { data } = await $api.get<IUser[]>(`/users/search`, {
+            params: {
+                needle,
+            },
+        });
+
+        return data;
+    }
 }
 
 export default new UsersService();

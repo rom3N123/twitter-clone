@@ -8,20 +8,34 @@ export interface IUserBadgeProps {
     user: IUser;
     avatarSize?: number;
     withBio?: boolean;
+    fontSize?: number;
+    withoutUserProfilePopover?: boolean;
 }
 
 const UserBadge: React.FC<IUserBadgeProps> = ({
     user,
     avatarSize = 40,
     withBio,
+    fontSize,
+    withoutUserProfilePopover = false,
 }): React.ReactElement => {
     return (
         <S.SContainer>
-            <ProfileUserAvatar isWithPopover size={avatarSize} user={user} />
+            <ProfileUserAvatar
+                isWithPopover={!withoutUserProfilePopover}
+                size={avatarSize}
+                user={user}
+            />
 
             <S.SInfoContainer>
-                <Text fontWeight={600}>{user.name}</Text>
-                <Text lh={withBio ? 15 : 20} color="secondary">
+                <Text fontSize={fontSize} fontWeight={600}>
+                    {user.name}
+                </Text>
+                <Text
+                    fontSize={fontSize}
+                    lh={withBio ? 15 : 20}
+                    color="secondary"
+                >
                     @{user._id}
                 </Text>
                 {withBio && <Text lh={24}>{user.bio}</Text>}
