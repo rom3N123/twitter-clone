@@ -10,16 +10,12 @@ import { IUser } from "@interfaces/api/user";
 import { ITweet } from "@interfaces/api/tweet";
 import HomeTweet from "./components/HomeTweet";
 import styled from "styled-components";
+import * as S from "./Home.styled";
 
 import AutoSizer from "react-virtualized-auto-sizer";
 import { VariableSizeList as List, VariableSizeList } from "react-window";
 import InfiniteLoader from "react-window-infinite-loader";
 import useDynamicVirtualization from "@hooks/useDynamicVirtualization";
-
-const SContainer = styled.div`
-    width: 100%;
-    height: 100%;
-`;
 
 interface TweetProps {
     index: number;
@@ -45,27 +41,26 @@ const Home: React.FC = (): React.ReactElement => {
     }, [data]);
 
     return (
-        <section
-            style={{ display: "flex", height: "100%", flexDirection: "column" }}
-        >
-            <div>
+        <S.SContainer>
+            <header>
                 <PageHeader title="Home" />
 
                 <STweetFormWrapper>
                     <TweetForm onSubmit={onTweetFormSubmit} />
                 </STweetFormWrapper>
-            </div>
+            </header>
 
-            <div style={{ flex: 1 }}>
+            <S.SListContainer>
                 {data ? (
                     <AutoSizer>
                         {({ height, width }) => (
                             <List
+                                style={{ overflow: "unset" }}
                                 ref={listRef}
                                 width={width}
                                 height={height}
                                 itemCount={data.length}
-                                itemSize={getRowHeight}
+                                itemSize={() => 112}
                                 itemData={{ tweets: data, setRowHeight }}
                             >
                                 {HomeTweet}
@@ -75,8 +70,8 @@ const Home: React.FC = (): React.ReactElement => {
                 ) : (
                     <Loader />
                 )}
-            </div>
-        </section>
+            </S.SListContainer>
+        </S.SContainer>
     );
 };
 

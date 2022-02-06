@@ -32,6 +32,7 @@ export const SRightSideContainer = styled(SSideContent)`
 export const SMainContent = styled.div`
     flex: 1;
     height: 100vh;
+    overflow-y: auto;
 `;
 
 export const SContainer = styled(Flex).attrs(() => ({

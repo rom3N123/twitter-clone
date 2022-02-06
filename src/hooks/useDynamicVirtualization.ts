@@ -20,6 +20,10 @@ const useDynamicVirtualization = (
         [index: number]: number;
     }>({});
 
+    React.useEffect(() => {
+        console.log("height change");
+    }, [rowsHeightsRef.current]);
+
     const setRowHeight: SetRowHeight = (index: number, size: number): void => {
         listRef.current?.resetAfterIndex(0);
         rowsHeightsRef.current = {

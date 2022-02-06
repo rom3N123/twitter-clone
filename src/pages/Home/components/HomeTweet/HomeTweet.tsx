@@ -32,9 +32,7 @@ const HomeTweet: React.ComponentType<IHomeTweetProps> = ({
     return (
         <SimpleTweet
             onDelete={invalidateTweets}
-            onFavoriteClick={() => {
-                console.log(tweetRef.current);
-            }}
+            onFavoriteClick={invalidateTweets}
             tweet={tweets[index]}
             style={style}
             ref={tweetRef}
