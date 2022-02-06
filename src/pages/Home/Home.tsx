@@ -9,12 +9,9 @@ import TweetsService from "@services/TweetsService";
 import { IUser } from "@interfaces/api/user";
 import { ITweet } from "@interfaces/api/tweet";
 import HomeTweet from "./components/HomeTweet";
-import styled from "styled-components";
 import * as S from "./Home.styled";
-
 import AutoSizer from "react-virtualized-auto-sizer";
 import { VariableSizeList as List, VariableSizeList } from "react-window";
-import InfiniteLoader from "react-window-infinite-loader";
 import useDynamicVirtualization from "@hooks/useDynamicVirtualization";
 
 interface TweetProps {
@@ -26,7 +23,7 @@ interface TweetProps {
 }
 
 const Home: React.FC = (): React.ReactElement => {
-    const { data, isLoading } = useQuery("home", HomeService.index);
+    const { data } = useQuery("home", HomeService.index);
 
     const onTweetFormSubmit = (text: string, user: IUser): Promise<ITweet> => {
         return TweetsService.create(user._id, { text });
@@ -55,7 +52,6 @@ const Home: React.FC = (): React.ReactElement => {
                     <AutoSizer>
                         {({ height, width }) => (
                             <List
-                                style={{ overflow: "unset" }}
                                 ref={listRef}
                                 width={width}
                                 height={height}

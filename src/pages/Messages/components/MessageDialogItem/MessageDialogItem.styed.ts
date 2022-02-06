@@ -28,6 +28,9 @@ export const SUserName = styled(Flex).attrs(() => ({
 }))`
     word-wrap: nowrap;
     width: 100%;
+    & > *:first-child {
+        flex-grow: 1;
+    }
 `;
 
 export const SMessageTextContainer = styled(Flex).attrs(() => ({
