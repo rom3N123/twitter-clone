@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import Flex from "@styled/components/Flex.styled";
-import Text from "@components/Text";
+import Text from "@components/TypographyComponents/Text";
 import { ThemeColorName } from "@interfaces/styled";
 
 interface SContainerProps {

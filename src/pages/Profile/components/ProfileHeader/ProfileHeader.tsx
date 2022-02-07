@@ -8,7 +8,7 @@ import Tabs from "@components/Tabs";
 import { ITab } from "@components/Tabs/components/Tab/Tab";
 import useToggle from "@hooks/useToggle";
 import EditProfileDialog from "../EditProfileDialog";
-import ProfileUserAvatar from "@components/ProfileUserAvatar";
+import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import ProfileActivity from "../ProfileActivity";

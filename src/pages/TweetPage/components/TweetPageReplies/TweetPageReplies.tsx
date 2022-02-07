@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import * as S from "./TweetPageReplies.styled";
 import RepliesService from "@services/RepliesService";
-import Reply from "@components/Reply";
+import Reply from "@components/ReplyComponents/Reply";
 
 const TweetPageReplies: React.FC = (): React.ReactElement => {
     const { userId, tweetId } = useParams();

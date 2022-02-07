@@ -1,7 +1,7 @@
 import React from "react";
 import { useQueryClient } from "react-query";
-import { ITweetProps } from "@components/Tweet/Tweet";
-import SimpleTweet from "@components/SimpleTweet";
+import { ITweetProps } from "@components/TweetComponents/Tweet/Tweet";
+import SimpleTweet from "@components/TweetComponents/SimpleTweet";
 import { ITweet } from "@interfaces/api/tweet";
 
 export interface IProfileTweetProps extends Pick<ITweetProps, "tweet"> {}

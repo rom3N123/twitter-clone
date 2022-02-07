@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./Messages.styled";
 import PageHeader from "@components/PageComponents/PageHeader";
-import InfoMessage from "@components/InfoMessage";
+import InfoMessage from "@components/MessagesComponents/InfoMessage";
 import useDialog from "@hooks/useDialog";
 import SearchUsersDialog from "@components/Dialogs/SearchUsersDialog";
 import DialogsService from "@services/DialogsService";

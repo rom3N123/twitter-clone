@@ -1,7 +1,7 @@
 import React from "react";
 import { IUser } from "@interfaces/api/user";
 import List from "@mui/material/List";
-import UserBadge from "@components/UserBadge";
+import UserBadge from "@components/UserComponents/UserBadge";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 

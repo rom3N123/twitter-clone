@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./PageHeader.styled";
 import Skeleton from "@mui/material/Skeleton";
-import Text from "@components/Text";
+import Text from "@components/TypographyComponents/Text";
 
 export interface IPageHeaderProps {
     title?: string;

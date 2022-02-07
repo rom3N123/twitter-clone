@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./DialogHeader.styled";
 import CancelButton from "@components/Buttons/CancelButton";
 import { ICommonButton, IDialogCommonProps } from "@interfaces/components";
-import TwitterLogo from "@components/TwitterLogo";
+import TwitterLogo from "@components/TweetComponents/TwitterLogo";
 import ArrowBackButton from "@components/Buttons/ArrowBackButton";
 import BlackAndWhiteButton from "@components/Buttons/BlackAndWhiteButton";
 

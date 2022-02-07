@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import Navigation from "@components/Navigation";
+import Navigation from "@components/PageComponents/Navigation";
 import Searchbar from "@components/PageComponents/Searchbar";
 import * as S from "./Layout.styled";
 import { Routes, Route } from "react-router-dom";

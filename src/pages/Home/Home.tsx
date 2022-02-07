@@ -1,5 +1,5 @@
 import React from "react";
-import TweetForm from "@components/TweetForm";
+import TweetForm from "@components/TweetComponents/TweetForm";
 import PageHeader from "@components/PageComponents/PageHeader";
 import { useQuery } from "react-query";
 import HomeService from "@services/HomeService";

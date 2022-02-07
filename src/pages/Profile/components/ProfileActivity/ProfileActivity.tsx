@@ -1,4 +1,4 @@
-import Text from "@components/Text";
+import Text from "@components/TypographyComponents/Text";
 import React from "react";
 import * as S from "./ProfileActivity.styled";
 

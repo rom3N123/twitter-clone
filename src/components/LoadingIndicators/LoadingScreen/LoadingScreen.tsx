@@ -2,7 +2,7 @@ import React from "react";
 import { useAppSelector } from "@redux/hooks";
 import { createPortal } from "react-dom";
 import { SContainer, SInner } from "./LoadingScreen.styled";
-import TwitterLogo from "@components/TwitterLogo";
+import TwitterLogo from "@components/TweetComponents/TwitterLogo";
 
 const LoadingScreen: React.FC = (): React.ReactElement | null => {
     const { isLoadingWithScreen } = useAppSelector(({ general }) => general);

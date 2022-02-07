@@ -11,7 +11,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import BlackAndWhiteButton from "@components/Buttons/BlackAndWhiteButton";
 import DialogTitle from "@mui/material/DialogTitle";
-import Text from "@components/Text";
+import Text from "@components/TypographyComponents/Text";
 import YearSelect from "@components/FormControl/Selects/YearSelect";
 import { Box } from "@mui/system";
 import Flex from "@styled/components/Flex.styled";

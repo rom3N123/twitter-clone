@@ -2,7 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import Text from "@components/Text";
+import Text from "@components/TypographyComponents/Text";
 import Input from "@components/FormControl/Input";
 import FormControl from "@mui/material/FormControl";
 import { DialogActions } from "@mui/material";

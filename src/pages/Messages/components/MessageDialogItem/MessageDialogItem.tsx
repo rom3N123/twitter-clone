@@ -1,8 +1,8 @@
 import React from "react";
 import * as S from "./MessageDialogItem.styed";
-import ProfileUserAvatar from "@components/ProfileUserAvatar";
+import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
 import { selectUserState } from "@redux/ducks/user";
-import Text from "@components/Text";
+import Text from "@components/TypographyComponents/Text";
 import { IUser } from "@interfaces/api/user";
 import { DialogMessage } from "@interfaces/api/dialog";
 

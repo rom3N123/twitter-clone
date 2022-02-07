@@ -1,5 +1,5 @@
 import React from "react";
-import ReplyForm from "@components/ReplyForm";
+import ReplyForm from "@components/ReplyComponents/ReplyForm";
 import useCurrentTweetContext from "@pages/TweetPage/contexts/CurrentTweetContext/useCurrentTweetContext";
 
 const TweetPageReplyForm: React.FC = (): React.ReactElement | null => {

@@ -1,5 +1,5 @@
 import React from "react";
-import TweetButtons from "@components/Tweet/components/TweetButtons";
+import TweetButtons from "@components/TweetComponents/Tweet/components/TweetButtons";
 import useCurrentTweetContext from "@pages/TweetPage/contexts/CurrentTweetContext/useCurrentTweetContext";
 import * as S from "./TweetInfoButtons.styled";
 
