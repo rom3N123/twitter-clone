@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import { Link, useParams, useNavigate, Route, Routes } from "react-router-dom";
 import LoginModal from "./components/LoginModal";
 import RegisterModal from "./components/RegisterModal";
-import S from "./Auth.styled";
+import * as S from "./Auth.styled";
 import { useAppDispatch } from "@redux/hooks";
 
 const Auth = () => {
@@ -22,13 +22,13 @@ const Auth = () => {
     };
 
     return (
-        <S.Container>
-            <S.LeftSide>
-                <S.TwitterIconBg />
-            </S.LeftSide>
-            <S.RightSide>
-                <S.RightSideContent>
-                    <S.TwitterIcon />
+        <S.SContainer>
+            <S.SLeftSide>
+                <S.STwitterIconBg />
+            </S.SLeftSide>
+            <S.SRightSide>
+                <S.SRightSideContent>
+                    <S.STwitterIcon />
                     <Typography
                         sx={{
                             fontWeight: 600,
@@ -66,14 +66,14 @@ const Auth = () => {
                             Войдите
                         </MuiLink>
                     </Typography>
-                </S.RightSideContent>
-            </S.RightSide>
+                </S.SRightSideContent>
+            </S.SRightSide>
 
             <Routes>
                 <Route path="login" element={<LoginModal />} />
                 <Route path="registration" element={<RegisterModal />} />
             </Routes>
-        </S.Container>
+        </S.SContainer>
     );
 };
 

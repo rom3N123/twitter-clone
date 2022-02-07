@@ -92,7 +92,7 @@ const LoginModal: React.FC<ILoginModalProps> = ({
                 onSubmit={handleFormSubmit}
                 validationSchema={formValidationSchema}
             >
-                {({ dirty, touched, isValid, isSubmitting, errors }) => {
+                {({ dirty, touched, isValid, isSubmitting }) => {
                     return (
                         <FormControl component={Form} margin="dense" fullWidth>
                             <DialogContent

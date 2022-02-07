@@ -56,7 +56,7 @@ const Home: React.FC = (): React.ReactElement => {
                                 width={width}
                                 height={height}
                                 itemCount={data.length}
-                                itemSize={() => 112}
+                                itemSize={getRowHeight}
                                 itemData={{ tweets: data, setRowHeight }}
                             >
                                 {HomeTweet}
