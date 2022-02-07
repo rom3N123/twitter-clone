@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
 import Flex from "@styled/components/Flex.styled";
 import Text from "@components/TypographyComponents/Text";
-import { ThemeColorName } from "@interfaces/styled";
+import { ColorPaletteName } from "@types/styled/colorPalette";
 
 interface SContainerProps {
-    color?: ThemeColorName;
+    color?: ColorName;
 }
 
 export const SContainer = styled(Flex).attrs(() => ({

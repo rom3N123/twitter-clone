@@ -1,7 +1,7 @@
 import produce, { Draft } from "immer";
 import { MessagesActions, MessagesActionsType } from "./actions";
-import { TypeOrNull } from "@interfaces/helpers";
-import { Dialog } from "@interfaces/api/dialog";
+import { TypeOrNull } from "@types/helpers";
+import { Dialog } from "@types/api/dialog";
 
 export type MessagesDialogState = TypeOrNull<Dialog>;
 export type MessagesDialogsState = Dialog[] | [];

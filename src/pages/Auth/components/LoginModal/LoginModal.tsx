@@ -13,7 +13,7 @@ import withShowPassword, { IWithPasswordProps } from "@hocs/withShowPassword";
 import { useNavigate } from "react-router-dom";
 import BlackAndWhiteButton from "@components/Buttons/BlackAndWhiteButton";
 import { useDispatch } from "react-redux";
-import { IUserLoginValues } from "@interfaces/api/user";
+import { IUserLoginValues } from "@types/api/user";
 import { loginAction } from "@redux/ducks/auth/actions";
 import Dialog from "@components/Material/Dialog";
 import DialogHeader from "@components/Material/Dialog/components/DialogHeader";

@@ -1,4 +1,4 @@
-import { ModeName, ColorName } from "@interfaces/styled";
+import { ModeName, ColorName } from "@types/styled";
 import { Action } from "redux";
 
 export enum ThemeActionsTypes {

@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { IUserRegisterValues, IUserLoginValues } from "@interfaces/api/user";
+import { IUserRegisterValues, IUserLoginValues } from "@types/api/user";
 
 export enum AuthActionsTypes {
     SET_IS_AUTH = "auth/setIsAuth",

@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import TweetsService from "@services/TweetsService";
 import { useQuery, useQueryClient } from "react-query";
-import { ITweet } from "@interfaces/api/tweet";
+import { ITweet } from "@types/api/tweet";
 
 export interface ICurrentTweetContextProviderProps {
     tweet?: ITweet;

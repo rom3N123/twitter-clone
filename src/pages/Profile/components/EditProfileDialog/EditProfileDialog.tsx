@@ -1,6 +1,6 @@
 import React from "react";
-import { IUserEditableFields } from "@interfaces/api/user";
-import { IDialogCommonProps } from "@interfaces/components";
+import { IUserEditableFields } from "@types/api/user";
+import { IDialogCommonProps } from "@types/components/shared";
 import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
 import FormControl from "@mui/material/FormControl";
 import Input from "@components/FormControl/Input";

@@ -1,7 +1,7 @@
 import React from "react";
 import useTheme from "@hooks/useTheme";
 import { SButton } from "./BlackAndWhiteButton.styled";
-import { ICommonButton } from "@interfaces/components";
+import { ICommonButton } from "@types/components/shared";
 
 export interface IBlackAndWhiteButtonProps extends ICommonButton {
     fullWidth?: boolean;

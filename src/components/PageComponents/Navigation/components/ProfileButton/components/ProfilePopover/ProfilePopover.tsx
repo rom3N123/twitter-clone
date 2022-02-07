@@ -7,7 +7,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import * as S from "../../ProfileButton.styled";
-import { ICommonPopoverProps } from "@interfaces/components";
+import { ICommonPopoverProps } from "@types/components/shared";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "@redux/ducks/auth/actions";
 import { useAppSelector } from "@redux/hooks";

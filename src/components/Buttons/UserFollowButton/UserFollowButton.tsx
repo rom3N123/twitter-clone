@@ -1,5 +1,5 @@
 import React from "react";
-import { IUser } from "@interfaces/api/user";
+import { IUser } from "@types/api/user";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
 import FollowButton from "../FollowButton";

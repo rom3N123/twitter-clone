@@ -1,7 +1,7 @@
 import React from "react";
-import { ICommonButton, IDialogCommonProps } from "@interfaces/components";
+import { ICommonButton, IDialogCommonProps } from "@types/components/shared";
 import Dialog from "@components/Material/Dialog";
-import { DialogActions, DialogContent } from "@mui/material";
+import { DialogActions } from "@mui/material";
 import BlackAndWhiteButton from "@components/Buttons/BlackAndWhiteButton";
 import DialogHeader from "@components/Material/Dialog/components/DialogHeader";
 

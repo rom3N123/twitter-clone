@@ -14,8 +14,9 @@ import {
 } from "./CustomizationDialog.styled";
 import modes from "@styles/modes";
 import accentColors from "@styles/accentColors";
-import { IDialogCommonProps } from "@interfaces/components";
-import { ColorName, ModeName } from "@interfaces/styled";
+import { IDialogCommonProps } from "@types/components/shared";
+import { ModeName } from "@types/styled/modes";
+import { ColorName } from "@types/styled/colors";
 import useTheme from "@hooks/useTheme";
 import Radio from "@mui/material/Radio";
 import Typography from "@mui/material/Typography";

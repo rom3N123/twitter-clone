@@ -1,7 +1,7 @@
 import React from "react";
-import { IHoverPopoverProps } from "@interfaces/components";
+import { IHoverPopoverProps } from "@types/components/shared";
 import HoverPopper from "@components/PopoverComponents/HoverPopper";
-import { IUser } from "@interfaces/api/user";
+import { IUser } from "@types/api/user";
 import SPaper from "@styled/components/Paper.styled";
 import * as S from "./ProfileUserAvatarTooltip.styled";
 import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";

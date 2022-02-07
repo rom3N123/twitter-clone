@@ -9,7 +9,7 @@ import IconButtonWithNumber from "@components/Buttons/IconButtonWithNumber";
 import { IIconButtonWithNumberProps } from "@components/Buttons/IconButtonWithNumber/IconButtonWithNumber";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
-import { ITweet } from "@interfaces/api/tweet";
+import { ITweet } from "@types/api/tweet";
 
 export interface ITweetButtonsProps {
     onFavoriteClick: (tweet: ITweet) => void;

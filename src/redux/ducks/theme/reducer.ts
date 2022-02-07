@@ -1,5 +1,5 @@
 import { ThemeActionType, ThemeActionsTypes } from "./actions";
-import { ModeName, ColorName } from "@interfaces/styled";
+import { ModeName, ColorName } from "@types/styled";
 import provide, { Draft } from "immer";
 
 export interface IThemeState {

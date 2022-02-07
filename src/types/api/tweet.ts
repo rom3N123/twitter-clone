@@ -1,4 +1,4 @@
-import { IUser } from "@interfaces/api/user";
+import { IUser } from "types/api/user";
 
 export interface ITweet {
     _id: string;

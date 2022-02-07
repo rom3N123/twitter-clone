@@ -1,5 +1,5 @@
 import React, { SyntheticEvent } from "react";
-import { ICommonPopoverProps } from "@interfaces/components";
+import { ICommonPopoverProps } from "@types/components/shared";
 
 export interface IUsePopoverValue<E>
     extends Pick<ICommonPopoverProps<E>, "anchor"> {

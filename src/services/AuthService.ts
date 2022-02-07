@@ -1,14 +1,10 @@
 import $api from "@http/axios";
-import {
-    IUser,
-    IUserLoginValues,
-    IUserRegisterValues,
-} from "@interfaces/api/user";
+import { IUser, IUserLoginValues, IUserRegisterValues } from "@types/api/user";
 import {
     IUserWithTokenResponse,
     IUserResponse,
     ITokenResponse,
-} from "@interfaces/api/responses";
+} from "@types/api/responses";
 import { AxiosResponse } from "axios";
 
 class AuthService {

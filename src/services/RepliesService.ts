@@ -1,5 +1,5 @@
 import $api from "@http/axios";
-import { ITweet } from "@interfaces/api/tweet";
+import { ITweet } from "@types/api/tweet";
 
 class RepliesService {
     public async index(userId: string, tweetId: string): Promise<ITweet[]> {

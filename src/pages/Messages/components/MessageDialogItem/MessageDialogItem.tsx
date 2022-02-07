@@ -3,8 +3,8 @@ import * as S from "./MessageDialogItem.styed";
 import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
 import { selectUserState } from "@redux/ducks/user";
 import Text from "@components/TypographyComponents/Text";
-import { IUser } from "@interfaces/api/user";
-import { DialogMessage } from "@interfaces/api/dialog";
+import { IUser } from "@types/api/user";
+import { DialogMessage } from "@types/api/dialog";
 
 export interface MessageDialogItemProps {
     user: IUser;

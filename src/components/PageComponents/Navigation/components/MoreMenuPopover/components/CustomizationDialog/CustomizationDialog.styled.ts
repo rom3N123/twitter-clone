@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import DialogContent from "@mui/material/DialogContent";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import { ColorName, ModeName } from "@interfaces/styled";
+import { ModeName, ColorName } from "@types/styled";
 import accentColors from "@styles/accentColors";
 import modes from "@styles/modes";
 import Flex from "@styled/components/Flex.styled";

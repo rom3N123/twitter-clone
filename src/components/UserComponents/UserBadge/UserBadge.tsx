@@ -1,5 +1,5 @@
 import React from "react";
-import { IUser } from "@interfaces/api/user";
+import { IUser } from "@types/api/user";
 import * as S from "./UserBadge.styled";
 import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
 import Text from "@components/TypographyComponents/Text";

@@ -1,28 +1,4 @@
-export interface IColorPalette {
-    warning: string;
-    success: string;
-}
-
-export type ThemeColorName = keyof IColorPalette;
-
-export interface ITheme {
-    accentColor: string;
-    mode: IMode;
-    colors: IColorPalette;
-}
-
-export interface IColors {
-    blue: string;
-    yellow: string;
-    pink: string;
-    purple: string;
-    orange: string;
-    green: string;
-}
-
-export type ColorName = keyof IColors;
-
-export interface IMode {
+interface IMode {
     typography: {
         primary: string;
         secondary: string;
@@ -57,3 +33,5 @@ export interface IModes {
 }
 
 export type ModeName = keyof IModes;
+
+export default IMode;

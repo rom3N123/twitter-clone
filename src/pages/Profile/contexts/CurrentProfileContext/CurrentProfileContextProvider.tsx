@@ -1,6 +1,6 @@
 import React from "react";
 import UsersService from "@services/UsersService";
-import { IUser } from "@interfaces/api/user";
+import { IUser } from "@types/api/user";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 

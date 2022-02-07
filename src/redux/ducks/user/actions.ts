@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { IUser, IUserEditableFields } from "@interfaces/api/user";
+import { IUser, IUserEditableFields } from "@types/api/user";
 
 export enum UserActionsTypes {
     SET_USER = "user/setUser",

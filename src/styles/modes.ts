@@ -1,4 +1,4 @@
-import { IModes, IMode } from "@interfaces/styled";
+import { IModes, IMode } from "@types/styled";
 import accentColors from "./accentColors";
 
 const light: IMode = {

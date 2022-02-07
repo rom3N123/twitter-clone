@@ -2,7 +2,7 @@ import React from "react";
 import SimpleTweet from "@components/TweetComponents/SimpleTweet";
 import { useQueryClient } from "react-query";
 import { ListChildComponentProps } from "react-window";
-import { ITweet } from "@interfaces/api/tweet";
+import { ITweet } from "@types/api/tweet";
 
 export interface IHomeTweetProps
     extends ListChildComponentProps<{

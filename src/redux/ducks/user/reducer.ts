@@ -1,4 +1,4 @@
-import { IUser } from "@interfaces/api/user";
+import { IUser } from "@types/api/user";
 import provide, { Draft } from "immer";
 import { UserAction, UserActionsTypes } from "./actions";
 

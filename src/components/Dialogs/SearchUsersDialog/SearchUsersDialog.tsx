@@ -1,6 +1,6 @@
 import React from "react";
 import Dialog from "@components/Material/Dialog";
-import { IDialogCommonProps } from "@interfaces/components";
+import { IDialogCommonProps } from "@types/components/shared";
 import DialogHeader from "@components/Material/Dialog/components/DialogHeader";
 import UsersList from "@components/Lists/UsersList";
 import * as S from "./SearchUsersDialog.styled";
@@ -8,7 +8,7 @@ import InlineSearchbar from "@components/SearchComponents/InlineSearchbar/Inline
 import useBind from "@hooks/useBind";
 import useDebounce from "@hooks/useDebounce";
 import UsersService from "@services/UsersService";
-import { IUser } from "@interfaces/api/user";
+import { IUser } from "@types/api/user";
 
 export interface ISearchUsersDialogProps extends IDialogCommonProps {
     title?: string;

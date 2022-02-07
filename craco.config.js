@@ -8,7 +8,7 @@ module.exports = {
             "@components": resolvePath("components"),
             "@hooks": resolvePath("hooks"),
             "@declarations": resolvePath("declarations"),
-            "@interfaces": resolvePath("interfaces"),
+            "@types": resolvePath("types"),
             "@pages": resolvePath("pages"),
             "@redux": resolvePath("redux"),
             "@styles": resolvePath("styles"),
