@@ -1,5 +1,5 @@
 import ModelService from "./core/ModelService";
-import { Dialog } from "@types/api/dialog";
+import { Dialog } from "_types/api/dialog";
 import $api from "@http/axios";
 
 class DialogService extends ModelService<Dialog> {

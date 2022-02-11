@@ -6,7 +6,7 @@ import BlackAndWhiteButton from "@components/Buttons/BlackAndWhiteButton";
 import DialogHeader from "@components/Material/Dialog/components/DialogHeader";
 import useMultiLevelDialog, { IDialogLevel } from "./useMultiLevelDialog";
 
-type MultiDialogRefValue = Pick<
+export type MultiDialogRefValue = Pick<
     ReturnType<typeof useMultiLevelDialog>,
     "goToNextLevel" | "goToPreviousLevel"
 >;

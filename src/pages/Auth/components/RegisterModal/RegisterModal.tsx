@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import MultiLevelDialog, {
     IDialogLevel,
-    IMultiDialogRefValue,
+    MultiDialogRefValue,
 } from "@components/Dialogs/MultiLevelDialog";
 import ProfileInfoForm, {
     ProfileInfoFormValuesType,
@@ -14,7 +14,7 @@ import { FormikHelpers } from "formik";
 
 const RegisterModal: React.FC = (): React.ReactElement => {
     const navigate = useNavigate();
-    const dialogRef = React.useRef<IMultiDialogRefValue>(null);
+    const dialogRef = React.useRef<MultiDialogRefValue>(null);
     const [profileInfo, setProfileInfo] =
         React.useState<ProfileInfoFormValuesType>({
             email: "",
