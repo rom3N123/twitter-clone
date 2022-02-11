@@ -1,6 +1,6 @@
 import $api from "@http/axios";
 import ModelService from "./core/ModelService";
-import { ITweet, ITweetEditableFields } from "@types/api/tweet";
+import { ITweet, ITweetEditableFields } from "_types/api/tweet";
 
 class TweetsService extends ModelService<ITweet> {
     public async index(userId: string): Promise<ITweet[]> {

@@ -3,7 +3,7 @@ import * as S from "./MoreMenuPopover.styled";
 import { ReactComponent as SettingsIcon } from "@icons/more/settings.svg";
 import { ReactComponent as DisplayIcon } from "@icons/more/display.svg";
 import CustomizationDialog from "./components/CustomizationDialog";
-import { ICommonPopoverProps } from "@types/components/shared";
+import { ICommonPopoverProps } from "_types/components";
 import PopoverList from "@components/PopoverComponents/PopoverList";
 
 interface IMoreMenuPopoverProps extends ICommonPopoverProps<HTMLDivElement> {}

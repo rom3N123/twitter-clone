@@ -1,6 +1,6 @@
 import React from "react";
 import createTheme from "@mui/material/styles/createTheme";
-import { ColorName, IMode, ITheme, ModeName } from "@types/styled";
+import { ColorName, IMode, ITheme, ModeName } from "_types/styled";
 import accentColors from "@styles/accentColors";
 import modes from "@styles/modes";
 import { alpha } from "@mui/system";

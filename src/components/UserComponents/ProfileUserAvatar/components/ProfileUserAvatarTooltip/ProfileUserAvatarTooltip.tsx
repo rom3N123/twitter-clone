@@ -1,5 +1,5 @@
 import React from "react";
-import { IHoverPopoverProps } from "@types/components/shared";
+import { IHoverPopoverProps } from "@types/components";
 import HoverPopper from "@components/PopoverComponents/HoverPopper";
 import { IUser } from "@types/api/user";
 import SPaper from "@styled/components/Paper.styled";

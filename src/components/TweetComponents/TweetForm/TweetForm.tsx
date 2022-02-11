@@ -9,7 +9,7 @@ import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
 import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
 import { Formik, FormikHelpers } from "formik";
-import { IUser } from "@types/api/user";
+import { IUser } from "_types/api/user";
 
 const MAX_LENGTH = 300;
 

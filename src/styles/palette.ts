@@ -1,4 +1,4 @@
-import { IColorPalette } from "@types/styled";
+import { IColorPalette } from "_types/styled";
 
 const palette: IColorPalette = {
     warning: "#f4212e",

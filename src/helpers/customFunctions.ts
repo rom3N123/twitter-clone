@@ -1,4 +1,4 @@
-import { IResponseWithFieldsErrors } from "@interfaces/api/responses";
+import { IResponseWithFieldsErrors } from "_types/api/responses";
 
 export const transformBackendFieldsErrors = <
     T extends IResponseWithFieldsErrors

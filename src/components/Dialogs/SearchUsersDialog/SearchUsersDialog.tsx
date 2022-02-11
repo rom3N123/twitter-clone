@@ -1,15 +1,17 @@
 import React from "react";
 import Dialog from "@components/Material/Dialog";
-import { IDialogCommonProps } from "@types/components/shared";
+import { IDialogCommonProps } from "_types/components";
 import DialogHeader from "@components/Material/Dialog/components/DialogHeader";
 import UsersList from "@components/Lists/UsersList";
 import * as S from "./SearchUsersDialog.styled";
 import InlineSearchbar from "@components/SearchComponents/InlineSearchbar/InlineSearchbar";
-import useBind from "@hooks/useBind";
-import useDebounce from "@hooks/useDebounce";
 import UsersService from "@services/UsersService";
-import { IUser } from "@types/api/user";
+import { IUser } from "_types/api/user";
+import useDebouncedSearch from "@hooks/api/useDebouncedSearch";
 
+const fetchUsers = async (debouncedValue: string): Promise<IUser[]> => {
+    return UsersService.search(debouncedValue);
+};
 export interface ISearchUsersDialogProps extends IDialogCommonProps {
     title?: string;
 }
@@ -19,38 +21,18 @@ const SearchUsersDialog: React.FC<ISearchUsersDialogProps> = ({
     onClose,
     title = "Search people",
 }): React.ReactElement => {
-    const { value, onChange } = useBind();
-    const debouncedValue = useDebounce(value, 500);
-    const [users, setUsers] = React.useState<IUser[]>([]);
-
-    React.useEffect(() => {
-        const fetchUsers = async (): Promise<void> => {
-            const users = await UsersService.search(debouncedValue);
-
-            setUsers(users);
-        };
-
-        if (debouncedValue) {
-            fetchUsers();
-        } else {
-            setUsers([]);
-        }
-    }, [debouncedValue]);
+    const { bind, results } = useDebouncedSearch<IUser>(fetchUsers);
 
     return (
         <Dialog open={open} onClose={onClose}>
             <DialogHeader title={title} onClose={onClose} />
 
             <S.SInputContainer>
-                <InlineSearchbar
-                    value={value}
-                    onChange={onChange}
-                    placeholder="Search people"
-                />
+                <InlineSearchbar {...bind()} placeholder="Search people" />
             </S.SInputContainer>
 
             <S.SListContainer>
-                <UsersList users={users} />
+                <UsersList users={results} />
             </S.SListContainer>
         </Dialog>
     );

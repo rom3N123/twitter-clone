@@ -3,7 +3,7 @@ import IColors, { ColorName } from "./colors";
 import IMode, { IModes, ModeName } from "./modes";
 import ITheme from "./theme";
 
-export {
+export type {
     IColorPalette,
     ColorPaletteName,
     IColors,

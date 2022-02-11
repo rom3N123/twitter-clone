@@ -4,7 +4,7 @@ import { IPopoverListItem } from "@components/PopoverComponents/PopoverList/Popo
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
 import ThreeDotsButton from "@components/Buttons/ThreeDotsButton";
-import { ITweet } from "@types/api/tweet";
+import { ITweet } from "_types/api/tweet";
 
 export interface ITweetThreeDotsButtonProps {
     tweet: ITweet;

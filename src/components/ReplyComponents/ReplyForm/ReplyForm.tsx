@@ -1,5 +1,5 @@
 import TweetForm from "@components/TweetComponents/TweetForm";
-import { ITweet } from "@types/api/tweet";
+import { ITweet } from "_types/api/tweet";
 import RepliesService from "@services/RepliesService";
 import React from "react";
 import { useQueryClient } from "react-query";

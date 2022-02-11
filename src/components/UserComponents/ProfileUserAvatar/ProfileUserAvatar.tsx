@@ -2,7 +2,7 @@ import React from "react";
 import ProfileUserAvatarTooltip from "./components/ProfileUserAvatarTooltip";
 import PopupState, { bindHover, bindPopper } from "material-ui-popup-state";
 import * as S from "./ProfileUserAvatar.styled";
-import { IUser } from "@types/api/user";
+import { IUser } from "_types/api/user";
 import { useNavigate } from "react-router-dom";
 
 export interface IProfileUserAvatarProps {

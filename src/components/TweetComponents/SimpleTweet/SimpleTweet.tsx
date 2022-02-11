@@ -1,6 +1,6 @@
 import React from "react";
 import Tweet, { ITweetProps } from "@components/TweetComponents/Tweet/Tweet";
-import { ITweet } from "@types/api/tweet";
+import { ITweet } from "_types/api/tweet";
 import TweetsService from "@services/TweetsService";
 
 export interface ISimpleTweetProps extends Omit<ITweetProps, "onDeleteClick"> {

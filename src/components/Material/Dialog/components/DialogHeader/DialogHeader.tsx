@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./DialogHeader.styled";
 import CancelButton from "@components/Buttons/CancelButton";
-import { ICommonButton, IDialogCommonProps } from "@types/components/shared";
+import { ICommonButton, IDialogCommonProps } from "_types/components";
 import TwitterLogo from "@components/TweetComponents/TwitterLogo";
 import ArrowBackButton from "@components/Buttons/ArrowBackButton";
 import BlackAndWhiteButton from "@components/Buttons/BlackAndWhiteButton";

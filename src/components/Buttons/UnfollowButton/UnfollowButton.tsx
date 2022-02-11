@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@mui/material/Button";
 import UsersService from "@services/UsersService";
 import { IUserFollowButton } from "../UserFollowButton/UserFollowButton";
 import { useDispatch } from "react-redux";

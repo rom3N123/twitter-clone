@@ -1,10 +1,9 @@
 import React from "react";
 import * as S from "./MessageDialogItem.styed";
 import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
-import { selectUserState } from "@redux/ducks/user";
 import Text from "@components/TypographyComponents/Text";
-import { IUser } from "@types/api/user";
-import { DialogMessage } from "@types/api/dialog";
+import { IUser } from "_types/api/user";
+import { DialogMessage } from "_types/api/dialog";
 
 export interface MessageDialogItemProps {
     user: IUser;

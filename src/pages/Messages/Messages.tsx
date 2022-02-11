@@ -5,7 +5,7 @@ import InfoMessage from "@components/MessagesComponents/InfoMessage";
 import useDialog from "@hooks/useDialog";
 import SearchUsersDialog from "@components/Dialogs/SearchUsersDialog";
 import DialogsService from "@services/DialogsService";
-import { Dialog } from "@types/api/dialog";
+import { Dialog } from "_types/api/dialog";
 import MessageDialogItem from "./components/MessageDialogItem";
 
 const Messages: React.FC = (): React.ReactElement => {

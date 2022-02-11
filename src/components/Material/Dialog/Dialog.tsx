@@ -1,7 +1,7 @@
 import React from "react";
 import MuiDialog from "@mui/material/Dialog";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { IDialogCommonProps } from "@types/components/shared";
+import { IDialogCommonProps } from "_types/components";
 
 interface IDialogProps extends IDialogCommonProps {}
 

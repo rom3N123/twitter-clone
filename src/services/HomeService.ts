@@ -1,5 +1,5 @@
 import $api from "@http/axios";
-import { ITweet } from "@types/api/tweet";
+import { ITweet } from "_types/api/tweet";
 
 class HomeService {
     public async index(): Promise<ITweet[]> {

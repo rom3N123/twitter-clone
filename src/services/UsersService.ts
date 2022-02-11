@@ -1,5 +1,5 @@
 import $api from "@http/axios";
-import { IUser, IUserEditableFields } from "@types/api/user";
+import { IUser, IUserEditableFields } from "_types/api/user";
 import ModelService from "./core/ModelService";
 
 class UsersService extends ModelService<IUser> {

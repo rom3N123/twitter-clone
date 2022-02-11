@@ -1,5 +1,5 @@
 import React from "react";
-import { IHoverPopoverProps } from "@types/components/shared";
+import { IHoverPopoverProps } from "_types/components";
 import { SPopper } from "./HoverPopover.styled";
 import Grow from "@mui/material/Grow";
 

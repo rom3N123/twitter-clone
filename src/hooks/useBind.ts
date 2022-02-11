@@ -1,8 +1,11 @@
 import React from "react";
 
-interface IUseBindValue {
+export interface IBindValue {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+interface IUseBindValue extends IBindValue {
     clearValue: () => void;
 }
 

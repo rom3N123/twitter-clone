@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ColorName, ModeName } from "@types/styled";
+import { ColorName, ModeName } from "_types/styled";
 
 export interface IThemeContextValue {
     mode: ModeName;
