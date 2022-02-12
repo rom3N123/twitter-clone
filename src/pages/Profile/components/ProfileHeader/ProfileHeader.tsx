@@ -96,20 +96,19 @@ const ProfileHeader: React.FC = (): React.ReactElement => {
 
                     <SkeletonWrapper visible={Boolean(user)} height={70}>
                         <S.ProfileInfoItems margin="10px 0">
-                            {location && (
-                                <S.ProfileInfoItem>
-                                    <PlaceIcon />
-                                    {location}
-                                </S.ProfileInfoItem>
-                            )}
+                            <S.ProfileInfoItem>
+                                <PlaceIcon />
+                                {user?.location || "Russian Federation"}
+                            </S.ProfileInfoItem>
 
                             <S.ProfileInfoItem>
                                 <CalendarIcon />
-                                {user?.registerTimestamp &&
-                                    `Joined ${format(
-                                        new Date(user.registerTimestamp),
-                                        "PP"
-                                    )}`}
+                                {`Joined ${format(
+                                    new Date(
+                                        user?.registerTimestamp || Date.now()
+                                    ),
+                                    "PP"
+                                )}`}
                             </S.ProfileInfoItem>
                         </S.ProfileInfoItems>
                     </SkeletonWrapper>
