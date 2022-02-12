@@ -12,8 +12,12 @@ export interface DialogMessage {
     text: string;
     isEdited: boolean;
     createdAt: number;
-    replyTo: DialogMessage;
+    replyTo?: DialogMessage;
     isSystem: boolean;
     dialog: Dialog;
     author: IUser;
 }
+
+export type DialogMessageEditableFields = Pick<DialogMessage, "text">;
+
+export type DialogMessageCreateFields = Pick<DialogMessage, "text" | "replyTo">;

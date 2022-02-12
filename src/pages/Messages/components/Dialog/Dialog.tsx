@@ -1,5 +1,4 @@
 import React from "react";
-import { IUser } from "_types/api/user";
 import * as S from "./Dialog.styled";
 import UserItem from "@components/UserComponents/UserItem";
 import DialogMessageRow from "./components/DialogMessageRow";
@@ -7,18 +6,23 @@ import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
 import DialogInput from "./components/DialogInput";
 import { Dialog as DialogType } from "_types/api/dialog";
+import useDialogMessagesSockets from "./hooks/useDialogMessagesSockets";
 
 export interface DialogProps {
     dialog: DialogType;
 }
 
 const Dialog: React.FC<DialogProps> = ({
-    dialog: { participants, messages },
+    dialog: { _id, participants },
 }): React.ReactElement => {
     const user = participants[0];
     const authUser = useAppSelector(selectUserState);
 
-    const onMessageSend = (text: string): void => {};
+    const { messages, sendMessage } = useDialogMessagesSockets(_id);
+
+    const onMessageSend = (text: string): void => {
+        sendMessage(text);
+    };
 
     return (
         <S.SContainer>
@@ -32,7 +36,7 @@ const Dialog: React.FC<DialogProps> = ({
             </S.SHeader>
 
             <S.SMessagesContainer>
-                {messages.map((message, index) => (
+                {messages?.map((message, index) => (
                     <DialogMessageRow
                         key={message._id}
                         index={index}

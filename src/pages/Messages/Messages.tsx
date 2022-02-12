@@ -11,8 +11,6 @@ const Messages: React.FC = (): React.ReactElement => {
 
     const dialogs = useFetchDialogs();
 
-    console.log(dialogs);
-
     return (
         <S.SContainer>
             <S.SConversatins>

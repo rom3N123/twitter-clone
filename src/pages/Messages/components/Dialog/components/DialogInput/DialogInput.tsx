@@ -18,12 +18,19 @@ const DialogInput: React.FC<DialogInputProps> = ({
         clearValue();
     };
 
+    const onKeyPress = ({ key }: React.KeyboardEvent) => {
+        if (key === "Enter") {
+            onSubmitHandler(value)();
+        }
+    };
+
     return (
         <S.SContainer>
             <S.STextField
                 placeholder="Start a new message"
                 value={value}
                 onChange={onChange}
+                onKeyPress={onKeyPress}
             />
 
             <IconButton
