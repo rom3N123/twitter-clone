@@ -17,6 +17,9 @@ const light: IMode = {
         dialog: {
             backdrop: "rgba(0, 0, 0, 0.4)",
         },
+        dialogMessage: {
+            background: "rgb(207, 217, 222)",
+        },
     },
     svg: {
         primary: accentColors.blue,
@@ -49,6 +52,9 @@ const dim: IMode = {
         dialog: {
             backdrop: "rgba(91, 112, 131, 0.4)",
         },
+        dialogMessage: {
+            background: "rgb(61, 84, 102)",
+        },
     },
     shadows: {
         primary:
@@ -72,6 +78,9 @@ const dark: IMode = {
         },
         dialog: {
             backdrop: "rgba(91, 112, 131, 0.4)",
+        },
+        dialogMessage: {
+            background: "rgb(47, 51, 54)",
         },
     },
     svg: {

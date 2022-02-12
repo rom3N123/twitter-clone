@@ -18,6 +18,9 @@ interface IMode {
         dialog: {
             backdrop: string;
         };
+        dialogMessage: {
+            background: string;
+        };
     };
     shadows: {
         primary: string;

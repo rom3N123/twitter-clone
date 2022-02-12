@@ -12,10 +12,16 @@ const UserItem: React.FC<IUserItemProps> = ({
     endButton,
     avatarSize,
     withBio,
+    ...otherProps
 }): React.ReactElement => {
     return (
         <S.SContainer>
-            <UserBadge avatarSize={avatarSize} withBio={withBio} user={user} />
+            <UserBadge
+                avatarSize={avatarSize}
+                withBio={withBio}
+                user={user}
+                {...otherProps}
+            />
 
             {endButton}
         </S.SContainer>

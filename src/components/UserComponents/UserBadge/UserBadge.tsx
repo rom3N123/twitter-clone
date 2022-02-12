@@ -3,6 +3,7 @@ import { IUser } from "_types/api/user";
 import * as S from "./UserBadge.styled";
 import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
 import Text from "@components/TypographyComponents/Text";
+import { FlexAxisPositions } from "@styled/components/Flex.styled";
 
 export interface IUserBadgeProps {
     user: IUser;
@@ -10,6 +11,7 @@ export interface IUserBadgeProps {
     withBio?: boolean;
     fontSize?: number;
     withoutUserProfilePopover?: boolean;
+    align?: FlexAxisPositions;
 }
 
 const UserBadge: React.FC<IUserBadgeProps> = ({
@@ -18,9 +20,10 @@ const UserBadge: React.FC<IUserBadgeProps> = ({
     withBio,
     fontSize,
     withoutUserProfilePopover = false,
+    align,
 }): React.ReactElement => {
     return (
-        <S.SContainer>
+        <S.SContainer align={align}>
             <ProfileUserAvatar
                 isWithPopover={!withoutUserProfilePopover}
                 size={avatarSize}

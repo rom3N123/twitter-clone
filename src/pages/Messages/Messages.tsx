@@ -3,6 +3,7 @@ import * as S from "./Messages.styled";
 import MessageDialogItem from "./components/MessageDialogItem";
 import useFetchDialogs from "./useFetchDialogs";
 import SelectDialogMessage from "./components/SelectDialogMessage";
+import Dialog from "./components/Dialog";
 
 const Messages: React.FC = (): React.ReactElement => {
     const [dialog, setDialog] = React.useState(null);
@@ -28,11 +29,23 @@ const Messages: React.FC = (): React.ReactElement => {
             {dialog ? (
                 <div>Dialog</div>
             ) : (
-                <S.SSeleectDialogContainer>
+                <S.SDialogContainer>
                     <S.SConversationsInner>
-                        <SelectDialogMessage />
+                        {dialogs.length && (
+                            <Dialog user={dialogs[0].participants[0]} />
+                        )}
                     </S.SConversationsInner>
-                </S.SSeleectDialogContainer>
+                </S.SDialogContainer>
+
+                // <S.SSeleectDialogContainer>
+                //     <S.SConversationsInner>
+                //         {dialogs.length && (
+                //             <Dialog user={dialogs[0].participants[0]} />
+                //         )}
+
+                //         {/* <SelectDialogMessage /> */}
+                //     </S.SConversationsInner>
+                // </S.SSeleectDialogContainer>
             )}
         </S.SContainer>
     );
