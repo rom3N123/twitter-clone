@@ -6,101 +6,17 @@ import DialogMessageRow from "./components/DialogMessageRow";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
 import DialogInput from "./components/DialogInput";
+import { Dialog as DialogType } from "_types/api/dialog";
 
 export interface DialogProps {
-    user: IUser;
+    dialog: DialogType;
 }
 
-const Dialog: React.FC<DialogProps> = ({ user }): React.ReactElement => {
+const Dialog: React.FC<DialogProps> = ({
+    dialog: { participants, messages },
+}): React.ReactElement => {
+    const user = participants[0];
     const authUser = useAppSelector(selectUserState);
-    const messages = [
-        {
-            user,
-            text: "Прив",
-        },
-        {
-            user,
-            text: "Прив",
-        },
-        {
-            user,
-            text: "Прив",
-        },
-
-        {
-            user: authUser,
-            text: "Прив",
-        },
-        {
-            user: authUser,
-            text: "Прив",
-        },
-        {
-            user: authUser,
-            text: "ПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПрив",
-        },
-        {
-            user: authUser,
-            text: "Прив",
-        },
-        {
-            user: authUser,
-            text: "Прив",
-        },
-        {
-            user: authUser,
-            text: "ПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПрив",
-        },
-        {
-            user: authUser,
-            text: "Прив",
-        },
-        {
-            user: authUser,
-            text: "Прив",
-        },
-        {
-            user: authUser,
-            text: "ПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПрив",
-        },
-
-        {
-            user: authUser,
-            text: "Прив",
-        },
-        {
-            user: authUser,
-            text: "Прив",
-        },
-        {
-            user: authUser,
-            text: "ПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПрив",
-        },
-        {
-            user: authUser,
-            text: "Прив",
-        },
-        {
-            user: authUser,
-            text: "Прив",
-        },
-        {
-            user: authUser,
-            text: "ПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПрив",
-        },
-        {
-            user: authUser,
-            text: "Прив",
-        },
-        {
-            user: authUser,
-            text: "Прив",
-        },
-        {
-            user: authUser,
-            text: "ПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПрив",
-        },
-    ];
 
     const onMessageSend = (text: string): void => {};
 
@@ -118,9 +34,11 @@ const Dialog: React.FC<DialogProps> = ({ user }): React.ReactElement => {
             <S.SMessagesContainer>
                 {messages.map((message, index) => (
                     <DialogMessageRow
-                        isMine={message.user._id === authUser._id}
-                        messages={messages}
+                        key={message._id}
                         index={index}
+                        isMine={message.author._id === authUser._id}
+                        messages={messages}
+                        message={message}
                         {...message}
                     />
                 ))}

@@ -1,14 +1,17 @@
 import React from "react";
 import * as S from "./Messages.styled";
 import MessageDialogItem from "./components/MessageDialogItem";
-import useFetchDialogs from "./useFetchDialogs";
+import useFetchDialogs from "./hooks/useFetchDialogs";
 import SelectDialogMessage from "./components/SelectDialogMessage";
 import Dialog from "./components/Dialog";
+import useActiveDialog from "./hooks/useActiveDialog";
 
 const Messages: React.FC = (): React.ReactElement => {
-    const [dialog, setDialog] = React.useState(null);
+    const { activeDialog, onDialogClick } = useActiveDialog();
 
     const dialogs = useFetchDialogs();
+
+    console.log(dialogs);
 
     return (
         <S.SContainer>
@@ -16,24 +19,23 @@ const Messages: React.FC = (): React.ReactElement => {
                 {!dialogs.length ? (
                     <SelectDialogMessage />
                 ) : (
-                    dialogs.map(({ participants, messages, _id }) => (
+                    dialogs.map((dialog) => (
                         <MessageDialogItem
-                            key={_id}
-                            user={participants[0]}
-                            lastMessage={messages[messages.length - 1]}
+                            isActive={activeDialog?._id === dialog._id}
+                            onClick={onDialogClick}
+                            key={dialog._id}
+                            dialog={dialog}
                         />
                     ))
                 )}
             </S.SConversatins>
 
-            {dialog ? (
+            {!activeDialog ? (
                 <div>Dialog</div>
             ) : (
                 <S.SDialogContainer>
                     <S.SConversationsInner>
-                        {dialogs.length && (
-                            <Dialog user={dialogs[0].participants[0]} />
-                        )}
+                        {dialogs.length && <Dialog dialog={activeDialog} />}
                     </S.SConversationsInner>
                 </S.SDialogContainer>
 

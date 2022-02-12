@@ -3,19 +3,29 @@ import * as S from "./MessageDialogItem.styed";
 import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
 import Text from "@components/TypographyComponents/Text";
 import { IUser } from "_types/api/user";
-import { DialogMessage } from "_types/api/dialog";
+import { Dialog, DialogMessage } from "_types/api/dialog";
 
 export interface MessageDialogItemProps {
-    user: IUser;
-    lastMessage: DialogMessage;
+    dialog: Dialog;
+    isActive?: boolean;
+    onClick: (dialog: Dialog) => void;
 }
 
 const MessageDialogItem: React.FC<MessageDialogItemProps> = ({
-    user,
-    lastMessage,
+    dialog,
+    isActive,
+    onClick,
 }): React.ReactElement => {
+    const { participants, messages } = dialog;
+    const user = participants[0];
+    const lastMessage = messages[messages.length - 1];
+
+    const onClickHandler = (dialog: Dialog) => (): void => {
+        onClick(dialog);
+    };
+
     return (
-        <S.SContainer>
+        <S.SContainer onClick={onClickHandler(dialog)}>
             <ProfileUserAvatar size={47} user={user} />
             <S.SInner>
                 <S.SUserName>
@@ -31,6 +41,8 @@ const MessageDialogItem: React.FC<MessageDialogItemProps> = ({
                     )}
                 </S.SMessageTextContainer>
             </S.SInner>
+
+            {isActive && <S.SActiveBar />}
         </S.SContainer>
     );
 };

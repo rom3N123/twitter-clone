@@ -1,7 +1,7 @@
 import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
 import Fade from "@mui/material/Fade";
 import React from "react";
-import { IUser } from "_types/api/user";
+import { DialogMessage as DialogMessageType } from "_types/api/dialog";
 import DialogMessage, {
     DialogMessageProps,
 } from "../DialogMessage/DialogMessage";
@@ -9,26 +9,25 @@ import * as S from "./DialogMessageRow.styled";
 import { IsPreviousUserTheSameProps } from "./hooks/types";
 import useDialogMessageIndent from "./hooks/useDialogMessageIndent";
 import useIsNextMessageByTheSameUser from "./hooks/useIsNextMessageByTheSameUser";
-import useIsPreviousMessageBySameUser from "./hooks/useIsPreviousMessageBySameUser";
 
-export interface DialogMessageRowProps extends DialogMessageProps {
-    user: IUser;
+export interface DialogMessageRowProps
+    extends Omit<DialogMessageProps, "text"> {
+    message: DialogMessageType;
 }
 
 export interface AdditionalDialogMessageRowProps extends DialogMessageRowProps {
     index: number;
-    messages: DialogMessageRowProps[];
+    messages: DialogMessageType[];
 }
 
 const DialogMessageRow: React.FC<AdditionalDialogMessageRowProps> = ({
-    user,
-    text,
+    message: { text, author },
     isMine,
     index,
     messages,
 }): React.ReactElement => {
     const hookProps: IsPreviousUserTheSameProps = {
-        user,
+        author,
         index,
         messages,
     };
@@ -40,7 +39,7 @@ const DialogMessageRow: React.FC<AdditionalDialogMessageRowProps> = ({
         <S.SContainer alignEnd={isMine} indent={indent}>
             <Fade in={!isMine && !shouldShowAvatar}>
                 <div>
-                    <ProfileUserAvatar size={40} user={user} />
+                    <ProfileUserAvatar size={40} user={author} />
                 </div>
             </Fade>
 

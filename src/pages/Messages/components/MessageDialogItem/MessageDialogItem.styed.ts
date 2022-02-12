@@ -1,3 +1,4 @@
+import { centerAbsoluteStyles } from "@styled/styles";
 import styled from "styled-components";
 import Flex from "@styled/components/Flex.styled";
 
@@ -9,6 +10,7 @@ export const SContainer = styled(Flex).attrs(() => ({
     height: 70px;
     width: 100%;
     cursor: pointer;
+    position: relative;
 
     &:hover {
         background-color: ${({ theme }) => theme.mode.background.secondary};
@@ -43,4 +45,12 @@ export const SMessageCircle = styled.div`
     width: 8px;
     height: 8px;
     border-radius: 50%;
+`;
+
+export const SActiveBar = styled.div`
+    ${centerAbsoluteStyles};
+    left: 100%;
+    height: 100%;
+    width: 2px;
+    background-color: ${({ theme }) => theme.accentColor};
 `;

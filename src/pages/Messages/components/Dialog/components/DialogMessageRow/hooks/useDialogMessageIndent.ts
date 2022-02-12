@@ -2,7 +2,7 @@ import { IsPreviousUserTheSameProps } from "./types";
 import useIsPreviousMessageBySameUser from "./useIsPreviousMessageBySameUser";
 
 const useDialogMessageIndent = ({
-    user,
+    author,
     messages,
     index,
 }: IsPreviousUserTheSameProps): number => {
@@ -10,7 +10,7 @@ const useDialogMessageIndent = ({
 
     if (index !== 0) {
         const isTheSameUser = useIsPreviousMessageBySameUser({
-            user,
+            author,
             messages,
             index,
         });

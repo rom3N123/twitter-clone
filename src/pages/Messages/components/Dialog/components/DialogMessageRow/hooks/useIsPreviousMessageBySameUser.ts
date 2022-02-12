@@ -1,15 +1,15 @@
 import { IsPreviousUserTheSameProps } from "./types";
 
 const useIsPreviousMessageBySameUser = ({
-    user,
+    author,
     messages,
     index,
 }: IsPreviousUserTheSameProps): boolean => {
     if (index === 0) return false;
 
-    const { user: prevUser } = messages[index - 1];
+    const { author: prevAuthor } = messages[index - 1];
 
-    return prevUser._id === user._id;
+    return prevAuthor._id === author._id;
 };
 
 export default useIsPreviousMessageBySameUser;
