@@ -5,6 +5,7 @@ import UserItem from "@components/UserComponents/UserItem";
 import DialogMessageRow from "./components/DialogMessageRow";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@redux/ducks/user";
+import DialogInput from "./components/DialogInput";
 
 export interface DialogProps {
     user: IUser;
@@ -38,7 +39,70 @@ const Dialog: React.FC<DialogProps> = ({ user }): React.ReactElement => {
             user: authUser,
             text: "ПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПрив",
         },
+        {
+            user: authUser,
+            text: "Прив",
+        },
+        {
+            user: authUser,
+            text: "Прив",
+        },
+        {
+            user: authUser,
+            text: "ПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПрив",
+        },
+        {
+            user: authUser,
+            text: "Прив",
+        },
+        {
+            user: authUser,
+            text: "Прив",
+        },
+        {
+            user: authUser,
+            text: "ПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПрив",
+        },
+
+        {
+            user: authUser,
+            text: "Прив",
+        },
+        {
+            user: authUser,
+            text: "Прив",
+        },
+        {
+            user: authUser,
+            text: "ПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПрив",
+        },
+        {
+            user: authUser,
+            text: "Прив",
+        },
+        {
+            user: authUser,
+            text: "Прив",
+        },
+        {
+            user: authUser,
+            text: "ПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПрив",
+        },
+        {
+            user: authUser,
+            text: "Прив",
+        },
+        {
+            user: authUser,
+            text: "Прив",
+        },
+        {
+            user: authUser,
+            text: "ПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПривПрив",
+        },
     ];
+
+    const onMessageSend = (text: string): void => {};
 
     return (
         <S.SContainer>
@@ -61,6 +125,8 @@ const Dialog: React.FC<DialogProps> = ({ user }): React.ReactElement => {
                     />
                 ))}
             </S.SMessagesContainer>
+
+            <DialogInput onSubmit={onMessageSend} />
         </S.SContainer>
     );
 };

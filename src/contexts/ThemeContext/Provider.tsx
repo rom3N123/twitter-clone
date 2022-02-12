@@ -6,7 +6,7 @@ import modes from "@styles/modes";
 import { alpha } from "@mui/system";
 import { useAppSelector } from "@redux/hooks";
 import ThemeContext, { IThemeContextValue } from "./Context";
-import { ThemeProvider as MuiThemeProvider } from "@mui/system";
+import MuiThemeProvider from "@mui/system/ThemeProvider";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { useDispatch } from "react-redux";
 import {
@@ -163,6 +163,11 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
                 },
                 styleOverrides: {
                     root: {
+                        "&.Mui-disabled": {
+                            ".MuiSvgIcon-root": {
+                                color: alpha(colorValue, 0.4),
+                            },
+                        },
                         ".MuiSvgIcon-root": {
                             color: colorValue,
                         },

@@ -6,6 +6,7 @@ export const SContainer = styled(Flex).attrs(() => ({
 }))`
     height: 100%;
     width: 100%;
+    overflow-y: scroll;
 `;
 
 export const SHeader = styled.header``;
@@ -16,6 +17,5 @@ export const SMessagesContainer = styled(Flex).attrs(() => ({
 }))`
     flex-grow: 1;
     width: 100%;
-    overflow-y: auto;
-    margin-top: 10px;
+    margin: 10px 0 20px;
 `;
