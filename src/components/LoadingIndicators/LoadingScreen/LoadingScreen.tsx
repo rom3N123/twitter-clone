@@ -3,9 +3,10 @@ import { useAppSelector } from "@redux/hooks";
 import { createPortal } from "react-dom";
 import { SContainer, SInner } from "./LoadingScreen.styled";
 import TwitterLogo from "@components/TweetComponents/TwitterLogo";
+import { selectGeneralState } from "@redux/ducks/general";
 
 const LoadingScreen: React.FC = (): React.ReactElement | null => {
-    const { isLoadingWithScreen } = useAppSelector(({ general }) => general);
+    const { isLoadingWithScreen } = useAppSelector(selectGeneralState);
 
     if (!isLoadingWithScreen) {
         return null;

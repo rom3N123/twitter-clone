@@ -9,7 +9,6 @@ import { ITab } from "@components/Tabs/components/Tab/Tab";
 import useToggle from "@hooks/useToggle";
 import EditProfileDialog from "../EditProfileDialog";
 import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
-import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import ProfileActivity from "../ProfileActivity";
 import { useAppSelector } from "@redux/hooks";
@@ -17,45 +16,38 @@ import { selectUserState } from "@redux/ducks/user";
 import UserFollowButton from "@components/Buttons/UserFollowButton/UserFollowButton";
 import useCurrentProfileContext from "@pages/Profile/contexts/CurrentProfileContext/useCurrentProfileContext";
 import { format } from "date-fns";
+import SkeletonWrapper from "@components/SkeletonWrapper";
+import Skeleton from "@mui/material/Skeleton";
+
+const tabs: ITab[] = [
+    {
+        label: "Tweets",
+        onClick: () => {},
+        value: "tweets",
+    },
+    {
+        label: "Media",
+        onClick: () => {},
+        value: "media",
+    },
+    {
+        label: "Likes",
+        onClick: () => {},
+        value: "likes",
+    },
+];
 
 const ProfileHeader: React.FC = (): React.ReactElement => {
     const { isOpen, toggle } = useToggle();
     const { user } = useCurrentProfileContext();
 
+    console.log(user);
+
     const authUser = useAppSelector(selectUserState);
-
-    const tabs: ITab[] = [
-        {
-            label: "Tweets",
-            onClick: () => {},
-            value: "tweets",
-        },
-        {
-            label: "Media",
-            onClick: () => {},
-            value: "media",
-        },
-        {
-            label: "Likes",
-            onClick: () => {},
-            value: "likes",
-        },
-    ];
-
-    const {
-        _id,
-        name,
-        followers,
-        following,
-        location,
-        bio,
-        background,
-        registerTimestamp,
-    } = user || {};
 
     return (
         <S.Container>
-            <S.ProfileBackground src={background} />
+            <S.ProfileBackground src={user?.background} />
 
             <Content>
                 <S.ProfileInfo>
@@ -63,32 +55,23 @@ const ProfileHeader: React.FC = (): React.ReactElement => {
                         <Skeleton variant="circular" width={133} height={133} />
                     ) : (
                         <ProfileUserAvatar
+                            withWrapper
                             clickable={false}
                             user={user}
-                            withWrapper
                         />
                     )}
 
                     <S.SProfileNameContainer>
-                        {!user ? (
+                        <SkeletonWrapper visible={Boolean(user)}>
                             <div>
-                                <Skeleton>
-                                    <S.ProfileName>{name}</S.ProfileName>
-                                </Skeleton>
-                                <Skeleton>
-                                    <S.ProfileId>@{_id}</S.ProfileId>
-                                </Skeleton>
+                                <S.ProfileName>{user?.name}</S.ProfileName>
+                                <S.ProfileId>@{user?._id}</S.ProfileId>
                             </div>
-                        ) : (
-                            <div>
-                                <S.ProfileName>{name}</S.ProfileName>
-                                <S.ProfileId>@{_id}</S.ProfileId>
-                            </div>
-                        )}
+                        </SkeletonWrapper>
 
                         {!user ? (
                             <Skeleton width={80} height={50} />
-                        ) : authUser._id === _id ? (
+                        ) : authUser._id === user?._id ? (
                             <Button
                                 sx={{ height: 36 }}
                                 variant="outlined"
@@ -101,81 +84,51 @@ const ProfileHeader: React.FC = (): React.ReactElement => {
                         )}
                     </S.SProfileNameContainer>
 
-                    {!user ? (
-                        <Skeleton height={50} width={150} />
-                    ) : (
+                    <SkeletonWrapper
+                        visible={Boolean(user)}
+                        height={50}
+                        width={150}
+                    >
                         <S.SProfileBio>
-                            <Typography>{bio}</Typography>
+                            <Typography>{user?.bio}</Typography>
                         </S.SProfileBio>
-                    )}
+                    </SkeletonWrapper>
 
-                    {!user ? (
-                        <Skeleton height={70}>
-                            <S.ProfileInfoItems margin="10px 0">
+                    <SkeletonWrapper visible={Boolean(user)} height={70}>
+                        <S.ProfileInfoItems margin="10px 0">
+                            {location && (
                                 <S.ProfileInfoItem>
                                     <PlaceIcon />
-                                    Russian Federation
+                                    {location}
                                 </S.ProfileInfoItem>
+                            )}
 
-                                <S.ProfileInfoItem>
-                                    <CalendarIcon />
-                                    Joined October 2021
-                                </S.ProfileInfoItem>
-                            </S.ProfileInfoItems>
-                        </Skeleton>
-                    ) : (
-                        <>
-                            <S.ProfileInfoItems margin="10px 0">
-                                {location && (
-                                    <S.ProfileInfoItem>
-                                        <PlaceIcon />
-                                        {location}
-                                    </S.ProfileInfoItem>
-                                )}
+                            <S.ProfileInfoItem>
+                                <CalendarIcon />
+                                {user?.registerTimestamp &&
+                                    `Joined ${format(
+                                        new Date(user.registerTimestamp),
+                                        "PP"
+                                    )}`}
+                            </S.ProfileInfoItem>
+                        </S.ProfileInfoItems>
+                    </SkeletonWrapper>
 
-                                <S.ProfileInfoItem>
-                                    <CalendarIcon />
-                                    {registerTimestamp &&
-                                        `Joined ${format(
-                                            new Date(registerTimestamp),
-                                            "PP"
-                                        )}`}
-                                </S.ProfileInfoItem>
-                            </S.ProfileInfoItems>
-                        </>
-                    )}
-
-                    {!user ? (
-                        <Skeleton height={35}>
-                            <S.ProfileInfoItems>
-                                <ProfileActivity
-                                    to="/"
-                                    amount={0}
-                                    label="Following"
-                                />
-
-                                <ProfileActivity
-                                    to="/"
-                                    amount={0}
-                                    label="Followers"
-                                />
-                            </S.ProfileInfoItems>
-                        </Skeleton>
-                    ) : (
+                    <SkeletonWrapper visible={Boolean(user)} height={35}>
                         <S.ProfileInfoItems>
                             <ProfileActivity
                                 to="/"
-                                amount={following!.length}
+                                amount={0}
                                 label="Following"
                             />
 
                             <ProfileActivity
                                 to="/"
-                                amount={followers!.length}
+                                amount={0}
                                 label="Followers"
                             />
                         </S.ProfileInfoItems>
-                    )}
+                    </SkeletonWrapper>
                 </S.ProfileInfo>
             </Content>
 

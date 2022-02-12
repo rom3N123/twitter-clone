@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./InfoMessage.styled";
 import Text from "@components/TypographyComponents/Text";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 
 export interface IInfoMessageProps {
     title: string;

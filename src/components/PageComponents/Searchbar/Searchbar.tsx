@@ -1,16 +1,18 @@
 import React from "react";
-import useDebounce from "@hooks/useDebounce";
 import S from "./Searchbar.styled";
 import { ReactComponent as LoupeIcon } from "@icons/loupe.svg";
 import Grow from "@mui/material/Grow";
-import useBind from "@hooks/useBind";
+import { IBindValue } from "@hooks/useBind";
 
-const Searchbar: React.FC = (): React.ReactElement => {
-    const { value, onChange, clearValue } = useBind();
-    const debouncedValue: string = useDebounce(value);
+interface SearchbarProps extends IBindValue {
+    clearValue: () => void;
+}
 
-    React.useEffect(() => {}, [debouncedValue]);
-
+const Searchbar: React.FC<SearchbarProps> = ({
+    value,
+    onChange,
+    clearValue,
+}): React.ReactElement => {
     return (
         <S.Field
             InputProps={{
