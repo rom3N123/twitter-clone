@@ -1,9 +1,8 @@
 import React from "react";
 import * as S from "./MessageDialogItem.styed";
-import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
 import Text from "@components/TypographyComponents/Text";
-import { IUser } from "_types/api/user";
-import { Dialog, DialogMessage } from "_types/api/dialog";
+import { Dialog } from "_types/api/dialog";
+import AvatarWithOnlineIndicator from "@components/UserComponents/AvatarWithOnlineIndicator";
 
 export interface MessageDialogItemProps {
     dialog: Dialog;
@@ -26,7 +25,7 @@ const MessageDialogItem: React.FC<MessageDialogItemProps> = ({
 
     return (
         <S.SContainer onClick={onClickHandler(dialog)}>
-            <ProfileUserAvatar size={47} user={user} />
+            <AvatarWithOnlineIndicator size={47} user={user} />
             <S.SInner>
                 <S.SUserName>
                     <Text fontWeight={700}>{user.name}</Text>

@@ -1,7 +1,6 @@
 import axios from "axios";
 import AuthService from "@services/AuthService";
-
-export const API_URL = "http://localhost:5000/api";
+import { API_URL } from "./httpConfig";
 
 const $api = axios.create({
     baseURL: API_URL,
