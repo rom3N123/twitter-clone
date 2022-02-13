@@ -58,6 +58,20 @@ const ThemeProvider: React.FC = ({ children }): React.ReactElement => {
                     },
                 },
             },
+            MuiAlert: {
+                styleOverrides: {
+                    root: {
+                        ".MuiIconButton-root, .MuiSvgIcon-root": {
+                            color: "inherit",
+                        },
+                    },
+                    message: {
+                        wordBreak: "break-word",
+                        maxHeight: "100px",
+                        overflowY: "auto",
+                    },
+                },
+            },
             MuiFormLabel: {
                 styleOverrides: {
                     root: {

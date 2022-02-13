@@ -8,6 +8,8 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import ThemeProvider from "@contexts/ThemeContext";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { Provider as AlertProvider } from "react-alert";
+import AlertTemplate from "@components/AlertTemplate";
 
 const queryClient = new QueryClient();
 
@@ -18,7 +20,9 @@ ReactDOM.render(
                 <Router>
                     <CssBaseline />
                     <GlobalStyles />
-                    <App />
+                    <AlertProvider timeout={3000} template={AlertTemplate}>
+                        <App />
+                    </AlertProvider>
                 </Router>
             </ThemeProvider>
         </Provider>
