@@ -3,7 +3,6 @@ import Navigation from "@components/PageComponents/Navigation";
 import * as S from "./Layout.styled";
 import { Routes, Route } from "react-router-dom";
 import Loader from "./components/Loader";
-import socket from "@http/authSocket";
 
 const Messages = React.lazy(() => import("@pages/Messages"));
 const TweetPage = React.lazy(() => import("@pages/TweetPage"));
@@ -11,10 +10,6 @@ const Home = React.lazy(() => import("@pages/Home"));
 const Profile = React.lazy(() => import("@pages/Profile"));
 
 const Layout: React.FC = (): React.ReactElement => {
-    React.useEffect(() => {
-        socket.connect();
-    }, []);
-
     return (
         <section>
             <Suspense fallback={<Loader />}>

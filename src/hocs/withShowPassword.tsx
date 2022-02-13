@@ -6,7 +6,7 @@ export interface IWithPasswordProps {
 }
 
 const withShowPassword =
-    <P extends object>(Component: React.FC<P>): React.FC<any> =>
+    <P extends object = {}>(Component: React.FC<P>): React.FC<any> =>
     (props: P): React.ReactElement => {
         const [passwordVisible, setPasswordVisible] = React.useState(false);
 

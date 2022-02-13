@@ -10,10 +10,13 @@ import ProtectedRoute from "@components/routes/ProtectedRoute";
 import { loginAction } from "@redux/ducks/auth/actions";
 import { useAppSelector } from "@redux/hooks";
 import { selectGeneralState } from "@redux/ducks/general";
+import useAppAuthSocketConnection from "@hooks/app/useAppAuthSocketConnection";
 
 function App() {
     const { isLoadingWithScreen } = useAppSelector(selectGeneralState);
     const dispatch = useDispatch();
+
+    useAppAuthSocketConnection();
 
     React.useEffect(() => {
         const token = localStorage.getItem("token");

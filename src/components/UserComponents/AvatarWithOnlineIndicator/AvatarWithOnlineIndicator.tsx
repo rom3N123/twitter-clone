@@ -1,4 +1,3 @@
-import manager from "@http/manager";
 import React from "react";
 import ProfileUserAvatar, {
     IProfileUserAvatarProps,
@@ -6,25 +5,26 @@ import ProfileUserAvatar, {
 import * as S from "./AvatarWithOnlineIndicator.styled";
 import socket from "@http/authSocket";
 
-const AvatarWithOnlineIndicator: React.FC<IProfileUserAvatarProps> = ({
+export interface AvatarWithOnlineIndicatorProps
+    extends IProfileUserAvatarProps {
+    badgeSize?: number;
+}
+
+const AvatarWithOnlineIndicator: React.FC<AvatarWithOnlineIndicatorProps> = ({
     user,
+    badgeSize,
     ...otherProps
 }): React.ReactElement => {
     const [isOnline, setIsOnline] = React.useState<boolean>(false);
     const avatar = <ProfileUserAvatar user={user} {...otherProps} />;
 
     React.useEffect(() => {
-        socket.emit("GET_IS_ONLINE");
+        socket.emit("GET_IS_ONLINE", user._id);
 
         socket.on("JOIN_ONLINE", (userId: string) => {
-            console.log(userId, user);
             if (user._id === userId) {
                 setIsOnline(true);
             }
-        });
-
-        socket.on("disconnect", () => {
-            console.log("disconnected");
         });
 
         socket.on("LEAVE_ONLINE", (userId) => {
@@ -34,7 +34,7 @@ const AvatarWithOnlineIndicator: React.FC<IProfileUserAvatarProps> = ({
         });
     }, []);
 
-    return isOnline ? <S.SBadge>{avatar}</S.SBadge> : avatar;
+    return isOnline ? <S.SBadge size={badgeSize}>{avatar}</S.SBadge> : avatar;
 };
 
 export default AvatarWithOnlineIndicator;

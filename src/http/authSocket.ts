@@ -1,10 +1,10 @@
 import manager from "@http/manager";
 
-const token = localStorage.token;
-
 const authSocket = manager.socket("/", {
-    auth: {
-        token,
+    auth: (cb) => {
+        cb({
+            token: localStorage.token,
+        });
     },
 });
 

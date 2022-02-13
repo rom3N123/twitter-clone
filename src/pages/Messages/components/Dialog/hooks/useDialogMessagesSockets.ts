@@ -1,7 +1,6 @@
 import React from "react";
 import { selectUserState } from "@redux/ducks/user";
 import { useAppSelector } from "@redux/hooks";
-import useDialogApi, { CreateMessage } from "./useDialogApi";
 import useFetchDialogMessages, { Messages } from "./useFetchDialogMessages";
 import { DialogMessage } from "_types/api/dialog";
 import produce from "immer";
@@ -9,9 +8,11 @@ import manager from "@http/manager";
 
 const socket = manager.socket("/");
 
+type SendMessage = (text: string) => void;
+
 interface UseDialogMessagesSocketsValue {
     messages: Messages;
-    sendMessage: CreateMessage;
+    sendMessage: SendMessage;
 }
 
 const useDialogMessagesSockets = (
@@ -21,8 +22,6 @@ const useDialogMessagesSockets = (
     const userId = user._id;
 
     const [messages, setMessages] = React.useState<DialogMessage[]>([]);
-
-    const { createMessage } = useDialogApi(dialogId);
 
     const initialMessages = useFetchDialogMessages(dialogId);
 
@@ -50,15 +49,8 @@ const useDialogMessagesSockets = (
         };
     }, []);
 
-    const sendMessage: CreateMessage = async (text) => {
-        // const message = await createMessage(text);
+    const sendMessage: SendMessage = (text) => {
         socket.emit("SEND_MESSAGE", { userId, dialogId, text });
-
-        // addMessage(message);
-
-        /** TODO уведомлять сокетами */
-
-        // return message;
     };
 
     return { messages, sendMessage };

@@ -8,7 +8,6 @@ import Tabs from "@components/Tabs";
 import { ITab } from "@components/Tabs/components/Tab/Tab";
 import useToggle from "@hooks/useToggle";
 import EditProfileDialog from "../EditProfileDialog";
-import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
 import Typography from "@mui/material/Typography";
 import ProfileActivity from "../ProfileActivity";
 import { useAppSelector } from "@redux/hooks";
@@ -18,6 +17,7 @@ import useCurrentProfileContext from "@pages/Profile/contexts/CurrentProfileCont
 import { format } from "date-fns";
 import SkeletonWrapper from "@components/SkeletonWrapper";
 import Skeleton from "@mui/material/Skeleton";
+import AvatarWithOnlineIndicator from "@components/UserComponents/AvatarWithOnlineIndicator";
 
 const tabs: ITab[] = [
     {
@@ -41,8 +41,6 @@ const ProfileHeader: React.FC = (): React.ReactElement => {
     const { isOpen, toggle } = useToggle();
     const { user } = useCurrentProfileContext();
 
-    console.log(user);
-
     const authUser = useAppSelector(selectUserState);
 
     return (
@@ -54,8 +52,9 @@ const ProfileHeader: React.FC = (): React.ReactElement => {
                     {!user ? (
                         <Skeleton variant="circular" width={133} height={133} />
                     ) : (
-                        <ProfileUserAvatar
+                        <AvatarWithOnlineIndicator
                             withWrapper
+                            badgeSize={20}
                             clickable={false}
                             user={user}
                         />

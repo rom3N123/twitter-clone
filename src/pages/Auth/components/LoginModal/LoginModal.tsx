@@ -76,7 +76,6 @@ const LoginModal: React.FC<ILoginModalProps> = ({
         try {
             await dispatch(loginAction(credentials));
         } catch (error) {
-            console.log("error");
             setFieldError("email", "Incorrect email or password");
         }
 

@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import Badge from "@mui/material/Badge";
 
+const getBadgeSize = (size?: number) => `${size || 8}px`;
+
 export const SBadge = styled(Badge).attrs(() => ({
     overlap: "circular",
     variant: "dot",
     anchorOrigin: { vertical: "bottom", horizontal: "right" },
-}))`
+}))<{ size?: number }>`
     @keyframes ripple {
         0% {
             transform: scale(0.8);
@@ -21,6 +23,10 @@ export const SBadge = styled(Badge).attrs(() => ({
         background-color: #44b700;
         color: #44b700;
         box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.success};
+        border-radius: 50%;
+        width: ${({ size }) => getBadgeSize(size)};
+        height: ${({ size }) => getBadgeSize(size)};
+
         &::after {
             position: absolute;
             top: 0;
