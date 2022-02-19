@@ -50,20 +50,10 @@ const Dialog: React.FC<DialogProps> = ({
             <S.SMessagesContainer ref={containerRef}>
                 <S.SMessages>
                     <MessagesList ref={messagesListRef} messages={messages} />
-                    {/* {messages?.map((message, index) => (
-                        <DialogMessageRow
-                            key={message._id}
-                            index={index}
-                            isMine={message.author._id === authUser._id}
-                            messages={messages}
-                            message={message}
-                            {...message}
-                        />
-                    ))} */}
                 </S.SMessages>
             </S.SMessagesContainer>
 
-            <DialogInput onSubmit={onMessageSend} />
+            <DialogInput dialogId={_id} onSubmit={onMessageSend} />
         </S.SContainer>
     );
 };

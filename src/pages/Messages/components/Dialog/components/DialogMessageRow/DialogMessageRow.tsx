@@ -40,16 +40,16 @@ const DialogMessageRow: React.FC<AdditionalDialogMessageRowProps> = ({
     };
 
     const indent: number = useDialogMessageIndent(hookProps);
-    const shouldShowAvatar: boolean = useIsNextMessageByTheSameUser(hookProps);
+    const shouldHideAvatar: boolean = useIsNextMessageByTheSameUser(hookProps);
 
     return (
         <S.SContainer
             className={className}
-            style={style}
             justifyEnd={isMine}
             indent={indent}
+            style={style}
         >
-            <Grow in={!isMine && !shouldShowAvatar}>
+            <Grow in={!isMine && !shouldHideAvatar}>
                 <div>
                     <ProfileUserAvatar size={40} user={author} />
                 </div>

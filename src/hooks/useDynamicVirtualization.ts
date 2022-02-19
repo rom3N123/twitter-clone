@@ -27,8 +27,6 @@ const useDynamicVirtualization = (
             [index]: size,
         };
         listRef.current?.resetAfterIndex(0);
-
-        console.log(rowsHeightsRef);
     };
 
     const getRowHeight: GetRowHeight = (index: number): number => {
