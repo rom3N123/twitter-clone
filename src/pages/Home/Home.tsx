@@ -31,7 +31,10 @@ const Home: React.FC = (): React.ReactElement => {
 
     const listRef = React.useRef() as React.RefObject<VariableSizeList<any>>;
 
-    const { setRowHeight, getRowHeight } = useDynamicVirtualization(listRef);
+    const { setRowHeight, getRowHeight } = useDynamicVirtualization(
+        listRef,
+        112
+    );
 
     React.useEffect(() => {
         listRef.current?.resetAfterIndex(0);

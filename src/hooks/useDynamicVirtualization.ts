@@ -14,22 +14,25 @@ export interface IUseDynamicVirtualizationValue {
 }
 
 const useDynamicVirtualization = (
-    listRef: ListRefType
+    listRef: ListRefType,
+    fallbackHeight: number
 ): IUseDynamicVirtualizationValue => {
     const rowsHeightsRef: RowsHeightsRef = React.useRef<{
         [index: number]: number;
     }>({});
 
     const setRowHeight: SetRowHeight = (index: number, size: number): void => {
-        listRef.current?.resetAfterIndex(0);
         rowsHeightsRef.current = {
             ...rowsHeightsRef.current,
             [index]: size,
         };
+        listRef.current?.resetAfterIndex(0);
+
+        console.log(rowsHeightsRef);
     };
 
     const getRowHeight: GetRowHeight = (index: number): number => {
-        return rowsHeightsRef.current[index] || 112;
+        return rowsHeightsRef.current[index] || fallbackHeight;
     };
 
     return { setRowHeight, getRowHeight };

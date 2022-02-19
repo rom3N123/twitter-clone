@@ -3,6 +3,8 @@ import * as S from "./MessageDialogItem.styed";
 import Text from "@components/TypographyComponents/Text";
 import { Dialog } from "_types/api/dialog";
 import AvatarWithOnlineIndicator from "@components/UserComponents/AvatarWithOnlineIndicator";
+import { useAppSelector } from "@redux/hooks";
+import { selectUserState } from "@redux/ducks/user";
 
 export interface MessageDialogItemProps {
     dialog: Dialog;
@@ -15,10 +17,15 @@ const MessageDialogItem: React.FC<MessageDialogItemProps> = ({
     isActive,
     onClick,
 }): React.ReactElement => {
-    const { participants, messages } = dialog;
-    const user = participants[0];
+    const authUser = useAppSelector(selectUserState);
+    const { participants, messages, creator } = dialog;
+    const isGroup = participants.length > 1;
+    const user = isGroup
+        ? creator
+        : participants[0]._id === authUser._id
+        ? creator
+        : participants[0];
     const lastMessage = messages[messages.length - 1];
-
     const onClickHandler = (dialog: Dialog) => (): void => {
         onClick(dialog);
     };

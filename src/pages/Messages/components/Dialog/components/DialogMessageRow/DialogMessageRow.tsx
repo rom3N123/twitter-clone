@@ -1,7 +1,8 @@
-import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
-import Fade from "@mui/material/Fade";
 import React from "react";
+import ProfileUserAvatar from "@components/UserComponents/ProfileUserAvatar";
+import Grow from "@mui/material/Grow";
 import { DialogMessage as DialogMessageType } from "_types/api/dialog";
+import { CommonProps } from "_types/common";
 import DialogMessage, {
     DialogMessageProps,
 } from "../DialogMessage/DialogMessage";
@@ -15,9 +16,12 @@ export interface DialogMessageRowProps
     message: DialogMessageType;
 }
 
-export interface AdditionalDialogMessageRowProps extends DialogMessageRowProps {
+export interface AdditionalDialogMessageRowProps
+    extends DialogMessageRowProps,
+        CommonProps {
     index: number;
     messages: DialogMessageType[];
+    containerRef?: React.RefObject<HTMLDivElement>;
 }
 
 const DialogMessageRow: React.FC<AdditionalDialogMessageRowProps> = ({
@@ -25,6 +29,9 @@ const DialogMessageRow: React.FC<AdditionalDialogMessageRowProps> = ({
     isMine,
     index,
     messages,
+    className,
+    style,
+    containerRef,
 }): React.ReactElement => {
     const hookProps: IsPreviousUserTheSameProps = {
         author,
@@ -36,14 +43,25 @@ const DialogMessageRow: React.FC<AdditionalDialogMessageRowProps> = ({
     const shouldShowAvatar: boolean = useIsNextMessageByTheSameUser(hookProps);
 
     return (
-        <S.SContainer alignEnd={isMine} indent={indent}>
-            <Fade in={!isMine && !shouldShowAvatar}>
+        <S.SContainer
+            className={className}
+            style={style}
+            justifyEnd={isMine}
+            indent={indent}
+        >
+            <Grow in={!isMine && !shouldShowAvatar}>
                 <div>
                     <ProfileUserAvatar size={40} user={author} />
                 </div>
-            </Fade>
+            </Grow>
 
-            <DialogMessage isMine={isMine} text={text} />
+            <S.SMessageContainer>
+                <DialogMessage
+                    messageRef={containerRef}
+                    isMine={isMine}
+                    text={text}
+                />
+            </S.SMessageContainer>
         </S.SContainer>
     );
 };

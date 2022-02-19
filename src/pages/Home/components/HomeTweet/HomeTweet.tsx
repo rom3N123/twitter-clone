@@ -27,7 +27,7 @@ const HomeTweet: React.ComponentType<IHomeTweetProps> = ({
         if (tweetRef.current) {
             setRowHeight(index, tweetRef.current.clientHeight);
         }
-    }, [tweetRef.current]);
+    }, []);
 
     return (
         <SimpleTweet
