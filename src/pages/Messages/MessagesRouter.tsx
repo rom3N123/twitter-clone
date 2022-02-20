@@ -3,8 +3,8 @@ import * as S from "./Messages.styled";
 import useActiveDialog from "./hooks/useActiveDialog";
 import { Routes, Route, useParams } from "react-router-dom";
 import DialogsList from "./components/Dialog/components/DialogsList";
-import SelectDialogMessage from "./components/SelectDialogMessage";
 import MessagesDialogPage from "./pages/MessagesDialogPage";
+import EmptyDialogPage from "./pages/EmptyDialogPage";
 
 const Messages: React.FC = (): React.ReactElement => {
     const params = useParams();
@@ -22,14 +22,7 @@ const Messages: React.FC = (): React.ReactElement => {
 
             <S.SDialogContainer>
                 <Routes>
-                    <Route
-                        index
-                        element={
-                            <S.SEmptyDialogContainer>
-                                <SelectDialogMessage />
-                            </S.SEmptyDialogContainer>
-                        }
-                    />
+                    <Route index element={<EmptyDialogPage />} />
 
                     <Route path=":dialogId" element={<MessagesDialogPage />} />
                 </Routes>

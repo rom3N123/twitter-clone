@@ -42,10 +42,3 @@ export const SDialogContainer = styled.div`
     width: 100%;
     border-right: 1px solid ${({ theme }) => theme.mode.divider};
 `;
-
-export const SEmptyDialogContainer = styled(Flex).attrs(() => ({
-    align: "center",
-    justify: "center",
-}))`
-    height: 100%;
-`;

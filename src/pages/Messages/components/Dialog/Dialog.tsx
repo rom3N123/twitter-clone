@@ -51,9 +51,7 @@ const Dialog: React.FC<DialogProps> = ({
                 />
             </S.SHeader>
             <S.SMessagesContainer ref={containerRef}>
-                <S.SMessages>
-                    <MessagesList ref={messagesListRef} messages={messages} />
-                </S.SMessages>
+                <MessagesList ref={messagesListRef} messages={messages} />
             </S.SMessagesContainer>
 
             <DialogInput dialogId={_id} onSubmit={onMessageSend} />
