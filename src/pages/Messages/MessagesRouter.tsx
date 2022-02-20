@@ -1,13 +1,15 @@
 import React from "react";
 import * as S from "./Messages.styled";
 import useActiveDialog from "./hooks/useActiveDialog";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 import DialogsList from "./components/Dialog/components/DialogsList";
 import SelectDialogMessage from "./components/SelectDialogMessage";
 import MessagesDialogPage from "./pages/MessagesDialogPage";
 
 const Messages: React.FC = (): React.ReactElement => {
-    const { activeDialog, onDialogClick } = useActiveDialog("sdf");
+    const params = useParams();
+    const dialogId = params["*"];
+    const { activeDialog, onDialogClick } = useActiveDialog(dialogId);
 
     return (
         <S.SContainer>

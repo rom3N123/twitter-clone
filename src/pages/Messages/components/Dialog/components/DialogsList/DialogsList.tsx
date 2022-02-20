@@ -30,7 +30,7 @@ const DialogsList: React.FC<DialogsListProps> = ({
                 dialogs.map((dialog) => (
                     <MessageDialogItem
                         key={dialog._id}
-                        isActive={activeDialog?._id === dialog._id}
+                        isActive={dialog._id === activeDialog}
                         onClick={onDialogClick}
                         dialog={dialog}
                     />

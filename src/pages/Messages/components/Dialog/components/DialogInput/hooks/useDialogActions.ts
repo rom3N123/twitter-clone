@@ -42,8 +42,6 @@ const useDialogActions = ({
         Record<string, UserActions>
     >({});
 
-    console.log(userActions);
-
     const emitAction = (type: ActionType, action: DialogActionType) => {
         socket.emit(`DIALOG_ACTION_${type}`, {
             user,

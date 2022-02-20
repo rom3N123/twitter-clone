@@ -15,13 +15,16 @@ export interface DialogProps extends CommonProps {
 }
 
 const Dialog: React.FC<DialogProps> = ({
-    dialog: { _id, participants },
+    dialog: { _id, participants, messages: initialMessages },
     style,
     className,
 }): React.ReactElement => {
     const messagesListRef = React.useRef() as React.Ref<MessagesListRefMethods>;
     const containerRef = React.useRef<HTMLDivElement>(null);
-    const { messages, sendMessage } = useDialogMessagesSockets(_id);
+    const { messages, sendMessage } = useDialogMessagesSockets(
+        _id,
+        initialMessages
+    );
     const { scrollToBottomIfSticked, scrollToBottom } = useDialogScrollToBottom(
         containerRef as ContainerRef
     );

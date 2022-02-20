@@ -1,7 +1,7 @@
 import React from "react";
 import { selectUserState } from "@redux/ducks/user";
 import { useAppSelector } from "@redux/hooks";
-import useFetchDialogMessages, { Messages } from "./useFetchDialogMessages";
+import { Messages } from "./useFetchDialogMessages";
 import { DialogMessage } from "_types/api/dialog";
 import produce from "immer";
 import manager from "@http/manager";
@@ -16,14 +16,14 @@ interface UseDialogMessagesSocketsValue {
 }
 
 const useDialogMessagesSockets = (
-    dialogId: string
+    dialogId: string,
+    initialMessages: Messages
 ): UseDialogMessagesSocketsValue => {
     const user = useAppSelector(selectUserState);
     const userId = user._id;
 
-    const [messages, setMessages] = React.useState<DialogMessage[]>([]);
-
-    const initialMessages = useFetchDialogMessages(dialogId);
+    const [messages, setMessages] =
+        React.useState<DialogMessage[]>(initialMessages);
 
     const addMessage = (message: DialogMessage): void => {
         setMessages(
@@ -32,10 +32,6 @@ const useDialogMessagesSockets = (
             })
         );
     };
-
-    React.useEffect(() => {
-        setMessages(initialMessages);
-    }, [initialMessages]);
 
     React.useEffect(() => {
         socket.on("GET_MESSAGE", addMessage);
