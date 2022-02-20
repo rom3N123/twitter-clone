@@ -14,6 +14,7 @@ export const SContainer = styled(Flex).attrs(() => ({
     gap: 10,
 }))`
     width: 100%;
+    position: relative;
 `;
 
 export const STextField = styled(TextField)`
@@ -33,4 +34,10 @@ export const STextField = styled(TextField)`
 export const SWritingUsersContainer = styled.div`
     max-width: 50%;
     flex-grow: 1;
+`;
+
+export const SPickerWrapper = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
 `;

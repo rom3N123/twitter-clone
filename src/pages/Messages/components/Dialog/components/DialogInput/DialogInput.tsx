@@ -6,22 +6,30 @@ import useBind from "@hooks/useBind";
 import socket from "@http/authSocket";
 import { useAppSelector } from "@redux/hooks";
 import { selectUserState } from "@ducks/user/selectors";
-import { IUser } from "_types/api/user";
-import produce from "immer";
 import Text from "@components/TypographyComponents/Text";
+import EmojiButton from "@components/Buttons/EmojiButton";
+import { IEmojiData } from "emoji-picker-react";
+import useDialogActions, { DialogActionType } from "./hooks/useDialogActions";
 export interface DialogInputProps {
     onSubmit: (value: string) => void;
     dialogId: string;
 }
+
+const readableActionText: Record<DialogActionType, string> = {
+    emoji: "выбирает стикер",
+    write: "печатает",
+};
 
 const DialogInput: React.FC<DialogInputProps> = ({
     dialogId,
     onSubmit,
 }): React.ReactElement => {
     const user = useAppSelector(selectUserState);
-    const { value, onChange, clearValue } = useBind();
-    const [isWriting, setIsWriting] = React.useState<boolean>(false);
-    const [writingUsers, setWritingUsers] = React.useState<IUser[]>([]);
+    const { value, onChange, clearValue, setValue } = useBind();
+    const { userActions, onCloseEmoji, onOpenEmoji } = useDialogActions({
+        dialogId,
+        value,
+    });
 
     const onSubmitHandler = (value: string) => (): void => {
         onSubmit(value);
@@ -34,47 +42,38 @@ const DialogInput: React.FC<DialogInputProps> = ({
         }
     };
 
-    React.useEffect(() => {
-        socket.on("USER_WRITE_MESSAGE", (user: IUser) => {
-            setWritingUsers(
-                produce((prevState) => {
-                    prevState.push(user);
-                })
-            );
-        });
-
-        socket.on("USER_STOP_WRITE_MESSAGE", (user: IUser) => {
-            console.log("stop");
-            setWritingUsers(
-                produce((prevState) => {
-                    return prevState.filter(({ _id }) => _id !== user._id);
-                })
-            );
-        });
-    }, []);
-
-    React.useEffect(() => {
-        if (isWriting) {
-            socket.emit("WRITING_MESSAGE", { dialogId, user });
-        } else {
-            socket.emit("STOP_WRITING_MESSAGE", { dialogId, user });
-        }
-    }, [isWriting]);
-
-    React.useEffect(() => {
-        setIsWriting(Boolean(value));
-    }, [value]);
+    const onEmojiSelect = (
+        event: React.MouseEvent<Element, MouseEvent>,
+        { emoji }: IEmojiData
+    ): void => {
+        setValue((value) => value + emoji);
+    };
 
     return (
         <S.SWrapper>
             <S.SWritingUsersContainer>
-                {Boolean(writingUsers.length) && (
-                    <Text lh={30}>{`${writingUsers
-                        .map(({ name }) => name)
-                        .join(", ")} печатает..`}</Text>
+                {Boolean(userActions.length) && (
+                    <Text lh={30}>
+                        {userActions
+                            .map(
+                                ({ actions, user: { name } }) =>
+                                    `${name} ${
+                                        readableActionText[
+                                            actions[actions.length - 1]
+                                        ]
+                                    }..`
+                            )
+                            .join(", ")}
+                    </Text>
                 )}
             </S.SWritingUsersContainer>
             <S.SContainer>
+                <EmojiButton
+                    onOpen={onOpenEmoji}
+                    onClose={onCloseEmoji}
+                    onEmojiClick={onEmojiSelect}
+                />
+
                 <S.STextField
                     placeholder="Start a new message"
                     value={value}

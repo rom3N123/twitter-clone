@@ -9,12 +9,13 @@ export interface IUseDebouncedBindValue {
 }
 
 const useDebouncedBind = (timeout: number = 500): IUseDebouncedBindValue => {
-    const { value, onChange } = useBind();
+    const { value, onChange, setValue } = useBind();
     const debouncedValue = useDebounce(value, timeout);
 
     const bind = () => ({
         value,
         onChange,
+        setValue,
     });
 
     return { bind, debouncedValue, value };

@@ -3,6 +3,7 @@ import React from "react";
 export interface IBindValue {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface IUseBindValue extends IBindValue {
@@ -33,6 +34,7 @@ const useBind = (initialValue: string = ""): IUseBindValue => {
             value,
             onChange,
             clearValue,
+            setValue,
         }),
         [value]
     );
