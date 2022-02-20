@@ -1,21 +1,18 @@
-import React from "react";
-import { Dialog } from "_types/api/dialog";
 import DialogsService from "@services/DialogsService";
+import { useQuery } from "react-query";
+import { Dialog } from "_types/api/dialog";
 
-const useFetchDialogs = (): Dialog[] => {
-    const [dialogs, setDialogs] = React.useState<Dialog[]>([]);
+type UseFetchDialogsValue = {
+    dialogs: Dialog[];
+    isLoading: boolean;
+};
 
-    React.useEffect(() => {
-        const fetchDialogs = async () => {
-            const dialogs = await DialogsService.index();
+const useFetchDialogs = (): UseFetchDialogsValue => {
+    const { data, isLoading } = useQuery(["dialogs"], () =>
+        DialogsService.index()
+    );
 
-            setDialogs(dialogs);
-        };
-
-        fetchDialogs();
-    }, []);
-
-    return dialogs;
+    return { dialogs: data || [], isLoading };
 };
 
 export default useFetchDialogs;

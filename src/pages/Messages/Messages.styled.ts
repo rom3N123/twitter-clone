@@ -13,6 +13,7 @@ export const SContainer = styled(Flex).attrs(() => ({
 export const SConversatins = styled.div`
     width: 40%;
     border-right: 1px solid ${({ theme }) => theme.mode.divider};
+    position: relative;
 `;
 
 export const SConversation = styled.div`
@@ -29,6 +30,7 @@ export const SSeleectDialogContainer = styled(Flex).attrs(() => ({
     align: "center",
     justify: "center",
 }))`
+    padding: 16px;
     border-right: 1px solid ${({ theme }) => theme.mode.divider};
     flex-grow: 1;
     & > ${SConversationsInner} {
@@ -39,4 +41,11 @@ export const SSeleectDialogContainer = styled(Flex).attrs(() => ({
 export const SDialogContainer = styled.div`
     width: 100%;
     border-right: 1px solid ${({ theme }) => theme.mode.divider};
+`;
+
+export const SEmptyDialogContainer = styled(Flex).attrs(() => ({
+    align: "center",
+    justify: "center",
+}))`
+    height: 100%;
 `;

@@ -1,3 +1,3 @@
-import Messages from "./Messages";
+import MessagesRouter from "./MessagesRouter";
 
-export default Messages;
+export default MessagesRouter;

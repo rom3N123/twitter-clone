@@ -5,48 +5,49 @@ import useFetchDialogs from "./hooks/useFetchDialogs";
 import SelectDialogMessage from "./components/SelectDialogMessage";
 import Dialog from "./components/Dialog";
 import useActiveDialog from "./hooks/useActiveDialog";
+import SkeletonUserItem from "@components/SkeletonComponents/SkeletonUserItem";
 
 const Messages: React.FC = (): React.ReactElement => {
     const { activeDialog, onDialogClick } = useActiveDialog();
 
-    const dialogs = useFetchDialogs();
+    const { dialogs, isLoading } = useFetchDialogs();
 
     return (
         <S.SContainer>
             <S.SConversatins>
-                {!dialogs.length ? (
-                    <SelectDialogMessage />
+                {isLoading ? (
+                    <>
+                        <SkeletonUserItem padding="16px" avatarSize={47} />
+                        <SkeletonUserItem padding="16px" avatarSize={47} />
+                        <SkeletonUserItem padding="16px" avatarSize={47} />
+                    </>
+                ) : !dialogs.length ? (
+                    <S.SSeleectDialogContainer>
+                        <SelectDialogMessage />
+                    </S.SSeleectDialogContainer>
                 ) : (
                     dialogs.map((dialog) => (
                         <MessageDialogItem
+                            key={dialog._id}
                             isActive={activeDialog?._id === dialog._id}
                             onClick={onDialogClick}
-                            key={dialog._id}
                             dialog={dialog}
                         />
                     ))
                 )}
             </S.SConversatins>
 
-            {!activeDialog ? (
-                <div>Dialog</div>
-            ) : (
-                <S.SDialogContainer>
+            <S.SDialogContainer>
+                {activeDialog ? (
                     <S.SConversationsInner>
-                        {dialogs.length && <Dialog dialog={activeDialog} />}
+                        <Dialog dialog={activeDialog} />
                     </S.SConversationsInner>
-                </S.SDialogContainer>
-
-                // <S.SSeleectDialogContainer>
-                //     <S.SConversationsInner>
-                //         {dialogs.length && (
-                //             <Dialog user={dialogs[0].participants[0]} />
-                //         )}
-
-                //         {/* <SelectDialogMessage /> */}
-                //     </S.SConversationsInner>
-                // </S.SSeleectDialogContainer>
-            )}
+                ) : (
+                    <S.SEmptyDialogContainer>
+                        <SelectDialogMessage />
+                    </S.SEmptyDialogContainer>
+                )}
+            </S.SDialogContainer>
         </S.SContainer>
     );
 };

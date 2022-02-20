@@ -4,7 +4,7 @@ import * as S from "./Layout.styled";
 import { Routes, Route } from "react-router-dom";
 import Loader from "./components/Loader";
 
-const Messages = React.lazy(() => import("@pages/Messages"));
+const MessagesRouter = React.lazy(() => import("@pages/Messages"));
 const TweetPage = React.lazy(() => import("@pages/TweetPage"));
 const Home = React.lazy(() => import("@pages/Home"));
 const Profile = React.lazy(() => import("@pages/Profile"));
@@ -25,7 +25,7 @@ const Layout: React.FC = (): React.ReactElement => {
                                     <Route index element={<Home />} />
                                     <Route
                                         path="messages"
-                                        element={<Messages />}
+                                        element={<MessagesRouter />}
                                     />
                                     <Route
                                         path="/:userId"
