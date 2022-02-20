@@ -35,19 +35,13 @@ function App() {
             {!isLoadingWithScreen && (
                 <Routes>
                     <Route
-                        path="/"
+                        path="/*"
                         element={
                             <PrivateRoute>
                                 <Layout />
                             </PrivateRoute>
                         }
-                    >
-                        <Route path="messages" />
-                        <Route path=":userId" />
-                        <Route path="bookmarks" />
-                        <Route path="explore" />
-                        <Route path=":userId/tweet/:tweetId" />
-                    </Route>
+                    />
 
                     <Route
                         path="/auth"

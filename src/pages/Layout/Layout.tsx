@@ -24,7 +24,7 @@ const Layout: React.FC = (): React.ReactElement => {
                                 <Routes>
                                     <Route index element={<Home />} />
                                     <Route
-                                        path="messages"
+                                        path="messages/*"
                                         element={<MessagesRouter />}
                                     />
                                     <Route

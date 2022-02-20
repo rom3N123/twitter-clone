@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Dialog } from "_types/api/dialog";
 
 type OnDialogClick = (dialog: Dialog) => void;
@@ -8,11 +9,12 @@ interface UseActiveDialogValue {
     onDialogClick: OnDialogClick;
 }
 
-const useActiveDialog = (): UseActiveDialogValue => {
+const useActiveDialog = (dialogId: string): UseActiveDialogValue => {
     const [activeDialog, setActiveDialog] = React.useState<Dialog>();
+    const navigate = useNavigate();
 
     const onDialogClick: OnDialogClick = (dialog) => {
-        setActiveDialog(dialog);
+        navigate(dialog._id);
     };
 
     return {
