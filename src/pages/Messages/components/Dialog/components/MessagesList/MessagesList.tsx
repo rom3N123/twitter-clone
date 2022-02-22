@@ -4,14 +4,7 @@ import AutoSizer from "react-virtualized-auto-sizer";
 import { VariableSizeList as List } from "react-window";
 import { Messages } from "../../hooks/useFetchDialogMessages";
 import RenderDialogMessageRow from "./components/RenderDialogMessageRow";
-import styled from "styled-components";
-import { styledScrollbar } from "@styled/styles";
-
-const ReversedElement = styled.div`
-    transform: scaleY(-1);
-    padding: 10px 0;
-    ${styledScrollbar};
-`;
+import * as S from "./MessagesList.styled";
 
 interface MessagesListProps {
     messages: Messages;
@@ -26,6 +19,7 @@ const MessagesList = React.forwardRef<
     MessagesListProps
 >(({ messages }, ref): React.ReactElement => {
     const listRef = React.useRef(null) as React.RefObject<List<any>>;
+    const [outerRef, setOuterRef] = React.useState<HTMLElement | null>(null);
 
     const { setRowHeight, getRowHeight } = useDynamicVirtualization(
         listRef,
@@ -38,6 +32,23 @@ const MessagesList = React.forwardRef<
         },
     }));
 
+    const getOuterRef = (node: HTMLElement) => {
+        setOuterRef(node);
+        return node;
+    };
+
+    React.useEffect(() => {
+        const onScroll = (event: any) => {
+            console.log(event);
+        };
+
+        outerRef?.addEventListener("scroll", onScroll);
+
+        return () => {
+            outerRef?.removeEventListener("scroll", onScroll);
+        };
+    }, [outerRef]);
+
     return (
         <AutoSizer>
             {({ width, height }) => (
@@ -48,8 +59,9 @@ const MessagesList = React.forwardRef<
                     itemCount={messages.length}
                     itemSize={getRowHeight}
                     itemData={{ messages, setRowHeight }}
-                    outerElementType={ReversedElement}
-                    innerElementType={ReversedElement}
+                    outerElementType={S.SReversedList}
+                    innerElementType={S.SReversedElement}
+                    outerRef={getOuterRef}
                     layout="vertical"
                 >
                     {RenderDialogMessageRow}

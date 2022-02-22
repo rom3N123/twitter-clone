@@ -25,6 +25,7 @@ const Dialog: React.FC<DialogProps> = ({
         _id,
         initialMessages
     );
+
     const { scrollToBottomIfSticked, scrollToBottom } = useDialogScrollToBottom(
         containerRef as ContainerRef
     );

@@ -3,6 +3,7 @@ import Navigation from "@components/PageComponents/Navigation";
 import * as S from "./Layout.styled";
 import { Routes, Route } from "react-router-dom";
 import Loader from "./components/Loader";
+import SearchbarSidebar from "./components/SearchbarSidebar";
 
 const MessagesRouter = React.lazy(() => import("@pages/Messages"));
 const TweetPage = React.lazy(() => import("@pages/TweetPage"));
@@ -39,11 +40,17 @@ const Layout: React.FC = (): React.ReactElement => {
                             </Suspense>
                         </S.SMainContent>
 
-                        {/* <S.SRightSideContainer>
-                            <Routes>
-                                <Route index element={<Searchbar />} />
-                            </Routes>
-                        </S.SRightSideContainer> */}
+                        <Routes>
+                            <Route path="messages/*" />
+                            <Route
+                                path="*"
+                                element={
+                                    <S.SRightSideContainer>
+                                        <SearchbarSidebar />
+                                    </S.SRightSideContainer>
+                                }
+                            />
+                        </Routes>
                     </S.SContainer>
                 </S.SContentContainer>
             </Suspense>

@@ -1,10 +1,6 @@
 import React from "react";
 import { ReactComponent as HomeIcon } from "@icons/navigation/home.svg";
-import { ReactComponent as ExploreIcon } from "@icons/navigation/explore.svg";
-import { ReactComponent as NotificationIcon } from "@icons/navigation/notifications.svg";
 import { ReactComponent as MessageIcon } from "@icons/navigation/messages.svg";
-import { ReactComponent as BookmarkIcon } from "@icons/navigation/bookmark.svg";
-import { ReactComponent as ListsIcon } from "@icons/navigation/lists.svg";
 import { ReactComponent as ProfileIcon } from "@icons/navigation/profile.svg";
 import { ReactComponent as MoreIcon } from "@icons/navigation/mode.svg";
 import { ReactComponent as AddSvgIcon } from "@icons/navigation/add.svg";
@@ -31,15 +27,7 @@ const Navigation = () => {
 
     const navigationItems: INavigationItem[] = [
         { to: "/", icon: <HomeIcon />, label: "Home" },
-        { to: "/explore", icon: <ExploreIcon />, label: "Explore" },
-        {
-            to: "/notifications",
-            icon: <NotificationIcon />,
-            label: "Notifications",
-        },
         { to: "/messages", icon: <MessageIcon />, label: "Messages" },
-        { to: "/bookmarks", icon: <BookmarkIcon />, label: "Bookmarks" },
-        { to: "/lists", icon: <ListsIcon />, label: "Lists" },
         {
             to: `/${_id}`,
             icon: <ProfileIcon />,
